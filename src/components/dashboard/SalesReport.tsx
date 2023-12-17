@@ -1,5 +1,5 @@
 import React from 'react';
-import Tab from '../Tab';
+import Tab from '../ui/Tab';
 import { RevenueChart } from './revenueChart';
 import style from "./static/dashboard.module.css";
 

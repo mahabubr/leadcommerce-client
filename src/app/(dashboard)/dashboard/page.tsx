@@ -1,10 +1,10 @@
-import TopSingleCard from '@/components/ui/dashboard/topSingleCard';
 import React from 'react';
 import {CloudUploadOutlined, DollarOutlined, UserAddOutlined} from "@ant-design/icons";
 import { paths } from '@/paths/paths';
 import style from "./static/dashboard.module.css";
-import SalesReport from '@/components/ui/dashboard/SalesReport';
-import OrdersPieChart from '@/components/ui/dashboard/OrdersPieChart';
+import TopSingleCard from '@/components/dashboard/topSingleCard';
+import SalesReport from '@/components/dashboard/SalesReport';
+import OrdersPieChart from '@/components/dashboard/OrdersPieChart';
 
 const DashboardPage = () => {
     return (

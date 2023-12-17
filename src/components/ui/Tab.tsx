@@ -1,6 +1,6 @@
 'use client'
 import React,{ReactElement, useEffect, useState} from 'react';
-import style from './dashboard/static/dashboard.module.css';
+import style from '../dashboard/static/dashboard.module.css';
 
 type IProps={
     childrens:{body:ReactElement,label:string}[];
