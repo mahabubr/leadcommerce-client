@@ -1,6 +1,7 @@
 'use client'
 import { Button, Form, Input } from "antd";
 import Link from "next/link";
+import style from "../style/authentication.module.css";
 
 
 const PageBody = () => {
@@ -14,78 +15,99 @@ const PageBody = () => {
     };
 
     return (
-        <Form
-            form={form}
-            name="basic"
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            autoComplete="off"
-        >
-            <label className=" font-medium">Full Name</label>
-            <Form.Item
-                className=""
-                name="fullName"
-                rules={[
-                    {
-                        required: true,
-                        message: "Please input your Full Name!",
-                    },
-                ]}
-            >
-                <Input className="" />
-            </Form.Item>
-            <label className="font-medium">Email Address</label>
-            <Form.Item
-                className=""
-                name="email"
-                rules={[
-                    {
-                        required: true,
-                        message: "Please input your valid email address!",
-                    },
-                ]}
-            >
-                <Input className="" />
-            </Form.Item>
-            <label className=" font-medium">Password</label>
-            <Form.Item
-                className=""
-                name="password"
-                rules={[
-                    {
-                        required: true,
-                        message: "Please input your Password!",
-                    },
-                ]}
-            >
-                <Input.Password className="" />
-            </Form.Item>
+        <div className={style.main_container} >
+            <div className={style.form_container}>
+                <div className={style.form_container_title}>
+                    <h2>Register</h2>
+                    <p>Fill out the from to create a new account</p>
+                </div>
 
-            <div>
-                <label className="">Confirm Password</label>
-                <Form.Item
-                    name="confirm_password"
-                    rules={[
-                        {
-                            required: true,
-                            message: "Please input your Confirm Password!",
-                        },
-                    ]}
+                <Form
+                    form={form}
+                    name="basic"
+                    onFinish={onFinish}
+                    onFinishFailed={onFinishFailed}
+                    autoComplete="off"
                 >
-                    <Input.Password className="" />
-                </Form.Item>
-            </div>
+                    <label style={{ fontSize: "15px" }} >Full Name</label>
+                    <Form.Item
+                        name="fullName"
+                        style={{ marginBottom: "4px" }}
+                        rules={[
+                            {
+                                required: true,
+                                message: "Please input your Full Name!",
+                            },
+                        ]}
+                    >
+                        <Input style={{ marginTop: "1px", width: "300px", height: "40px", borderRadius: "2px" }} />
+                    </Form.Item>
+                    <label style={{ fontSize: "15px" }} >Email Address</label>
+                    <Form.Item
+                        style={{ marginBottom: "4px" }}
+                        name="email"
+                        rules={[
+                            {
+                                required: true,
+                                message: "Please input your valid email address!",
+                            },
+                        ]}
+                    >
+                        <Input style={{ marginTop: "1px", width: "300px", height: "40px", borderRadius: "2px" }} />
+                    </Form.Item>
+                    <label style={{ fontSize: "15px" }} >Password</label>
+                    <Form.Item
+                        style={{ marginBottom: "4px" }}
+                        name="password"
+                        rules={[
+                            {
+                                required: true,
+                                message: "Please input your Password!",
+                            },
+                        ]}
+                    >
+                        <Input.Password style={{ marginTop: "1px", width: "300px", height: "40px", borderRadius: "2px" }} />
+                    </Form.Item>
 
-            <div className="">
-                <Link href="/reset-password" className="">
-                    Forget your password
-                </Link>
-            </div>
+                    <div>
+                        <label style={{ fontSize: "15px" }} >Confirm Password</label>
+                        <Form.Item
+                            style={{ marginBottom: "4px" }}
+                            name="confirm_password"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: "Please input your Confirm Password!",
+                                },
+                            ]}
+                        >
+                            <Input.Password style={{ marginTop: "1px", width: "300px", height: "40px", borderRadius: "2px" }} />
+                        </Form.Item>
+                    </div>
 
-            <Form.Item>
-                <Button type="primary" htmlType="submit">Register</Button>
-            </Form.Item>
-        </Form>
+                    <div style={{ width: "100%", margin: "14px 0px", textAlign: "right" }}>
+                        already have a account?&nbsp;
+                        <Link href="/login" className="">
+                            login
+                        </Link>
+                    </div>
+
+                    <Form.Item>
+                        <Button style={{
+                            width: "100%",
+                            borderRadius: "2px",
+                            textAlign: "center",
+                            margin: "auto",
+                            fontSize: '16px',
+                            fontWeight: "500",
+                            height: "40px",
+                            boxShadow: "2px 2px 8px 3px rgba(0, 0, 0, 0.2)"
+                        }}
+                            type="primary" htmlType="submit">Register</Button>
+                    </Form.Item>
+                </Form>
+            </div>
+        </div >
     );
 };
 
