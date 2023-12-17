@@ -1,13 +1,15 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Button, Space, Table, Typography } from 'antd';
+import { Button, Card, Space, Table, Typography } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import Image from 'next/image';
 import { ENUM_PRODUCT_STATUS } from '@/config/constants/product';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { ProductDataType, productData } from './utils/productData';
 import { useRouter } from 'next/navigation'
+import SearchFilterBar from './partials/SearchFilterBar';
+import PVBreadcrumb from './partials/PVBreadcrumb';
 const { Text } = Typography;
 
 const ViewProducts = () => {
@@ -17,7 +19,8 @@ const ViewProducts = () => {
 
     // states
     const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-
+    const [selectedStatus, setSelectedStatus] = useState<string | undefined>(undefined);
+    const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
 
     // data columns
     const columns: ColumnsType<ProductDataType> = [
@@ -105,21 +108,33 @@ const ViewProducts = () => {
     const handleRouteUpdate = (_id: string) => router.push(`/products/update/${_id}`)
 
     // delete action
-    const handleDeleteProduct = () => {
-
-    }
+    const handleDeleteProduct = () => { }
 
     return (
         <>
-            <Table
-                columns={columns}
-                dataSource={productData}
-                rowKey="_id"
-                rowSelection={{
-                    selectedRowKeys,
-                    onChange: onSelectChange,
-                }}
-            />
+            <PVBreadcrumb />
+
+            <Card title="" bordered style={{ marginTop: '20px' }}>
+
+                <SearchFilterBar
+                    selectedCategory={selectedCategory}
+                    setSelectedCategory={setSelectedCategory}
+                    selectedStatus={selectedStatus}
+                    setSelectedStatus={setSelectedStatus}
+                />
+
+
+                <Table
+                    columns={columns}
+                    dataSource={productData}
+                    rowKey="_id"
+                    rowSelection={{
+                        selectedRowKeys,
+                        onChange: onSelectChange,
+                    }}
+                />
+            </Card>
+
         </>
     )
 }
