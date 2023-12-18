@@ -28,7 +28,7 @@ const PCBreadcrumb = ({ title }: Props) => {
 
 
                 <Flex gap="small" wrap="wrap">
-                    <Button type="primary" size="large" onClick={() => router.push('products')}>View All</Button>
+                    <Button type="primary" size="large" onClick={() => router.push('/products')}>View All</Button>
                 </Flex>
 
             </Flex>
