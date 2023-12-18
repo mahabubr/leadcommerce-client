@@ -27,7 +27,7 @@ const Tab = (props:IProps) => {
             </div>
             <div>
                 {
-                    childrens.map(item=>(
+                    childrens?.map(item=>(
                         item.label===cLabel && (
                             <>
                                 {item.body}
