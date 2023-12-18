@@ -1,7 +1,6 @@
 import { Avatar, Dropdown, Input, Menu } from "antd";
 import { useState } from "react";
 import { HiBars3 } from "react-icons/hi2";
-import { RxCross2 } from "react-icons/rx";
 import { IoIosNotifications } from "react-icons/io";
 import { MdCenterFocusStrong } from "react-icons/md";
 import { FaCaretDown } from "react-icons/fa";
@@ -58,9 +57,10 @@ const TopBar = ({ open, closeDrawer, showDrawer }: any) => {
   return (
     <div
       style={{
+        backgroundColor: "#ffffff",
+        borderBottom: "1px solid #f0f0f0",
         marginLeft: open ? 320 : 0,
         transition: "margin 0.4s ",
-        backgroundColor: "#ffffff",
       }}
     >
       <div
@@ -68,23 +68,23 @@ const TopBar = ({ open, closeDrawer, showDrawer }: any) => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          padding: "20px",
+          padding: "12px 20px",
         }}
       >
         <div>
           {open ? (
             <div onClick={closeDrawer}>
-              <RxCross2 style={{ fontSize: "25px", cursor: "pointer" }} />
+              <HiBars3 style={{ fontSize: "22px", cursor: "pointer" }} />
             </div>
           ) : (
             <div onClick={showDrawer}>
-              <HiBars3 style={{ fontSize: "25px", cursor: "pointer" }} />
+              <HiBars3 style={{ fontSize: "22px", cursor: "pointer" }} />
             </div>
           )}
         </div>
-        <div>
+        <div style={{ flex: 1, margin: "0 20px" }}>
           <Input
-            size="large"
+            size="middle"
             placeholder="Search Pages"
             suffix={<CiSearch />}
             allowClear
@@ -94,35 +94,31 @@ const TopBar = ({ open, closeDrawer, showDrawer }: any) => {
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
             alignItems: "center",
             gap: 20,
             color: "#5A5A5A",
           }}
         >
-          <div>
-            <IoIosNotifications
-              style={{ fontSize: "25px", cursor: "pointer" }}
-            />
-          </div>
-          <div>
-            <MdCenterFocusStrong
-              onClick={toggleFullscreen}
-              style={{ fontSize: "25px", cursor: "pointer" }}
-            />
-          </div>
-          <div>
-            <Dropdown overlay={menu}>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <Avatar
-                  size="default"
-                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  style={{ cursor: "pointer" }}
-                />
-                <FaCaretDown style={{ fontSize: "25px", cursor: "pointer" }} />
-              </div>
-            </Dropdown>
-          </div>
+          <IoIosNotifications style={{ fontSize: "22px", cursor: "pointer" }} />
+          <MdCenterFocusStrong
+            onClick={toggleFullscreen}
+            style={{ fontSize: "22px", cursor: "pointer" }}
+          />
+          <Dropdown overlay={menu}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                cursor: "pointer",
+              }}
+            >
+              <Avatar
+                size="default"
+                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              />
+              <FaCaretDown style={{ fontSize: "22px" }} />
+            </div>
+          </Dropdown>
         </div>
       </div>
     </div>

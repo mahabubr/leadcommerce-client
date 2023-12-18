@@ -21,3 +21,19 @@ a {
   padding: 0;
   box-sizing: border-box;
 }
+
+.ant-table-content,.ant-table-thead{
+  background-color: #ECF0F1 !important;
+}
+
+.bg-success {
+    background-color: #27ae60;
+}
+
+.bg-warning {
+    background-color: #ffcc00;
+}
+
+.bg-error {
+    background-color: #e74c3c;
+}
