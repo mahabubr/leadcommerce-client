@@ -8,6 +8,9 @@ const PageBody = () => {
     const [form] = Form.useForm();
     const onFinish = (values: any) => {
         console.log(values)
+        if (values.password !== values.confirm_password) {
+            console.log('password and confirm password is not same')
+        }
     }
 
     const onFinishFailed = (errorInfo: any) => {

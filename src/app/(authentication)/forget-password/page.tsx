@@ -1,9 +1,10 @@
 import PageBody from "./PageBody";
 
 export const metadata = {
-    title: 'LC - login page',
+    title: 'LC - forget page',
     description: 'page about page description',
 }
+
 
 const page = () => {
     return (
