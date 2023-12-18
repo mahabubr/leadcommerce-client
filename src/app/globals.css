@@ -1,0 +1,39 @@
+:root {
+  scroll-behavior: smooth;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+ul {
+  list-style: none;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.ant-table-content,.ant-table-thead{
+  background-color: #ECF0F1 !important;
+}
+
+.bg-success {
+    background-color: #27ae60;
+}
+
+.bg-warning {
+    background-color: #ffcc00;
+}
+
+.bg-error {
+    background-color: #e74c3c;
+}
