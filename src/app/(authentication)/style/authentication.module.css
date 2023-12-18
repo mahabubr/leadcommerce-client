@@ -1,0 +1,29 @@
+.main_container {
+  height: 100vh;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form_container {
+  background-color: #f5f4ee;
+  padding: 20px;
+  border: 1px solid #d1d0d0;
+  border-radius: 2px;
+  box-shadow: 2px 2px 8px 3px rgba(0, 0, 0, 0.2);
+}
+
+.form_container_title h2 {
+  text-align: left;
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+
+.form_container_title p {
+  text-align: left;
+  font-size: 14px;
+  color: #646262;
+  margin-bottom: 30px;
+  max-width: 300px;
+}
