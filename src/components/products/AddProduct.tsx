@@ -1,11 +1,16 @@
 'use client'
 import React, { useState } from 'react'
 import PCBreadcrumb from './partials/PCBreadcrumb'
-import { Card, Row, Col, Input, Select, Button, Upload, UploadProps, message, UploadFile } from 'antd'
-import TextArea from 'antd/es/input/TextArea'
-import { productItemStatus, productItems } from './utils/productData'
+import { Card, Row, Col, Button, Upload, UploadProps, message, UploadFile, Space } from 'antd'
+import { productItems } from './utils/productData'
 import Image from 'next/image'
 import { UploadOutlined } from '@ant-design/icons'
+import PInput from './partials/PInput'
+import PSelect from './partials/PSelect'
+import PTextarea from './partials/PTextarea'
+import PInputNumber from './partials/PInputNumber'
+import PColorPicker from './partials/PColorPicker'
+import PCheckbox from './partials/PCheckbox'
 
 const props: UploadProps = {
     name: 'file',
@@ -20,12 +25,10 @@ const AddProduct = () => {
 
     // states
     const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
-    const [selectedStatus, setSelectedStatus] = useState<string | undefined>(undefined);
     const [fileList, setFileList] = useState<UploadFile | any>()
 
     // handler
     const handleChange = (value: string) => setSelectedCategory(value);
-    const handleStatusChange = (value: string) => setSelectedStatus(value);
 
     return (
         <>
@@ -36,7 +39,7 @@ const AddProduct = () => {
                 <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
 
                     <Col className="gutter-row" span={9}>
-                        <Card title="" bordered style={{ height: '100%', position: 'relative' }}>
+                        <Card title="" bordered style={{ maxHeight: '800px', position: 'relative' }}>
 
                             {/* {fileList && fileList.length > 0 && fileList[0].status === 'done' && (
                                 <Image src={fileList[0].originFileObj} alt={fileList[0].name} width={200} height={200} />
@@ -48,9 +51,11 @@ const AddProduct = () => {
                                 width={630}
                                 alt='preview'
                                 style={{
+                                    width: '100%',
+                                    height: '100%',
                                     borderRadius: '15px',
-
-                                }} />
+                                }}
+                            />
 
                             <div style={{ position: 'absolute', top: '40px', right: '37px' }}>
                                 <Upload
@@ -77,57 +82,79 @@ const AddProduct = () => {
                         <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
 
                             <Col className="gutter-row" span={12}>
-                                <Input placeholder="Product Title" size="large" />
+                                <PInput name='title' label='Product title' placeholder='Enter product title' />
                             </Col>
 
                             <Col className="gutter-row" span={12}>
-                                <Input placeholder="Product Price" size="large" />
+                                <PSelect
+                                    placeholder='Select a category'
+                                    items={productItems}
+                                    selected={selectedCategory}
+                                    handleChange={handleChange}
+                                    label='Product Category'
+                                />
                             </Col>
 
                             <Col className="gutter-row" span={24} style={{ margin: '20px 0' }}>
-                                <TextArea rows={4} placeholder="Product description here" maxLength={6} />
+                                <PInput name='slug' label='Slug' placeholder='Enter slug' />
                             </Col>
 
-                            <Col className="gutter-row" span={24} style={{ marginBottom: '20px' }}>
-                                <Input placeholder="Product Quantity" size="large" />
-                            </Col>
-
-                            <Col className="gutter-row" span={12} >
-                                <Select
-                                    size="large"
-                                    placeholder="Select a category"
-                                    onChange={handleChange}
-                                    style={{ width: '100%' }}
-                                    options={productItems}
-                                    defaultValue={selectedCategory}
+                            <Col className="gutter-row" span={24}>
+                                <PTextarea
+                                    name='description'
+                                    placeholder='Product description here'
+                                    label='Short Description'
                                 />
+                            </Col>
+
+                            <Col className="gutter-row" span={12} style={{ margin: '20px 0' }}>
+                                <PColorPicker label='Colors' />
+                            </Col>
+
+                            <Col className="gutter-row" span={12} style={{ marginBottom: '20px' }}>
+                                <div>
+                                    <label
+                                        style={{
+                                            textTransform: 'uppercase',
+                                            fontWeight: 500,
+                                            display: 'block'
+                                        }}
+                                    >
+                                        Size
+                                    </label>
+
+                                    <Space style={{ marginTop: '0.5rem' }}>
+                                        <PCheckbox label='S' />
+                                        <PCheckbox label='M' />
+                                        <PCheckbox label='L' />
+                                        <PCheckbox label='XL' />
+                                        <PCheckbox label='XLL' />
+                                    </Space>
+                                </div>
                             </Col>
 
                             <Col className="gutter-row" span={12}>
-                                <Select
-                                    size="large"
-                                    placeholder="Status"
-                                    onChange={handleStatusChange}
-                                    style={{ width: '100%', textTransform: 'capitalize' }}
-                                    options={productItemStatus}
-                                    defaultValue={selectedStatus}
-                                    dropdownRender={(menu) => (
-                                        <div>
-                                            {menu}
-                                            <style>
-                                                {`
-                              .ant-select-item-option{
-                                text-transform: capitalize;
-                              }
-                            `}
-                                            </style>
-                                        </div>
-                                    )}
+                                <PInputNumber name='price' label='Product Price' />
+                            </Col>
+
+                            <Col className="gutter-row" span={12}>
+                                <PInputNumber name='quantity' label='Product Quantity' />
+                            </Col>
+
+                            <Col className="gutter-row" span={24} style={{ margin: '20px 0' }}>
+                                <PTextarea
+                                    name='fullDescription'
+                                    placeholder='Product full description here'
+                                    label='Full Description'
                                 />
+                            </Col>
+
+                            <Col className="gutter-row" span={24} style={{ marginBottom: '20px' }}>
+                                <PInput name='tags' label='Product Tags' placeholder='Enter product tags' />
                             </Col>
                         </Row>
 
-                        <Button type="primary" style={{ marginTop: '20px' }} size="large">Add Product</Button>
+                        <Button type="primary" size="large">Add Product</Button>
                     </Col>
 
                 </Row>
