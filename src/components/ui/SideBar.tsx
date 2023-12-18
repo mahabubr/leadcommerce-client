@@ -15,8 +15,7 @@ const sidebarData = [
     title: "Products",
     icon: <FaHome />,
     links: [
-      { label: "All Products", href: "/dashboard" },
-      { label: "View By Category", href: "/dashboard" },
+      { label: "All Products", href: "/products" },
     ],
   },
   {
