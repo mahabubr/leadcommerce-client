@@ -42,11 +42,11 @@ type IdataType={
   labels:string[],
   datasets:
     {
-      fill: boolean,
+      fill?: boolean,
       label?:string ,
       data: number[],
       borderColor: string,
-      backgroundColor: string,
+      backgroundColor?: string,
     }[]
 };
 
@@ -54,5 +54,5 @@ type IdataType={
 export function RevenueChart(props:{data:IdataType}) {
 
     const {data}=props;
-  return <Line options={{}} data={data} />;
+  return <Line data={data} />;
 }

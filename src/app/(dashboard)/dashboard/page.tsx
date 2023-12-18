@@ -5,6 +5,11 @@ import style from "./static/dashboard.module.css";
 import TopSingleCard from '@/components/dashboard/topSingleCard';
 import SalesReport from '@/components/dashboard/SalesReport';
 import OrdersPieChart from '@/components/dashboard/OrdersPieChart';
+import UserActivity from '@/components/dashboard/userActivity';
+import DailySignups from '@/components/dashboard/DailySignups';
+import TopProducts from '@/components/dashboard/TopProducts';
+import TopItems from '@/components/dashboard/TopItems';
+import Orders from '@/components/dashboard/Orders';
 
 const DashboardPage = () => {
     return (
@@ -18,6 +23,17 @@ const DashboardPage = () => {
             <div className={style.sales_report}>
                 <SalesReport />
                 <OrdersPieChart />
+            </div>
+            <div className={style.user_act}>
+                <DailySignups/>
+                <UserActivity/>
+            </div>
+            <div className={style.top_items}>
+                <TopProducts/>
+                <TopItems/>
+            </div>
+            <div className={style.orders}>
+                <Orders/>
             </div>
         </div>
     );

@@ -21,3 +21,7 @@ a {
   padding: 0;
   box-sizing: border-box;
 }
+
+.ant-table-content,.ant-table-thead{
+  background-color: #ECF0F1 !important;
+}
