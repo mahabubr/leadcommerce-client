@@ -114,7 +114,7 @@ const UpdateProduct = ({ productId }: any) => {
                                 <PColorPicker label='Colors' />
                             </Col>
 
-                            <Col className="gutter-row" span={12} style={{ marginBottom: '20px' }}>
+                            <Col className="gutter-row" span={12} style={{ margin: '20px 0' }}>
                                 <div>
                                     <label
                                         style={{
