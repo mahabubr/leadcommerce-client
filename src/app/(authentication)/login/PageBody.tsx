@@ -85,13 +85,13 @@ const PageBody = () => {
                     </div>
 
                     <div style={{ width: "100%", margin: "10px 0px", textAlign: "right" }}>
-                        <Link href="/reset-password" className="">
+                        <Link href="/forget-password" className="">
                             Forget your password?
                         </Link>
                         <div>
                             create a new account?&nbsp;
                             <Link href="/register" className="">
-                                login
+                                register
                             </Link>
                         </div>
                     </div>
