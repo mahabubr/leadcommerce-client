@@ -35,17 +35,10 @@ const ProfileSetting = () => {
         </div>
         <div className={style.card}>
           <div className={style.cardBody}>
-            <div
-              className={(style.row, style.gx5)}
-              style={{
-                position: "relative",
-
-                display: "flex",
-              }}>
+            <div>
               <div
                 style={{
                   padding: "2rem",
-
                   width: "100%",
                 }}>
                 <Tabs

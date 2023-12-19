@@ -3,43 +3,21 @@ import ProfileUpdateFrom from "./ProfileUpdateFrom";
 import ProfileImageUpload from "./ProfileImageUpload";
 import { Divider } from "antd";
 import { Button, Flex } from "antd";
+import style from "./static/profileUpload.module.css";
 const ProfileUpdate = () => {
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-        }}>
-        <div
-          style={{
-            width: "60%",
-            padding: "1rem",
-            // border: "1px solid red",
-          }}>
+      <div className={style.mainDiv}>
+        <div className={style.fromDiv}>
           <ProfileUpdateFrom />
         </div>
-        <div
-          style={{
-            display: "flex",
-            // border: "1px solid red",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "40%",
-          }}>
+        <div className={style.imageUpDiv}>
           <ProfileImageUpload />
         </div>
       </div>
       <Divider />
-      <div
-        style={{
-          display: "flex",
-
-          justifyContent: "space-between",
-        }}>
-        <div
-          style={{
-            width: "45%",
-          }}>
+      <div className={style.cardMainDiv}>
+        <div className={style.singleCard}>
           <div
             style={{
               height: "100px",
@@ -62,10 +40,7 @@ const ProfileUpdate = () => {
             </small>
           </div>
         </div>
-        <div
-          style={{
-            width: "45%",
-          }}>
+        <div className={style.singleCard}>
           <div
             style={{
               height: "100px",
