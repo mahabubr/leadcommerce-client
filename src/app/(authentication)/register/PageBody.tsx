@@ -1,15 +1,29 @@
 'use client'
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
 import Link from "next/link";
 import style from "../style/authentication.module.css";
+import { useRegisterMutation } from "@/redux/auth/authApi";
+import { useRouter } from "next/navigation";
 
 
 const PageBody = () => {
     const [form] = Form.useForm();
-    const onFinish = (values: any) => {
+    const [register] = useRegisterMutation();
+    const router = useRouter();
+    const onFinish = async (values: any) => {
         console.log(values)
         if (values.password !== values.confirm_password) {
-            console.log('password and confirm password is not same')
+            message.error('confirm password is not matching')
+        } else {
+            try {
+                const res: any = await register(values).unwrap();
+                if (res.success) {
+                    message.success(res.message);
+                    router.push('/login')
+                }
+            } catch (error: any) {
+                message.error(error.data.message);
+            }
         }
     }
 
@@ -32,9 +46,9 @@ const PageBody = () => {
                     onFinishFailed={onFinishFailed}
                     autoComplete="off"
                 >
-                    <label style={{ fontSize: "15px" }} >Full Name</label>
+                    <label style={{ fontSize: "15px" }} >Shop Name</label>
                     <Form.Item
-                        name="fullName"
+                        name="name"
                         style={{ marginBottom: "4px" }}
                         rules={[
                             {

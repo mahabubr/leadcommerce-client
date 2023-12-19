@@ -1,5 +1,5 @@
 'use client'
-import { Button, Form, Input, message, notification } from "antd";
+import { Button, Form, Input, message } from "antd";
 import Link from "next/link";
 import style from "../style/authentication.module.css";
 import { useLoginMutation } from "@/redux/auth/authApi";
