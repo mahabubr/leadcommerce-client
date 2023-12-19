@@ -11,7 +11,7 @@ const TopSingleCard = (props:IData) => {
 
 
     return (
-        <div className={style.card}>
+        <div className={`${style.card} ${style.bg_white}`}>
             <div className='data'>
                 <h3 className={style.h3}>{props.total}</h3>
                 <p className={style.para}>{props.text}</p>

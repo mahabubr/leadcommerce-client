@@ -32,7 +32,7 @@ const DashboardPage = () => {
                 <TopProducts/>
                 <TopItems/>
             </div>
-            <div className={style.orders}>
+            <div className={`${style.orders} ${style.bg_white}`}>
                 <Orders/>
             </div>
         </div>
