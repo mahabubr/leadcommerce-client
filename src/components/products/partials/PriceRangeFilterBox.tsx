@@ -17,7 +17,9 @@ const marks: SliderMarks = {
 
 const PriceRangeFilterBox = (props: Props) => {
     return (
-        <div>
+        <div style={{
+            marginTop: '10px'
+        }}>
             <Slider marks={marks} included={false} defaultValue={37} />
         </div>
     )

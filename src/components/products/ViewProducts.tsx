@@ -1,18 +1,16 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Button, Card, Col, Collapse, Input, Row, Space, Table, Typography } from 'antd';
+import { Button, Card, Col, Collapse, Flex, Input, Row, Select, Space, Table, Typography } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import Image from 'next/image';
 import { ENUM_PRODUCT_STATUS } from '@/config/constants/product';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { ProductDataType, productData } from './utils/productData';
+import { ProductDataType, productData, productItemSort, productItemSortPage } from './utils/productData';
 import { useRouter } from 'next/navigation'
-import SearchFilterBar from './partials/SearchFilterBar';
 import PVBreadcrumb from './partials/PVBreadcrumb';
 import SearchKeyword from './partials/SearchKeyword';
 import CategoryFilterBox from './partials/CategoryFilterBox';
-import ColorFilterBox from './partials/ColorFilterBox';
 import PriceRangeFilterBox from './partials/PriceRangeFilterBox';
 const { Text } = Typography;
 
@@ -23,8 +21,8 @@ const ViewProducts = () => {
 
     // states
     const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-    const [selectedStatus, setSelectedStatus] = useState<string | undefined>(undefined);
-    const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
+    // const [selectedStatus, setSelectedStatus] = useState<string | undefined>(undefined);
+    // const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
 
     // data columns
     const columns: ColumnsType<ProductDataType> = [
@@ -118,7 +116,7 @@ const ViewProducts = () => {
         <>
             <PVBreadcrumb />
 
-            <Card title="" bordered style={{ marginTop: '20px' }}>
+            <div style={{ marginTop: '20px' }}>
 
                 {/* <SearchFilterBar
                     selectedCategory={selectedCategory}
@@ -130,32 +128,56 @@ const ViewProducts = () => {
 
                 <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
                     <Col className="gutter-row" span={18}>
-                        <Table
-                            columns={columns}
-                            dataSource={productData}
-                            rowKey="_id"
-                            rowSelection={{
-                                selectedRowKeys,
-                                onChange: onSelectChange,
-                            }}
-                        />
+                        <Card bordered>
+
+                            <Flex align="center" style={{ marginBottom: '25px', gap: '20px' }}>
+                                <p>All Products</p>
+
+                                <Select
+                                    size="large"
+                                    placeholder="Sort"
+                                    // onChange={handleStatusChange}
+                                    style={{ width: '100px', textTransform: 'capitalize' }}
+                                    options={productItemSort}
+                                // defaultValue={selectedStatus}
+                                />
+
+                                <Select
+                                    size="large"
+                                    // onChange={handleStatusChange}
+                                    style={{ width: '100px', textTransform: 'capitalize' }}
+                                    options={productItemSortPage}
+                                    defaultValue={productItemSortPage[0]}
+                                // defaultValue={selectedStatus}
+                                />
+                            </Flex>
+
+                            <Table
+                                columns={columns}
+                                dataSource={productData}
+                                rowKey="_id"
+                                rowSelection={{
+                                    selectedRowKeys,
+                                    onChange: onSelectChange,
+                                }}
+                            />
+                        </Card>
                     </Col>
 
 
                     <Col className="gutter-row" span={6}>
-                        {/* <Card> */}
-
                         <Space direction="vertical" size={24} style={{ width: '100%' }}>
-
 
                             <Collapse
                                 collapsible="header"
                                 defaultActiveKey={['1']}
-                                style={{ display: 'block' }}
+                                expandIconPosition="right"
+                                style={{ backgroundColor: 'white', border: '1px solid #f0f0f0' }}
+                                bordered={false}
                                 items={[
                                     {
                                         key: '1',
-                                        label: 'Keywords',
+                                        label: <div style={{ fontWeight: '500' }}>Keywords</div>,
                                         children: <SearchKeyword />
                                     },
                                 ]}
@@ -164,10 +186,13 @@ const ViewProducts = () => {
                             <Collapse
                                 collapsible="header"
                                 defaultActiveKey={['2']}
+                                expandIconPosition="right"
+                                style={{ backgroundColor: 'white', border: '1px solid #f0f0f0' }}
+                                bordered={false}
                                 items={[
                                     {
                                         key: '2',
-                                        label: 'Categories',
+                                        label: <div style={{ fontWeight: '500' }}>Categories</div>,
                                         children: <CategoryFilterBox />
                                     },
                                 ]}
@@ -176,23 +201,22 @@ const ViewProducts = () => {
                             <Collapse
                                 collapsible="header"
                                 defaultActiveKey={['3']}
+                                expandIconPosition="right"
+                                style={{ backgroundColor: 'white', border: '1px solid #f0f0f0' }}
+                                bordered={false}
                                 items={[
                                     {
                                         key: '3',
-                                        label: 'Price',
+                                        label: <div style={{ fontWeight: '500' }}>Price</div>,
                                         children: <PriceRangeFilterBox />
                                     },
                                 ]}
                             />
 
                         </Space>
-                        {/* </Card> */}
                     </Col>
                 </Row>
-
-
-            </Card>
-
+            </div>
         </>
     )
 }

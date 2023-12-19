@@ -6,7 +6,9 @@ type Props = {}
 
 const CategoryFilterBox = (props: Props) => {
     return (
-        <Space direction="vertical" size={14}>
+        <Space direction="vertical" size={14} style={{
+            marginTop: '10px'
+        }}>
             <PCheckbox label='All' />
             <PCheckbox label='Accessories' />
             <PCheckbox label='Phone' />

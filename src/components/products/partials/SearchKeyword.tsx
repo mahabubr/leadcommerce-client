@@ -8,6 +8,7 @@ const SearchKeyword = (props: Props) => {
     return (
         <div style={{
             position: 'relative',
+            marginTop: '10px'
         }}>
             <Input
                 size="large"
