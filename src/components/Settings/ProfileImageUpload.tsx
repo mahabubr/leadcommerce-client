@@ -42,6 +42,8 @@ const ProfileImageUpload = () => {
       <div style={{ marginTop: 8 }}>Upload</div>
     </div>
   );
+
+  // console.log(fileList[0].thumbUrl);
   return (
     <>
       <div>
@@ -50,7 +52,6 @@ const ProfileImageUpload = () => {
           listType='picture-card'
           fileList={fileList}
           onPreview={handlePreview}
-          style={{ border: "1px solid red" }}
           onChange={handleChange}>
           {fileList.length >= 1 ? null : uploadButton}
         </Upload>
