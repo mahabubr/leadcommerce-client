@@ -1,15 +1,13 @@
 import { Checkbox } from 'antd'
 import React from 'react'
 
-const PCheckbox = ({ label }: { label: string }) => {
+const PCheckbox = ({ label, cStyle }: { label: string; cStyle?: any }) => {
     return (
         <div>
             <Checkbox
-            // style={{
-            //     width: '40px',
-            //     height: '40px',
-            // }}
+                style={cStyle}
             >
+                <span className="inner-checkbox" style={cStyle} />
                 {label}
             </Checkbox>
         </div>
