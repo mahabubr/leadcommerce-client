@@ -51,7 +51,7 @@ export function Barchart() {
                 stacked: true
             }
         },
-    //   responsive: true,
+      responsive: true,
       plugins: {
         legend: {
           display: false,

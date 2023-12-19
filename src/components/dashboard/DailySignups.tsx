@@ -4,7 +4,7 @@ import { Barchart } from './BarChart';
 
 const DailySignups = () => {
     return (
-        <div className={style.user_act}>
+        <div className={`${style.user_act} ${style.bg_white}`}>
             <h3 className={style.sales_head}>Daily Signups</h3>
             <div>
                 <Barchart/>

@@ -54,7 +54,7 @@ const data=[
 ]
 const TopItems = () => {
     return (
-        <div className={style.sales_report}>
+        <div className={`${style.sales_report} ${style.bg_white}`}>
             <h3 className={style.sales_head}>Top Categories</h3>
             <div>
                 {
