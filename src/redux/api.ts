@@ -2,7 +2,10 @@ import { BaseUrl } from "@/constants/base-url";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { tagTypesList } from "./types/tagTypes";
 
-const accessToken = localStorage?.getItem("accessToken");
+let accessToken: any;
+if (typeof window !== "undefined") {
+  accessToken = localStorage?.getItem("accessToken");
+}
 
 const api = createApi({
   reducerPath: "api",
