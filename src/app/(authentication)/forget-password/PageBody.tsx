@@ -8,9 +8,6 @@ const PageBody = () => {
     const [form] = Form.useForm();
     const onFinish = (values: any) => {
         console.log(values)
-        if (values.password !== values.confirm_password) {
-            console.log('password and confirm password is not same')
-        }
     }
 
     const onFinishFailed = (errorInfo: any) => {
@@ -21,8 +18,8 @@ const PageBody = () => {
         <div className={style.main_container} >
             <div className={style.form_container}>
                 <div className={style.form_container_title}>
-                    <h2>Reset Password </h2>
-                    <p>Please Provide your new password here!</p>
+                    <h2>Forgot Password </h2>
+                    <p>Enter the email address associated with your account adn we will send a link to reset your password</p>
                 </div>
                 <Form
                     form={form}
@@ -31,35 +28,19 @@ const PageBody = () => {
                     onFinishFailed={onFinishFailed}
                     autoComplete="off"
                 >
-                    <label style={{ fontSize: "15px" }} >Password</label>
+                    <label style={{ fontSize: "15px" }}>Email Address</label>
                     <Form.Item
                         style={{ marginBottom: "4px" }}
-                        name="password"
+                        name="email"
                         rules={[
                             {
                                 required: true,
-                                message: "Please input your Password!",
+                                message: "Please input your valid email address!",
                             },
                         ]}
                     >
-                        <Input.Password style={{ marginTop: "1px", width: "300px", height: "40px", borderRadius: "2px" }} />
+                        <Input style={{ marginTop: "1px", width: "300px", height: "40px", borderRadius: "2px" }} />
                     </Form.Item>
-
-                    <div>
-                        <label style={{ fontSize: "15px" }} >Confirm Password</label>
-                        <Form.Item
-                            style={{ marginBottom: "4px" }}
-                            name="confirm_password"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: "Please input your Confirm Password!",
-                                },
-                            ]}
-                        >
-                            <Input.Password style={{ marginTop: "1px", width: "300px", height: "40px", borderRadius: "2px" }} />
-                        </Form.Item>
-                    </div>
 
                     <div style={{ width: "100%", margin: "14px 0px", textAlign: "right" }}>
                         already have a account?&nbsp;
@@ -79,7 +60,7 @@ const PageBody = () => {
                                 fontWeight: "500",
                                 height: "40px",
                                 boxShadow: "2px 2px 8px 3px rgba(0, 0, 0, 0.2)"
-                            }} type="primary" htmlType="submit">Reset Password</Button>
+                            }} type="primary" htmlType="submit">Submit</Button>
                         </Form.Item>
                     </div>
                 </Form>
