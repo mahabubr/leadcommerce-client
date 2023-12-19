@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Button, Card, Space, Table, Typography } from 'antd';
+import { Button, Card, Col, Collapse, Input, Row, Space, Table, Typography } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import Image from 'next/image';
 import { ENUM_PRODUCT_STATUS } from '@/config/constants/product';
@@ -10,6 +10,10 @@ import { ProductDataType, productData } from './utils/productData';
 import { useRouter } from 'next/navigation'
 import SearchFilterBar from './partials/SearchFilterBar';
 import PVBreadcrumb from './partials/PVBreadcrumb';
+import SearchKeyword from './partials/SearchKeyword';
+import CategoryFilterBox from './partials/CategoryFilterBox';
+import ColorFilterBox from './partials/ColorFilterBox';
+import PriceRangeFilterBox from './partials/PriceRangeFilterBox';
 const { Text } = Typography;
 
 const ViewProducts = () => {
@@ -116,23 +120,77 @@ const ViewProducts = () => {
 
             <Card title="" bordered style={{ marginTop: '20px' }}>
 
-                <SearchFilterBar
+                {/* <SearchFilterBar
                     selectedCategory={selectedCategory}
                     setSelectedCategory={setSelectedCategory}
                     selectedStatus={selectedStatus}
                     setSelectedStatus={setSelectedStatus}
-                />
+                /> */}
 
 
-                <Table
-                    columns={columns}
-                    dataSource={productData}
-                    rowKey="_id"
-                    rowSelection={{
-                        selectedRowKeys,
-                        onChange: onSelectChange,
-                    }}
-                />
+                <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
+                    <Col className="gutter-row" span={18}>
+                        <Table
+                            columns={columns}
+                            dataSource={productData}
+                            rowKey="_id"
+                            rowSelection={{
+                                selectedRowKeys,
+                                onChange: onSelectChange,
+                            }}
+                        />
+                    </Col>
+
+
+                    <Col className="gutter-row" span={6}>
+                        {/* <Card> */}
+
+                        <Space direction="vertical" size={24} style={{ width: '100%' }}>
+
+
+                            <Collapse
+                                collapsible="header"
+                                defaultActiveKey={['1']}
+                                style={{ display: 'block' }}
+                                items={[
+                                    {
+                                        key: '1',
+                                        label: 'Keywords',
+                                        children: <SearchKeyword />
+                                    },
+                                ]}
+                            />
+
+                            <Collapse
+                                collapsible="header"
+                                defaultActiveKey={['2']}
+                                items={[
+                                    {
+                                        key: '2',
+                                        label: 'Categories',
+                                        children: <CategoryFilterBox />
+                                    },
+                                ]}
+                            />
+
+                            <Collapse
+                                collapsible="header"
+                                defaultActiveKey={['3']}
+                                items={[
+                                    {
+                                        key: '3',
+                                        label: 'Price',
+                                        children: <PriceRangeFilterBox />
+                                    },
+                                ]}
+                            />
+
+                        </Space>
+                        {/* </Card> */}
+                    </Col>
+                </Row>
+
+
             </Card>
 
         </>
