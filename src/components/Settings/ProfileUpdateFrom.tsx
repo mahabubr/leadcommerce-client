@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Checkbox, DatePicker, Form, Input } from "antd";
-
+import style from "./static/profileUpload.module.css";
 type FieldType = {
   firstName?: string;
   lastName?: string;
@@ -29,17 +29,11 @@ const ProfileUpdateFrom = () => {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete='off'>
-        <div
-          style={{
-            display: "flex",
-            gap: "2rem",
-          }}>
+        <div className={style.inputDiv}>
           <Form.Item<FieldType>
             label='First Name'
             name='firstName'
-            style={{
-              width: "50%",
-            }}
+            className={style.inputWidth}
             rules={[{ message: "Please input your username!" }]}>
             <Input
               style={{
@@ -51,9 +45,7 @@ const ProfileUpdateFrom = () => {
           <Form.Item<FieldType>
             label='Last Name'
             name='lastName'
-            style={{
-              width: "50%",
-            }}
+            className={style.inputWidth}
             rules={[{ message: "Please input your password!" }]}>
             <Input
               style={{
@@ -62,17 +54,11 @@ const ProfileUpdateFrom = () => {
             />
           </Form.Item>
         </div>
-        <div
-          style={{
-            display: "flex",
-            gap: "2rem",
-          }}>
+        <div className={style.inputDiv}>
           <Form.Item<FieldType>
             label='Email'
             name='email'
-            style={{
-              width: "100%",
-            }}
+            className={style.inputWidth}
             rules={[{ message: "Please input your username!" }]}>
             <Input
               style={{
@@ -83,10 +69,8 @@ const ProfileUpdateFrom = () => {
 
           <Form.Item<FieldType>
             label='Phone'
-            style={{
-              width: "100%",
-            }}
             name='lastName'
+            className={style.inputWidth}
             rules={[{ message: "Please input your password!" }]}>
             <Input
               style={{

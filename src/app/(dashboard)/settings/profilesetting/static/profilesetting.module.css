@@ -35,8 +35,18 @@
   flex: 1 1 auto;
   padding: 1.3rem 1.3rem;
 }
-
-
-
-@media (min-width: 992px) {
+.tabResponsive {
+  display: block;
+}
+.tabMobile {
+  display: none !important;
+}
+@media (max-width: 1200px) {
+  .tabResponsive {
+    display: none !important;
+    border: 1px solid red;
+  }
+  .tabMobile {
+    display: block !important;
+  }
 }

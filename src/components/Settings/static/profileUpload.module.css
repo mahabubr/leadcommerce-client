@@ -23,6 +23,15 @@
 .singleCard {
   width: 45%;
 }
+.inputDiv {
+  display: flex;
+  gap: 2rem;
+  /* border: 1px solid red; */
+}
+
+.inputWidth {
+  width: 50%;
+}
 @media (max-width: 1600px) {
   .mainDiv {
     display: flex;
@@ -50,6 +59,16 @@
     justify-content: space-between;
   }
   .singleCard {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1100px) {
+  .inputDiv {
+    display: block;
+    gap: 2rem;
+  }
+  .inputWidth {
     width: 100%;
   }
 }
