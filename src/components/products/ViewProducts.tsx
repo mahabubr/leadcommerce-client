@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Button, Card, Col, Collapse, Flex, Input, Row, Select, Space, Table, Typography } from 'antd';
+import { Button, Card, Col, Collapse, Flex, Spin, Row, Select, Space, Table, Typography } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import Image from 'next/image';
 import { ENUM_PRODUCT_STATUS } from '@/config/constants/product';
@@ -12,9 +12,33 @@ import PVBreadcrumb from './partials/PVBreadcrumb';
 import SearchKeyword from './partials/SearchKeyword';
 import CategoryFilterBox from './partials/CategoryFilterBox';
 import PriceRangeFilterBox from './partials/PriceRangeFilterBox';
+import { useGetAllProductsQuery } from '@/redux/product/productApi';
 const { Text } = Typography;
 
 const ViewProducts = () => {
+
+    //** hanlding pagination
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [currentLimit, setCurrentLimit] = useState<number>(4);
+    const [currentSortOrder, setCurrentSortOrder] = useState<"desc" | "asc">('asc');
+
+    /*//** RTK calling of product data getting */
+    const { data: productData, isLoading }: { data?: any, isLoading: boolean } = useGetAllProductsQuery({
+        limit: currentLimit,
+        page: currentPage,
+        product_status: "active",
+        sortOrder: currentSortOrder
+    });
+
+    /* //**Product page list size */
+    const handleProductPage = (value: any) => {
+        setCurrentLimit(parseInt(value))
+    }
+
+    /* //**Product page list sorting */
+    const handleProductListsorting = (value: any) => {
+        setCurrentSortOrder(value)
+    }
 
     // global
     const router = useRouter();
@@ -30,12 +54,12 @@ const ViewProducts = () => {
             title: 'Image',
             dataIndex: 'image',
             key: 'image',
-            render: (_, { image, title }) => <Image src={image} alt={title} width={60} height={60} />,
+            render: (_, { image, productName }) => <Image src={image} alt={productName} width={60} height={60} />,
         },
         {
-            title: 'Title',
-            dataIndex: 'title',
-            key: 'title',
+            title: 'Name',
+            dataIndex: 'productName',
+            key: 'productName',
         },
         {
             title: 'Price',
@@ -44,12 +68,18 @@ const ViewProducts = () => {
             render: (_, { price }) => <>৳ {price} </>,
         },
         {
+            title: 'Quantity',
+            dataIndex: 'quantity',
+            key: 'quantity',
+            render: (_, { quantity }) => <>{quantity} pice </>,
+        },
+        {
             title: 'In Stock',
-            key: 'inStock',
-            dataIndex: 'inStock',
-            render: (_, { inStock }) => (
+            key: 'quantity',
+            dataIndex: 'quantity',
+            render: (_, { quantity }) => (
                 <Text
-                    className={inStock ? 'bg-success' : 'bg-error'}
+                    className={quantity! > 0 ? 'bg-success' : 'bg-error'}
                     style={{
                         textAlign: 'center',
                         padding: '4px 15px',
@@ -57,7 +87,7 @@ const ViewProducts = () => {
                         color: 'white'
                     }}
                 >
-                    {inStock ? 'In Stock' : 'Out of Stock'}
+                    {quantity! > 0 ? 'In Stock' : 'Out of Stock'}
                 </Text>
             ),
         },
@@ -133,33 +163,44 @@ const ViewProducts = () => {
                             <Flex align="center" style={{ marginBottom: '25px', gap: '20px' }}>
                                 <p>All Products</p>
 
+                                {/* //**Product page list sorting */}
                                 <Select
                                     size="large"
                                     placeholder="Sort"
-                                    // onChange={handleStatusChange}
+                                    onChange={handleProductListsorting}
                                     style={{ width: '100px', textTransform: 'capitalize' }}
                                     options={productItemSort}
-                                // defaultValue={selectedStatus}
+                                    defaultValue={productItemSort[0]}
                                 />
-
+                                {/* //**product page list size */}
                                 <Select
                                     size="large"
-                                    // onChange={handleStatusChange}
+                                    onChange={handleProductPage}
                                     style={{ width: '100px', textTransform: 'capitalize' }}
                                     options={productItemSortPage}
                                     defaultValue={productItemSortPage[0]}
-                                // defaultValue={selectedStatus}
                                 />
                             </Flex>
 
+                            {/* //**product table */}
                             <Table
                                 columns={columns}
-                                dataSource={productData}
+                                dataSource={productData?.data}
                                 rowKey="_id"
+                                pagination={{
+                                    current: currentPage,
+                                    pageSize: currentLimit,
+                                    total: productData?.meta?.total,
+                                    onChange: (page, pageSize) => {
+                                        setCurrentPage(page);
+                                        setCurrentLimit(pageSize);
+                                    },
+                                }}
                                 rowSelection={{
                                     selectedRowKeys,
                                     onChange: onSelectChange,
                                 }}
+                                loading={isLoading && { indicator: <Spin /> }}
                             />
                         </Card>
                     </Col>

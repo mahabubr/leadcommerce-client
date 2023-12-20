@@ -7,11 +7,14 @@ const productApi = api.injectEndpoints({
         limit,
         page,
         product_status,
+        sortOrder,
       }: {
         limit: number;
         page: number;
         product_status: string;
-      }) => `/products?status=${product_status}&page=${page}&limit=${limit}`,
+        sortOrder: "desc" | "asc";
+      }) =>
+        `/products?status=${product_status}&page=${page}&limit=${limit}&sortOrder=${sortOrder}`,
       providesTags: ["product"],
     }),
     addProducts: builder.mutation({
