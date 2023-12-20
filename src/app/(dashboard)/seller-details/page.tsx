@@ -17,16 +17,16 @@ const SellerDetails = () => {
             }}>
             <div
               style={{
-                border: "1px solid pink",
+                // border: "1px solid pink",
                 backgroundColor: "#f8f9fa",
-                height: "100vh",
+                // height: "100vh",
                 width: "25%",
               }}>
               <SellerProfile />
             </div>
             <div
               style={{
-                border: "1px solid green",
+                // border: "1px solid green",
                 width: "75%",
                 backgroundColor: "#f8f9fa",
               }}>

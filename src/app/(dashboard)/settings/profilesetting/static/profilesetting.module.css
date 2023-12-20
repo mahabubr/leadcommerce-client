@@ -35,9 +35,9 @@
   flex: 1 1 auto;
   padding: 1.3rem 1.3rem;
 }
-.tabResponsive {
+/* .tabResponsive {
   display: block;
-}
+} */
 .tabMobile {
   display: none !important;
 }
