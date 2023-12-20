@@ -26,9 +26,11 @@ const datasets3={
 
 const UserActivity = () => {
     return (
-        <div className={style.user_act}>
+        <div className={`${style.user_act} ${style.bg_white}`}>
             <h3 className={style.sales_head}>User Activity</h3>
-            <RevenueChart data={datasets3}/>
+            <div className={style.user_act_chart}>
+              <RevenueChart data={datasets3}/>
+            </div>
         </div>
     );
 };

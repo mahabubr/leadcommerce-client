@@ -1,13 +1,29 @@
 'use client'
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
 import Link from "next/link";
 import style from "../style/authentication.module.css";
-
+import { useLoginMutation } from "@/redux/auth/authApi";
+import { useRouter } from "next/navigation";
 
 const PageBody = () => {
+    const [login] = useLoginMutation();
+    const router = useRouter();
     const [form] = Form.useForm();
-    const onFinish = (values: any) => {
-        console.log(values)
+    const onFinish = async (values: any) => {
+        try {
+            const res: any = await login(values).unwrap();
+            if (res.success) {
+                message.success(res.message);
+                localStorage.setItem("accessToken", res?.data?.accessToken);
+                localStorage.setItem(
+                    "LC-credential",
+                    res?.data?.userData
+                );
+                router.push('/dashboard')
+            }
+        } catch (error: any) {
+            message.error(error.data.message);
+        }
     }
 
     const onFinishFailed = (errorInfo: any) => {
@@ -69,13 +85,13 @@ const PageBody = () => {
                     </div>
 
                     <div style={{ width: "100%", margin: "10px 0px", textAlign: "right" }}>
-                        <Link href="/reset-password" className="">
+                        <Link href="/forget-password" className="">
                             Forget your password?
                         </Link>
                         <div>
                             create a new account?&nbsp;
                             <Link href="/register" className="">
-                                login
+                                register
                             </Link>
                         </div>
                     </div>

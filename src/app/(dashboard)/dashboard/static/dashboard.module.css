@@ -1,5 +1,8 @@
 .container{
-    margin-top: 20px;
+    padding: 20px;
+    /* background-color: #fff; */
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .summary{
@@ -32,11 +35,19 @@
     row-gap: 20px;
 }
 
+.bg_white{
+    background-color: white;
+}
+
 .orders{
     margin: 20px 0;
     border-radius: 15px;
     padding:20px;
     box-shadow: 3px 3px 15px #ddd;
+    overflow-x: auto;
+    max-width: 100%;
+    min-width: 550px;
+    box-sizing: content-box;
 }
 
 
@@ -46,5 +57,15 @@
     }
     .sales_report{
         grid-template-columns:1fr;
+    }
+    .user_act{
+        grid-template-columns: 1fr;
+    }
+    .top_items{
+        grid-template-columns: 1fr;
+    }
+    .orders{
+        grid-template-columns: 1fr;
+        overflow-x: scroll;
     }
 }

@@ -42,7 +42,7 @@ const data=[
 ]
 const TopProducts = () => {
     return (
-        <div className={style.sales_report}>
+        <div className={`${style.sales_report} ${style.bg_white}`}>
             <h3 className={style.sales_head}>Top Products</h3>
             <div className={style.top_products}>
                 {

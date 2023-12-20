@@ -2,6 +2,7 @@
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import style from "./static/dashboard.module.css";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -29,5 +30,7 @@ export const data = {
 };
 
 export function PieChart() {
-  return <Doughnut data={data} />;
+  return <div className={style.pieChart}>
+    <Doughnut options={{responsive:true,cutout:'70%'}} data={data} />;
+  </div>
 }

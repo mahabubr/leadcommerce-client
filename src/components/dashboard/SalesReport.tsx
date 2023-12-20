@@ -48,7 +48,7 @@ const datasets2={
 };
 const SalesReport = () => {
   return (
-    <div className={style.sales_report}>
+    <div className={`${style.sales_report} ${style.bg_white}`}>
       <div className={style.sales_head}>
         <h3>Order Revenue Report</h3>
       </div>

@@ -12,6 +12,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Line, Radar } from 'react-chartjs-2';
+import style from "./static/dashboard.module.css"
 
 ChartJS.register(
   CategoryScale,
@@ -24,18 +25,15 @@ ChartJS.register(
   Legend
 );
 
-// export const options = {
-//   responsive: true,
-//   plugins: {
-//     legend: {
-//       position: 'top' as const,
-//     },
-//     title: {
-//       display: true,
-//       text: 'Chart.js Line Chart',
-//     },
-//   },
-// };
+export const options = {
+  responsive: true,
+  maintainAspectRatio: true,
+  plugins: {
+    legend: {
+      position: 'top' as const,
+    }
+  },
+};
 
 
 type IdataType={
@@ -54,5 +52,9 @@ type IdataType={
 export function RevenueChart(props:{data:IdataType}) {
 
     const {data}=props;
-  return <Line data={data} />;
+  return (
+    <div className={style.revenue_chart}>
+      <Line options={options} data={data} />
+    </div>
+  );
 }
