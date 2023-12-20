@@ -1,19 +1,20 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Button, Card, Col, Collapse, Flex, Spin, Row, Select, Space, Table, Typography } from 'antd';
+import { Button, Card, Col, Collapse, Flex, Spin, Row, Select, Space, Table, Typography, Modal } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import Image from 'next/image';
 import { ENUM_PRODUCT_STATUS } from '@/config/constants/product';
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import { ProductDataType, productData, productItemSort, productItemSortPage } from './utils/productData';
 import { useRouter } from 'next/navigation'
 import PVBreadcrumb from './partials/PVBreadcrumb';
 import SearchKeyword from './partials/SearchKeyword';
 import CategoryFilterBox from './partials/CategoryFilterBox';
 import PriceRangeFilterBox from './partials/PriceRangeFilterBox';
-import { useGetAllProductsQuery } from '@/redux/product/productApi';
+import { useDeleteProductMutation, useGetAllProductsQuery } from '@/redux/product/productApi';
 const { Text } = Typography;
+const { confirm } = Modal;
 
 const ViewProducts = () => {
 
@@ -29,6 +30,11 @@ const ViewProducts = () => {
         product_status: "active",
         sortOrder: currentSortOrder
     });
+
+    const [
+        deleteProduct,
+        { data: deleteResponse, error: deleteError, isLoading: deleteIsLoading },
+    ] = useDeleteProductMutation();
 
     /* //**Product page list size */
     const handleProductPage = (value: any) => {
@@ -124,7 +130,7 @@ const ViewProducts = () => {
                     </Button>
                     <Button
                         icon={<DeleteOutlined />}
-                        onClick={handleDeleteProduct}
+                        onClick={() => showConfirm(_id)}
                     >
                         Delete
                     </Button>
@@ -139,8 +145,32 @@ const ViewProducts = () => {
     // routing action
     const handleRouteUpdate = (_id: string) => router.push(`/products/update/${_id}`)
 
-    // delete action
-    const handleDeleteProduct = () => { }
+    // **delete action
+    const handleDeleteProduct = (_id: string) => {
+        Modal.destroyAll();
+        console.log(_id);
+        deleteProduct(_id)
+    }
+
+    const showConfirm = (_id: string) => {
+        for (let i = 0; i < 3; i += 1) {
+            setTimeout(() => {
+                confirm({
+                    icon: <ExclamationCircleOutlined />,
+                    content:
+                        <div>
+                            <Button onClick={() => handleDeleteProduct(_id)}>Delete product</Button>
+                            <p>Are you sure to delete this product?</p>
+                        </div>,
+                    centered: true,
+                    okButtonProps: { style: { display: 'none' } }, // Hide the OK button
+                    onCancel() {
+                        console.log('Cancel');
+                    },
+                });
+            }, i * 500);
+        }
+    };
 
     return (
         <>
@@ -187,6 +217,7 @@ const ViewProducts = () => {
                                 columns={columns}
                                 dataSource={productData?.data}
                                 rowKey="_id"
+                                scroll={{ x: true }}
                                 pagination={{
                                     current: currentPage,
                                     pageSize: currentLimit,

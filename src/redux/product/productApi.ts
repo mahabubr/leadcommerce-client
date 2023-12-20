@@ -28,16 +28,15 @@ const productApi = api.injectEndpoints({
     updateProduct: builder.mutation({
       query: (data: any) => ({
         url: `/products/`,
-        method: "PATCH",
+        method: "PUT",
         body: data,
       }),
       invalidatesTags: ["product"],
     }),
     deleteProduct: builder.mutation({
-      query: (data: any) => ({
-        url: `/products/`,
+      query: (id: string) => ({
+        url: `/products/${id}`,
         method: "DELETE",
-        body: data,
       }),
       invalidatesTags: ["product"],
     }),
