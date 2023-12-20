@@ -23,15 +23,17 @@ const ProfileUpdate = () => {
               height: "100px",
               padding: "1rem",
               fontSize: "16px",
-              backgroundColor: "#ecf0f1",
-            }}>
+              backgroundColor: "#f1f1f1",
+            }}
+          >
             <Button
-              size='small'
+              size="small"
               style={{
                 float: "inline-end",
                 backgroundColor: "#2c3e50",
-                color: "#ecf0f1",
-              }}>
+                color: "#f1f1f1",
+              }}
+            >
               Change
             </Button>
             <h6 style={{ fontSize: "1rem" }}>Password</h6>
@@ -46,15 +48,17 @@ const ProfileUpdate = () => {
               height: "100px",
               padding: "1rem",
               fontSize: "16px",
-              backgroundColor: "#ecf0f1",
-            }}>
+              backgroundColor: "#f1f1f1",
+            }}
+          >
             <Button
-              size='small'
+              size="small"
               style={{
                 float: "inline-end",
                 backgroundColor: "#2c3e50",
-                color: "#ecf0f1",
-              }}>
+                color: "#f1f1f1",
+              }}
+            >
               Deactivate
             </Button>
             <h6 style={{ fontSize: "1rem" }}>Remove</h6>

@@ -1,9 +1,11 @@
 import ViewProducts from "@/components/products/ViewProducts";
 
 const page = () => {
-    return <>
-        <ViewProducts />
-    </>;
+  return (
+    <>
+      <ViewProducts />
+    </>
+  );
 };
 
 export default page;
