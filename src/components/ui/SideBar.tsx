@@ -14,15 +14,21 @@ const sidebarData = [
   {
     title: "Products",
     icon: <FaHome />,
-    links: [
-      { label: "All Products", href: "/products" },
-    ],
+    links: [{ label: "All Products", href: "/products" }],
   },
   {
     title: "Setting",
     icon: <IoMdSettings />,
     links: [
       { label: "Profile setting", href: "/settings/profilesetting" },
+      // { label: "View By Category", href: "/dashboard" },
+    ],
+  },
+  {
+    title: "Ecommerce",
+    icon: <IoMdSettings />,
+    links: [
+      { label: "seller-details", href: "/seller-details" },
       // { label: "View By Category", href: "/dashboard" },
     ],
   },

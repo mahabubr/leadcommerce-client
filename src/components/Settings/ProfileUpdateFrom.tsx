@@ -69,7 +69,7 @@ const ProfileUpdateFrom = () => {
 
           <Form.Item<FieldType>
             label='Phone'
-            name='lastName'
+            name='phone'
             className={style.inputWidth}
             rules={[{ message: "Please input your password!" }]}>
             <Input
