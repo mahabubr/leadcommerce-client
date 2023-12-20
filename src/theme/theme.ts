@@ -13,5 +13,5 @@ export default theme;
 // colorInfo: "#3498db",
 // colorSuccess: "#27ae60",
 // colorError: "#e74c3c",
-// colorGrey: #ecf0f1
+// colorGrey: #f1f1f1
 // colorDark: #5A5A5A

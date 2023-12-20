@@ -1,4 +1,4 @@
-import { Drawer, Menu } from "antd";
+import { Drawer, Layout, Menu } from "antd";
 import { FaHome } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
 import Link from "next/link";
@@ -14,17 +14,12 @@ const sidebarData = [
   {
     title: "Products",
     icon: <FaHome />,
-    links: [
-      { label: "All Products", href: "/products" },
-    ],
+    links: [{ label: "All Products", href: "/products" }],
   },
   {
     title: "Setting",
     icon: <IoMdSettings />,
-    links: [
-      { label: "Profile setting", href: "/settings/profilesetting" },
-      // { label: "View By Category", href: "/dashboard" },
-    ],
+    links: [{ label: "Profile setting", href: "/settings/profilesetting" }],
   },
 ];
 

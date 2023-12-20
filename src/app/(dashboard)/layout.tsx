@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import SideBar from "@/components/ui/SideBar";
 import TopBar from "@/components/ui/TopBar";
@@ -16,6 +16,18 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     setOpen(false);
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      setOpen(window.innerWidth >= 900);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div>
       <TopBar open={open} closeDrawer={closeDrawer} showDrawer={showDrawer} />
@@ -24,13 +36,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <div
         style={{
           marginLeft: open ? 330 : 0,
-          transition: "margin 0.4s ",
+          transition: "margin 0.4s",
         }}
       >
         <div
           style={{
             marginTop: 10,
-            backgroundColor: "#ecf0f1",
+            backgroundColor: "#f1f1f1",
             minHeight: "90vh",
             padding: 40,
           }}
