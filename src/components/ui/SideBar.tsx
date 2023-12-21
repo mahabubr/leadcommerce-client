@@ -12,6 +12,11 @@ const sidebarData = [
     links: [{ label: "Dashboard", href: "/dashboard" }],
   },
   {
+    title: "Categories",
+    icon: <FaHome />,
+    links: [{ label: "All Category", href: "/category" }],
+  },
+  {
     title: "Products",
     icon: <FaHome />,
     links: [{ label: "All Products", href: "/products" }],
