@@ -30,7 +30,10 @@ const sidebarData = [
   {
     title: "Ecommerce",
     icon: <IoMdSettings />,
-    links: [{ label: "Profile setting", href: "/settings/profilesetting" }],
+    links: [
+      { label: "Store", href: "/stores" },
+      { label: "Seller Details", href: "/seller-details" },
+    ],
   },
   {
     title: "Setting",

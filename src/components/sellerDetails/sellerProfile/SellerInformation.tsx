@@ -4,9 +4,10 @@ import React from "react";
 
 const SellerInformation = () => {
   return (
-      <div
-        //   style={{ border: "1px solid red" }}
-      >
+    <div
+      style={{ overflowX: "scroll" }}
+      //   style={{ border: "1px solid red" }}
+    >
       <div
         style={{
           display: "flex",
@@ -15,9 +16,9 @@ const SellerInformation = () => {
           alignItems: "center",
           gap: "5px",
           marginTop: "20px",
-          // border: "1px solid green",
-        }}>
-        <Avatar shape='square' size={64} icon={<UserOutlined />} />
+        }}
+      >
+        <Avatar shape="square" size={64} icon={<UserOutlined />} />
         <h5>Force Medicines</h5>
         <small>Since 1987</small>
       </div>
@@ -25,7 +26,8 @@ const SellerInformation = () => {
         style={{
           //   border: "1px solid black",
           marginTop: "20px",
-        }}>
+        }}
+      >
         <table style={{ width: "90%" }}>
           <tbody>
             <tr>

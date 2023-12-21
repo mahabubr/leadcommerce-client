@@ -7,15 +7,22 @@ import {
   Col,
   Collapse,
   Flex,
+  Spin,
   Row,
   Select,
   Space,
   Table,
-  Tag,
+  Typography,
+  Modal,
 } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import Image from "next/image";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { ENUM_PRODUCT_STATUS } from "@/config/constants/product";
+import {
+  DeleteOutlined,
+  EditOutlined,
+  ExclamationCircleOutlined,
+} from "@ant-design/icons";
 import {
   ProductDataType,
   productData,
@@ -27,8 +34,45 @@ import PVBreadcrumb from "./partials/PVBreadcrumb";
 import SearchKeyword from "./partials/SearchKeyword";
 import CategoryFilterBox from "./partials/CategoryFilterBox";
 import PriceRangeFilterBox from "./partials/PriceRangeFilterBox";
+import {
+  useDeleteProductMutation,
+  useGetAllProductsQuery,
+} from "@/redux/product/productApi";
+const { Text } = Typography;
+const { confirm } = Modal;
 
 const ViewProducts = () => {
+  //** hanlding pagination
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [currentLimit, setCurrentLimit] = useState<number>(4);
+  const [currentSortOrder, setCurrentSortOrder] = useState<"desc" | "asc">(
+    "asc"
+  );
+
+  /*//** RTK calling of product data getting */
+  const { data: productData, isLoading }: { data?: any; isLoading: boolean } =
+    useGetAllProductsQuery({
+      limit: currentLimit,
+      page: currentPage,
+      product_status: "active",
+      sortOrder: currentSortOrder,
+    });
+
+  const [
+    deleteProduct,
+    { data: deleteResponse, error: deleteError, isLoading: deleteIsLoading },
+  ] = useDeleteProductMutation();
+
+  /* //**Product page list size */
+  const handleProductPage = (value: any) => {
+    setCurrentLimit(parseInt(value));
+  };
+
+  /* //**Product page list sorting */
+  const handleProductListsorting = (value: any) => {
+    setCurrentSortOrder(value);
+  };
+
   // global
   const router = useRouter();
 
@@ -43,14 +87,19 @@ const ViewProducts = () => {
       title: "Image",
       dataIndex: "image",
       key: "image",
-      render: (_, { image, title }) => (
-        <Image src={image} alt={title} width={60} height={60} />
+      render: (_, { image, productName }) => (
+        <Image
+          src={image?.avatar ? image?.avatar : "/preview.jpg"}
+          alt={productName}
+          width={60}
+          height={60}
+        />
       ),
     },
     {
-      title: "Title",
-      dataIndex: "title",
-      key: "title",
+      title: "Name",
+      dataIndex: "productName",
+      key: "productName",
     },
     {
       title: "Price",
@@ -59,15 +108,53 @@ const ViewProducts = () => {
       render: (_, { price }) => <>৳ {price} </>,
     },
     {
+      title: "Quantity",
+      dataIndex: "quantity",
+      key: "quantity",
+      render: (_, { quantity }) => <>{quantity} pice </>,
+    },
+    {
       title: "In Stock",
-      key: "inStock",
-      dataIndex: "inStock",
-      render: (_, { inStock }) =>
-        inStock ? (
-          <Tag color="green">In Stock</Tag>
-        ) : (
-          <Tag color="red">Stock Out</Tag>
-        ),
+      key: "quantity",
+      dataIndex: "quantity",
+      render: (_, { quantity }) => (
+        <Text
+          className={quantity! > 0 ? "bg-success" : "bg-error"}
+          style={{
+            textAlign: "center",
+            padding: "4px 15px",
+            borderRadius: "25px",
+            color: "white",
+          }}
+        >
+          {quantity! > 0 ? "In Stock" : "Out of Stock"}
+        </Text>
+      ),
+    },
+    {
+      title: "Status",
+      key: "status",
+      dataIndex: "status",
+      render: (_, { status }) => (
+        <Text
+          className={
+            status === ENUM_PRODUCT_STATUS.PENDING
+              ? "bg-warning"
+              : status === ENUM_PRODUCT_STATUS.ACTIVE
+              ? "bg-success"
+              : "bg-error"
+          }
+          style={{
+            textAlign: "center",
+            padding: "4px 15px",
+            borderRadius: "25px",
+            color: status === ENUM_PRODUCT_STATUS.PENDING ? "black" : "white",
+            textTransform: "capitalize",
+          }}
+        >
+          {status}
+        </Text>
+      ),
     },
     {
       title: "Action",
@@ -81,7 +168,7 @@ const ViewProducts = () => {
           >
             Edit
           </Button>
-          <Button icon={<DeleteOutlined />} onClick={handleDeleteProduct}>
+          <Button icon={<DeleteOutlined />} onClick={() => showConfirm(_id)}>
             Delete
           </Button>
         </Space>
@@ -97,8 +184,35 @@ const ViewProducts = () => {
   const handleRouteUpdate = (_id: string) =>
     router.push(`/products/update/${_id}`);
 
-  // delete action
-  const handleDeleteProduct = () => {};
+  // **delete action
+  const handleDeleteProduct = (_id: string) => {
+    Modal.destroyAll();
+    console.log(_id);
+    deleteProduct(_id);
+  };
+
+  const showConfirm = (_id: string) => {
+    for (let i = 0; i < 3; i += 1) {
+      setTimeout(() => {
+        confirm({
+          icon: <ExclamationCircleOutlined />,
+          content: (
+            <div>
+              <Button onClick={() => handleDeleteProduct(_id)}>
+                Delete product
+              </Button>
+              <p>Are you sure to delete this product?</p>
+            </div>
+          ),
+          centered: true,
+          okButtonProps: { style: { display: "none" } }, // Hide the OK button
+          onCancel() {
+            console.log("Cancel");
+          },
+        });
+      }, i * 500);
+    }
+  };
 
   return (
     <>
@@ -117,33 +231,50 @@ const ViewProducts = () => {
             <Card bordered>
               <Flex
                 align="center"
-                style={{ marginBottom: "25px" }}
-                justify="space-between"
+                style={{ marginBottom: "25px", gap: "20px" }}
               >
-                <h2>All Products</h2>
+                <p>All Products</p>
 
-                <Flex gap={10}>
-                  <Select
-                    size="large"
-                    placeholder="Sort"
-                    // onChange={handleStatusChange}
-                    style={{ width: "100px", textTransform: "capitalize" }}
-                    options={productItemSort}
-                    // defaultValue={selectedStatus}
-                  />
-
-                  <Select
-                    size="large"
-                    // onChange={handleStatusChange}
-                    style={{ width: "100px", textTransform: "capitalize" }}
-                    options={productItemSortPage}
-                    defaultValue={productItemSortPage[0]}
-                    // defaultValue={selectedStatus}
-                  />
-                </Flex>
+                {/* //**Product page list sorting */}
+                <Select
+                  size="large"
+                  placeholder="Sort"
+                  onChange={handleProductListsorting}
+                  style={{ width: "100px", textTransform: "capitalize" }}
+                  options={productItemSort}
+                  defaultValue={productItemSort[0]}
+                />
+                {/* //**product page list size */}
+                <Select
+                  size="large"
+                  onChange={handleProductPage}
+                  style={{ width: "100px", textTransform: "capitalize" }}
+                  options={productItemSortPage}
+                  defaultValue={productItemSortPage[0]}
+                />
               </Flex>
 
-              <Table columns={columns} dataSource={productData} />
+              {/* //**product table */}
+              <Table
+                columns={columns}
+                dataSource={productData?.data}
+                rowKey="_id"
+                scroll={{ x: true }}
+                pagination={{
+                  current: currentPage,
+                  pageSize: currentLimit,
+                  total: productData?.meta?.total,
+                  onChange: (page, pageSize) => {
+                    setCurrentPage(page);
+                    setCurrentLimit(pageSize);
+                  },
+                }}
+                rowSelection={{
+                  selectedRowKeys,
+                  onChange: onSelectChange,
+                }}
+                loading={isLoading && { indicator: <Spin /> }}
+              />
             </Card>
           </Col>
 

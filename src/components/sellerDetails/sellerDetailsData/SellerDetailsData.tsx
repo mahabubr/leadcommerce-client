@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { Button, Input } from "antd";
 import React from "react";
 import ChartDetails from "./ChartDetails";
@@ -14,21 +14,22 @@ const SellerDetailsData = () => {
           display: "flex",
           justifyContent: "space-between",
           padding: "1em",
-        }}>
+        }}
+      >
         <div>
           <h4 style={{ color: "#2c3e50" }}>Revenue</h4>
         </div>
         <div style={{ display: "flex", gap: "1em" }}>
-          <Button size='small' type='primary'>
+          <Button size="small" type="primary">
             ALL
           </Button>
-          <Button size='small' type='primary'>
+          <Button size="small" type="primary">
             1M
           </Button>
-          <Button size='small' type='primary'>
+          <Button size="small" type="primary">
             6M
           </Button>
-          <Button size='small' type='primary'>
+          <Button size="small" type="primary">
             1Y
           </Button>
         </div>
@@ -40,13 +41,15 @@ const SellerDetailsData = () => {
             //   display: "flex",
             //   justifyContent: "space-between",
           }
-        }>
+        }
+      >
         <div
           style={{
             display: "flex",
             width: "100%",
             backgroundColor: " #ecf0f1",
-          }}>
+          }}
+        >
           <div
             style={{
               border: "1px dashed  #999b9c",
@@ -56,7 +59,8 @@ const SellerDetailsData = () => {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-            }}>
+            }}
+          >
             <h5>
               <span>7585</span>
             </h5>
@@ -71,7 +75,8 @@ const SellerDetailsData = () => {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-            }}>
+            }}
+          >
             {" "}
             <h5>
               <span>$22.89k</span>
@@ -87,7 +92,8 @@ const SellerDetailsData = () => {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-            }}>
+            }}
+          >
             {" "}
             <h5>
               <span>367</span>
@@ -103,7 +109,8 @@ const SellerDetailsData = () => {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-            }}>
+            }}
+          >
             {" "}
             <h5>
               <span>18.92</span>
@@ -123,17 +130,17 @@ const SellerDetailsData = () => {
           padding: "1em",
           display: "flex",
           justifyContent: "space-between",
-        }}>
-        <Button type='primary' icon={<PlusOutlined />}>
+        }}
+      >
+        <Button type="primary" icon={<PlusOutlined />}>
           Add New
         </Button>
         <div>
-          <Input addonAfter={<SearchOutlined />} placeholder='large size' />
+          <Input addonAfter={<SearchOutlined />} placeholder="large size" />
         </div>
       </div>
       {/* table  */}
       <SellerDetailsPageTable></SellerDetailsPageTable>
-
     </>
   );
 };

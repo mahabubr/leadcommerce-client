@@ -1,21 +1,25 @@
-import React from 'react'
-import PCheckbox from './PCheckbox'
-import { Space } from 'antd'
+import React from "react";
+import PCheckbox from "./PCheckbox";
+import { Space } from "antd";
 
-type Props = {}
+type Props = {};
 
 const CategoryFilterBox = (props: Props) => {
-    return (
-        <Space direction="vertical" size={14} style={{
-            marginTop: '10px'
-        }}>
-            <PCheckbox label='All' />
-            <PCheckbox label='Accessories' />
-            <PCheckbox label='Phone' />
-            <PCheckbox label='Headphone' />
-            <PCheckbox label='Camera' />
-        </Space>
-    )
-}
+  return (
+    <Space
+      direction="vertical"
+      size={14}
+      style={{
+        marginTop: "10px",
+      }}
+    >
+      <PCheckbox label="All" />
+      <PCheckbox label="Accessories" />
+      <PCheckbox label="Phone" />
+      <PCheckbox label="Headphone" />
+      <PCheckbox label="Camera" />
+    </Space>
+  );
+};
 
-export default CategoryFilterBox
+export default CategoryFilterBox;
