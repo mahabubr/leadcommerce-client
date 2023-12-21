@@ -1,12 +1,13 @@
 import { Button } from "antd";
 import React from "react";
+import ChartDetails from "./ChartDetails";
 
 const SellerDetailsData = () => {
   return (
     <>
       <div
         style={{
-          border: "1px solid red",
+          //   border: "1px solid red",
           display: "flex",
           justifyContent: "space-between",
           padding: "1em",
@@ -35,10 +36,15 @@ const SellerDetailsData = () => {
           //   display: "flex",
           //   justifyContent: "space-between",
         }}>
-        <div style={{ display: "flex", width: "100%" }}>
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            backgroundColor: " #ecf0f1",
+          }}>
           <div
             style={{
-              border: "1px solid red",
+              border: "1px dashed  #999b9c",
               padding: "1em",
               flex: "1",
               display: "flex",
@@ -53,7 +59,7 @@ const SellerDetailsData = () => {
           </div>
           <div
             style={{
-              border: "1px solid red",
+              border: "1px dashed  #999b9c",
               padding: "1em",
               flex: "1",
               display: "flex",
@@ -69,7 +75,7 @@ const SellerDetailsData = () => {
           </div>
           <div
             style={{
-              border: "1px solid red",
+              border: "1px dashed  #999b9c",
               padding: "1em",
               flex: "1",
               display: "flex",
@@ -85,7 +91,7 @@ const SellerDetailsData = () => {
           </div>
           <div
             style={{
-              border: "1px solid red",
+              border: "1px dashed  #999b9c",
               padding: "1em",
               flex: "1",
               display: "flex",
@@ -100,6 +106,10 @@ const SellerDetailsData = () => {
             <p>Conversation Ratio</p>
           </div>
         </div>
+      </div>
+      {/* charts */}
+      <div style={{ marginTop: "1rem", padding: "1em" }}>
+        <ChartDetails></ChartDetails>
       </div>
     </>
   );
