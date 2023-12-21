@@ -3,7 +3,7 @@ import { ENUM_PRODUCT_STATUS } from "@/config/constants/product";
 export interface ProductDataType {
     _id: string;
     productName: string;
-    image: string;
+    image?: { avatar?: string; avatar_public_url?: string };
     price: number;
     quantity?: number;
     inStock: boolean;
@@ -13,7 +13,7 @@ export interface ProductDataType {
 export const productData: ProductDataType[] = [
     {
         _id: '10',
-        image: 'https://www.cloudlift.app/cdn/shop/products/product.jpg?v=1615224393&width=533',
+        image: { avatar: 'https://www.cloudlift.app/cdn/shop/products/product.jpg?v=1615224393&width=533' },
         productName: 'T shirt one',
         price: 3200,
         inStock: true,
@@ -21,7 +21,7 @@ export const productData: ProductDataType[] = [
     },
     {
         _id: '1',
-        image: 'https://www.cloudlift.app/cdn/shop/products/product.jpg?v=1615224393&width=533',
+        image: { avatar: 'https://www.cloudlift.app/cdn/shop/products/product.jpg?v=1615224393&width=533' },
         productName: 'T shirt one',
         price: 3200,
         inStock: false,
@@ -29,7 +29,7 @@ export const productData: ProductDataType[] = [
     },
     {
         _id: '2',
-        image: 'https://www.cloudlift.app/cdn/shop/products/product.jpg?v=1615224393&width=533',
+        image: { avatar: 'https://www.cloudlift.app/cdn/shop/products/product.jpg?v=1615224393&width=533' },
         productName: 'T shirt one',
         price: 3200,
         inStock: true,
@@ -37,7 +37,7 @@ export const productData: ProductDataType[] = [
     },
     {
         _id: '3',
-        image: 'https://www.cloudlift.app/cdn/shop/products/product.jpg?v=1615224393&width=533',
+        image: { avatar: 'https://www.cloudlift.app/cdn/shop/products/product.jpg?v=1615224393&width=533' },
         productName: 'T shirt one',
         price: 3200,
         inStock: false,

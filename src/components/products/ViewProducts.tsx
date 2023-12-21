@@ -60,7 +60,7 @@ const ViewProducts = () => {
             title: 'Image',
             dataIndex: 'image',
             key: 'image',
-            render: (_, { image, productName }) => <Image src={image} alt={productName} width={60} height={60} />,
+            render: (_, { image, productName }) => <Image src={image?.avatar ? image?.avatar : '/preview.jpg'} alt={productName} width={60} height={60} />,
         },
         {
             title: 'Name',

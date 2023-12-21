@@ -7,6 +7,8 @@ import Image from 'next/image'
 import { UploadOutlined, DeleteOutlined } from '@ant-design/icons'
 import type { Color, ColorPickerProps } from 'antd/es/color-picker';
 import { useAddProductsMutation } from '@/redux/product/productApi'
+import { notification } from "antd";
+import { PoweroffOutlined } from '@ant-design/icons';
 
 const props: UploadProps = {
     name: 'file',
@@ -16,21 +18,27 @@ const props: UploadProps = {
     },
 };
 
+type resType = { statusCode: number, success: boolean, message: string, data: any }
+
+const initialData = {
+    title: "",
+    product_category: "",
+    slug: "",
+    description: "",
+    fullDescription: "",
+    quantity: "",
+    price: "",
+    tags: '',
+};
+
 const AddProductV2 = () => {
     const [colorHex, setColorHex] = useState<Color | string>('#1677ff');
     const [formatHex, setFormatHex] = useState<ColorPickerProps['format']>('hex');
-    const [checkedValues, setCheckedValues] = useState<string[]>([]);
+    const [checkedValues, setCheckedValues] = useState<string[]>(['S']);
     const [currentImage, setCurrentImage] = useState<string | null>(null);
-
-
-    const [
-        addProduct,
-        {
-            data: updateAddProductResponse,
-            error: updateAddProductError,
-            isLoading: updateaddProductIsLoading,
-        },
-    ] = useAddProductsMutation();
+    const [api, contextHolder] = notification.useNotification();
+    const [isLoading, setIsLoading] = useState(false)
+    const [addProduct] = useAddProductsMutation();
 
 
     /* //** form  */
@@ -46,7 +54,7 @@ const AddProductV2 = () => {
 
     //** handle onfinish  */
     const onFinish = async (values: any) => {
-        console.log(values, checkedValues, fileList, hexString);
+        console.log(values, checkedValues, hexString);
 
 
         let formData = new FormData();
@@ -62,27 +70,69 @@ const AddProductV2 = () => {
         if (values.description) {
             formData.append("shortDescription", values.description);
         }
-        if (values.fullDescription) {
-            formData.append("slug", values.fullDescription);
+        if (checkedValues.length > 0) {
+            checkedValues.forEach((value, index) => {
+                formData.append(`size[${index}]`, value);
+            });
         }
-        if (values.color) {
+        if (values.fullDescription) {
+            formData.append("fullDescription", values.fullDescription);
+        }
+        if (hexString) {
             formData.append("color", hexString);
         }
         if (values.quantity) {
             formData.append("quantity", values.quantity);
         }
         if (values.price) {
-            formData.append("color", values.price);
+            formData.append("price", values.price);
         }
-        if (values.productTags) {
-            formData.append("productTags", values.productTags);
+        if (values.tags) {
+            formData.append("productTags", values.tags);
         }
         if (fileList) {
             formData.append("image", fileList.originFileObj);
         }
 
-        /* calling api */
-        addProduct(formData)
+        /* //** calling api */
+        /* //** handle product create response */
+        try {
+            setIsLoading(true)
+            await addProduct(formData).then((res: any) => {
+                if (res?.data?.success) {
+                    message.success(res?.data);
+                    form.setFieldsValue(initialData);
+                    setCheckedValues(['S']);
+                    setFileList(null)
+                    setCurrentImage(null)
+                    api.success({
+                        message: `${res?.data?.message}`,
+                        description: (
+                            <div>
+                                this product is listed in the product section
+                            </div>
+                        ),
+                        placement: "bottomLeft",
+                    });
+                    setIsLoading(false)
+                } else {
+                    setIsLoading(false)
+                    api.error({
+                        message: `${res?.data?.message}`,
+                        description: (
+                            <div>
+                                Product not listed in the product list.
+                            </div>
+                        ),
+                        placement: "bottomLeft",
+                    });
+                }
+            });
+        } catch (error) {
+            setIsLoading(false)
+            message.error("Not able to update");
+        }
+
     }
 
 
@@ -110,6 +160,7 @@ const AddProductV2 = () => {
 
     return (
         <>
+            {contextHolder}
             <PCBreadcrumb title='Create Product' />
 
             <Card title="Add Product" bordered style={{ marginTop: '20px' }}>
@@ -383,7 +434,6 @@ const AddProductV2 = () => {
                                                 type: "number",
                                                 message: "Please enter product price",
                                                 min: 1,
-                                                max: 10000,
                                             },
                                         ]}
                                         hasFeedback
@@ -486,7 +536,9 @@ const AddProductV2 = () => {
                                     </Form.Item>
                                 </Col>
                             </Row>
-                            <Button type="primary" htmlType="submit" size="large">Add Product</Button>
+                            <Button type="primary" htmlType="submit"
+                                loading={isLoading}
+                                size="large">Add Product</Button>
                         </Col>
 
                     </Row>
