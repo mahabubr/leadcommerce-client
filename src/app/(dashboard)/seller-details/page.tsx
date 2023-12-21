@@ -1,6 +1,8 @@
 import React from "react";
 import style from "./static/sellerdetails.module.css";
-import SellerProfile from "@/components/sellerDetails/SellerProfile";
+import SellerProfile from "@/components/sellerDetails/sellerProfile/SellerProfile";
+import ContactSupport from "@/components/sellerDetails/sellerProfile/ContactSupport";
+import SellerDetailsData from "@/components/sellerDetails/sellerDetailsData/SellerDetailsData";
 const SellerDetails = () => {
   return (
     <>
@@ -13,24 +15,23 @@ const SellerDetails = () => {
             style={{
               display: "flex",
               gap: "1rem",
-              //   backgroundColor: "#f8f9fa",
             }}>
             <div
               style={{
-                // border: "1px solid pink",
+                border: "1px solid pink",
                 backgroundColor: "#f8f9fa",
-                // height: "100vh",
+                borderRadius: "5px",
                 width: "25%",
               }}>
               <SellerProfile />
             </div>
             <div
               style={{
-                // border: "1px solid green",
+                border: "1px solid green",
                 width: "75%",
                 backgroundColor: "#f8f9fa",
               }}>
-              data profile
+              <SellerDetailsData></SellerDetailsData>
             </div>
           </div>
         </div>
