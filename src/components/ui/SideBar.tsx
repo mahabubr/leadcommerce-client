@@ -17,6 +17,16 @@ const sidebarData = [
     links: [{ label: "All Products", href: "/products" }],
   },
   {
+    title: "Stores",
+    icon: <FaHome />,
+    links: [{ label: "Stores", href: "/stores" }],
+  },
+  {
+    title: "Orders",
+    icon: <IoMdSettings />,
+    links: [{ label: "Orders", href: "/order" }],
+  },
+  {
     title: "Setting",
     icon: <IoMdSettings />,
     links: [{ label: "Profile setting", href: "/settings/profilesetting" }],
