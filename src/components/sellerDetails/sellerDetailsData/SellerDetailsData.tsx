@@ -1,6 +1,9 @@
-import { Button } from "antd";
+'use client'
+import { Button, Input } from "antd";
 import React from "react";
 import ChartDetails from "./ChartDetails";
+import { PlusOutlined, SearchOutlined } from "@ant-design/icons";
+import SellerDetailsPageTable from "./SellerDetailsPageTable";
 
 const SellerDetailsData = () => {
   return (
@@ -31,11 +34,13 @@ const SellerDetailsData = () => {
         </div>
       </div>
       <div
-        style={{
-          border: "1px solid blue",
-          //   display: "flex",
-          //   justifyContent: "space-between",
-        }}>
+        style={
+          {
+            //   border: "1px solid blue",
+            //   display: "flex",
+            //   justifyContent: "space-between",
+          }
+        }>
         <div
           style={{
             display: "flex",
@@ -111,6 +116,24 @@ const SellerDetailsData = () => {
       <div style={{ marginTop: "1rem", padding: "1em" }}>
         <ChartDetails></ChartDetails>
       </div>
+      {/* Add new and Search  */}
+      <div
+        style={{
+          // border: "1px solid red",
+          padding: "1em",
+          display: "flex",
+          justifyContent: "space-between",
+        }}>
+        <Button type='primary' icon={<PlusOutlined />}>
+          Add New
+        </Button>
+        <div>
+          <Input addonAfter={<SearchOutlined />} placeholder='large size' />
+        </div>
+      </div>
+      {/* table  */}
+      <SellerDetailsPageTable></SellerDetailsPageTable>
+
     </>
   );
 };

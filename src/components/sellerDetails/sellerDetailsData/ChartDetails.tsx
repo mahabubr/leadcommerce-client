@@ -62,13 +62,12 @@ export const data = {
       fill: false,
       borderColor: " #3498db",
       tension: 0.1,
-      //   borderDash: [5, 5],
     },
     {
       type: "bar" as const,
       label: "Earning",
       data: barDataset,
-      backgroundColor: "#27ae60",
+      backgroundColor: "  #2c3e50",
       barThickness: 35,
     },
   ],
@@ -95,7 +94,7 @@ const ChartDetails = () => {
   };
   return (
     <>
-      <Chart type='bar' data={data} />
+      <Chart height={100} type='bar' data={data} />
     </>
   );
 };
