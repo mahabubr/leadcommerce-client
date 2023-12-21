@@ -1,11 +1,12 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import PCBreadcrumb from './partials/PCBreadcrumb'
 import { Card, Row, Col, Button, Upload, UploadProps, message, UploadFile, Space, Form, Input, Select, ColorPicker, Checkbox, InputNumber } from 'antd'
 import { productItems } from './utils/productData'
 import Image from 'next/image'
-import { UploadOutlined } from '@ant-design/icons'
-import type { Color } from 'antd/es/color-picker';
+import { UploadOutlined, DeleteOutlined } from '@ant-design/icons'
+import type { Color, ColorPickerProps } from 'antd/es/color-picker';
+import { useAddProductsMutation } from '@/redux/product/productApi'
 
 const props: UploadProps = {
     name: 'file',
@@ -15,11 +16,22 @@ const props: UploadProps = {
     },
 };
 
-
 const AddProductV2 = () => {
     const [colorHex, setColorHex] = useState<Color | string>('#1677ff');
+    const [formatHex, setFormatHex] = useState<ColorPickerProps['format']>('hex');
     const [checkedValues, setCheckedValues] = useState<string[]>([]);
     const [currentImage, setCurrentImage] = useState<string | null>(null);
+
+
+    const [
+        addProduct,
+        {
+            data: updateAddProductResponse,
+            error: updateAddProductError,
+            isLoading: updateaddProductIsLoading,
+        },
+    ] = useAddProductsMutation();
+
 
     /* //** form  */
     const [form] = Form.useForm();
@@ -27,10 +39,50 @@ const AddProductV2 = () => {
     // states
     const [fileList, setFileList] = useState<UploadFile | any>()
 
+    const hexString = useMemo(
+        () => (typeof colorHex === 'string' ? colorHex : colorHex.toHexString()),
+        [colorHex],
+    );
 
     //** handle onfinish  */
     const onFinish = async (values: any) => {
-        console.log(values, colorHex, checkedValues, fileList);
+        console.log(values, checkedValues, fileList, hexString);
+
+
+        let formData = new FormData();
+        if (values.title) {
+            formData.append("productName", values.title);
+        }
+        if (values.product_category) {
+            formData.append("categories", values.product_category);
+        }
+        if (values.slug) {
+            formData.append("slug", values.slug);
+        }
+        if (values.description) {
+            formData.append("shortDescription", values.description);
+        }
+        if (values.fullDescription) {
+            formData.append("slug", values.fullDescription);
+        }
+        if (values.color) {
+            formData.append("color", hexString);
+        }
+        if (values.quantity) {
+            formData.append("quantity", values.quantity);
+        }
+        if (values.price) {
+            formData.append("color", values.price);
+        }
+        if (values.productTags) {
+            formData.append("productTags", values.productTags);
+        }
+        if (fileList) {
+            formData.append("image", fileList.originFileObj);
+        }
+
+        /* calling api */
+        addProduct(formData)
     }
 
 
@@ -44,7 +96,7 @@ const AddProductV2 = () => {
     };
 
     useEffect(() => {
-        console.log(fileList)
+        // console.log(fileList)
         if (fileList && fileList.originFileObj) {
             try {
                 const newImage = URL.createObjectURL(fileList.originFileObj);
@@ -89,8 +141,21 @@ const AddProductV2 = () => {
                                     }}
                                 />
 
+
                                 <div style={{ position: 'absolute', top: '40px', left: '37px', }}>
                                     <Upload
+                                        accept=".png, .jpg, .jpeg"
+                                        maxCount={1}
+                                        showUploadList={false}
+                                        beforeUpload={(file) => {
+                                            return new Promise((resolve, reject) => {
+                                                if (file.size > 2000000) {
+                                                    reject("File size must be under 2MB");
+                                                } else {
+                                                    resolve("success");
+                                                }
+                                            });
+                                        }}
                                         onChange={(info) => {
                                             if (info.file.status !== 'uploading') {
                                                 console.log(info.file, info.fileList);
@@ -106,6 +171,9 @@ const AddProductV2 = () => {
                                     >
                                         <Button icon={<UploadOutlined />} size='large'></Button>
                                     </Upload>
+                                </div>
+                                <div style={{ position: 'absolute', top: '40px', right: '37px', }}>
+                                    <Button icon={<DeleteOutlined />} onClick={() => { setFileList(null); setCurrentImage(null) }} size='large'></Button>
                                 </div>
                             </Card>
                         </Col>
@@ -242,7 +310,7 @@ const AddProductV2 = () => {
                                             value={colorHex}
                                             onChange={setColorHex}
                                             allowClear
-                                            format='hex'
+                                            format={formatHex}
                                         />
 
                                     </div>
@@ -321,6 +389,9 @@ const AddProductV2 = () => {
                                         hasFeedback
                                     >
                                         <InputNumber
+                                            formatter={(values) =>
+                                                `$ ${values}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                                            }
                                             style={{ marginTop: '0.5rem', width: '100%' }}
                                             size="large"
                                             placeholder="type price"
