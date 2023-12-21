@@ -26,6 +26,12 @@ const sidebarData = [
     icon: <IoMdSettings />,
     links: [{ label: "Orders", href: "/order" }],
   },
+
+  {
+    title: "Ecommerce",
+    icon: <IoMdSettings />,
+    links: [{ label: "Profile setting", href: "/settings/profilesetting" }],
+  },
   {
     title: "Setting",
     icon: <IoMdSettings />,

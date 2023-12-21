@@ -51,6 +51,7 @@ const ProfileImageUpload = () => {
           action='https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188'
           listType='picture-card'
           fileList={fileList}
+          style={{height:"250px", width:"250px"}}
           onPreview={handlePreview}
           onChange={handleChange}>
           {fileList.length >= 1 ? null : uploadButton}
