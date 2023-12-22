@@ -197,6 +197,7 @@ const data: DataType[] = [
     address: "London No. 1 Lake Park",
     tags: ["loser"],
   },
+
   {
     key: "3",
     name: "Joe Black",
