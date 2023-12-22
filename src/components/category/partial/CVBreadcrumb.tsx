@@ -8,7 +8,9 @@ const boxStyle: React.CSSProperties = {
   width: "100%",
 };
 
-const CVBreadcrumb = ({ link, title }: { link: string; title: string; }) => {
+type Props = { link: string; title: string; }
+
+const CVBreadcrumb = ({ link, title }: Props) => {
 
   // global
   const router = useRouter();

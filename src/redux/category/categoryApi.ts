@@ -5,8 +5,23 @@ const categoryApi = api.injectEndpoints({
     endpoints: (builder: any) => ({
 
         getAllCategories: builder.query({
-            query: () =>
-                `/category`,
+            query: ({
+                limit,
+                page,
+                // product_status,
+                sortOrder,
+            }: {
+                limit: number;
+                page: number;
+                product_status: string;
+                sortOrder: "desc" | "asc";
+            }) =>
+                `/category?page=${page}&limit=${limit}&sortOrder=${sortOrder}`,
+            providesTags: [tagTypes.category],
+        }),
+
+        getCategory: builder.query({
+            query: ({ id }: { id: string; }) => `/category/${id}`,
             providesTags: [tagTypes.category],
         }),
 
@@ -20,9 +35,9 @@ const categoryApi = api.injectEndpoints({
         }),
 
         updateCategory: builder.mutation({
-            query: (data: any) => ({
-                url: `/category/`,
-                method: "PUT",
+            query: ({ id, data }: any) => ({
+                url: `/category/${id}`,
+                method: "PATCH",
                 body: data,
             }),
             invalidatesTags: [tagTypes.category],
@@ -41,6 +56,7 @@ const categoryApi = api.injectEndpoints({
 export const {
     useAddCategoryMutation,
     useDeleteCategoryMutation,
-    useGetAllCategoriesMutation,
-    useUpdateCategoryMutation
+    useGetAllCategoriesQuery,
+    useUpdateCategoryMutation,
+    useGetCategoryQuery
 } = categoryApi;

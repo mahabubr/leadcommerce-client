@@ -141,8 +141,8 @@ const ViewProducts = () => {
             status === ENUM_PRODUCT_STATUS.PENDING
               ? "bg-warning"
               : status === ENUM_PRODUCT_STATUS.ACTIVE
-              ? "bg-success"
-              : "bg-error"
+                ? "bg-success"
+                : "bg-error"
           }
           style={{
             textAlign: "center",
