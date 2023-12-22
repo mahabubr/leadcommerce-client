@@ -1,9 +1,10 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import style from "./static/profilesetting.module.css";
-import { Tabs } from "antd";
+import { Button, Tabs } from "antd";
 import type { TabsProps } from "antd";
 import ProfileUpdate from "@/components/Settings/ProfileUpdate";
+import EmployeeModal from "./static/EmployeeModal";
 
 const items: TabsProps["items"] = [
   {
@@ -24,6 +25,8 @@ const items: TabsProps["items"] = [
 ];
 
 const ProfileSetting = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const onChange = (key: string) => {
     console.log(key);
   };
@@ -32,6 +35,7 @@ const ProfileSetting = () => {
       <section className={style.contentMain}>
         <div className={style.contentHeader}>
           <h2 className={style.contentTitle}>Profile Setting</h2>
+          <EmployeeModal />
         </div>
         <div className={style.card}>
           <div className={style.cardBody}>
@@ -41,21 +45,23 @@ const ProfileSetting = () => {
                 position: "relative",
 
                 display: "flex",
-              }}>
+              }}
+            >
               <div
                 style={{
                   padding: "2rem",
 
                   width: "100%",
-                }}>
+                }}
+              >
                 <Tabs
-                  defaultActiveKey='1'
+                  defaultActiveKey="1"
                   tabPosition={"left"}
                   style={{
                     minHeight: "60vh",
                   }}
                   tabBarGutter={25}
-                  type='line'
+                  type="line"
                   items={items}
                   onChange={onChange}
                   tabBarStyle={{
