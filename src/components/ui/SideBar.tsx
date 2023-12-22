@@ -35,6 +35,11 @@ const sidebarData = [
     links: [{ label: "Orders", href: "/order" }],
   },
   {
+    title: "Transactions",
+    icon: <IoMdSettings />,
+    links: [{ label: "Transactions", href: "/transaction" }],
+  },
+  {
     title: "Wallet",
     icon: <IoMdSettings />,
     links: [{ label: "Wallet", href: "/wallet" }],
