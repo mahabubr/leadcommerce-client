@@ -68,7 +68,7 @@ const AddProductV2 = () => {
             formData.append("slug", values.slug);
         }
         if (values.description) {
-            formData.append("shortDescription", values.description);
+            formData.append("description", values.description);
         }
         if (checkedValues.length > 0) {
             checkedValues.forEach((value, index) => {
