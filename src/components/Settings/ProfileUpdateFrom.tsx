@@ -22,18 +22,26 @@ const ProfileUpdateFrom = () => {
   return (
     <div>
       <Form
-        name='basic'
-        layout='vertical'
+        name="basic"
+        layout="vertical"
         style={{ maxWidth: 800 }}
         initialValues={{ remember: true }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
-        autoComplete='off'>
-        <div className={style.inputDiv}>
+        autoComplete="off"
+      >
+        <div
+          style={{
+            display: "flex",
+            gap: "2rem",
+          }}
+        >
           <Form.Item<FieldType>
             label='First Name'
             name='firstName'
-            className={style.inputWidth}
+            style={{
+              width: "50%",
+            }}
             rules={[{ message: "Please input your username!" }]}>
             <Input
               style={{
@@ -45,7 +53,9 @@ const ProfileUpdateFrom = () => {
           <Form.Item<FieldType>
             label='Last Name'
             name='lastName'
-            className={style.inputWidth}
+            style={{
+              width: "50%",
+            }}
             rules={[{ message: "Please input your password!" }]}>
             <Input
               style={{
@@ -54,11 +64,17 @@ const ProfileUpdateFrom = () => {
             />
           </Form.Item>
         </div>
-        <div className={style.inputDiv}>
+        <div
+          style={{
+            display: "flex",
+            gap: "2rem",
+          }}>
           <Form.Item<FieldType>
             label='Email'
             name='email'
-            className={style.inputWidth}
+            style={{
+              width: "100%",
+            }}
             rules={[{ message: "Please input your username!" }]}>
             <Input
               style={{
@@ -69,8 +85,10 @@ const ProfileUpdateFrom = () => {
 
           <Form.Item<FieldType>
             label='Phone'
-            name='phone'
-            className={style.inputWidth}
+            style={{
+              width: "100%",
+            }}
+            name='lastName'
             rules={[{ message: "Please input your password!" }]}>
             <Input
               style={{
@@ -80,19 +98,20 @@ const ProfileUpdateFrom = () => {
           </Form.Item>
         </div>
         <Form.Item<FieldType>
-          label='Address'
+          label="Address"
           style={{
             width: "100%",
           }}
-          name='address'
-          rules={[{ message: "Please input your password!" }]}>
+          name="address"
+          rules={[{ message: "Please input your password!" }]}
+        >
           <Input
             style={{
               height: "40px",
             }}
           />
         </Form.Item>
-        <Form.Item label='Birth Day' name='birthday'>
+        <Form.Item label="Birth Day" name="birthday">
           <DatePicker
             style={{
               height: "40px",
@@ -100,7 +119,7 @@ const ProfileUpdateFrom = () => {
           />
         </Form.Item>
         <Form.Item>
-          <Button type='primary' htmlType='submit'>
+          <Button type="primary" htmlType="submit">
             Submit
           </Button>
         </Form.Item>
