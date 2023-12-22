@@ -19,22 +19,22 @@ const sidebarData = [
   {
     title: "Stores",
     icon: <FaHome />,
-    links: [{ label: "Stores", href: "/stores" }],
+    links: [
+      { label: "Stores", href: "/stores" },
+      { label: "Seller Details", href: "/seller-details" },
+    ],
   },
   {
     title: "Orders",
     icon: <IoMdSettings />,
     links: [{ label: "Orders", href: "/order" }],
   },
-
   {
-    title: "Ecommerce",
+    title: "Wallet",
     icon: <IoMdSettings />,
-    links: [
-      { label: "Store", href: "/stores" },
-      { label: "Seller Details", href: "/seller-details" },
-    ],
+    links: [{ label: "Wallet", href: "/wallet" }],
   },
+
   {
     title: "Setting",
     icon: <IoMdSettings />,
