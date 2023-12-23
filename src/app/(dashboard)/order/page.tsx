@@ -11,6 +11,7 @@ import { productItemSortPage } from "@/components/products/utils/productData";
 import { useEffect, useState } from "react";
 import { useGetAllOrderQuery } from "@/redux/order/orderApi";
 
+const { Search } = Input;
 // interface DataType {
 //   key: string;
 //   name: string;
@@ -114,15 +115,29 @@ const Orders = () => {
   // * state declaration
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(4); // limit
-  // const [sortBy, setSortBy] = useState("");
-  // const [sortOrder, setSortOrder] = useState("");
+  const [sortBy, setSortBy] = useState("order_code");
+  const [sortOrder, setSortOrder] = useState("asc");
   const [searchTerm, setSearchTerm] = useState("");
+  const [orderCode, setOrderCode] = useState("");
+  const [orderStatus, setOrderStatus] = useState("");
 
   query["limit"] = limit;
   query["page"] = page;
-  // query["sortBy"] = sortBy;
-  // query["sortOrder"] = sortOrder;
+
+  query["sortBy"] = sortBy;
+  query["sortOrder"] = sortOrder;
   query["searchTerm"] = searchTerm;
+
+  if (orderCode) {
+    query["order_code"] = orderCode;
+  }
+  if (orderStatus) {
+    if (orderStatus === "all") {
+      setOrderStatus("");
+    }
+    
+    query["order_status"] = orderStatus;
+  }
   const { data } = useGetAllOrderQuery({ ...query });
   const orderData = data?.data;
 
@@ -135,7 +150,14 @@ const Orders = () => {
   const onChange: DatePickerProps["onChange"] = (date, dateString) => {
     console.log(date, dateString);
   };
-
+  // * Filter 🚀🚀🚀
+  // * SearchBy Order ID
+  const onSearch = (value: any, _e: any, info: any) => setOrderCode(value);
+  // * Order Status
+  const handleChange = (value: string) => {
+    setPage(1);
+    setOrderStatus(value);
+  };
   return (
     <div className={style.container}>
       <div className={style.mainContent}>
@@ -150,14 +172,7 @@ const Orders = () => {
             />
           </div>
           <div className={style.filterTwo}>
-            <Select
-              placeholder='Status'
-              allowClear
-              options={[
-                { value: "active", label: "Active" },
-                { value: "disabled", label: "Disabled" },
-              ]}
-            />
+            <Select placeholder='Status' allowClear />
             <Select
               onChange={handlePagelimitChange}
               style={{ width: "100px", textTransform: "capitalize" }}
@@ -189,7 +204,11 @@ const Orders = () => {
         <div className={style.sideItems}>
           <div>
             <p style={{ fontSize: 12 }}>Order Id</p>
-            <Input placeholder='Type Here' size='middle' />
+            <Search
+              placeholder='input search text'
+              allowClear
+              onSearch={onSearch}
+            />
           </div>
           <div>
             <p style={{ fontSize: 12 }}>Customer</p>
@@ -200,9 +219,12 @@ const Orders = () => {
             <Select
               placeholder='Status'
               allowClear
+              onChange={handleChange}
               options={[
-                { value: "ordered", label: "Ordered" },
-                { value: "rejected", label: "Ordered" },
+                { value: "all", label: "All" },
+                { value: "pending", label: "Pending" },
+                { value: "completed", label: "Completed" },
+                { value: "canceled", label: "Canceled" },
               ]}
               style={{ marginTop: 10 }}
             />
