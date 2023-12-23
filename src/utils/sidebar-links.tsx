@@ -50,6 +50,11 @@ const sidebarItems = (role: string) => {
       icon: <IoWalletOutline />,
       links: [{ label: "Wallet", href: "/wallet" }],
     },
+    {
+      title: "Transactions",
+      icon: <IoWalletOutline />,
+      links: [{ label: "Transaction", href: "/transaction" }],
+    },
   ];
 
   const employeeItems = [

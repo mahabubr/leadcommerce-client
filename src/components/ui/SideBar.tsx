@@ -9,7 +9,7 @@ const { SubMenu } = Menu;
 const SideBar = ({ closeDrawer, open }: any) => {
   const token = getFromLocalStorage("accessToken");
   const decode = decodedToken(token as string);
-  
+
   //@ts-ignore
   const role = decode?.role;
 
