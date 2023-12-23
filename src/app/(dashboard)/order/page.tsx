@@ -8,83 +8,130 @@ import { CiSearch } from "react-icons/ci";
 import style from "./order.module.css";
 import { productItemSortPage } from "@/components/products/utils/productData";
 
-interface DataType {
-  key: string;
-  name: string;
-  age: number;
-  address: string;
-  tags: string[];
-}
+import { useEffect, useState } from "react";
+import { useGetAllOrderQuery } from "@/redux/order/orderApi";
 
-const columns: ColumnsType<DataType> = [
+// interface DataType {
+//   key: string;
+//   name: string;
+//   age: number;
+//   address: string;
+//   tags: string[];
+// }
+
+const columns = [
   {
-    title: "Id",
-    dataIndex: "name",
-    key: "name",
-    render: (text) => <p>{text}</p>,
+    title: "Order Code",
+    dataIndex: "order_code",
+    key: "_id",
+    render: (order_code: any, _id: any) => <p key={_id}>{order_code}</p>,
   },
   {
-    title: "Age",
-    dataIndex: "age",
-    key: "age",
+    title: "Total Item",
+    dataIndex: "total_items",
+    key: "_id",
+    render: (total_items: any, _id: any) => <p key={_id}>{total_items}</p>,
   },
   {
-    title: "Address",
-    dataIndex: "address",
-    key: "address",
-  },
-  {
-    title: "Tags",
-    key: "tags",
-    dataIndex: "tags",
-    render: (_, { tags }) => (
-      <>
-        {tags.map((tag) => {
-          let color = tag.length > 5 ? "geekblue" : "green";
-          if (tag === "loser") {
-            color = "volcano";
-          }
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
-      </>
+    title: "Total Quantity",
+    dataIndex: "total_quantity",
+    key: "_id",
+    render: (total_quantity: any, _id: any) => (
+      <p key={_id}>{total_quantity}</p>
     ),
   },
   {
-    title: "Action",
-    key: "action",
-    render: (_, record) => <Button type="primary">Details</Button>,
+    title: "Amount",
+    dataIndex: "amount",
+    key: "_id",
+    render: (amount: any, _id: any) => <p key={_id}>{amount}</p>,
+  },
+  {
+    title: "Order Status",
+    dataIndex: "order_status",
+    key: "_id",
+    render: (order_status: any, _id: any) => {
+      return (
+        <>
+          {order_status === "pending" ? (
+            <Tag color='warning'>Pending</Tag>
+          ) : order_status === "completed" ? (
+            <Tag color='success'>Completed</Tag>
+          ) : order_status === "canceled" ? (
+            <Tag color='error'>Canceled</Tag>
+          ) : null}
+        </>
+      );
+    },
+  },
+  {
+    title: "Payment Status",
+    dataIndex: "payment_status",
+    key: "_id",
+    render: (payment_status: any, _id: any) => {
+      return (
+        <>
+          {payment_status === "pending" ? (
+            <Tag color='warning'>Pending</Tag>
+          ) : payment_status === "completed" ? (
+            <Tag color='success'>Completed</Tag>
+          ) : payment_status === "canceled" ? (
+            <Tag color='error'>Canceled</Tag>
+          ) : null}
+        </>
+      );
+    },
   },
 ];
 
-const data: DataType[] = [
-  {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-    tags: ["nice", "developer"],
-  },
-  {
-    key: "2",
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-    tags: ["loser"],
-  },
-  {
-    key: "3",
-    name: "Joe Black",
-    age: 32,
-    address: "Sydney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
-  },
-];
+// const dataaa: DataType[] = [
+//   {
+//     key: "1",
+//     name: "John Brown",
+//     age: 32,
+//     address: "New York No. 1 Lake Park",
+//     tags: ["nice", "developer"],
+//   },
+//   {
+//     key: "2",
+//     name: "Jim Green",
+//     age: 42,
+//     address: "London No. 1 Lake Park",
+//     tags: ["loser"],
+//   },
+//   {
+//     key: "3",
+//     name: "Joe Black",
+//     age: 32,
+//     address: "Sydney No. 1 Lake Park",
+//     tags: ["cool", "teacher"],
+//   },
+// ];
 
 const Orders = () => {
+  const query: any = {};
+
+  // * state declaration
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(4); // limit
+  // const [sortBy, setSortBy] = useState("");
+  // const [sortOrder, setSortOrder] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+
+  query["limit"] = limit;
+  query["page"] = page;
+  // query["sortBy"] = sortBy;
+  // query["sortOrder"] = sortOrder;
+  query["searchTerm"] = searchTerm;
+  const { data } = useGetAllOrderQuery({ ...query });
+  const orderData = data?.data;
+
+  // * PageLimit Change
+  const handlePagelimitChange = (value: any) => {
+    setLimit(value);
+  };
+
+  // * Date Picker
   const onChange: DatePickerProps["onChange"] = (date, dateString) => {
     console.log(date, dateString);
   };
@@ -95,8 +142,8 @@ const Orders = () => {
         <div className={style.mainFilter}>
           <div className={style.filterOne}>
             <Input
-              size="middle"
-              placeholder="Search Orders"
+              size='middle'
+              placeholder='Search Orders'
               suffix={<CiSearch />}
               allowClear
               style={{ width: "100%" }}
@@ -104,7 +151,7 @@ const Orders = () => {
           </div>
           <div className={style.filterTwo}>
             <Select
-              placeholder="Status"
+              placeholder='Status'
               allowClear
               options={[
                 { value: "active", label: "Active" },
@@ -112,7 +159,7 @@ const Orders = () => {
               ]}
             />
             <Select
-              // onChange={handleStatusChange}
+              onChange={handlePagelimitChange}
               style={{ width: "100px", textTransform: "capitalize" }}
               options={productItemSortPage}
               defaultValue={productItemSortPage[0]}
@@ -121,7 +168,20 @@ const Orders = () => {
           </div>
         </div>
 
-        <Table columns={columns} dataSource={data} />
+        <Table
+          columns={columns}
+          dataSource={orderData}
+          scroll={{ x: true }}
+          pagination={{
+            current: page,
+            pageSize: limit,
+            total: data?.meta?.total,
+            onChange: (page, pageSize) => {
+              setLimit(pageSize);
+              setPage(page);
+            },
+          }}
+        />
       </div>
 
       <div className={style.sideContent}>
@@ -129,16 +189,16 @@ const Orders = () => {
         <div className={style.sideItems}>
           <div>
             <p style={{ fontSize: 12 }}>Order Id</p>
-            <Input placeholder="Type Here" size="middle" />
+            <Input placeholder='Type Here' size='middle' />
           </div>
           <div>
             <p style={{ fontSize: 12 }}>Customer</p>
-            <Input placeholder="Type Here" size="middle" />
+            <Input placeholder='Type Here' size='middle' />
           </div>
           <div>
             <p style={{ fontSize: 12 }}>Order Status</p>
             <Select
-              placeholder="Status"
+              placeholder='Status'
               allowClear
               options={[
                 { value: "ordered", label: "Ordered" },
@@ -151,7 +211,7 @@ const Orders = () => {
             <p style={{ fontSize: 12 }}>Date</p>
             <DatePicker
               onChange={onChange}
-              picker="month"
+              picker='month'
               style={{ marginTop: 10 }}
             />
           </div>

@@ -1,7 +1,16 @@
 import api from "../api";
 
 const OrderApi = api.injectEndpoints({
-  endpoints: (builder: any) => ({}),
+  endpoints: (builder: any) => ({
+    // * Get All Order
+    getAllOrder: builder.query({
+      query: (arg: any) => ({
+        url: `/Orders`,
+        method: "GET",
+        params: arg,
+      }),
+    }),
+  }),
 });
 
-export const {} = OrderApi;
+export const { useGetAllOrderQuery } = OrderApi;
