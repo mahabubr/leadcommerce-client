@@ -24,9 +24,9 @@ const Stores = () => {
     return <Loader />;
   }
   //@ts-ignore
-  const stores = data?.data?.data;
+  const stores = data?.data;
   //@ts-ignore
-  const meta = data?.data?.meta;
+  const meta = data?.meta;
 
   const handlePagination = (page: any, size: any) => {
     setPagPage(page);
