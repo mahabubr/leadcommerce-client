@@ -1,53 +1,20 @@
-import { Drawer, Layout, Menu } from "antd";
-import { FaHome } from "react-icons/fa";
-import { IoMdSettings } from "react-icons/io";
+import decodedToken from "@/utils/decodeToken";
+import { getFromLocalStorage } from "@/utils/local-storage";
+import sidebarItems from "@/utils/sidebar-links";
+import { Drawer, Menu } from "antd";
 import Link from "next/link";
 
 const { SubMenu } = Menu;
 
-const sidebarData = [
-  {
-    title: "Dashboard",
-    icon: <FaHome />,
-    links: [{ label: "Dashboard", href: "/dashboard" }],
-  },
-  {
-    title: "Categories",
-    icon: <FaHome />,
-    links: [{ label: "All Category", href: "/category" }],
-  },
-  {
-    title: "Products",
-    icon: <FaHome />,
-    links: [{ label: "All Products", href: "/products" }],
-  },
-  {
-    title: "Stores",
-    icon: <FaHome />,
-    links: [
-      { label: "Stores", href: "/stores" },
-      { label: "Seller Details", href: "/seller-details" },
-    ],
-  },
-  {
-    title: "Orders",
-    icon: <IoMdSettings />,
-    links: [{ label: "Orders", href: "/order" }],
-  },
-  {
-    title: "Wallet",
-    icon: <IoMdSettings />,
-    links: [{ label: "Wallet", href: "/wallet" }],
-  },
-
-  {
-    title: "Setting",
-    icon: <IoMdSettings />,
-    links: [{ label: "Profile setting", href: "/settings/profilesetting" }],
-  },
-];
-
 const SideBar = ({ closeDrawer, open }: any) => {
+  const token = getFromLocalStorage("accessToken");
+  const decode = decodedToken(token as string);
+  
+  //@ts-ignore
+  const role = decode?.role;
+
+  const sidebarData = sidebarItems(role);
+
   return (
     <Drawer
       title="Lead Commerce"
@@ -59,7 +26,7 @@ const SideBar = ({ closeDrawer, open }: any) => {
       mask={false}
     >
       <Menu mode="inline" style={{ width: "100%", borderRight: 0 }}>
-        {sidebarData.map((section, index) => (
+        {sidebarData?.map((section, index) => (
           <SubMenu
             key={`sub${index}`}
             title={
