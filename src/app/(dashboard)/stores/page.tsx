@@ -1,15 +1,38 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import SpineChart from "@/components/dashboard/SplineChart";
-import { Button, Card, Input, Select } from "antd";
-import ButtonGroup from "antd/es/button/button-group";
+import StoreCard from "@/components/store/StoreCard";
+import Loader from "@/components/ui/Loader";
+import { useGetAllStoresQuery } from "@/redux/store/storeApi";
+import { Button, Card, Input, Pagination, Select } from "antd";
+import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 
-const chartData = [10, 20, 30, 40, 50]; // Your data points
-const chartLabels = ["A", "B", "C", "D", "E"]; // Labels for the data points
-
 const Stores = () => {
+  const [pagPage, setPagPage] = useState(1);
+  const [pagSize, setPagSize] = useState(10);
+  const [search, setSearch] = useState("");
+
+  const { data, isLoading } = useGetAllStoresQuery({
+    limit: pagSize,
+    page: pagPage,
+    sortOrder: "desc",
+    searchTerm: search,
+  });
+
+  if (isLoading) {
+    return <Loader />;
+  }
+  //@ts-ignore
+  const stores = data?.data?.data;
+  //@ts-ignore
+  const meta = data?.data?.meta;
+
+  const handlePagination = (page: any, size: any) => {
+    setPagPage(page);
+    setPagSize(size);
+  };
+
   return (
     <div>
       <Card>
@@ -27,6 +50,7 @@ const Stores = () => {
               placeholder="Search Pages"
               suffix={<CiSearch />}
               allowClear
+              onChange={(e) => setSearch(e.target.value)}
             />
           </div>
 
@@ -53,130 +77,23 @@ const Stores = () => {
           gap: 20,
         }}
       >
-        <div
-          style={{
-            backgroundColor: "white",
-            padding: 20,
-            borderRadius: 8,
-            textAlign: "center",
-          }}
-        >
-          <div>
-            <img
-              src="https://images.unsplash.com/photo-1516876437184-593fda40c7ce?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt=""
-              style={{ width: 50, height: 50, borderRadius: "50%" }}
-            />
-            <h4 style={{ marginTop: 20 }}>Apple LLC</h4>
-            <p style={{ fontSize: 14 }}>Steve Jobs</p>
-          </div>
-          <div>
-            <SpineChart />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              gap: 10,
-            }}
-          >
-            <div>
-              <p>452</p>
-              <p style={{ fontSize: 14, color: "grey" }}>Item Stock</p>
-            </div>
-            <div>
-              <p>$45,415</p>
-              <p style={{ fontSize: 14, color: "grey" }}>Balance</p>
-            </div>
-          </div>
-          <div style={{ marginTop: 20 }}>
-            <Button type="primary">View Details</Button>
-          </div>
-        </div>
-        <div
-          style={{
-            backgroundColor: "white",
-            padding: 20,
-            borderRadius: 8,
-            textAlign: "center",
-          }}
-        >
-          <div>
-            <img
-              src="https://images.unsplash.com/photo-1516876437184-593fda40c7ce?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt=""
-              style={{ width: 50, height: 50, borderRadius: "50%" }}
-            />
-            <h4 style={{ marginTop: 20 }}>Apple LLC</h4>
-            <p style={{ fontSize: 14 }}>Steve Jobs</p>
-          </div>
-          <div>
-            <SpineChart />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              gap: 10,
-            }}
-          >
-            <div>
-              <p>452</p>
-              <p style={{ fontSize: 14, color: "grey" }}>Item Stock</p>
-            </div>
-            <div>
-              <p>$45,415</p>
-              <p style={{ fontSize: 14, color: "grey" }}>Balance</p>
-            </div>
-          </div>
-          <div style={{ marginTop: 20 }}>
-            <Button type="primary">View Details</Button>
-          </div>
-        </div>
-        <div
-          style={{
-            backgroundColor: "white",
-            padding: 20,
-            borderRadius: 8,
-            textAlign: "center",
-          }}
-        >
-          <div>
-            <img
-              src="https://images.unsplash.com/photo-1516876437184-593fda40c7ce?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt=""
-              style={{ width: 50, height: 50, borderRadius: "50%" }}
-            />
-            <h4 style={{ marginTop: 20 }}>Apple LLC</h4>
-            <p style={{ fontSize: 14 }}>Steve Jobs</p>
-          </div>
-          <div>
-            <SpineChart />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              gap: 10,
-            }}
-          >
-            <div>
-              <p>452</p>
-              <p style={{ fontSize: 14, color: "grey" }}>Item Stock</p>
-            </div>
-            <div>
-              <p>$45,415</p>
-              <p style={{ fontSize: 14, color: "grey" }}>Balance</p>
-            </div>
-          </div>
-          <div style={{ marginTop: 20 }}>
-            <Button type="primary">View Details</Button>
-          </div>
-        </div>
+        {stores?.length > 0
+          ? stores?.map((store: any) => (
+              <StoreCard key={store._id} store={store} />
+            ))
+          : "Not Store Found"}
       </div>
+      <Card
+        style={{ marginTop: 20, display: "flex", justifyContent: "center" }}
+      >
+        <Pagination
+          defaultCurrent={1}
+          total={meta?.total}
+          onChange={handlePagination}
+          pageSizeOptions={["5", "10", "20"]}
+          showSizeChanger
+        />
+      </Card>
     </div>
   );
 };

@@ -14,9 +14,9 @@ const CustomerReviews = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          backgroundColor: "#f3f6f9",
           padding: "3px",
-        }}>
+        }}
+      >
         <div style={{ display: "flex", gap: "5px" }}>
           <StarFilled style={{ color: "orange" }} />
           <StarFilled style={{ color: "orange" }} />
@@ -30,7 +30,8 @@ const CustomerReviews = () => {
               color: "#878aa3",
               fontSize: "15px",
               fontWeight: "500",
-            }}>
+            }}
+          >
             4.5 out of 5
           </h6>
         </div>
@@ -42,7 +43,8 @@ const CustomerReviews = () => {
           fontWeight: "500",
           marginTop: "5px",
           textAlign: "center",
-        }}>
+        }}
+      >
         Total 5.50k reviews
       </h6>
     </div>

@@ -1,40 +1,41 @@
 "use client";
-import { Button, Input } from "antd";
+import { Button, Card, Input } from "antd";
 import React from "react";
 import ChartDetails from "./ChartDetails";
 import { PlusOutlined, SearchOutlined } from "@ant-design/icons";
 import SellerDetailsPageTable from "./SellerDetailsPageTable";
 
-const SellerDetailsData = () => {
+const SellerDetailsData = ({ store }: any) => {
   return (
     <>
-      <div
-        style={{
-          //   border: "1px solid red",
-          display: "flex",
-          justifyContent: "space-between",
-          padding: "1em",
-        }}
-      >
-        <div>
-          <h4 style={{ color: "#2c3e50" }}>Revenue</h4>
+      <Card>
+        <div
+          style={{
+            //   border: "1px solid red",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <div>
+            <h4 style={{ color: "#2c3e50" }}>Revenue</h4>
+          </div>
+          <div style={{ display: "flex", gap: "1em" }}>
+            <Button size="small" type="primary">
+              ALL
+            </Button>
+            <Button size="small" type="primary">
+              1M
+            </Button>
+            <Button size="small" type="primary">
+              6M
+            </Button>
+            <Button size="small" type="primary">
+              1Y
+            </Button>
+          </div>
         </div>
-        <div style={{ display: "flex", gap: "1em" }}>
-          <Button size="small" type="primary">
-            ALL
-          </Button>
-          <Button size="small" type="primary">
-            1M
-          </Button>
-          <Button size="small" type="primary">
-            6M
-          </Button>
-          <Button size="small" type="primary">
-            1Y
-          </Button>
-        </div>
-      </div>
-      <div
+      </Card>
+      <Card
         style={
           {
             //   border: "1px solid blue",
@@ -62,7 +63,7 @@ const SellerDetailsData = () => {
             }}
           >
             <h5>
-              <span>7585</span>
+              <span>{store.total_orders}</span>
             </h5>
             <p>Orders</p>
           </div>
@@ -77,9 +78,8 @@ const SellerDetailsData = () => {
               alignItems: "center",
             }}
           >
-            {" "}
             <h5>
-              <span>$22.89k</span>
+              <span>$ {store.earning[0]}</span>
             </h5>
             <p>Earning</p>
           </div>
@@ -94,9 +94,8 @@ const SellerDetailsData = () => {
               alignItems: "center",
             }}
           >
-            {" "}
             <h5>
-              <span>367</span>
+              <span>{store.refund}</span>
             </h5>
             <p>Refunds</p>
           </div>
@@ -111,18 +110,18 @@ const SellerDetailsData = () => {
               alignItems: "center",
             }}
           >
-            {" "}
             <h5>
               <span>18.92</span>
             </h5>
             <p>Conversation Ratio</p>
           </div>
         </div>
-      </div>
-      {/* charts */}
-      <div style={{ marginTop: "1rem", padding: "1em" }}>
-        <ChartDetails></ChartDetails>
-      </div>
+        {/* charts */}
+        <div style={{ marginTop: "1rem", padding: "1em" }}>
+          <ChartDetails></ChartDetails>
+        </div>
+      </Card>
+
       {/* Add new and Search  */}
       <div
         style={{

@@ -1,5 +1,5 @@
 import React from "react";
-import { Table } from "antd";
+import { Card, Table } from "antd";
 import type { ColumnsType, TableProps } from "antd/es/table";
 import Image from "next/image";
 interface DataType {
@@ -122,9 +122,9 @@ const SellerDetailsPageTable = () => {
     console.log("params", pagination, filters, sorter, extra);
   };
   return (
-    <div>
+    <Card>
       <Table columns={columns} dataSource={data} onChange={onChange} />
-    </div>
+    </Card>
   );
 };
 
