@@ -19,7 +19,18 @@ const PageBody = () => {
       if (res.success) {
         message.success(res.message);
         localStorage.setItem("accessToken", res?.data?.accessToken);
-        router.push("/dashboard");
+        console.log();
+        const decode = decodedToken(res?.data?.accessToken as string);
+        // @ts-ignore
+        if (decode?.role === "admin") {
+          router.push("/dashboard");
+          // @ts-ignore
+        } else if (decode?.role === "store") {
+          router.push("/seller-details");
+          // @ts-ignore
+        } else if (decode?.role === "employee") {
+          router.push("/settings/profilesetting");
+        }
       }
     } catch (error: any) {
       message.error(error.data.message);
@@ -29,14 +40,6 @@ const PageBody = () => {
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
-
-  const token = getFromLocalStorage("accessToken");
-  const decode = decodedToken(token as string);
-  //@ts-ignore
-  if (decode?.email && decode?.role) {
-    router.push("/dashboard");
-    return <Loader />;
-  }
 
   return (
     <div className={style.main_container}>

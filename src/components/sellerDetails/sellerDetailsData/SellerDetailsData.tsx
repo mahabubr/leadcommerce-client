@@ -63,7 +63,7 @@ const SellerDetailsData = ({ store }: any) => {
             }}
           >
             <h5>
-              <span>{store.total_orders}</span>
+              <span>{store?.total_orders}</span>
             </h5>
             <p>Orders</p>
           </div>
@@ -79,7 +79,7 @@ const SellerDetailsData = ({ store }: any) => {
             }}
           >
             <h5>
-              <span>$ {store.earning[0]}</span>
+              <span>$ {store?.earning[0]}</span>
             </h5>
             <p>Earning</p>
           </div>
@@ -95,7 +95,7 @@ const SellerDetailsData = ({ store }: any) => {
             }}
           >
             <h5>
-              <span>{store.refund}</span>
+              <span>{store?.refund}</span>
             </h5>
             <p>Refunds</p>
           </div>

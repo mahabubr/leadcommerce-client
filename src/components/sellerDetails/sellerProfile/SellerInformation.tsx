@@ -19,13 +19,13 @@ const SellerInformation = ({ store }: any) => {
         }}
       >
         <Avatar
-          src={store.logo}
+          src={store?.logo}
           shape="square"
           size={64}
           icon={<UserOutlined />}
         />
-        <h5>{store.name}</h5>
-        <small>{new Date(store.createdAt).toDateString()}</small>
+        <h5>{store?.name}</h5>
+        <small>{new Date(store?.createdAt).toDateString()}</small>
       </div>
       <div
         style={{
@@ -41,7 +41,7 @@ const SellerInformation = ({ store }: any) => {
               </th>
               <td>
                 <span style={{ marginLeft: "18px", fontSize: "14px" }}>
-                  {store.owner_name}
+                  {store?.owner_name}
                 </span>
               </td>
             </tr>
@@ -51,7 +51,7 @@ const SellerInformation = ({ store }: any) => {
               </th>
               <td>
                 <span style={{ marginLeft: "18px", fontSize: "14px" }}>
-                  {store.company_type}
+                  {store?.company_type}
                 </span>
               </td>
             </tr>
@@ -62,7 +62,7 @@ const SellerInformation = ({ store }: any) => {
 
               <td>
                 <span style={{ marginLeft: "18px", fontSize: "14px" }}>
-                  {store.email}
+                  {store?.email}
                 </span>
               </td>
             </tr>
@@ -72,7 +72,7 @@ const SellerInformation = ({ store }: any) => {
               </th>
               <td>
                 <span style={{ marginLeft: "18px", fontSize: "14px" }}>
-                  {store.website}
+                  {store?.website}
                 </span>
               </td>
             </tr>
@@ -82,7 +82,7 @@ const SellerInformation = ({ store }: any) => {
               </th>
               <td>
                 <span style={{ marginLeft: "18px", fontSize: "14px" }}>
-                  {store.contact_no}
+                  {store?.contact_no}
                 </span>
               </td>
             </tr>
@@ -92,7 +92,7 @@ const SellerInformation = ({ store }: any) => {
               </th>
               <td>
                 <span style={{ marginLeft: "18px", fontSize: "14px" }}>
-                  {store.location}
+                  {store?.location}
                 </span>
               </td>
             </tr>

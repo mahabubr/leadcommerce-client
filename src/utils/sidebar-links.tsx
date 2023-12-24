@@ -22,11 +22,6 @@ const sidebarItems = (role: string) => {
       icon: <FaStore />,
       links: [{ label: "Stores", href: "/stores" }],
     },
-    {
-      title: "Setting",
-      icon: <IoMdSettings />,
-      links: [{ label: "Profile setting", href: "/settings/profilesetting" }],
-    },
   ];
 
   const storeItems = [
@@ -58,11 +53,6 @@ const sidebarItems = (role: string) => {
   ];
 
   const employeeItems = [
-    {
-      title: "Dashboard",
-      icon: <FaHome />,
-      links: [{ label: "Seller Details", href: "/seller-details" }],
-    },
     {
       title: "Orders",
       icon: <LuShoppingBasket />,

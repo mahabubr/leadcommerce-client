@@ -6,7 +6,18 @@ import SellerProfile from "@/components/sellerDetails/sellerProfile/SellerProfil
 import ContactSupport from "@/components/sellerDetails/sellerProfile/ContactSupport";
 import SellerDetailsData from "@/components/sellerDetails/sellerDetailsData/SellerDetailsData";
 import EmployeeModal from "@/components/ui/EmployeeModal";
+import Loader from "@/components/ui/Loader";
+import { useGetStoreSingleStoreQuery } from "@/redux/store/storeApi";
 const SellerDetails = () => {
+  const { data, isLoading } = useGetStoreSingleStoreQuery({});
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  //@ts-ignore
+  const store = data?.data;
+
   return (
     <>
       <section className={style.contentMain}>
@@ -29,7 +40,7 @@ const SellerDetails = () => {
                 width: "25%",
               }}
             >
-              <SellerProfile />
+              <SellerProfile store={store} />
             </div>
             <div
               style={{
@@ -39,7 +50,7 @@ const SellerDetails = () => {
                 borderRadius: "5px",
               }}
             >
-              <SellerDetailsData></SellerDetailsData>
+              <SellerDetailsData store={store}> </SellerDetailsData>
             </div>
           </div>
         </div>
