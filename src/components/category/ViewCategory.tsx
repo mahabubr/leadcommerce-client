@@ -8,6 +8,7 @@ import { ENUM_CATEGORY_STATUS } from './utils/categoryConstant';
 import { Button, Card, Col, Modal, Row, Space, Spin, Typography } from 'antd';
 import { DeleteOutlined, EditOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
 import { useRouter } from "next/navigation";
+import './style/vcategory.css'
 
 const { Text } = Typography;
 const { confirm } = Modal;

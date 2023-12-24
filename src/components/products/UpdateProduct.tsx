@@ -8,6 +8,7 @@ import { UploadOutlined, DeleteOutlined } from '@ant-design/icons'
 import type { Color, ColorPickerProps } from 'antd/es/color-picker';
 import { useGetAProductsQuery, useUpdateProductMutation } from '@/redux/product/productApi'
 import { notification } from "antd";
+import './styles/cproduct.css'
 
 const props: UploadProps = {
     name: 'file',
@@ -159,7 +160,6 @@ const AddProductV2 = ({ productId }: { productId: string }) => {
 
     }
 
-
     //** checkbox function handler 
     const handleCheckboxChange = (value: string) => {
         if (checkedValues.includes(value)) {
@@ -201,7 +201,7 @@ const AddProductV2 = ({ productId }: { productId: string }) => {
 
                     <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
 
-                        <Col className="gutter-row" span={9}>
+                        <Col className="gutter-row" xs={24} lg={9}>
                             <Card title="" bordered style={{ maxHeight: '800px', position: 'relative' }}>
 
                                 <Image
@@ -253,10 +253,10 @@ const AddProductV2 = ({ productId }: { productId: string }) => {
                             </Card>
                         </Col>
 
-                        <Col className="gutter-row" span={15}>
+                        <Col className="gutter-row" xs={24} lg={15}>
                             <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
 
-                                <Col className="gutter-row" span={12}>
+                                <Col className="gutter-row mobile-top-margin-20" xs={24} lg={12}>
                                     <label
                                         htmlFor='Product title'
                                         style={{
@@ -281,7 +281,7 @@ const AddProductV2 = ({ productId }: { productId: string }) => {
                                     </Form.Item>
                                 </Col>
 
-                                <Col className="gutter-row" span={12}>
+                                <Col className="gutter-row" xs={24} lg={12}>
                                     <div>
                                         <label
                                             htmlFor='Product Category'
@@ -314,7 +314,7 @@ const AddProductV2 = ({ productId }: { productId: string }) => {
                                     </div>
                                 </Col>
 
-                                <Col className="gutter-row" span={24} style={{ margin: '20px 0' }}>
+                                <Col className="gutter-row" span={24}>
                                     <div>
                                         <label
                                             htmlFor='slug'
@@ -369,7 +369,11 @@ const AddProductV2 = ({ productId }: { productId: string }) => {
                                     </Form.Item>
                                 </Col>
 
-                                <Col className="gutter-row" span={12} style={{ margin: '20px 0' }}>
+                                <Col
+                                    className="gutter-row margin-bottom-20"
+                                    xs={24}
+                                    lg={12}
+                                >
                                     <div>
                                         <label
                                             style={{
@@ -386,12 +390,17 @@ const AddProductV2 = ({ productId }: { productId: string }) => {
                                             onChange={setColorHex}
                                             allowClear
                                             format={formatHex}
+                                            style={{ marginTop: "0.5rem" }}
                                         />
 
                                     </div>
                                 </Col>
 
-                                <Col className="gutter-row" span={12} style={{ margin: '20px 0' }}>
+                                <Col
+                                    className="gutter-row mobile-top-bottom-margin-20 margin-bottom-20"
+                                    xs={24}
+                                    lg={12}
+                                >
                                     <div>
                                         <label
                                             style={{
@@ -438,7 +447,7 @@ const AddProductV2 = ({ productId }: { productId: string }) => {
                                     </div>
                                 </Col>
 
-                                <Col className="gutter-row" span={12}>
+                                <Col className="gutter-row" xs={24} lg={12}>
                                     <label
                                         style={{
                                             textTransform: 'uppercase',
@@ -473,7 +482,7 @@ const AddProductV2 = ({ productId }: { productId: string }) => {
                                     </Form.Item>
                                 </Col>
 
-                                <Col className="gutter-row" span={12}>
+                                <Col className="gutter-row" xs={24} lg={12}>
                                     <label
                                         style={{
                                             textTransform: 'uppercase',
@@ -506,7 +515,7 @@ const AddProductV2 = ({ productId }: { productId: string }) => {
                                     </Form.Item>
                                 </Col>
 
-                                <Col className="gutter-row" span={24} style={{ margin: '20px 0' }}>
+                                <Col className="gutter-row" xs={24}>
                                     <label
                                         htmlFor='Full Description'
                                         style={{
@@ -535,7 +544,7 @@ const AddProductV2 = ({ productId }: { productId: string }) => {
                                     </Form.Item>
                                 </Col>
 
-                                <Col className="gutter-row" span={24} style={{ marginBottom: '20px' }}>
+                                <Col className="gutter-row" xs={24} >
                                     <label
                                         htmlFor='Product Tags'
                                         style={{
