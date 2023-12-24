@@ -1,3 +1,4 @@
+"use client";
 import { Button, Card, Input, Select, Tag } from "antd";
 import ButtonGroup from "antd/es/button/button-group";
 import { ImPrinter } from "react-icons/im";
@@ -6,15 +7,17 @@ import { FaCcVisa, FaTruckLoading } from "react-icons/fa";
 import { BsFillPersonFill } from "react-icons/bs";
 import { HiLocationMarker } from "react-icons/hi";
 import TextArea from "antd/es/input/TextArea";
+import { useGetSingleOrderQuery } from "@/redux/order/orderApi";
+import { dateFormater } from "@/Helper/dateFormater";
 
-const data = [
+const dataa = [
   {
     orderId: 2535,
     Product: "Dummy Name",
     unit: 150,
     date: "Oct 20, 2018",
     cost: 15,
-    status: <Tag color="blue">Pending</Tag>,
+    status: <Tag color='blue'>Pending</Tag>,
   },
   {
     orderId: 2535,
@@ -22,7 +25,7 @@ const data = [
     unit: 150,
     date: "Oct 20, 2018",
     cost: 15,
-    status: <Tag color="yellow">Shipment</Tag>,
+    status: <Tag color='yellow'>Shipment</Tag>,
   },
   {
     orderId: 2535,
@@ -30,7 +33,7 @@ const data = [
     unit: 150,
     date: "Oct 20, 2018",
     cost: 15,
-    status: <Tag color="green">Delivery</Tag>,
+    status: <Tag color='green'>Delivery</Tag>,
   },
   {
     orderId: 2535,
@@ -38,7 +41,7 @@ const data = [
     unit: 150,
     date: "Oct 20, 2018",
     cost: 15,
-    status: <Tag color="red">Canceled</Tag>,
+    status: <Tag color='red'>Canceled</Tag>,
   },
 ];
 
@@ -51,10 +54,15 @@ const thead = [
   "Status",
 ];
 
-const OrderDetail = () => {
+const OrderDetail = ({ params }: { params: any }) => {
+  const id = params.details;
+  const { data }: { data?: any } = useGetSingleOrderQuery(id);
+  const orderData = data?.data;
+  const formatedDate = dateFormater(orderData?.createdAt);
+  
   return (
     <Card
-      title="Order Detail"
+      title='Order Detail'
       extra={
         <div
           style={{
@@ -62,10 +70,9 @@ const OrderDetail = () => {
             gap: 10,
             alignItems: "center",
             justifyContent: "center",
-          }}
-        >
+          }}>
           <Select
-            placeholder="Status"
+            placeholder='Status'
             allowClear
             options={[
               { value: "ordered", label: "Ordered" },
@@ -74,27 +81,25 @@ const OrderDetail = () => {
             style={{ width: 200 }}
           />
           <ButtonGroup>
-            <Button type="primary">Save</Button>
-            <Button type="dashed">
+            <Button type='primary'>Save</Button>
+            <Button type='dashed'>
               <ImPrinter />
             </Button>
           </ButtonGroup>
         </div>
-      }
-    >
+      }>
       <div
         style={{
           display: "flex",
           justifyContent: "space-between",
           gap: 10,
-        }}
-      >
+        }}>
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <CiCalendar />
-            <h4>Wed, Aug 13, 2022, 4.45 PM</h4>
+            <h4>{formatedDate}</h4>
           </div>
-          <p>Order Id : 0014514</p>
+          <p>Order Id : {orderData?.order_code}</p>
         </div>
         <div
           style={{
@@ -102,8 +107,7 @@ const OrderDetail = () => {
             backgroundColor: "#f1f1f1",
             padding: 20,
             borderRadius: 8,
-          }}
-        >
+          }}>
           <h4>Payment Info</h4>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <FaCcVisa />
@@ -119,8 +123,7 @@ const OrderDetail = () => {
           gridTemplateColumns: "1fr 1fr  1fr",
           marginTop: 40,
           gap: 20,
-        }}
-      >
+        }}>
         <div style={{ display: "flex", gap: 20 }}>
           <div
             style={{
@@ -133,8 +136,7 @@ const OrderDetail = () => {
               fontSize: 30,
               display: "grid",
               placeItems: "center",
-            }}
-          >
+            }}>
             <BsFillPersonFill />
           </div>
           <div>
@@ -156,8 +158,7 @@ const OrderDetail = () => {
               fontSize: 30,
               display: "grid",
               placeItems: "center",
-            }}
-          >
+            }}>
             <FaTruckLoading />
           </div>
           <div>
@@ -179,15 +180,20 @@ const OrderDetail = () => {
               fontSize: 30,
               display: "grid",
               placeItems: "center",
-            }}
-          >
+            }}>
             <HiLocationMarker />
           </div>
           <div>
             <h3>Deliver to</h3>
-            <p>City: Tashkent, Uzbekistan</p>
-            <p>Block A, House 123, Floor 2</p>
-            <p>Po Box 10000</p>
+            <p>
+              City: {orderData?.shipment_address?.district},{" "}
+              {orderData?.shipment_address?.country}
+            </p>
+            <p>
+              Road No :{orderData?.shipment_address?.road_no}, House No:{" "}
+              {orderData?.shipment_address?.house_no}
+            </p>
+            <p>Area: {orderData?.shipment_address?.area}</p>
           </div>
         </div>
       </div>
@@ -198,13 +204,11 @@ const OrderDetail = () => {
           gap: 20,
           marginTop: 40,
           width: "100%",
-        }}
-      >
+        }}>
         <div
           style={{
             width: "70%",
-          }}
-        >
+          }}>
           <table style={{ width: "100%" }}>
             <tbody>
               <tr style={{ textAlign: "left" }}>
@@ -212,7 +216,7 @@ const OrderDetail = () => {
                   <th key={item}>{item}</th>
                 ))}
               </tr>
-              {data.map((item, i) => (
+              {dataa.map((item, i) => (
                 <tr key={i}>
                   <td>{item.orderId}</td>
                   <td>{item.Product}</td>
@@ -229,7 +233,7 @@ const OrderDetail = () => {
           <TextArea
             style={{ width: "100%", marginBottom: 20 }}
             rows={4}
-            placeholder="maxLength is 6"
+            placeholder='maxLength is 6'
             maxLength={6}
           />
           <Button>Save Note</Button>

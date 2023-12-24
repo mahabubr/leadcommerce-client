@@ -1,0 +1,17 @@
+@media (max-width: 768px) {
+
+    .mobile-top-bottom-margin-20 {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .mobile-top-margin-20 {
+        margin-top: 20px;
+    }
+}
+
+@media (min-width: 768px) {
+    .margin-bottom-20 {
+        margin-bottom: 20px;
+    }
+}

@@ -5,23 +5,13 @@ import { IoIosNotifications } from "react-icons/io";
 import { MdCenterFocusStrong } from "react-icons/md";
 import { FaCaretDown } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
+import Loader from "./Loader";
+import { Router } from "next/router";
+import { useRouter } from "next/navigation";
 
 const TopBar = ({ open, closeDrawer, showDrawer }: any) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
-
-  const menu = (
-    <Menu>
-      <Menu.Item key="1">Edit Profile</Menu.Item>
-      <Menu.Item key="2">Account Setting</Menu.Item>
-      <Menu.Item key="3">Wallet</Menu.Item>
-      <Menu.Item key="4">Billing</Menu.Item>
-      <Menu.Item key="5">Help Center</Menu.Item>
-      <Menu.Item key="6" disabled>
-        --------------------
-      </Menu.Item>
-      <Menu.Item key="7">Log Out</Menu.Item>
-    </Menu>
-  );
+  const router = useRouter();
 
   const toggleFullscreen = () => {
     const element = document.documentElement as HTMLElement;
@@ -52,6 +42,15 @@ const TopBar = ({ open, closeDrawer, showDrawer }: any) => {
           });
       }
     }
+  };
+
+  const handleSignOut = () => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    localStorage.removeItem("accessToken");
+    router.refresh();
+    return <Loader />;
   };
 
   return (
@@ -104,7 +103,23 @@ const TopBar = ({ open, closeDrawer, showDrawer }: any) => {
             onClick={toggleFullscreen}
             style={{ fontSize: "22px", cursor: "pointer" }}
           />
-          <Dropdown overlay={menu}>
+          <Dropdown
+            overlay={
+              <Menu>
+                <Menu.Item key="1">Edit Profile</Menu.Item>
+                <Menu.Item key="2">Account Setting</Menu.Item>
+                <Menu.Item key="3">Wallet</Menu.Item>
+                <Menu.Item key="4">Billing</Menu.Item>
+                <Menu.Item key="5">Help Center</Menu.Item>
+                <Menu.Item key="6" disabled>
+                  --------------------
+                </Menu.Item>
+                <Menu.Item onClick={handleSignOut} key="7">
+                  Log Out
+                </Menu.Item>
+              </Menu>
+            }
+          >
             <div
               style={{
                 display: "flex",

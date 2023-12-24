@@ -1,0 +1,10 @@
+@media (max-width: 768px) {
+
+    .bg-warning,
+    .bg-success,
+    .bg-error {
+        width: 80px;
+        /* Adjust the width as needed */
+        display: inline-block;
+    }
+}

@@ -40,6 +40,7 @@ import {
 } from "@/redux/product/productApi";
 const { Text } = Typography;
 const { confirm } = Modal;
+import './styles/vproduct.css'
 
 const ViewProducts = () => {
   //** hanlding pagination
@@ -105,7 +106,7 @@ const ViewProducts = () => {
       title: "Price",
       dataIndex: "price",
       key: "price",
-      render: (_, { price }) => <>৳ {price} </>,
+      render: (_, { price }) => <div className="priceField">৳ {price} </div>,
     },
     {
       title: "Quantity",
@@ -219,16 +220,10 @@ const ViewProducts = () => {
       <PVBreadcrumb />
 
       <div style={{ marginTop: "20px" }}>
-        {/* <SearchFilterBar
-                    selectedCategory={selectedCategory}
-                    setSelectedCategory={setSelectedCategory}
-                    selectedStatus={selectedStatus}
-                    setSelectedStatus={setSelectedStatus}
-                /> */}
-
         <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
-          <Col className="gutter-row" span={18}>
-            <Card bordered>
+
+          <Col className="gutter-row" xs={{ span: 24, order: 2 }} md={{ span: 18, order: 1 }}>
+            <Card bordered className="pTable">
               <Flex
                 align="center"
                 style={{ marginBottom: "25px", gap: "20px" }}
@@ -278,7 +273,7 @@ const ViewProducts = () => {
             </Card>
           </Col>
 
-          <Col className="gutter-row" span={6}>
+          <Col className="gutter-row" xs={{ span: 24, order: 1 }} md={6}>
             <Space direction="vertical" size={24} style={{ width: "100%" }}>
               <Collapse
                 collapsible="header"
@@ -335,6 +330,7 @@ const ViewProducts = () => {
               />
             </Space>
           </Col>
+
         </Row>
       </div>
     </>

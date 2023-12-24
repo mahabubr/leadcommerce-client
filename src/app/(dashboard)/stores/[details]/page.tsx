@@ -3,13 +3,15 @@
 import React from "react";
 import style from "./static/sellerdetails.module.css";
 import SellerProfile from "@/components/sellerDetails/sellerProfile/SellerProfile";
-import ContactSupport from "@/components/sellerDetails/sellerProfile/ContactSupport";
 import SellerDetailsData from "@/components/sellerDetails/sellerDetailsData/SellerDetailsData";
 import EmployeeModal from "@/components/ui/EmployeeModal";
+import { useRouter } from "next/navigation";
+import { useGetSingleStoreQuery } from "@/redux/store/storeApi";
 import Loader from "@/components/ui/Loader";
-import { useGetStoreSingleStoreQuery } from "@/redux/store/storeApi";
-const SellerDetails = () => {
-  const { data, isLoading } = useGetStoreSingleStoreQuery({});
+const SellerDetails = ({ params }: any) => {
+  const id = params?.details;
+
+  const { data, isLoading } = useGetSingleStoreQuery({ id });
 
   if (isLoading) {
     return <Loader />;
@@ -35,7 +37,6 @@ const SellerDetails = () => {
             <div
               style={{
                 // border: "1px solid pink",
-                backgroundColor: "#f8f9fa",
                 borderRadius: "5px",
                 width: "25%",
               }}
@@ -46,11 +47,10 @@ const SellerDetails = () => {
               style={{
                 // border: "1px solid green",
                 width: "75%",
-                backgroundColor: "#f8f9fa",
                 borderRadius: "5px",
               }}
             >
-              <SellerDetailsData store={store}> </SellerDetailsData>
+              <SellerDetailsData store={store}></SellerDetailsData>
             </div>
           </div>
         </div>
