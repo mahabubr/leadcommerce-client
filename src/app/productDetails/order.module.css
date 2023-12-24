@@ -42,8 +42,13 @@
 } */
 
 .productContentr {
-  display: flex;
-  justify-content: space-between;
+  /* display: flex;
+  justify-content: space-between; */
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  /* grid-template-columns: repeat(2, 1fr); */
+  row-gap: 20px;
+  column-gap: 20px;
 }
 
 .inputSearch {
@@ -60,6 +65,10 @@
   .mainContent {
     width: 99%;
   }
+
+  /* .productContentr {
+    grid-template-columns: repeat(1, 1fr);
+  } */
 
   /* .sideContent {
     width: 99%;

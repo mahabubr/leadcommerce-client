@@ -7,6 +7,8 @@ import { Image } from "antd";
 import style from "./order.module.css";
 import Search from "antd/es/input/Search";
 import { SizeType } from "antd/es/config-provider/SizeContext";
+import Children from "./Children/Children";
+import Children1 from "./Children/Children1";
 
 const onChange = (key: string) => {
   console.log(key);
@@ -17,19 +19,18 @@ const items: TabsProps["items"] = [
     key: "1",
     label: "Description",
     children:
-      "Vivamus ultricies augue vitae commodo condimentum. Nullamfaucibus eros eu mauris feugiat, eget consectetur tortor tempus. Sed volutpatmollis dui eget fringilla. Vestibulum blandit urna ut tellus lobortis tristique.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubiliaCurae; Pellentesque quis cursus mauris. Nam in ornare erat. Vestibulum convallisenim ac massa dapibus consectetur. Maecenas facilisis eros ac felis mattis, egetauctor sapien varius",
+      "Content of Tab Pane 2 Vivamus ultricies augue vitae commodo condimentum. Nullamfaucibus eros eu mauris feugiat, eget consectetur tortor tempus. Sed volutpatmollis dui eget fringilla. Vestibulum blandit urna ut tellus lobortis tristique.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubiliaCurae; Pellentesque quis cursus mauris. Nam in ornare erat. Vestibulum convallisenim ac massa dapibus consectetur. Maecenas facilisis eros ac felis mattis, egetauctor sapien varius",
+    // children: <Children />,
   },
   {
     key: "2",
     label: "Reviews (3)",
-    children:
-      "Content of Tab Pane 2 Vivamus ultricies augue vitae commodo condimentum. Nullamfaucibus eros eu mauris feugiat, eget consectetur tortor tempus. Sed volutpatmollis dui eget fringilla. Vestibulum blandit urna ut tellus lobortis tristique.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubiliaCurae; Pellentesque quis cursus mauris. Nam in ornare erat. Vestibulum convallisenim ac massa dapibus consectetur. Maecenas facilisis eros ac felis mattis, egetauctor sapien varius",
+    children: <Children1 />,
   },
   {
     key: "3",
     label: "SSS",
-    children:
-      "Content of Tab Pane 3 Vivamus ultricies augue vitae commodo condimentum. Nullamfaucibus eros eu mauris feugiat, eget consectetur tortor tempus. Sed volutpatmollis dui eget fringilla. Vestibulum blandit urna ut tellus lobortis tristique.Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubiliaCurae; Pellentesque quis cursus mauris. Nam in ornare erat. Vestibulum convallisenim ac massa dapibus consectetur. Maecenas facilisis eros ac felis mattis, egetauctor sapien varius",
+    children: <Children />,
   },
 ];
 
@@ -65,7 +66,32 @@ const Orders: React.FC = () => {
                 <p className={style.inStockText}>inStock</p>
               </div>
               <br />
-              <p>lorem100 </p>
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta,
+                saepe corporis? Repellat sequi quod porro iusto dolorum tenetur?
+                Quis sit hic ut quae, a vitae soluta laudantium obcaecati
+                reiciendis vero doloremque beatae, libero ipsa perferendis
+                quisquam ratione, atque fuga consectetur. Saepe tempora possimus
+                aperiam voluptas at optio explicabo eligendi natus voluptatum
+                impedit odio itaque totam odit, necessitatibus neque labore
+                aliquam autem. Quae atque odio possimus asperiores eius ipsam
+                tempore explicabo temporibus libero ad nobis deserunt, quas
+                voluptas quia hic. Fugit expedita sapiente dolore, eius
+                reprehenderit eaque dicta deleniti distinctio omnis perferendis
+                quia. Asperiores debitis esse maiores quo nam vitae expedita?
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dicta,
+                saepe corporis? Repellat sequi quod porro iusto dolorum tenetur?
+                Quis sit hic ut quae, a vitae soluta laudantium obcaecati
+                reiciendis vero doloremque beatae, libero ipsa perferendis
+                quisquam ratione, atque fuga consectetur. Saepe tempora possimus
+                aperiam voluptas at optio explicabo eligendi natus voluptatum
+                impedit odio itaque totam odit, necessitatibus neque labore
+                aliquam autem. Quae atque odio possimus asperiores eius ipsam
+                tempore explicabo temporibus libero ad nobis deserunt, quas
+                voluptas quia hic. Fugit expedita sapiente dolore, eius
+                reprehenderit eaque dicta deleniti distinctio omnis perferendis
+                quia. Asperiores debitis esse maiores quo nam vitae expedita?
+              </p>
               <br />
               <h5>Star</h5>
               <br />
