@@ -1,0 +1,18 @@
+@media (max-width: 768px) {
+
+    .bg-warning,
+    .bg-success,
+    .bg-error {
+        width: 80px;
+        /* Adjust the width as needed */
+        display: inline-block;
+    }
+
+    .pTable {
+        margin-top: 30px;
+    }
+
+    .priceField {
+        width: 40px;
+    }
+}
