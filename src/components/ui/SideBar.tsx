@@ -1,7 +1,9 @@
 import { Drawer, Layout, Menu } from "antd";
-import { FaHome } from "react-icons/fa";
+import { FaHome  } from "react-icons/fa";
+import { IoManSharp } from "react-icons/io5";
 import { IoMdSettings } from "react-icons/io";
 import Link from "next/link";
+import { paths } from "@/paths/paths";
 
 const { SubMenu } = Menu;
 
@@ -33,6 +35,14 @@ const sidebarData = [
     title: "Orders",
     icon: <IoMdSettings />,
     links: [{ label: "Orders", href: "/order" }],
+  },
+  {
+    title: "Employees",
+    icon: <IoManSharp />,
+    links: [
+      { label: "Employees", href: paths.employees },
+      { label: "Add Employe", href: paths.addEmploye },
+    ],
   },
   {
     title: "Wallet",
