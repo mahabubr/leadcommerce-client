@@ -4,7 +4,7 @@ import { Space, Input, Table, Tag, Select, DatePicker, Button } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import type { DatePickerProps } from "antd";
 import { CiSearch } from "react-icons/ci";
-
+import { useRouter } from "next/navigation";
 import style from "./order.module.css";
 import { productItemSortPage } from "@/components/products/utils/productData";
 
@@ -19,71 +19,6 @@ const { Search } = Input;
 //   address: string;
 //   tags: string[];
 // }
-
-const columns = [
-  {
-    title: "Order Code",
-    dataIndex: "order_code",
-    key: "_id",
-    render: (order_code: any, _id: any) => <p key={_id}>{order_code}</p>,
-  },
-  {
-    title: "Total Item",
-    dataIndex: "total_items",
-    key: "_id",
-    render: (total_items: any, _id: any) => <p key={_id}>{total_items}</p>,
-  },
-  {
-    title: "Total Quantity",
-    dataIndex: "total_quantity",
-    key: "_id",
-    render: (total_quantity: any, _id: any) => (
-      <p key={_id}>{total_quantity}</p>
-    ),
-  },
-  {
-    title: "Amount",
-    dataIndex: "amount",
-    key: "_id",
-    render: (amount: any, _id: any) => <p key={_id}>{amount}</p>,
-  },
-  {
-    title: "Order Status",
-    dataIndex: "order_status",
-    key: "_id",
-    render: (order_status: any, _id: any) => {
-      return (
-        <>
-          {order_status === "pending" ? (
-            <Tag color='warning'>Pending</Tag>
-          ) : order_status === "completed" ? (
-            <Tag color='success'>Completed</Tag>
-          ) : order_status === "canceled" ? (
-            <Tag color='error'>Canceled</Tag>
-          ) : null}
-        </>
-      );
-    },
-  },
-  {
-    title: "Payment Status",
-    dataIndex: "payment_status",
-    key: "_id",
-    render: (payment_status: any, _id: any) => {
-      return (
-        <>
-          {payment_status === "pending" ? (
-            <Tag color='warning'>Pending</Tag>
-          ) : payment_status === "completed" ? (
-            <Tag color='success'>Completed</Tag>
-          ) : payment_status === "canceled" ? (
-            <Tag color='error'>Canceled</Tag>
-          ) : null}
-        </>
-      );
-    },
-  },
-];
 
 // const dataaa: DataType[] = [
 //   {
@@ -110,6 +45,93 @@ const columns = [
 // ];
 
 const Orders = () => {
+  const router = useRouter();
+  // * Table Columns
+  const columns = [
+    {
+      title: "Order Code",
+      dataIndex: "order_code",
+      key: "_id",
+      render: (order_code: any, _id: any) => <p key={_id}>{order_code}</p>,
+    },
+    {
+      title: "Total Item",
+      dataIndex: "total_items",
+      key: "_id",
+      render: (total_items: any, _id: any) => <p key={_id}>{total_items}</p>,
+    },
+    {
+      title: "Total Quantity",
+      dataIndex: "total_quantity",
+      key: "_id",
+      render: (total_quantity: any, _id: any) => (
+        <p key={_id}>{total_quantity}</p>
+      ),
+    },
+    {
+      title: "Amount",
+      dataIndex: "amount",
+      key: "_id",
+      render: (amount: any, _id: any) => <p key={_id}>{amount}</p>,
+    },
+    {
+      title: "Order Status",
+      dataIndex: "order_status",
+      key: "_id",
+      render: (order_status: any, _id: any) => {
+        return (
+          <>
+            {order_status === "pending" ? (
+              <Tag color='warning'>Pending</Tag>
+            ) : order_status === "completed" ? (
+              <Tag color='success'>Completed</Tag>
+            ) : order_status === "canceled" ? (
+              <Tag color='error'>Canceled</Tag>
+            ) : null}
+          </>
+        );
+      },
+    },
+
+    {
+      title: "Payment Status",
+      dataIndex: "payment_status",
+      key: "_id",
+      render: (payment_status: any, _id: any) => {
+        return (
+          <>
+            {payment_status === "pending" ? (
+              <Tag color='warning'>Pending</Tag>
+            ) : payment_status === "completed" ? (
+              <Tag color='success'>Completed</Tag>
+            ) : payment_status === "canceled" ? (
+              <Tag color='error'>Canceled</Tag>
+            ) : null}
+          </>
+        );
+      },
+    },
+    {
+      title: "Details",
+      dataIndex: "",
+      key: "_id",
+      render: (_: any, { _id }: { _id: any }) => {
+        return (
+          <>
+            <Button
+              type='text'
+              size='small'
+              style={{ textDecoration: "underline" }}
+              onClick={() => handleRouteUpdate(_id)}>
+              Details
+            </Button>
+          </>
+        );
+      },
+    },
+  ];
+
+  // * Filtering and Searching
   const query: any = {};
 
   // * state declaration
@@ -135,10 +157,10 @@ const Orders = () => {
     if (orderStatus === "all") {
       setOrderStatus("");
     }
-    
+
     query["order_status"] = orderStatus;
   }
-  const { data } = useGetAllOrderQuery({ ...query });
+  const { data }: { data?: any } = useGetAllOrderQuery({ ...query });
   const orderData = data?.data;
 
   // * PageLimit Change
@@ -152,12 +174,17 @@ const Orders = () => {
   };
   // * Filter 🚀🚀🚀
   // * SearchBy Order ID
-  const onSearch = (value: any, _e: any, info: any) => setOrderCode(value);
+  const onSearch = (value: any, _e: any, info: any) => {
+    setPage(1);
+    setOrderCode(value);
+  };
   // * Order Status
   const handleChange = (value: string) => {
     setPage(1);
     setOrderStatus(value);
   };
+  // * routing action
+  const handleRouteUpdate = (_id: string) => router.push(`/order/${_id}`);
   return (
     <div className={style.container}>
       <div className={style.mainContent}>

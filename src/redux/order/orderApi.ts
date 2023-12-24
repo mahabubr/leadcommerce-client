@@ -10,7 +10,14 @@ const OrderApi = api.injectEndpoints({
         params: arg,
       }),
     }),
+    getSingleOrder: builder.query({
+      query: (id: string) => ({
+        url: `/Orders/${id}`,
+        method: "GET",
+      }),
+      invalidatesTags: ["product"],
+    }),
   }),
 });
 
-export const { useGetAllOrderQuery } = OrderApi;
+export const { useGetAllOrderQuery, useGetSingleOrderQuery } = OrderApi;
