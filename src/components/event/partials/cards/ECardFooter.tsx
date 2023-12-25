@@ -30,7 +30,7 @@ const ECardFooter = ({ status, _id }: Props) => {
                     {status ? 'Open' : 'Closed'}
                 </Paragraph>
 
-                <ArrowRightOutlined />
+                <ArrowRightOutlined style={{ color: '#8e8da1', fontWeight: 700 }} />
             </Flex>
         </Link>
     )
