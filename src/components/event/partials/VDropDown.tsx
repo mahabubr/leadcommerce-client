@@ -3,7 +3,9 @@ import React from 'react';
 import { eventDropdownItems } from '../utils/eventData';
 import { MoreOutlined } from '@ant-design/icons';
 
-type Props = {};
+type Props = {
+    placement?: "bottomLeft" | "topLeft" | "topCenter" | "topRight" | "bottomCenter" | "bottomRight" | "top" | "bottom" | undefined;
+};
 
 const menu = (
     <Menu>
@@ -14,12 +16,13 @@ const menu = (
     </Menu>
 );
 
-const VDropDown = (props: Props) => {
+const VDropDown = ({ placement }: Props) => {
     return (
-        <Dropdown overlay={menu} placement="bottomLeft">
+        <Dropdown overlay={menu} placement={placement ? placement : "bottomLeft"}>
             <MoreOutlined style={{
-                fontSize: '24px',
-                cursor: 'pointer'
+                fontSize: '22px',
+                cursor: 'pointer',
+                color: '#a09fb0'
             }} />
         </Dropdown>
     );

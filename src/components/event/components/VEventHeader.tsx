@@ -1,16 +1,20 @@
 import { Button, Flex } from 'antd'
-import React from 'react'
+import React, { useState } from 'react'
 import VSearchBox from '../partials/VSearchBox'
 import { PlusOutlined } from '@ant-design/icons'
 import VFilterSelect from '../partials/VFilterSelect'
 import VDropDown from '../partials/VDropDown'
+import { eventDropdownOptions } from '../utils/eventData'
 
 type Props = {}
 
 const VEventHeader = (props: Props) => {
 
+    const [selected, setSelected] = useState<any>(eventDropdownOptions[0].value);
+
     const handleChange = (value: string | string[]) => {
         console.log(`Selected: ${value}`);
+        setSelected(value);
     };
 
     return (
@@ -31,6 +35,7 @@ const VEventHeader = (props: Props) => {
 
 
                 <VFilterSelect
+                    selected={selected}
                     handleChange={handleChange}
                 />
 
