@@ -2,21 +2,16 @@
 import SpineChart from "@/components/dashboard/SplineChart";
 import { Button } from "antd";
 import Link from "next/link";
+import style from './static/storeComponent.module.css'
 
 const StoreCard = ({ store }: any) => {
   return (
     <div
-      style={{
-        backgroundColor: "white",
-        padding: 20,
-        borderRadius: 8,
-        textAlign: "center",
-      }}
-    >
+      className={style.storeCard}>
       <div>
         <img
           src={store.logo}
-          alt=""
+          alt=''
           style={{ width: 50, height: 50, borderRadius: "50%" }}
         />
         <h4 style={{ marginTop: 20 }}>{store.name}</h4>
@@ -31,8 +26,7 @@ const StoreCard = ({ store }: any) => {
           justifyContent: "space-between",
           alignItems: "center",
           gap: 10,
-        }}
-      >
+        }}>
         <div>
           <p>{store.total_orders}</p>
           <p style={{ fontSize: 14, color: "grey" }}>Total Orders</p>
@@ -44,7 +38,7 @@ const StoreCard = ({ store }: any) => {
       </div>
       <div style={{ marginTop: 20, width: "100%" }}>
         <Link href={`/stores/${store._id}`}>
-          <Button type="default" style={{ width: "100%" }}>
+          <Button type='default' style={{ width: "100%" }}>
             View Details
           </Button>
         </Link>

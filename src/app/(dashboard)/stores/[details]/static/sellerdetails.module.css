@@ -43,12 +43,12 @@
 }
 
 .SellerProfile {
-  border: 1px solid pink;
+  /* border: 1px solid pink; */
   border-radius: 5px;
   width: 25%;
 }
 .SellerDetailsData {
-  border: 1px solid green;
+  /* border: 1px solid green; */
   width: 75%;
   border-radius: 5px;
 }
@@ -57,7 +57,7 @@
 
 @media (max-width: 1400px) {
   .SellerProfile {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     border-radius: 5px;
     width: 40%;
   }
@@ -68,12 +68,12 @@
     gap: 1rem;
   }
   .SellerProfile {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     border-radius: 5px;
     width: 100%;
   }
   .SellerDetailsData {
-    border: 1px solid green;
+    /* border: 1px solid green; */
     width: 100%;
     border-radius: 5px;
   }
