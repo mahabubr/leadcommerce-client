@@ -22,6 +22,11 @@ const sidebarItems = (role: string) => {
       icon: <FaStore />,
       links: [{ label: "Stores", href: "/stores" }],
     },
+    {
+      title: "Events",
+      icon: <FaStore />,
+      links: [{ label: "Events", href: "/event" }],
+    },
   ];
 
   const storeItems = [
