@@ -123,7 +123,12 @@ const SellerDetailsPageTable = () => {
   };
   return (
     <Card>
-      <Table columns={columns} dataSource={data} onChange={onChange} />
+      <Table
+        columns={columns}
+        dataSource={data}
+        onChange={onChange}
+        scroll={{ x: 700}}
+      />
     </Card>
   );
 };

@@ -1,0 +1,24 @@
+.summayData {
+  display: flex;
+  width: 100%;
+  background-color: #ecf0f1;
+}
+.canvasContainer {
+  /* height: 100vh; */
+  width: 100%;
+  position: relative;
+  /* border: 1px solid red; */
+}
+@media (max-width: 720px) {
+  .summayData {
+    display: block;
+  }
+}
+@media (max-width: 1200px) {
+  .canvasContainer {
+  height: 90vh;
+  width: 100%;
+  position: relative;
+  /* border: 1px solid red; */
+}
+}

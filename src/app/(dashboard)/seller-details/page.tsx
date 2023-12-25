@@ -34,7 +34,7 @@ const SellerDetails = () => {
           >
             <div
               style={{
-                // border: "1px solid pink",
+                border: "1px solid pink",
                 backgroundColor: "#f8f9fa",
                 borderRadius: "5px",
                 width: "25%",

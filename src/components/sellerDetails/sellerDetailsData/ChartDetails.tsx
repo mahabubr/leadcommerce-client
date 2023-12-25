@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import style from "../static/sellerdetailscomponent.module.css";
 import { Chart } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -68,12 +69,13 @@ export const data = {
       label: "Earning",
       data: barDataset,
       backgroundColor: "  #2c3e50",
-      barThickness: 35,
+      barThickness: 20,
     },
   ],
 };
 const ChartDetails = () => {
   const options = {
+    maintainAspectRatio: false,
     legend: {
       display: false,
     },
@@ -94,7 +96,9 @@ const ChartDetails = () => {
   };
   return (
     <>
-      <Chart height={100} type='bar' data={data} />
+      <div className={style.canvasContainer}>
+        <Chart height={100} type='bar' data={data} />
+      </div>
     </>
   );
 };
