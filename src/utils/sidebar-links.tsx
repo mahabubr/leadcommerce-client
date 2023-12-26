@@ -27,6 +27,11 @@ const sidebarItems = (role: string) => {
       icon: <FaCalendar />,
       links: [{ label: "Calendar", href: "/events/calendar" }],
     },
+    {
+      title: "Events",
+      icon: <FaStore />,
+      links: [{ label: "Events", href: "/event" }],
+    },
   ];
 
   const storeItems = [
