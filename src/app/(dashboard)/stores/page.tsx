@@ -58,7 +58,7 @@ const Stores = () => {
             </div>
 
             {/* Second section */}
-            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <div className={style.secondSection}>
               <Select
                 placeholder='Categories'
                 allowClear
@@ -66,7 +66,7 @@ const Stores = () => {
                   { value: "ordered", label: "Ordered" },
                   { value: "rejected", label: "Rejected" },
                 ]}
-                style={{ maxWidth: 250 }}
+                style={{ minWidth: 188 }}
               />
               <Button type='primary'>Add Store</Button>
             </div>

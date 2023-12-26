@@ -44,6 +44,24 @@
   width: 100%;
 }
 
+@media (max-width: 1440px){
+.sideContent{
+  width: 100%;
+}
+.container{
+  flex-direction: column-reverse;
+}
+}
+
+@media (max-width: 425px){
+  .mainFilter{
+    flex-direction: column;
+  }
+  .filterTwo{
+    justify-content: space-between;
+  }
+}
+
 /* .sideItems div input {
   margin-top: 10px;
 } */

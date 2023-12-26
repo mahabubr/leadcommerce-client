@@ -51,7 +51,7 @@ const ActivitiesTable = () => {
       title: "Action",
       key: "action",
       render: (_, record) => (
-        <Space size="middle">
+        <Space size='middle'>
           <a>Invite {record.name}</a>
           <a>Delete</a>
         </Space>
@@ -85,7 +85,7 @@ const ActivitiesTable = () => {
 
   return (
     <div style={{ marginTop: 50 }}>
-      <Table columns={columns} dataSource={data} />;
+      <Table columns={columns} scroll={{ x: 700 }} dataSource={data} />;
     </div>
   );
 };

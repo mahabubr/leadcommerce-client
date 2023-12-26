@@ -4,16 +4,12 @@
 import CandlestickChart from "@/components/ui/TradingChart";
 import { Button, Card, Divider } from "antd";
 import { FaAngleDoubleDown, FaAngleDoubleUp } from "react-icons/fa";
+import style from './static/walletcomponent.module.css'
 
 const PaymentChart = () => {
   return (
     <div
-      style={{
-        marginTop: 50,
-        display: "grid",
-        gridTemplateColumns: "2fr 1fr",
-        gap: 50,
-      }}
+      className={style.chartandCardDiv}
     >
       <Card style={{ boxShadow: "2px 2px 10px grey" }}>
         <CandlestickChart />

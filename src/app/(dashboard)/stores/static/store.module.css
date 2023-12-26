@@ -12,6 +12,12 @@
   align-items: center;
 }
 
+.secondSection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 @media (max-width: 1670px) {
   .storeGrid {
     margin-top: 20px;
@@ -44,8 +50,11 @@
   .searchField {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
     justify-content: space-between;
     align-items: center;
+  }
+  .secondSection {
+    flex-direction: column;
   }
 }
