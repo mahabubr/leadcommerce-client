@@ -25,7 +25,7 @@ import type { Color, ColorPickerProps } from "antd/es/color-picker";
 import { useAddProductsMutation } from "@/redux/product/productApi";
 import { notification } from "antd";
 import { PoweroffOutlined } from "@ant-design/icons";
-import './styles/cproduct.css'
+import "./styles/cproduct.css";
 
 const props: UploadProps = {
   name: "file",
@@ -186,7 +186,6 @@ const AddProductV2 = () => {
           }}
         >
           <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
-
             <Col className="gutter-row" xs={24} lg={9}>
               <Card
                 title=""
@@ -255,9 +254,12 @@ const AddProductV2 = () => {
             </Col>
 
             <Col className="gutter-row" xs={24} lg={15}>
-              <Row gutter={{ xs: 8, sm: 16, md: 24 }} >
-
-                <Col className="gutter-row mobile-top-margin-20" xs={24} lg={12}>
+              <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
+                <Col
+                  className="gutter-row mobile-top-margin-20"
+                  xs={24}
+                  lg={12}
+                >
                   <label
                     htmlFor="Product title"
                     style={{
@@ -322,10 +324,7 @@ const AddProductV2 = () => {
                   </div>
                 </Col>
 
-                <Col
-                  className="gutter-row"
-                  span={24}
-                >
+                <Col className="gutter-row" span={24}>
                   <div>
                     <label
                       htmlFor="slug"
@@ -384,11 +383,7 @@ const AddProductV2 = () => {
                   </Form.Item>
                 </Col>
 
-                <Col
-                  className="gutter-row margin-bottom-20"
-                  xs={24}
-                  lg={12}
-                >
+                <Col className="gutter-row margin-bottom-20" xs={24} lg={12}>
                   <div>
                     <label
                       style={{
@@ -529,10 +524,7 @@ const AddProductV2 = () => {
                   </Form.Item>
                 </Col>
 
-                <Col
-                  className="gutter-row"
-                  xs={24}
-                >
+                <Col className="gutter-row" xs={24}>
                   <label
                     htmlFor="Full Description"
                     style={{
@@ -561,10 +553,7 @@ const AddProductV2 = () => {
                   </Form.Item>
                 </Col>
 
-                <Col
-                  className="gutter-row"
-                  xs={24}
-                >
+                <Col className="gutter-row" xs={24}>
                   <label
                     htmlFor="Product Tags"
                     style={{
