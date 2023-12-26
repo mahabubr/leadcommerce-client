@@ -6,9 +6,10 @@ type Props = {
     _id: string;
     image: string;
     title: string;
+    gHeight?: string;
 }
 
-const ECardImageBox = ({ _id, image, title }: Props) => {
+const ECardImageBox = ({ _id, image, title, gHeight }: Props) => {
     return (
         <Link href={`/event/${_id}`} style={{ marginBottom: '0.5px' }}>
             <Image
@@ -20,7 +21,7 @@ const ECardImageBox = ({ _id, image, title }: Props) => {
                 style={{
                     borderRadius: 0,
                     width: '100%',
-                    height: '220px'
+                    height: gHeight ? gHeight : '220px'
                 }}
             />
         </Link>
