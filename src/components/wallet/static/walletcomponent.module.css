@@ -10,11 +10,6 @@
   grid-template-columns: repeat(1, 2fr 1fr);
   gap: 50px;
 }
-/* marginTop: 50,
-        display: "grid",
-        gridTemplateColumns: "2fr 1fr",
-        gap: 50,
-        border:'1px solid red' */
 
 @media (max-width: 1150px) {
   .topCard {
