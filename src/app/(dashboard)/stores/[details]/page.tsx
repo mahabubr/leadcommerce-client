@@ -28,28 +28,11 @@ const SellerDetails = ({ params }: any) => {
           <EmployeeModal />
         </div>
         <div className={style.cardBody}>
-          <div
-            style={{
-              display: "flex",
-              gap: "1rem",
-            }}
-          >
-            <div
-              style={{
-                // border: "1px solid pink",
-                borderRadius: "5px",
-                width: "25%",
-              }}
-            >
+          <div className={style.mainDiv}>
+            <div className={style.SellerProfile}>
               <SellerProfile store={store} />
             </div>
-            <div
-              style={{
-                // border: "1px solid green",
-                width: "75%",
-                borderRadius: "5px",
-              }}
-            >
+            <div className={style.SellerDetailsData}>
               <SellerDetailsData store={store}></SellerDetailsData>
             </div>
           </div>

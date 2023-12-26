@@ -9,7 +9,8 @@ import { HiLocationMarker } from "react-icons/hi";
 import TextArea from "antd/es/input/TextArea";
 import { useGetSingleOrderQuery } from "@/redux/order/orderApi";
 import { dateFormater } from "@/Helper/dateFormater";
-
+import style from "../order.module.css";
+import OrderDetailsTable from "@/components/orderTable/orderDetailsTable";
 const dataa = [
   {
     orderId: 2535,
@@ -59,18 +60,12 @@ const OrderDetail = ({ params }: { params: any }) => {
   const { data }: { data?: any } = useGetSingleOrderQuery(id);
   const orderData = data?.data;
   const formatedDate = dateFormater(orderData?.createdAt);
-  
+
   return (
     <Card
       title='Order Detail'
       extra={
-        <div
-          style={{
-            display: "flex",
-            gap: 10,
-            alignItems: "center",
-            justifyContent: "center",
-          }}>
+        <div className={style.sercheAndPrint}>
           <Select
             placeholder='Status'
             allowClear
@@ -88,13 +83,15 @@ const OrderDetail = ({ params }: { params: any }) => {
           </ButtonGroup>
         </div>
       }>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          gap: 10,
-        }}>
-        <div>
+      <div className={style.orderInfo}>
+        <div
+          style={{
+            display: "flex",
+            padding: 20,
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <CiCalendar />
             <h4>{formatedDate}</h4>
@@ -117,14 +114,12 @@ const OrderDetail = ({ params }: { params: any }) => {
           <p>Phone : +880 14 58 1871115</p>
         </div>
       </div>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr  1fr",
-          marginTop: 40,
-          gap: 20,
-        }}>
-        <div style={{ display: "flex", gap: 20 }}>
+      <div className={style.orderCardGrid}>
+        <div
+          style={{
+            display: "flex",
+            gap: 20,
+          }}>
           <div
             style={{
               backgroundColor: "#3498db",
@@ -197,41 +192,13 @@ const OrderDetail = ({ params }: { params: any }) => {
           </div>
         </div>
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          gap: 20,
-          marginTop: 40,
-          width: "100%",
-        }}>
-        <div
-          style={{
-            width: "70%",
-          }}>
-          <table style={{ width: "100%" }}>
-            <tbody>
-              <tr style={{ textAlign: "left" }}>
-                {thead.map((item) => (
-                  <th key={item}>{item}</th>
-                ))}
-              </tr>
-              {dataa.map((item, i) => (
-                <tr key={i}>
-                  <td>{item.orderId}</td>
-                  <td>{item.Product}</td>
-                  <td>{item.unit}</td>
-                  <td>{item.date}</td>
-                  <td>{item.cost}</td>
-                  <td>{item.status}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      <div className={style.tableAndCommentBoxDiv}>
+        <div className={style.orderTable}>
+          <OrderDetailsTable />
         </div>
-        <div style={{ width: "30%" }}>
+        <div>
           <TextArea
-            style={{ width: "100%", marginBottom: 20 }}
+            style={{ marginBottom: 20 }}
             rows={4}
             placeholder='maxLength is 6'
             maxLength={6}

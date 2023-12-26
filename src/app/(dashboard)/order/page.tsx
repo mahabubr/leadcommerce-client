@@ -213,7 +213,7 @@ const Orders = () => {
         <Table
           columns={columns}
           dataSource={orderData}
-          scroll={{ x: true }}
+          scroll={{ x: 700 }}
           pagination={{
             current: page,
             pageSize: limit,
