@@ -10,7 +10,8 @@ import TextArea from "antd/es/input/TextArea";
 import { useGetSingleOrderQuery } from "@/redux/order/orderApi";
 import { dateFormater } from "@/Helper/dateFormater";
 import style from "../order.module.css";
-import OrderDetailsTable from "@/components/orderTable/orderDetailsTable";
+import OrderDetailsTable from "@/components/orderTable/OrderDetailsTable";
+
 const dataa = [
   {
     orderId: 2535,
