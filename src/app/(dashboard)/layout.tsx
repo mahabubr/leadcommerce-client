@@ -26,6 +26,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   };
 
   useEffect(() => {
+    //@ts-ignore
+    if (!decode?.email && !decode?.role) {
+      router.push("/login");
+    }
+    //@ts-ignore
+  }, [decode?.email, decode?.role, router]);
+
+  useEffect(() => {
     const handleResize = () => {
       setOpen(window.innerWidth >= 900);
     };
@@ -36,10 +44,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
+  
   //@ts-ignore
   if (!decode?.email && !decode?.role) {
-    router.push("/login");
     return <Loader />;
   }
 

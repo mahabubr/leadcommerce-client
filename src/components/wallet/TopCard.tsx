@@ -1,3 +1,5 @@
+"use client";
+
 import { Card } from "antd";
 import { IoLogoUsd } from "react-icons/io";
 import style from "./static/walletcomponent.module.css";
@@ -12,7 +14,8 @@ const TopCard = () => {
             alignItems: "center",
             justifyContent: "space-between",
             gap: 20,
-          }}>
+          }}
+        >
           <div>
             <IoLogoUsd
               style={{
@@ -42,7 +45,8 @@ const TopCard = () => {
             alignItems: "center",
             justifyContent: "space-between",
             gap: 20,
-          }}>
+          }}
+        >
           <div>
             <IoLogoUsd
               style={{
@@ -72,7 +76,8 @@ const TopCard = () => {
             alignItems: "center",
             justifyContent: "space-between",
             gap: 20,
-          }}>
+          }}
+        >
           <div>
             <IoLogoUsd
               style={{

@@ -1,16 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import CandlestickChart from "@/components/ui/TradingChart";
+import dynamic from "next/dynamic"; // Import dynamic from next/dynamic
+
+const CandlestickChart = dynamic(() => import("@/components/ui/TradingChart"), {
+  ssr: false, // Set ssr to false to prevent server-side rendering
+});
 import { Button, Card, Divider } from "antd";
 import { FaAngleDoubleDown, FaAngleDoubleUp } from "react-icons/fa";
-import style from './static/walletcomponent.module.css'
+import style from "./static/walletcomponent.module.css";
 
 const PaymentChart = () => {
   return (
-    <div
-      className={style.chartandCardDiv}
-    >
+    <div className={style.chartandCardDiv}>
       <Card style={{ boxShadow: "2px 2px 10px grey" }}>
         <CandlestickChart />
       </Card>

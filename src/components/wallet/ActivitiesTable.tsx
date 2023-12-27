@@ -1,3 +1,5 @@
+"use client";
+
 import { Space, Table, Tag } from "antd";
 import type { ColumnsType } from "antd/es/table";
 
@@ -51,7 +53,7 @@ const ActivitiesTable = () => {
       title: "Action",
       key: "action",
       render: (_, record) => (
-        <Space size='middle'>
+        <Space size="middle">
           <a>Invite {record.name}</a>
           <a>Delete</a>
         </Space>
