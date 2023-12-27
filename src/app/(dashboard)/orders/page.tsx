@@ -1,19 +1,47 @@
 "use client";
 
-import { Space, Input, Table, Tag, Select, DatePicker, Button } from "antd";
+import {
+  Space,
+  Input,
+  Table,
+  Tag,
+  Select,
+  DatePicker,
+  Button,
+  message,
+} from "antd";
 import type { ColumnsType } from "antd/es/table";
 import type { DatePickerProps } from "antd";
 import { CiSearch } from "react-icons/ci";
 import { useRouter } from "next/navigation";
-import style from "./order.module.css";
+import style from "../order/order.module.css";
 import { productItemSortPage } from "@/components/products/utils/productData";
 
 import { useEffect, useState } from "react";
-import { useGetAllOrderQuery } from "@/redux/order/orderApi";
+import {
+  useGetAllOrderQuery,
+  useUpdateStatusMutation,
+} from "@/redux/order/orderApi";
+import ButtonGroup from "antd/es/button/button-group";
 
 const { Search } = Input;
 
 const Orders = () => {
+  const [updateStatus, setUpdateStatus] = useState({
+    data: "",
+    id: "",
+  });
+
+  const [updateOrderStatus] = useUpdateStatusMutation();
+
+  useEffect(() => {
+    updateOrderStatus({ formData: updateStatus }).then((res: any) => {
+      if (res?.success) {
+        message.success("Status Update Successful");
+      }
+    });
+  }, [updateOrderStatus, updateStatus]);
+
   const router = useRouter();
   // * Table Columns
   const columns = [
@@ -65,6 +93,7 @@ const Orders = () => {
         );
       },
     },
+
     {
       title: "Payment Status",
       dataIndex: "payment_status",
@@ -89,16 +118,24 @@ const Orders = () => {
       key: "_id",
       render: (_: any, { _id }: { _id: any }) => {
         return (
-          <>
+          <ButtonGroup>
             <Button
               type="primary"
               size="small"
               style={{ textDecoration: "underline" }}
-              onClick={() => handleRouteUpdate(_id)}
+              onClick={() => setUpdateStatus({ data: "accept", id: _id })}
             >
-              Details
+              Accept
             </Button>
-          </>
+            <Button
+              type="default"
+              size="small"
+              style={{ textDecoration: "underline" }}
+              onClick={() => setUpdateStatus({ data: "cancel", id: _id })}
+            >
+              Rejected
+            </Button>
+          </ButtonGroup>
         );
       },
     },

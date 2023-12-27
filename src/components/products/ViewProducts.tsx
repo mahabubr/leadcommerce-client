@@ -14,6 +14,7 @@ import {
   Table,
   Typography,
   Modal,
+  Tag,
 } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import Image from "next/image";
@@ -40,7 +41,8 @@ import {
 } from "@/redux/product/productApi";
 const { Text } = Typography;
 const { confirm } = Modal;
-import './styles/vproduct.css'
+import "./styles/vproduct.css";
+import ButtonGroup from "antd/es/button/button-group";
 
 const ViewProducts = () => {
   //** hanlding pagination
@@ -49,6 +51,7 @@ const ViewProducts = () => {
   const [currentSortOrder, setCurrentSortOrder] = useState<"desc" | "asc">(
     "asc"
   );
+  const [search, setSearch] = useState<string>("");
 
   /*//** RTK calling of product data getting */
   const { data: productData, isLoading }: { data?: any; isLoading: boolean } =
@@ -57,6 +60,7 @@ const ViewProducts = () => {
       page: currentPage,
       product_status: "active",
       sortOrder: currentSortOrder,
+      searchTerm: search,
     });
 
   const [
@@ -119,16 +123,12 @@ const ViewProducts = () => {
       key: "quantity",
       dataIndex: "quantity",
       render: (_, { quantity }) => (
-        <Text
-          className={quantity! > 0 ? "bg-success" : "bg-error"}
-          style={{
-            textAlign: "center",
-            padding: "4px 15px",
-            borderRadius: "25px",
-            color: "white",
-          }}
-        >
-          {quantity! > 0 ? "In Stock" : "Out of Stock"}
+        <Text>
+          {quantity! > 0 ? (
+            <Tag color="green">In Stock</Tag>
+          ) : (
+            <Tag color="red">Out of Stock</Tag>
+          )}
         </Text>
       ),
     },
@@ -137,23 +137,14 @@ const ViewProducts = () => {
       key: "status",
       dataIndex: "status",
       render: (_, { status }) => (
-        <Text
-          className={
-            status === ENUM_PRODUCT_STATUS.PENDING
-              ? "bg-warning"
-              : status === ENUM_PRODUCT_STATUS.ACTIVE
-                ? "bg-success"
-                : "bg-error"
-          }
-          style={{
-            textAlign: "center",
-            padding: "4px 15px",
-            borderRadius: "25px",
-            color: status === ENUM_PRODUCT_STATUS.PENDING ? "black" : "white",
-            textTransform: "capitalize",
-          }}
-        >
-          {status}
+        <Text>
+          {status === ENUM_PRODUCT_STATUS.PENDING ? (
+            <Tag color="gold"> {status}</Tag>
+          ) : status === ENUM_PRODUCT_STATUS.ACTIVE ? (
+            <Tag color="error"> {status}</Tag>
+          ) : (
+            <Tag color="lime"> {status}</Tag>
+          )}
         </Text>
       ),
     },
@@ -161,7 +152,7 @@ const ViewProducts = () => {
       title: "Action",
       key: "action",
       render: (_, { _id }) => (
-        <Space size="middle">
+        <ButtonGroup>
           <Button
             type="primary"
             icon={<EditOutlined />}
@@ -172,7 +163,7 @@ const ViewProducts = () => {
           <Button icon={<DeleteOutlined />} onClick={() => showConfirm(_id)}>
             Delete
           </Button>
-        </Space>
+        </ButtonGroup>
       ),
     },
   ];
@@ -186,33 +177,31 @@ const ViewProducts = () => {
     router.push(`/products/update/${_id}`);
 
   // **delete action
-  const handleDeleteProduct = (_id: string) => {
+  const handleDeleteProduct = (_id: string | undefined) => {
     Modal.destroyAll();
     console.log(_id);
     deleteProduct(_id);
   };
 
-  const showConfirm = (_id: string) => {
-    for (let i = 0; i < 3; i += 1) {
-      setTimeout(() => {
-        confirm({
-          icon: <ExclamationCircleOutlined />,
-          content: (
-            <div>
-              <Button onClick={() => handleDeleteProduct(_id)}>
-                Delete product
-              </Button>
-              <p>Are you sure to delete this product?</p>
-            </div>
-          ),
-          centered: true,
-          okButtonProps: { style: { display: "none" } }, // Hide the OK button
-          onCancel() {
-            console.log("Cancel");
-          },
-        });
-      }, i * 500);
-    }
+  const showConfirm = (_id: string | undefined) => {
+    Modal.confirm({
+      icon: <ExclamationCircleOutlined />,
+      title: "Delete Category",
+      content: "Are you sure to delete this category?",
+      centered: true,
+      okText: "Delete", // Change the text of the OK button
+      cancelText: "Cancel", // Change the text of the Cancel button
+      onOk() {
+        handleDeleteProduct(_id);
+      },
+      onCancel() {
+        console.log("Cancel");
+      },
+      okButtonProps: {
+        style: { backgroundColor: "#2c3e50", borderColor: "#2c3e50" },
+      },
+      cancelButtonProps: {},
+    });
   };
 
   return (
@@ -221,8 +210,11 @@ const ViewProducts = () => {
 
       <div style={{ marginTop: "20px" }}>
         <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
-
-          <Col className="gutter-row" xs={{ span: 24, order: 2 }} md={{ span: 18, order: 1 }}>
+          <Col
+            className="gutter-row"
+            xs={{ span: 24, order: 2 }}
+            md={{ span: 18, order: 1 }}
+          >
             <Card bordered className="pTable">
               <Flex
                 align="center"
@@ -288,7 +280,7 @@ const ViewProducts = () => {
                   {
                     key: "1",
                     label: <div style={{ fontWeight: "500" }}>Keywords</div>,
-                    children: <SearchKeyword />,
+                    children: <SearchKeyword setSearch={setSearch} />,
                   },
                 ]}
               />
@@ -330,7 +322,6 @@ const ViewProducts = () => {
               />
             </Space>
           </Col>
-
         </Row>
       </div>
     </>

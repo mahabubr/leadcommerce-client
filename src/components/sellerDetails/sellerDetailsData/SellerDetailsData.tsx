@@ -4,7 +4,7 @@ import React from "react";
 import ChartDetails from "./ChartDetails";
 import { PlusOutlined, SearchOutlined } from "@ant-design/icons";
 import SellerDetailsPageTable from "./SellerDetailsPageTable";
-import style from '../static/sellerdetailscomponent.module.css'
+import style from "../static/sellerdetailscomponent.module.css";
 
 const SellerDetailsData = ({ store }: any) => {
   return (
@@ -15,21 +15,22 @@ const SellerDetailsData = ({ store }: any) => {
             // border: "1px solid red",
             display: "flex",
             justifyContent: "space-between",
-          }}>
+          }}
+        >
           <div>
             <h4 style={{ color: "#2c3e50" }}>Revenue</h4>
           </div>
           <div style={{ display: "flex", gap: "1em" }}>
-            <Button size='small' type='primary'>
+            <Button size="small" type="primary">
               ALL
             </Button>
-            <Button size='small' type='primary'>
+            <Button size="small" type="primary">
               1M
             </Button>
-            <Button size='small' type='primary'>
+            <Button size="small" type="primary">
               6M
             </Button>
-            <Button size='small' type='primary'>
+            <Button size="small" type="primary">
               1Y
             </Button>
           </div>
@@ -42,7 +43,8 @@ const SellerDetailsData = ({ store }: any) => {
             // display: "flex",
             // justifyContent: "space-between",
           }
-        }>
+        }
+      >
         <div
           className={style.summayData}
           // style={{
@@ -60,7 +62,8 @@ const SellerDetailsData = ({ store }: any) => {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-            }}>
+            }}
+          >
             <h5>
               <span>{store?.total_orders}</span>
             </h5>
@@ -75,7 +78,8 @@ const SellerDetailsData = ({ store }: any) => {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-            }}>
+            }}
+          >
             <h5>
               <span>$ {store?.earning[0]}</span>
             </h5>
@@ -90,7 +94,8 @@ const SellerDetailsData = ({ store }: any) => {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-            }}>
+            }}
+          >
             <h5>
               <span>{store?.refund}</span>
             </h5>
@@ -105,7 +110,8 @@ const SellerDetailsData = ({ store }: any) => {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-            }}>
+            }}
+          >
             <h5>
               <span>18.92</span>
             </h5>
@@ -114,7 +120,7 @@ const SellerDetailsData = ({ store }: any) => {
         </div>
         {/* charts */}
         <div style={{ marginTop: "1rem", padding: "1em" }}>
-          <ChartDetails></ChartDetails>
+          <ChartDetails />
         </div>
       </Card>
 
@@ -125,12 +131,13 @@ const SellerDetailsData = ({ store }: any) => {
           padding: "1em",
           display: "flex",
           justifyContent: "space-between",
-        }}>
-        <Button type='primary' icon={<PlusOutlined />}>
+        }}
+      >
+        <Button type="primary" icon={<PlusOutlined />}>
           Add New
         </Button>
         <div>
-          <Input addonAfter={<SearchOutlined />} placeholder='large size' />
+          <Input addonAfter={<SearchOutlined />} placeholder="large size" />
         </div>
       </div>
       {/* table  */}

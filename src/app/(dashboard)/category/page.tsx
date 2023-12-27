@@ -1,11 +1,13 @@
-import ViewCategory from '@/components/category/ViewCategory';
+"use client";
+
+import ViewCategory from "@/components/category/ViewCategory";
 
 const page = () => {
-    return (
-        <>
-            <ViewCategory />
-        </>
-    );
+  return (
+    <>
+      <ViewCategory />
+    </>
+  );
 };
 
 export default page;

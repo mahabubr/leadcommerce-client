@@ -26,7 +26,7 @@ const sidebarItems = (role: string) => {
       title: "Events",
       icon: <FaCalendar />,
       links: [
-        { label: "Calendar", href: "/events/calendar" },
+        { label: "Calendar", href: "/event/calendar" },
         { label: "Events", href: "/event" },
       ],
     },
@@ -46,7 +46,7 @@ const sidebarItems = (role: string) => {
     {
       title: "Orders",
       icon: <LuShoppingBasket />,
-      links: [{ label: "Orders", href: "/order" }],
+      links: [{ label: "Orders", href: "/orders" }],
     },
     {
       title: "Wallet",

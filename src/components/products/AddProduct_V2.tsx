@@ -26,6 +26,8 @@ import { useAddProductsMutation } from "@/redux/product/productApi";
 import { notification } from "antd";
 import { PoweroffOutlined } from "@ant-design/icons";
 import "./styles/cproduct.css";
+import { useGetAllCategoriesQuery } from "@/redux/category/categoryApi";
+import Loader from "../ui/Loader";
 
 const props: UploadProps = {
   name: "file",
@@ -62,6 +64,12 @@ const AddProductV2 = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [addProduct] = useAddProductsMutation();
 
+  const { data, isLoading: catLoading } = useGetAllCategoriesQuery({
+    limit: 1000,
+    page: 1,
+    sortOrder: "asc",
+  });
+
   /* //** form  */
   const [form] = Form.useForm();
 
@@ -75,8 +83,6 @@ const AddProductV2 = () => {
 
   //** handle onfinish  */
   const onFinish = async (values: any) => {
-    console.log(values, checkedValues, hexString);
-
     let formData = new FormData();
     if (values.title) {
       formData.append("productName", values.title);
@@ -120,7 +126,7 @@ const AddProductV2 = () => {
       setIsLoading(true);
       await addProduct(formData).then((res: any) => {
         if (res?.data?.success) {
-          message.success(res?.data);
+          message.success(res?.data?.message);
           form.setFieldsValue(initialData);
           setCheckedValues(["S"]);
           setFileList(null);
@@ -169,6 +175,10 @@ const AddProductV2 = () => {
       }
     }
   }, [fileList]);
+
+  if (catLoading) {
+    return <Loader />;
+  }
 
   return (
     <>
@@ -314,11 +324,16 @@ const AddProductV2 = () => {
                         style={{ width: "100%", marginTop: "0.5rem" }}
                         placeholder="Select a category"
                       >
-                        {productItems?.map((pt, index) => (
-                          <Select.Option key={index} value={`${pt.value}`}>
-                            {pt?.label}
-                          </Select.Option>
-                        ))}
+                        {
+                          // @ts-ignore
+                          data.data &&
+                            // @ts-ignore
+                            data?.data?.map((pt: any, index: number) => (
+                              <Select.Option key={index} value={`${pt._id}`}>
+                                {pt?.name}
+                              </Select.Option>
+                            ))
+                        }
                       </Select>
                     </Form.Item>
                   </div>
@@ -570,14 +585,15 @@ const AddProductV2 = () => {
                         required: true,
                         message: "Please enter Product Tags",
                       },
-                      { whitespace: true },
                     ]}
                     hasFeedback
                   >
-                    <Input
+                    <Select
+                      mode="tags"
                       size="large"
                       style={{ marginTop: "0.5rem" }}
                       placeholder="Product Tags"
+                      tokenSeparators={[","]}
                     />
                   </Form.Item>
                 </Col>

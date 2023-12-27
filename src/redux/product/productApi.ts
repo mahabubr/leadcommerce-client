@@ -8,13 +8,15 @@ const productApi = api.injectEndpoints({
         page,
         product_status,
         sortOrder,
+        searchTerm,
       }: {
         limit: number;
         page: number;
         product_status: string;
         sortOrder: "desc" | "asc";
+        searchTerm: string;
       }) =>
-        `/products?status=${product_status}&page=${page}&limit=${limit}&sortOrder=${sortOrder}`,
+        `/products?status=${product_status}&page=${page}&limit=${limit}&sortOrder=${sortOrder}&searchTerm=${searchTerm}`,
       providesTags: ["product"],
     }),
     getAProducts: builder.query({

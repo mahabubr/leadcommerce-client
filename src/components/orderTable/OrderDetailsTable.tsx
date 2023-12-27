@@ -1,82 +1,42 @@
 import { Table, Tag } from "antd";
 import React from "react";
 
-function OrderDetailsTable() {
-  const data = [
-    {
-      orderId: 2535,
-      Product: "Dummy Name",
-      unit: 150,
-      date: "Oct 20, 2018",
-      cost: 15,
-      status: <Tag color='blue'>Pending</Tag>,
-    },
-    {
-      orderId: 2535,
-      Product: "Dummy Name",
-      unit: 150,
-      date: "Oct 20, 2018",
-      cost: 15,
-      status: <Tag color='yellow'>Shipment</Tag>,
-    },
-    {
-      orderId: 2535,
-      Product: "Dummy Name",
-      unit: 150,
-      date: "Oct 20, 2018",
-      cost: 15,
-      status: <Tag color='green'>Delivery</Tag>,
-    },
-    {
-      orderId: 2535,
-      Product: "Dummy Name",
-      unit: 150,
-      date: "Oct 20, 2018",
-      cost: 15,
-      status: <Tag color='red'>Canceled</Tag>,
-    },
-  ];
+function OrderDetailsTable({ products }: any) {
   const columns = [
     {
       title: "Order Id",
-      dataIndex: "orderId",
-      key: "name",
-      // render: (text) => <a>{text}</a>,
+      dataIndex: "id",
+      key: "id",
     },
     {
       title: "Product Name",
-      dataIndex: "Product",
-      key: "name",
-      // render: (text) => <a>{text}</a>,
+      dataIndex: "product_id",
+      key: "product_id",
+      render: (product_id: any) => product_id.productName,
     },
     {
       title: "Price",
-      dataIndex: "unit",
-      key: "name",
-      // render: (text) => <a>{text}</a>,
+      dataIndex: "product_price",
+      key: "product_price",
+    },
+
+    {
+      title: "Quantity",
+      dataIndex: "product_quantity",
+      key: "product_quantity",
     },
     {
       title: "Date",
-      dataIndex: "date",
-      key: "name",
-      // render: (text) => <a>{text}</a>,
-    },
-    {
-      title: "Quantity",
-      dataIndex: "cost",
-      key: "name",
-      // render: (text) => <a>{text}</a>,
-    },
-    {
-      title: "status",
-      dataIndex: "status",
-      key: "name",
-      // render: (text) => <a>{text}</a>,
+      dataIndex: "product_id",
+      key: "product_id",
+      render: (product_id: any) =>
+        new Date(product_id.updatedAt).toDateString(),
     },
   ];
+
   return (
     <>
-      <Table columns={columns} dataSource={data}  scroll={{ x: 1000}} />
+      <Table columns={columns} dataSource={products} scroll={{ x: 1000 }} />
     </>
   );
 }

@@ -37,20 +37,12 @@ const Stores = () => {
     <>
       <div>
         <Card>
-          <div
-            className={style.searchField}
-            // style={{
-            //   // display: "flex",
-            //   justifyContent: "space-between",
-            //   alignItems: "center",
-            //   border: "1px solid red",
-            // }}
-          >
+          <div className={style.searchField}>
             {/* First section */}
             <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
               <Input
-                size='middle'
-                placeholder='Search Pages'
+                size="middle"
+                placeholder="Search Pages"
                 suffix={<CiSearch />}
                 allowClear
                 onChange={(e) => setSearch(e.target.value)}
@@ -60,7 +52,7 @@ const Stores = () => {
             {/* Second section */}
             <div className={style.secondSection}>
               <Select
-                placeholder='Categories'
+                placeholder="Categories"
                 allowClear
                 options={[
                   { value: "ordered", label: "Ordered" },
@@ -68,7 +60,7 @@ const Stores = () => {
                 ]}
                 style={{ minWidth: 188 }}
               />
-              <Button type='primary'>Add Store</Button>
+              <Button type="primary">Add Store</Button>
             </div>
           </div>
         </Card>
@@ -80,7 +72,8 @@ const Stores = () => {
             : "Not Store Found"}
         </div>
         <Card
-          style={{ marginTop: 20, display: "flex", justifyContent: "center" }}>
+          style={{ marginTop: 20, display: "flex", justifyContent: "center", width: "100%" }}
+        >
           <Pagination
             defaultCurrent={1}
             total={meta?.total}

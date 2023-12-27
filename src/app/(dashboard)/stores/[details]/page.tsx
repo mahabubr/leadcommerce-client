@@ -5,7 +5,6 @@ import style from "./static/sellerdetails.module.css";
 import SellerProfile from "@/components/sellerDetails/sellerProfile/SellerProfile";
 import SellerDetailsData from "@/components/sellerDetails/sellerDetailsData/SellerDetailsData";
 import EmployeeModal from "@/components/ui/EmployeeModal";
-import { useRouter } from "next/navigation";
 import { useGetSingleStoreQuery } from "@/redux/store/storeApi";
 import Loader from "@/components/ui/Loader";
 const SellerDetails = ({ params }: any) => {

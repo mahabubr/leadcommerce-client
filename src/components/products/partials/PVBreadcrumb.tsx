@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Flex, Typography } from "antd";
 import { useRouter } from "next/navigation";
+import ButtonGroup from "antd/es/button/button-group";
 
 const { Title } = Typography;
 
@@ -18,17 +19,21 @@ const PVBreadcrumb = () => {
         <Title style={{ margin: 0 }} level={3}>
           <Button
             type="primary"
-            size="large"
+            size="middle"
             onClick={() => router.push("products/add-product")}
           >
             Create Product
           </Button>
         </Title>
 
-        <Flex gap="small" wrap="wrap">
-          <Button size="large">Export</Button>
-          <Button size="large">Import</Button>
-        </Flex>
+        <ButtonGroup>
+          <Button size="middle" type="dashed">
+            Export
+          </Button>
+          <Button size="middle" type="dashed">
+            Import
+          </Button>
+        </ButtonGroup>
       </Flex>
     </Flex>
   );

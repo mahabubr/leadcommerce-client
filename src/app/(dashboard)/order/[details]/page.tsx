@@ -1,5 +1,5 @@
 "use client";
-import { Button, Card, Input, Select, Tag } from "antd";
+import { Button, Card, Input, Select, Tag, message } from "antd";
 import ButtonGroup from "antd/es/button/button-group";
 import { ImPrinter } from "react-icons/im";
 import { CiCalendar } from "react-icons/ci";
@@ -7,53 +7,15 @@ import { FaCcVisa, FaTruckLoading } from "react-icons/fa";
 import { BsFillPersonFill } from "react-icons/bs";
 import { HiLocationMarker } from "react-icons/hi";
 import TextArea from "antd/es/input/TextArea";
-import { useGetSingleOrderQuery } from "@/redux/order/orderApi";
+import {
+  useGetSingleOrderQuery,
+  useUpdateStatusMutation,
+} from "@/redux/order/orderApi";
 import { dateFormater } from "@/Helper/dateFormater";
 import style from "../order.module.css";
-import OrderDetailsTable from "@/components/orderTable/orderDetailsTable";
-const dataa = [
-  {
-    orderId: 2535,
-    Product: "Dummy Name",
-    unit: 150,
-    date: "Oct 20, 2018",
-    cost: 15,
-    status: <Tag color='blue'>Pending</Tag>,
-  },
-  {
-    orderId: 2535,
-    Product: "Dummy Name",
-    unit: 150,
-    date: "Oct 20, 2018",
-    cost: 15,
-    status: <Tag color='yellow'>Shipment</Tag>,
-  },
-  {
-    orderId: 2535,
-    Product: "Dummy Name",
-    unit: 150,
-    date: "Oct 20, 2018",
-    cost: 15,
-    status: <Tag color='green'>Delivery</Tag>,
-  },
-  {
-    orderId: 2535,
-    Product: "Dummy Name",
-    unit: 150,
-    date: "Oct 20, 2018",
-    cost: 15,
-    status: <Tag color='red'>Canceled</Tag>,
-  },
-];
-
-const thead = [
-  "Shop Id",
-  "Product Name",
-  "Price",
-  "Date",
-  "Quantity",
-  "Status",
-];
+import OrderDetailsTable from "@/components/orderTable/OrderDetailsTable";
+import { useReactToPrint } from "react-to-print";
+import { useEffect, useRef, useState } from "react";
 
 const OrderDetail = ({ params }: { params: any }) => {
   const id = params.details;
@@ -61,28 +23,61 @@ const OrderDetail = ({ params }: { params: any }) => {
   const orderData = data?.data;
   const formatedDate = dateFormater(orderData?.createdAt);
 
+  const products = orderData?.order_product_list;
+
+  const componentRef = useRef(null);
+
+  const [updateOrderStatus] = useUpdateStatusMutation();
+
+  const [updateStatus, setUpdateStatus] = useState("");
+
+  useEffect(() => {
+    if (updateStatus) {
+      updateOrderStatus({
+        formData: {
+          id,
+          data: updateStatus,
+        },
+      }).then((res: any) => {
+        if (res?.data?.success) {
+          message.success("Status Update Successful");
+        }
+      });
+    }
+  }, [updateOrderStatus, updateStatus, id]);
+
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+
   return (
     <Card
-      title='Order Detail'
+      title="Order Detail"
+      ref={componentRef}
       extra={
         <div className={style.sercheAndPrint}>
           <Select
-            placeholder='Status'
+            placeholder={orderData?.order_status}
             allowClear
             options={[
-              { value: "ordered", label: "Ordered" },
-              { value: "rejected", label: "Ordered" },
+              { value: "pending", label: "pending" },
+              { value: "delivered", label: "delivered" },
+              { value: "cancel", label: "cancel" },
+              { value: "paused", label: "paused" },
+              { value: "accept", label: "accept" },
             ]}
+            onChange={setUpdateStatus}
             style={{ width: 200 }}
           />
           <ButtonGroup>
-            <Button type='primary'>Save</Button>
-            <Button type='dashed'>
+            <Button type="primary">Save</Button>
+            <Button type="dashed" onClick={handlePrint}>
               <ImPrinter />
             </Button>
           </ButtonGroup>
         </div>
-      }>
+      }
+    >
       <div className={style.orderInfo}>
         <div
           style={{
@@ -91,7 +86,8 @@ const OrderDetail = ({ params }: { params: any }) => {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-          }}>
+          }}
+        >
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <CiCalendar />
             <h4>{formatedDate}</h4>
@@ -104,7 +100,8 @@ const OrderDetail = ({ params }: { params: any }) => {
             backgroundColor: "#f1f1f1",
             padding: 20,
             borderRadius: 8,
-          }}>
+          }}
+        >
           <h4>Payment Info</h4>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <FaCcVisa />
@@ -119,7 +116,8 @@ const OrderDetail = ({ params }: { params: any }) => {
           style={{
             display: "flex",
             gap: 20,
-          }}>
+          }}
+        >
           <div
             style={{
               backgroundColor: "#3498db",
@@ -131,7 +129,8 @@ const OrderDetail = ({ params }: { params: any }) => {
               fontSize: 30,
               display: "grid",
               placeItems: "center",
-            }}>
+            }}
+          >
             <BsFillPersonFill />
           </div>
           <div>
@@ -153,7 +152,8 @@ const OrderDetail = ({ params }: { params: any }) => {
               fontSize: 30,
               display: "grid",
               placeItems: "center",
-            }}>
+            }}
+          >
             <FaTruckLoading />
           </div>
           <div>
@@ -175,7 +175,8 @@ const OrderDetail = ({ params }: { params: any }) => {
               fontSize: 30,
               display: "grid",
               placeItems: "center",
-            }}>
+            }}
+          >
             <HiLocationMarker />
           </div>
           <div>
@@ -194,13 +195,13 @@ const OrderDetail = ({ params }: { params: any }) => {
       </div>
       <div className={style.tableAndCommentBoxDiv}>
         <div className={style.orderTable}>
-          <OrderDetailsTable />
+          <OrderDetailsTable products={products} />
         </div>
         <div>
           <TextArea
             style={{ marginBottom: 20 }}
             rows={4}
-            placeholder='maxLength is 6'
+            placeholder="maxLength is 6"
             maxLength={6}
           />
           <Button>Save Note</Button>
