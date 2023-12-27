@@ -63,7 +63,7 @@ const SellerDetailsData = ({ store }: any) => {
             }}
           >
             <h5>
-              <span>{store?.total_orders}</span>
+              <span>{store?.data?.data?.total_orders?.total}</span>
             </h5>
             <p>Orders</p>
           </div>
@@ -79,7 +79,7 @@ const SellerDetailsData = ({ store }: any) => {
             }}
           >
             <h5>
-              <span>$ {store?.earning[0]}</span>
+              <span>${store?.data?.data?.earning?.totalAmount}</span>
             </h5>
             <p>Earning</p>
           </div>
@@ -95,7 +95,7 @@ const SellerDetailsData = ({ store }: any) => {
             }}
           >
             <h5>
-              <span>{store?.refund}</span>
+              <span>{store?.data?.data?.refund?.total}</span>
             </h5>
             <p>Refunds</p>
           </div>
@@ -111,14 +111,14 @@ const SellerDetailsData = ({ store }: any) => {
             }}
           >
             <h5>
-              <span>18.92</span>
+              <span>{100 - (store?.data?.data?.refund?.total * 100) / store?.data?.data?.total_orders?.total}%</span>
             </h5>
             <p>Conversation Ratio</p>
           </div>
         </div>
         {/* charts */}
         <div style={{ marginTop: "1rem", padding: "1em" }}>
-          <ChartDetails></ChartDetails>
+          <ChartDetails chartData={store?.data}></ChartDetails>
         </div>
       </Card>
 

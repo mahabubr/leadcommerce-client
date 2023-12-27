@@ -83,10 +83,12 @@ const Orders = () => {
           <>
             {order_status === "pending" ? (
               <Tag color='warning'>Pending</Tag>
-            ) : order_status === "completed" ? (
-              <Tag color='success'>Completed</Tag>
-            ) : order_status === "canceled" ? (
+            ) : order_status === "delivered" ? (
+              <Tag color='success'>delivered</Tag>
+            ) : order_status === "cancel" ? (
               <Tag color='error'>Canceled</Tag>
+            ) : order_status === "refunds" ? (
+              <Tag color='error'>refunds</Tag>
             ) : null}
           </>
         );
@@ -205,7 +207,7 @@ const Orders = () => {
               style={{ width: "100px", textTransform: "capitalize" }}
               options={productItemSortPage}
               defaultValue={productItemSortPage[0]}
-              // defaultValue={selectedStatus}
+            // defaultValue={selectedStatus}
             />
           </div>
         </div>
