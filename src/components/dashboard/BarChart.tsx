@@ -72,7 +72,7 @@ export function Barchart() {
     useEffect(()=>{
       // setChartWidth(barChartRef.current.offsetWidth*90/100)
        window.addEventListener('resize', handleResize);
-    },[window.innerWidth])
+    },[])
     
   return <div className={style.barchart_cont} ref={barChartRef}>
       <Bar className={style.anime} redraw={true} width={chartWidth || 350} height={calculatePercentage(chartWidth || 350,68)} options={options} data={data} />

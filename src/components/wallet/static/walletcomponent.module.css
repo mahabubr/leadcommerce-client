@@ -1,0 +1,35 @@
+.topCard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.chartandCardDiv {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(1, 2fr 1fr);
+  gap: 50px;
+}
+
+@media (max-width: 1150px) {
+  .topCard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  .chartandCardDiv {
+    grid-template-columns: repeat(1, 1fr 1fr);
+  }
+}
+
+@media (max-width: 1150px) {
+  .chartandCardDiv {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .topCard {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

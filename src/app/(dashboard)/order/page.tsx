@@ -12,37 +12,6 @@ import { useEffect, useState } from "react";
 import { useGetAllOrderQuery } from "@/redux/order/orderApi";
 
 const { Search } = Input;
-// interface DataType {
-//   key: string;
-//   name: string;
-//   age: number;
-//   address: string;
-//   tags: string[];
-// }
-
-// const dataaa: DataType[] = [
-//   {
-//     key: "1",
-//     name: "John Brown",
-//     age: 32,
-//     address: "New York No. 1 Lake Park",
-//     tags: ["nice", "developer"],
-//   },
-//   {
-//     key: "2",
-//     name: "Jim Green",
-//     age: 42,
-//     address: "London No. 1 Lake Park",
-//     tags: ["loser"],
-//   },
-//   {
-//     key: "3",
-//     name: "Joe Black",
-//     age: 32,
-//     address: "Sydney No. 1 Lake Park",
-//     tags: ["cool", "teacher"],
-//   },
-// ];
 
 const Orders = () => {
   const router = useRouter();
@@ -82,17 +51,20 @@ const Orders = () => {
         return (
           <>
             {order_status === "pending" ? (
-              <Tag color='warning'>Pending</Tag>
-            ) : order_status === "completed" ? (
-              <Tag color='success'>Completed</Tag>
-            ) : order_status === "canceled" ? (
-              <Tag color='error'>Canceled</Tag>
+              <Tag color="warning">pending</Tag>
+            ) : order_status === "delivered" ? (
+              <Tag color="success">Delivered</Tag>
+            ) : order_status === "cancel" ? (
+              <Tag color="error">Cancel</Tag>
+            ) : order_status === "paused" ? (
+              <Tag color="cyan">Paused</Tag>
+            ) : order_status === "accept" ? (
+              <Tag color="blue">Accept</Tag>
             ) : null}
           </>
         );
       },
     },
-
     {
       title: "Payment Status",
       dataIndex: "payment_status",
@@ -101,11 +73,11 @@ const Orders = () => {
         return (
           <>
             {payment_status === "pending" ? (
-              <Tag color='warning'>Pending</Tag>
+              <Tag color="warning">Pending</Tag>
             ) : payment_status === "completed" ? (
-              <Tag color='success'>Completed</Tag>
+              <Tag color="success">Completed</Tag>
             ) : payment_status === "canceled" ? (
-              <Tag color='error'>Canceled</Tag>
+              <Tag color="error">Canceled</Tag>
             ) : null}
           </>
         );
@@ -119,10 +91,11 @@ const Orders = () => {
         return (
           <>
             <Button
-              type='text'
-              size='small'
+              type="primary"
+              size="small"
               style={{ textDecoration: "underline" }}
-              onClick={() => handleRouteUpdate(_id)}>
+              onClick={() => handleRouteUpdate(_id)}
+            >
               Details
             </Button>
           </>
@@ -191,15 +164,15 @@ const Orders = () => {
         <div className={style.mainFilter}>
           <div className={style.filterOne}>
             <Input
-              size='middle'
-              placeholder='Search Orders'
+              size="middle"
+              placeholder="Search Orders"
               suffix={<CiSearch />}
               allowClear
               style={{ width: "100%" }}
             />
           </div>
           <div className={style.filterTwo}>
-            <Select placeholder='Status' allowClear />
+            <Select placeholder="Status" allowClear />
             <Select
               onChange={handlePagelimitChange}
               style={{ width: "100px", textTransform: "capitalize" }}
@@ -213,7 +186,7 @@ const Orders = () => {
         <Table
           columns={columns}
           dataSource={orderData}
-          scroll={{ x: true }}
+          scroll={{ x: 700 }}
           pagination={{
             current: page,
             pageSize: limit,
@@ -232,19 +205,19 @@ const Orders = () => {
           <div>
             <p style={{ fontSize: 12 }}>Order Id</p>
             <Search
-              placeholder='input search text'
+              placeholder="input search text"
               allowClear
               onSearch={onSearch}
             />
           </div>
           <div>
             <p style={{ fontSize: 12 }}>Customer</p>
-            <Input placeholder='Type Here' size='middle' />
+            <Input placeholder="Type Here" size="middle" />
           </div>
           <div>
             <p style={{ fontSize: 12 }}>Order Status</p>
             <Select
-              placeholder='Status'
+              placeholder="Status"
               allowClear
               onChange={handleChange}
               options={[
@@ -260,7 +233,7 @@ const Orders = () => {
             <p style={{ fontSize: 12 }}>Date</p>
             <DatePicker
               onChange={onChange}
-              picker='month'
+              picker="month"
               style={{ marginTop: 10 }}
             />
           </div>

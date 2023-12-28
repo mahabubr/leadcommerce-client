@@ -29,7 +29,7 @@ const SellerInformation = ({ store }: any) => {
       </div>
       <div
         style={{
-          //   border: "1px solid black",
+            // border: "1px solid black",
           marginTop: "20px",
         }}
       >

@@ -4,6 +4,7 @@ import React from "react";
 import ChartDetails from "./ChartDetails";
 import { PlusOutlined, SearchOutlined } from "@ant-design/icons";
 import SellerDetailsPageTable from "./SellerDetailsPageTable";
+import style from "../static/sellerdetailscomponent.module.css";
 
 const SellerDetailsData = ({ store }: any) => {
   return (
@@ -11,7 +12,7 @@ const SellerDetailsData = ({ store }: any) => {
       <Card>
         <div
           style={{
-            //   border: "1px solid red",
+            // border: "1px solid red",
             display: "flex",
             justifyContent: "space-between",
           }}
@@ -38,18 +39,19 @@ const SellerDetailsData = ({ store }: any) => {
       <Card
         style={
           {
-            //   border: "1px solid blue",
-            //   display: "flex",
-            //   justifyContent: "space-between",
+            // border: "1px solid blue",
+            // display: "flex",
+            // justifyContent: "space-between",
           }
         }
       >
         <div
-          style={{
-            display: "flex",
-            width: "100%",
-            backgroundColor: " #ecf0f1",
-          }}
+          className={style.summayData}
+          // style={{
+          //   display: "flex",
+          //   width: "100%",
+          //   backgroundColor: " #ecf0f1",
+          // }}
         >
           <div
             style={{
@@ -118,7 +120,7 @@ const SellerDetailsData = ({ store }: any) => {
         </div>
         {/* charts */}
         <div style={{ marginTop: "1rem", padding: "1em" }}>
-          <ChartDetails></ChartDetails>
+          <ChartDetails />
         </div>
       </Card>
 

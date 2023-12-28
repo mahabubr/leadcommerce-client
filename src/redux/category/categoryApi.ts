@@ -1,7 +1,7 @@
 import api from "../api";
 import { tagTypes } from "../types/tagTypes";
 
-const categoryApi = api.injectEndpoints({
+const categoryApi: any = api.injectEndpoints({
   endpoints: (builder: any) => ({
     getAllCategories: builder.query({
       query: ({

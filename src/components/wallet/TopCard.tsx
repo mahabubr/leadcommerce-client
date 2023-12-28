@@ -1,11 +1,12 @@
+"use client";
+
 import { Card } from "antd";
 import { IoLogoUsd } from "react-icons/io";
+import style from "./static/walletcomponent.module.css";
 
 const TopCard = () => {
   return (
-    <div
-      style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 30 }}
-    >
+    <div className={style.topCard}>
       <Card style={{ boxShadow: "2px 2px 10px grey" }}>
         <div
           style={{

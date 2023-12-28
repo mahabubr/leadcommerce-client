@@ -1,4 +1,5 @@
 import api from "../api";
+import { tagTypes } from "../types/tagTypes";
 
 const OrderApi = api.injectEndpoints({
   endpoints: (builder: any) => ({
@@ -9,15 +10,28 @@ const OrderApi = api.injectEndpoints({
         method: "GET",
         params: arg,
       }),
+      providesTags: [tagTypes.orders],
     }),
     getSingleOrder: builder.query({
       query: (id: string) => ({
         url: `/Orders/${id}`,
         method: "GET",
       }),
-      invalidatesTags: ["product"],
+      providesTags: [tagTypes.orders],
+    }),
+    updateStatus: builder.mutation({
+      query: ({ formData }: { formData: any }) => ({
+        url: `/Orders/update-status`,
+        method: "PATCH",
+        body: formData,
+      }),
+      invalidatesTags: [tagTypes.orders],
     }),
   }),
 });
 
-export const { useGetAllOrderQuery, useGetSingleOrderQuery } = OrderApi;
+export const {
+  useGetAllOrderQuery,
+  useGetSingleOrderQuery,
+  useUpdateStatusMutation,
+} = OrderApi;

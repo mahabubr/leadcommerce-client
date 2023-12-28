@@ -40,7 +40,7 @@ export function PieChart() {
     useEffect(()=>{
       // setChartWidth(pieChartRef.current.offsetWidth*90/100)
        window.addEventListener('resize', handleResize);
-    },[window.innerWidth])
+    },[])
   return <div ref={pieChartRef} className={style.pieChart}>
     <Doughnut className={style.anime} redraw={true} width={chartWidth || 350} height={calculatePercentage(chartWidth || 350,68)} options={{responsive:true,cutout:'70%'}} data={data} />;
   </div>

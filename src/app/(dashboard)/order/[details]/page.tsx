@@ -1,5 +1,5 @@
 "use client";
-import { Button, Card, Input, Select, Tag } from "antd";
+import { Button, Card, Input, Select, Tag, message } from "antd";
 import ButtonGroup from "antd/es/button/button-group";
 import { ImPrinter } from "react-icons/im";
 import { CiCalendar } from "react-icons/ci";
@@ -7,94 +7,87 @@ import { FaCcVisa, FaTruckLoading } from "react-icons/fa";
 import { BsFillPersonFill } from "react-icons/bs";
 import { HiLocationMarker } from "react-icons/hi";
 import TextArea from "antd/es/input/TextArea";
-import { useGetSingleOrderQuery } from "@/redux/order/orderApi";
+import {
+  useGetSingleOrderQuery,
+  useUpdateStatusMutation,
+} from "@/redux/order/orderApi";
 import { dateFormater } from "@/Helper/dateFormater";
-
-const dataa = [
-  {
-    orderId: 2535,
-    Product: "Dummy Name",
-    unit: 150,
-    date: "Oct 20, 2018",
-    cost: 15,
-    status: <Tag color='blue'>Pending</Tag>,
-  },
-  {
-    orderId: 2535,
-    Product: "Dummy Name",
-    unit: 150,
-    date: "Oct 20, 2018",
-    cost: 15,
-    status: <Tag color='yellow'>Shipment</Tag>,
-  },
-  {
-    orderId: 2535,
-    Product: "Dummy Name",
-    unit: 150,
-    date: "Oct 20, 2018",
-    cost: 15,
-    status: <Tag color='green'>Delivery</Tag>,
-  },
-  {
-    orderId: 2535,
-    Product: "Dummy Name",
-    unit: 150,
-    date: "Oct 20, 2018",
-    cost: 15,
-    status: <Tag color='red'>Canceled</Tag>,
-  },
-];
-
-const thead = [
-  "Shop Id",
-  "Product Name",
-  "Price",
-  "Date",
-  "Quantity",
-  "Status",
-];
+import style from "../order.module.css";
+import OrderDetailsTable from "@/components/orderTable/OrderDetailsTable";
+import { useReactToPrint } from "react-to-print";
+import { useEffect, useRef, useState } from "react";
 
 const OrderDetail = ({ params }: { params: any }) => {
   const id = params.details;
   const { data }: { data?: any } = useGetSingleOrderQuery(id);
   const orderData = data?.data;
   const formatedDate = dateFormater(orderData?.createdAt);
-  
+
+  const products = orderData?.order_product_list;
+
+  const componentRef = useRef(null);
+
+  const [updateOrderStatus] = useUpdateStatusMutation();
+
+  const [updateStatus, setUpdateStatus] = useState("");
+
+  useEffect(() => {
+    if (updateStatus) {
+      updateOrderStatus({
+        formData: {
+          id,
+          data: updateStatus,
+        },
+      }).then((res: any) => {
+        if (res?.data?.success) {
+          message.success("Status Update Successful");
+        }
+      });
+    }
+  }, [updateOrderStatus, updateStatus, id]);
+
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
+
   return (
     <Card
-      title='Order Detail'
+      title="Order Detail"
+      ref={componentRef}
       extra={
-        <div
-          style={{
-            display: "flex",
-            gap: 10,
-            alignItems: "center",
-            justifyContent: "center",
-          }}>
+        <div className={style.sercheAndPrint}>
           <Select
-            placeholder='Status'
+            placeholder={orderData?.order_status}
             allowClear
             options={[
-              { value: "ordered", label: "Ordered" },
-              { value: "rejected", label: "Ordered" },
+              { value: "pending", label: "pending" },
+              { value: "delivered", label: "delivered" },
+              { value: "cancel", label: "cancel" },
+              { value: "paused", label: "paused" },
+              { value: "accept", label: "accept" },
             ]}
+            onChange={setUpdateStatus}
             style={{ width: 200 }}
           />
           <ButtonGroup>
-            <Button type='primary'>Save</Button>
-            <Button type='dashed'>
+            <Button type="primary">Save</Button>
+            <Button type="dashed" onClick={handlePrint}>
               <ImPrinter />
             </Button>
           </ButtonGroup>
         </div>
-      }>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          gap: 10,
-        }}>
-        <div>
+      }
+    >
+      <div className={style.orderInfo}>
+        <div
+          style={{
+            display: "flex",
+            padding: 20,
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <CiCalendar />
             <h4>{formatedDate}</h4>
@@ -107,7 +100,8 @@ const OrderDetail = ({ params }: { params: any }) => {
             backgroundColor: "#f1f1f1",
             padding: 20,
             borderRadius: 8,
-          }}>
+          }}
+        >
           <h4>Payment Info</h4>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <FaCcVisa />
@@ -117,14 +111,13 @@ const OrderDetail = ({ params }: { params: any }) => {
           <p>Phone : +880 14 58 1871115</p>
         </div>
       </div>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr  1fr",
-          marginTop: 40,
-          gap: 20,
-        }}>
-        <div style={{ display: "flex", gap: 20 }}>
+      <div className={style.orderCardGrid}>
+        <div
+          style={{
+            display: "flex",
+            gap: 20,
+          }}
+        >
           <div
             style={{
               backgroundColor: "#3498db",
@@ -136,7 +129,8 @@ const OrderDetail = ({ params }: { params: any }) => {
               fontSize: 30,
               display: "grid",
               placeItems: "center",
-            }}>
+            }}
+          >
             <BsFillPersonFill />
           </div>
           <div>
@@ -158,7 +152,8 @@ const OrderDetail = ({ params }: { params: any }) => {
               fontSize: 30,
               display: "grid",
               placeItems: "center",
-            }}>
+            }}
+          >
             <FaTruckLoading />
           </div>
           <div>
@@ -180,7 +175,8 @@ const OrderDetail = ({ params }: { params: any }) => {
               fontSize: 30,
               display: "grid",
               placeItems: "center",
-            }}>
+            }}
+          >
             <HiLocationMarker />
           </div>
           <div>
@@ -197,43 +193,15 @@ const OrderDetail = ({ params }: { params: any }) => {
           </div>
         </div>
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          gap: 20,
-          marginTop: 40,
-          width: "100%",
-        }}>
-        <div
-          style={{
-            width: "70%",
-          }}>
-          <table style={{ width: "100%" }}>
-            <tbody>
-              <tr style={{ textAlign: "left" }}>
-                {thead.map((item) => (
-                  <th key={item}>{item}</th>
-                ))}
-              </tr>
-              {dataa.map((item, i) => (
-                <tr key={i}>
-                  <td>{item.orderId}</td>
-                  <td>{item.Product}</td>
-                  <td>{item.unit}</td>
-                  <td>{item.date}</td>
-                  <td>{item.cost}</td>
-                  <td>{item.status}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      <div className={style.tableAndCommentBoxDiv}>
+        <div className={style.orderTable}>
+          <OrderDetailsTable products={products} />
         </div>
-        <div style={{ width: "30%" }}>
+        <div>
           <TextArea
-            style={{ width: "100%", marginBottom: 20 }}
+            style={{ marginBottom: 20 }}
             rows={4}
-            placeholder='maxLength is 6'
+            placeholder="maxLength is 6"
             maxLength={6}
           />
           <Button>Save Note</Button>

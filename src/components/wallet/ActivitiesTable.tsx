@@ -1,3 +1,5 @@
+"use client";
+
 import { Space, Table, Tag } from "antd";
 import type { ColumnsType } from "antd/es/table";
 
@@ -85,7 +87,7 @@ const ActivitiesTable = () => {
 
   return (
     <div style={{ marginTop: 50 }}>
-      <Table columns={columns} dataSource={data} />;
+      <Table columns={columns} scroll={{ x: 700 }} dataSource={data} />;
     </div>
   );
 };

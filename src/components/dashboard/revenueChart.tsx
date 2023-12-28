@@ -68,7 +68,7 @@ export function RevenueChart(props:{data:IdataType}) {
     useEffect(()=>{
       // setChartWidth(chartRef.current.offsetWidth*90/100)
        window.addEventListener('resize', handleResize);
-    },[window.innerWidth])
+    },[])
   return (
     <div ref={chartRef} className={style.revenue_chart}>
       <Line className={style.anime} redraw={true} width={chartWidth || 350} height={calculatePercentage(chartWidth || 350,68)} options={options} data={data} />

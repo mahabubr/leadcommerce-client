@@ -1,8 +1,8 @@
 "use client";
 
 import TopCard from "@/components/wallet/TopCard";
-import PaymentChart from "./PaymentChart";
-import ActivitiesTable from "./ActivitiesTable";
+import PaymentChart from "../../../components/wallet/PaymentChart";
+import ActivitiesTable from "../../../components/wallet/ActivitiesTable";
 
 const Wallet = () => {
   return (

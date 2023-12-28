@@ -1,0 +1,26 @@
+.storeCard {
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  height: 400px;
+  width: 300px;
+}
+
+@media (max-width: 1036px) {
+  .storeCard{
+    width: 500px;;
+  }
+}
+@media (max-width: 585px) {
+  .storeCard{
+    width: 300px;;
+  }
+}
+@media (max-width: 392px) {
+  .storeCard{
+    width: 250px;
+    /* height: 350px; */
+  }
+}
+

@@ -1,11 +1,15 @@
-import AddCategory from '@/components/category/AddCategory';
+import AddCategory from "@/components/category/AddCategory";
 
 const page = () => {
-    return (
-        <>
-            <AddCategory />
-        </>
-    );
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  return (
+    <div>
+      <AddCategory />
+    </div>
+  );
 };
 
 export default page;

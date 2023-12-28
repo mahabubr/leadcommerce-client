@@ -1,4 +1,4 @@
-import { FaHome, FaStore } from "react-icons/fa";
+import { FaHome, FaStore, FaCalendar } from "react-icons/fa";
 import { BiSolidCategoryAlt } from "react-icons/bi";
 import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 import { LuShoppingBasket } from "react-icons/lu";
@@ -25,6 +25,14 @@ const sidebarItems = (role: string) => {
       icon: <FaStore />,
       links: [{ label: "Stores", href: "/stores" }],
     },
+    {
+      title: "Events",
+      icon: <FaCalendar />,
+      links: [
+        { label: "Calendar", href: "/event/calendar" },
+        { label: "Events", href: "/event" },
+      ],
+    },
   ];
 
   const storeItems = [
@@ -41,7 +49,7 @@ const sidebarItems = (role: string) => {
     {
       title: "Orders",
       icon: <LuShoppingBasket />,
-      links: [{ label: "Orders", href: "/order" }],
+      links: [{ label: "Orders", href: "/orders" }],
     },
     {
       title: "Employe",

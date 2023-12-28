@@ -25,7 +25,9 @@ import type { Color, ColorPickerProps } from "antd/es/color-picker";
 import { useAddProductsMutation } from "@/redux/product/productApi";
 import { notification } from "antd";
 import { PoweroffOutlined } from "@ant-design/icons";
-import './styles/cproduct.css'
+import "./styles/cproduct.css";
+import { useGetAllCategoriesQuery } from "@/redux/category/categoryApi";
+import Loader from "../ui/Loader";
 import { paths } from "@/paths/paths";
 
 const props: UploadProps = {
@@ -63,6 +65,12 @@ const AddProductV2 = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [addProduct] = useAddProductsMutation();
 
+  const { data, isLoading: catLoading } = useGetAllCategoriesQuery({
+    limit: 1000,
+    page: 1,
+    sortOrder: "asc",
+  });
+
   /* //** form  */
   const [form] = Form.useForm();
 
@@ -76,8 +84,6 @@ const AddProductV2 = () => {
 
   //** handle onfinish  */
   const onFinish = async (values: any) => {
-    console.log(values, checkedValues, hexString);
-
     let formData = new FormData();
     if (values.title) {
       formData.append("productName", values.title);
@@ -121,7 +127,7 @@ const AddProductV2 = () => {
       setIsLoading(true);
       await addProduct(formData).then((res: any) => {
         if (res?.data?.success) {
-          message.success(res?.data);
+          message.success(res?.data?.message);
           form.setFieldsValue(initialData);
           setCheckedValues(["S"]);
           setFileList(null);
@@ -171,6 +177,10 @@ const AddProductV2 = () => {
     }
   }, [fileList]);
 
+  if (catLoading) {
+    return <Loader />;
+  }
+
   return (
     <>
       {contextHolder}
@@ -187,7 +197,6 @@ const AddProductV2 = () => {
           }}
         >
           <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
-
             <Col className="gutter-row" xs={24} lg={9}>
               <Card
                 title=""
@@ -256,9 +265,12 @@ const AddProductV2 = () => {
             </Col>
 
             <Col className="gutter-row" xs={24} lg={15}>
-              <Row gutter={{ xs: 8, sm: 16, md: 24 }} >
-
-                <Col className="gutter-row mobile-top-margin-20" xs={24} lg={12}>
+              <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
+                <Col
+                  className="gutter-row mobile-top-margin-20"
+                  xs={24}
+                  lg={12}
+                >
                   <label
                     htmlFor="Product title"
                     style={{
@@ -313,20 +325,22 @@ const AddProductV2 = () => {
                         style={{ width: "100%", marginTop: "0.5rem" }}
                         placeholder="Select a category"
                       >
-                        {productItems?.map((pt, index) => (
-                          <Select.Option key={index} value={`${pt.value}`}>
-                            {pt?.label}
-                          </Select.Option>
-                        ))}
+                        {
+                          // @ts-ignore
+                          data.data &&
+                            // @ts-ignore
+                            data?.data?.map((pt: any, index: number) => (
+                              <Select.Option key={index} value={`${pt._id}`}>
+                                {pt?.name}
+                              </Select.Option>
+                            ))
+                        }
                       </Select>
                     </Form.Item>
                   </div>
                 </Col>
 
-                <Col
-                  className="gutter-row"
-                  span={24}
-                >
+                <Col className="gutter-row" span={24}>
                   <div>
                     <label
                       htmlFor="slug"
@@ -385,11 +399,7 @@ const AddProductV2 = () => {
                   </Form.Item>
                 </Col>
 
-                <Col
-                  className="gutter-row margin-bottom-20"
-                  xs={24}
-                  lg={12}
-                >
+                <Col className="gutter-row margin-bottom-20" xs={24} lg={12}>
                   <div>
                     <label
                       style={{
@@ -530,10 +540,7 @@ const AddProductV2 = () => {
                   </Form.Item>
                 </Col>
 
-                <Col
-                  className="gutter-row"
-                  xs={24}
-                >
+                <Col className="gutter-row" xs={24}>
                   <label
                     htmlFor="Full Description"
                     style={{
@@ -562,10 +569,7 @@ const AddProductV2 = () => {
                   </Form.Item>
                 </Col>
 
-                <Col
-                  className="gutter-row"
-                  xs={24}
-                >
+                <Col className="gutter-row" xs={24}>
                   <label
                     htmlFor="Product Tags"
                     style={{
@@ -582,14 +586,15 @@ const AddProductV2 = () => {
                         required: true,
                         message: "Please enter Product Tags",
                       },
-                      { whitespace: true },
                     ]}
                     hasFeedback
                   >
-                    <Input
+                    <Select
+                      mode="tags"
                       size="large"
                       style={{ marginTop: "0.5rem" }}
                       placeholder="Product Tags"
+                      tokenSeparators={[","]}
                     />
                   </Form.Item>
                 </Col>
