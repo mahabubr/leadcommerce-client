@@ -31,6 +31,7 @@ const sidebarItems = (role: string) => {
       links: [
         { label: "Calendar", href: "/event/calendar" },
         { label: "Events", href: "/event" },
+        { label: "Add Events", href: paths.add_events },
       ],
     },
   ];
