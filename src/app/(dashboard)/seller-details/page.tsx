@@ -7,18 +7,23 @@ import ContactSupport from "@/components/sellerDetails/sellerProfile/ContactSupp
 import SellerDetailsData from "@/components/sellerDetails/sellerDetailsData/SellerDetailsData";
 import EmployeeModal from "@/components/ui/EmployeeModal";
 import Loader from "@/components/ui/Loader";
-import { useGetStoreDashboardDataQuery, useGetStoreSingleStoreQuery } from "@/redux/store/storeApi";
+import {
+  useGetStoreDashboardDataQuery,
+  useGetStoreSingleStoreQuery,
+} from "@/redux/store/storeApi";
 import { CodeSandboxCircleFilled } from "@ant-design/icons";
 const SellerDetails = () => {
   const { data, isLoading } = useGetStoreSingleStoreQuery({});
   const { data: dashboardData } = useGetStoreDashboardDataQuery({});
 
+  
+  //@ts-ignore
+  const store = data?.data;
+
+
   if (isLoading) {
     return <Loader />;
   }
-
-  //@ts-ignore
-  const store = data?.data;
 
   return (
     <>
