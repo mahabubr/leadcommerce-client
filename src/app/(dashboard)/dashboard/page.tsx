@@ -52,7 +52,7 @@ const DashboardPage = () => {
       </div>
       <div className={style.sales_report}>
         <SalesReport data={dashboardData} />
-        <OrdersPieChart />
+        <OrdersPieChart data={dashboardData} />
       </div>
       <div className={style.user_act}>
         <DailySignups />
