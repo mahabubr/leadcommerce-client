@@ -50,7 +50,6 @@ const dataa = [
   },
 ];
 const TopProducts = ({ data }: { data: any }) => {
-  console.log(data?.ordersChart?.topProduct);
   return (
     <div className={`${style.sales_report} ${style.bg_white}`}>
       <h3 className={style.sales_head}>Top Products</h3>

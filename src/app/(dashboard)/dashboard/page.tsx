@@ -63,10 +63,10 @@ const DashboardPage = () => {
       </div>
       <div className={style.top_items}>
         <TopProducts data={dashboardData} />
-        <TopItems />
+        <TopItems data={dashboardData} />
       </div>
       <div className={`${style.orders} ${style.bg_white}`}>
-        <Orders />
+        <Orders data={dashboardData} />
       </div>
     </div>
   );
