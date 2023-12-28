@@ -7,7 +7,7 @@ const OrdersPieChart = ({ data }: { data: any }) => {
   return (
     <div className={`${style.orders_pie} ${style.bg_white}`}>
       <h3 className={style.sales_head}>Order Status Stat</h3>
-      <PieChart dataa={data && data} />
+      <PieChart OrderData={data && data} />
     </div>
   );
 };

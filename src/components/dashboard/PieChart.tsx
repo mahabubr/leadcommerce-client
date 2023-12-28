@@ -6,16 +6,14 @@ import style from "./static/dashboard.module.css";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export function PieChart({ dataa }: { data: any }) {
-  console.log(dataa?.ordersChart?.ordersStats);
+export function PieChart({ OrderData }: { OrderData: any }) {
   const {
     delivered,
     cancel,
     paused,
     pending,
   }: { delivered: number; cancel: number; paused: number; pending: number } =
-    dataa ? dataa?.ordersChart?.ordersStats : {};
-  console.log(delivered);
+    OrderData ? OrderData?.ordersChart?.ordersStats : {};
   const data = {
     labels: [
       "Order Completed",
