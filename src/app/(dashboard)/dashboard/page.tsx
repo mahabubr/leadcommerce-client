@@ -62,7 +62,7 @@ const DashboardPage = () => {
         <MapChart />
       </div>
       <div className={style.top_items}>
-        <TopProducts />
+        <TopProducts data={dashboardData} />
         <TopItems />
       </div>
       <div className={`${style.orders} ${style.bg_white}`}>

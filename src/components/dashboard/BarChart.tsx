@@ -45,7 +45,6 @@ ChartJS.register(
 // console.log(data);
 
 export function Barchart({ signUpData }: { signUpData: any }) {
-  console.log(signUpData?.ordersChart?.weeklySignUp);
   const dayLabel =
     signUpData &&
     signUpData?.ordersChart?.weeklySignUp?.map((item: any) => item.dayName);
