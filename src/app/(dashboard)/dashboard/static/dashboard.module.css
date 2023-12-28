@@ -51,8 +51,8 @@
 }
 
 
-@media only screen and (max-width:900px){
-    .summary{
+@media only screen and (max-width:1000px){
+    .summary {
         grid-template-columns: repeat(2, 1fr);
     }
     .sales_report{
@@ -65,7 +65,11 @@
         grid-template-columns: 1fr;
     }
     .orders{
-        grid-template-columns: 1fr;
         overflow-x: scroll;
+    }
+}
+@media only screen and (max-width:500px) {
+    .summary {
+        grid-template-columns: repeat(1, 1fr);
     }
 }

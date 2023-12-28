@@ -5,4 +5,6 @@ export const paths = {
   dashboard: "/dashboard",
   orders: "/orders",
   products: "/products",
+  employees: "/employees/list",
+  addEmploye: "/employees/add-employe",
 };

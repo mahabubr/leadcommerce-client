@@ -2,9 +2,10 @@ import { ENUM_PRODUCT_STATUS } from "@/config/constants/product";
 
 export interface ProductDataType {
     _id: string;
-    title: string;
-    image: string;
+    productName: string;
+    image?: { avatar?: string; avatar_public_url?: string };
     price: number;
+    quantity?: number;
     inStock: boolean;
     status: 'pending' | 'active' | 'restrict';
 }
@@ -12,32 +13,32 @@ export interface ProductDataType {
 export const productData: ProductDataType[] = [
     {
         _id: '10',
-        image: 'https://www.cloudlift.app/cdn/shop/products/product.jpg?v=1615224393&width=533',
-        title: 'T shirt one',
+        image: { avatar: 'https://www.cloudlift.app/cdn/shop/products/product.jpg?v=1615224393&width=533' },
+        productName: 'T shirt one',
         price: 3200,
         inStock: true,
         status: 'pending',
     },
     {
         _id: '1',
-        image: 'https://www.cloudlift.app/cdn/shop/products/product.jpg?v=1615224393&width=533',
-        title: 'T shirt one',
+        image: { avatar: 'https://www.cloudlift.app/cdn/shop/products/product.jpg?v=1615224393&width=533' },
+        productName: 'T shirt one',
         price: 3200,
         inStock: false,
         status: 'active',
     },
     {
         _id: '2',
-        image: 'https://www.cloudlift.app/cdn/shop/products/product.jpg?v=1615224393&width=533',
-        title: 'T shirt one',
+        image: { avatar: 'https://www.cloudlift.app/cdn/shop/products/product.jpg?v=1615224393&width=533' },
+        productName: 'T shirt one',
         price: 3200,
         inStock: true,
         status: 'restrict',
     },
     {
         _id: '3',
-        image: 'https://www.cloudlift.app/cdn/shop/products/product.jpg?v=1615224393&width=533',
-        title: 'T shirt one',
+        image: { avatar: 'https://www.cloudlift.app/cdn/shop/products/product.jpg?v=1615224393&width=533' },
+        productName: 'T shirt one',
         price: 3200,
         inStock: false,
         status: 'pending',
@@ -87,23 +88,27 @@ export const productItemSort = [
 
 export const productItemSortPage = [
     {
-        value: '10',
+        value: 4,
+        label: 4,
+    },
+    {
+        value: 10,
         label: 10,
     },
     {
-        value: '20',
+        value: 20,
         label: 20,
     },
     {
-        value: '30',
+        value: 30,
         label: 30,
     },
     {
-        value: '40',
+        value: 40,
         label: 40,
     },
     {
-        value: '50',
+        value: 50,
         label: 50,
     },
 ];

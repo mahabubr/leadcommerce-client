@@ -1,5 +1,8 @@
 "use client"
-import React from 'react';
+
+
+import { Line } from "react-chartjs-2";
+import React,{useRef,useEffect, useState, RefObject} from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,8 +14,10 @@ import {
   Filler,
   Legend,
 } from 'chart.js';
-import { Line, Radar } from 'react-chartjs-2';
+// import { Line, Radar } from 'react-chartjs-2';
 import style from "./static/dashboard.module.css"
+import { calculatePercentage } from "@/Helper/CommonFunction";
+import { debounce } from "chart.js/helpers";
 
 ChartJS.register(
   CategoryScale,
@@ -26,13 +31,14 @@ ChartJS.register(
 );
 
 export const options = {
-  responsive: true,
-  maintainAspectRatio: true,
-  plugins: {
-    legend: {
-      position: 'top' as const,
-    }
-  },
+  // responsive: true,
+  maintainAspectRatio: false,
+  // aspectRatio:1.5,
+  // plugins: {
+  //   legend: {
+  //     position: 'top' as const,
+  //   }
+  // },
 };
 
 
@@ -50,11 +56,22 @@ type IdataType={
 
 
 export function RevenueChart(props:{data:IdataType}) {
+  const chartRef:RefObject<any>=useRef<HTMLDivElement>(null);
+  const [chartWidth,setChartWidth]=useState<number|null>(null);
+  const debouncedResizeHandler = debounce((val)=>setChartWidth(val), 300);
 
     const {data}=props;
+
+    const handleResize=(e:any)=>{
+      setChartWidth(chartRef?.current?.offsetWidth*85/100)
+    }
+    useEffect(()=>{
+      // setChartWidth(chartRef.current.offsetWidth*90/100)
+       window.addEventListener('resize', handleResize);
+    },[])
   return (
-    <div className={style.revenue_chart}>
-      <Line options={options} data={data} />
+    <div ref={chartRef} className={style.revenue_chart}>
+      <Line className={style.anime} redraw={true} width={chartWidth || 350} height={calculatePercentage(chartWidth || 350,68)} options={options} data={data} />
     </div>
   );
 }

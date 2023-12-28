@@ -39,16 +39,17 @@ const ProfileSetting = () => {
               <div
                 style={{
                   padding: "2rem",
-                }}>
+                }}
+              >
                 <Tabs
-                  defaultActiveKey='1'
+                  defaultActiveKey="1"
                   tabPosition={"left"}
                   style={{
                     minHeight: "60vh",
                   }}
                   className={style.tabResponsive}
                   tabBarGutter={25}
-                  type='line'
+                  type="line"
                   items={items}
                   onChange={onChange}
                   tabBarStyle={{
@@ -57,7 +58,7 @@ const ProfileSetting = () => {
                 />
                 <Tabs
                   className={style.tabMobile}
-                  defaultActiveKey='1'
+                  defaultActiveKey="1"
                   items={items}
                   style={{
                     minHeight: "60vh",

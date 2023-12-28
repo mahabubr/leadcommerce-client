@@ -1,11 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
 import SideBar from "@/components/ui/SideBar";
 import TopBar from "@/components/ui/TopBar";
+import { getFromLocalStorage } from "@/utils/local-storage";
+import decodedToken from "@/utils/decodeToken";
+import { useRouter } from "next/navigation";
+import Loader from "@/components/ui/Loader";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
+  const router = useRouter();
+
+  const token = getFromLocalStorage("accessToken");
+  const decode = decodedToken(token as string);
+
   const [open, setOpen] = useState(true);
 
   const showDrawer = () => {
@@ -15,6 +23,15 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const closeDrawer = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    //@ts-ignore
+    if (!decode?.email && !decode?.role) {
+      router.push("/login");
+    }
+
+    //@ts-ignore
+  }, [decode?.email, decode?.role, router]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -27,6 +44,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  //@ts-ignore
+  if (!decode?.email && !decode?.role) {
+    if (typeof window !== "undefined") {
+      return <Loader />;
+    }
+  }
 
   return (
     <div>

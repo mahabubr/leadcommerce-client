@@ -22,18 +22,14 @@ a {
   box-sizing: border-box;
 }
 
-.ant-table-content,.ant-table-thead{
-  background-color: #f1f1f1 !important;
-}
-
 .bg-success {
-    background-color: #27ae60;
+  background-color: #27ae60;
 }
 
 .bg-warning {
-    background-color: #ffcc00;
+  background-color: #ffcc00;
 }
 
 .bg-error {
-    background-color: #e74c3c;
+  background-color: #e74c3c;
 }
