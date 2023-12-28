@@ -72,7 +72,12 @@ const Stores = () => {
             : "Not Store Found"}
         </div>
         <Card
-          style={{ marginTop: 20, display: "flex", justifyContent: "center", width: "100%" }}
+          style={{
+            marginTop: 20,
+            display: "flex",
+            justifyContent: "center",
+            width: "100%",
+          }}
         >
           <Pagination
             defaultCurrent={1}

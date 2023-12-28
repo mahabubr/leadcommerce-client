@@ -7,9 +7,11 @@ import ContactSupport from "@/components/sellerDetails/sellerProfile/ContactSupp
 import SellerDetailsData from "@/components/sellerDetails/sellerDetailsData/SellerDetailsData";
 import EmployeeModal from "@/components/ui/EmployeeModal";
 import Loader from "@/components/ui/Loader";
-import { useGetStoreSingleStoreQuery } from "@/redux/store/storeApi";
+import { useGetStoreDashboardDataQuery, useGetStoreSingleStoreQuery } from "@/redux/store/storeApi";
+import { CodeSandboxCircleFilled } from "@ant-design/icons";
 const SellerDetails = () => {
   const { data, isLoading } = useGetStoreSingleStoreQuery({});
+  const { data: dashboardData } = useGetStoreDashboardDataQuery({});
 
   if (isLoading) {
     return <Loader />;
@@ -50,7 +52,7 @@ const SellerDetails = () => {
                 borderRadius: "5px",
               }}
             >
-              <SellerDetailsData store={store}> </SellerDetailsData>
+              <SellerDetailsData store={dashboardData}> </SellerDetailsData>
             </div>
           </div>
         </div>
