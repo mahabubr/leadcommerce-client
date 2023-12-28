@@ -1,3 +1,5 @@
+import { UploadProps } from "antd";
+
 export const orderStatusColor = {
   Pending: "#3498db",
   cancelled: "#e74c3c",
@@ -37,4 +39,12 @@ export const hslToHex = (hsl: any) => {
   return `#${Math.round(rgb[0]).toString(16)}${Math.round(rgb[1]).toString(
     16
   )}${Math.round(rgb[2]).toString(16)}`;
+};
+
+export const uploadProps: UploadProps = {
+  name: "file",
+  action: "https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188",
+  headers: {
+    authorization: "authorization-text",
+  },
 };

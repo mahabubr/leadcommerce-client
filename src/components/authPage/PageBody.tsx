@@ -19,7 +19,7 @@ const PageBody = () => {
       if (res.success) {
         message.success(res.message);
         localStorage.setItem("accessToken", res?.data?.accessToken);
-        console.log();
+        console.log(res?.data);
         const decode = decodedToken(res?.data?.accessToken as string);
         // @ts-ignore
         if (decode?.role === "admin") {

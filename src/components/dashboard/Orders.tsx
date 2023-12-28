@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
 import style from "./static/dashboard.module.css";
-import { Tag } from "antd";
+import { Table, Tag } from "antd";
 
 const data = [
   {
     orderId: 2535,
-    Product: "Dummy Name",
+    product: "Dummy Name",
     unit: 150,
     date: "Oct 20, 2018",
     cost: 15,
@@ -14,7 +14,7 @@ const data = [
   },
   {
     orderId: 2535,
-    Product: "Dummy Name",
+    product: "Dummy Name",
     unit: 150,
     date: "Oct 20, 2018",
     cost: 15,
@@ -22,7 +22,7 @@ const data = [
   },
   {
     orderId: 2535,
-    Product: "Dummy Name",
+    product: "Dummy Name",
     unit: 150,
     date: "Oct 20, 2018",
     cost: 15,
@@ -30,7 +30,7 @@ const data = [
   },
   {
     orderId: 2535,
-    Product: "Dummy Name",
+    product: "Dummy Name",
     unit: 150,
     date: "Oct 20, 2018",
     cost: 15,
@@ -38,7 +38,7 @@ const data = [
   },
   {
     orderId: 2535,
-    Product: "Dummy Name",
+    product: "Dummy Name",
     unit: 150,
     date: "Oct 20, 2018",
     cost: 15,
@@ -46,7 +46,7 @@ const data = [
   },
   {
     orderId: 2535,
-    Product: "Dummy Name",
+    product: "Dummy Name",
     unit: 150,
     date: "Oct 20, 2018",
     cost: 15,
@@ -54,7 +54,7 @@ const data = [
   },
   {
     orderId: 2535,
-    Product: "Dummy Name",
+    product: "Dummy Name",
     unit: 150,
     date: "Oct 20, 2018",
     cost: 15,
@@ -62,7 +62,7 @@ const data = [
   },
   {
     orderId: 2535,
-    Product: "Dummy Name",
+    product: "Dummy Name",
     unit: 150,
     date: "Oct 20, 2018",
     cost: 15,
@@ -78,6 +78,36 @@ const thead = [
   "Quantity",
   "Status",
 ];
+
+const columns = [
+    {
+      title: "Store Id",
+      dataIndex: "orderId",
+      key: "orderId",
+    },
+    {
+      title: "Product Name",
+      dataIndex: "product",
+      key: "product",
+    },
+    {
+      title: "Price",
+      dataIndex: "cost",
+      key: "cost",
+    },
+    {
+      title: "Date",
+      dataIndex: "date",
+      key: "date",
+    },
+    {
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
+    },
+
+    
+  ];
 const Orders = () => {
   return (
     <div className={style.orders}>
@@ -94,7 +124,7 @@ const Orders = () => {
           {data.map((item, i) => (
             <tr key={i} className={style.tr}>
               <td className={style.td}>{item.orderId}</td>
-              <td className={style.td}>{item.Product}</td>
+              <td className={style.td}>{item.product}</td>
               <td className={style.td}>{item.unit}</td>
               <td className={style.td}>{item.date}</td>
               <td className={style.td}>{item.cost}</td>

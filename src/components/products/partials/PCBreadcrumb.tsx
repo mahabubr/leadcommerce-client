@@ -9,10 +9,12 @@ const boxStyle: React.CSSProperties = {
 };
 
 type Props = {
-  title: string;
+  title?: string;
+  route?:string;
+  handleDraftFunc?:()=>{}
 };
 
-const PCBreadcrumb = ({ title }: Props) => {
+const PCBreadcrumb = ({ title,route,handleDraftFunc }: Props) => {
   // global
   const router = useRouter();
 
@@ -23,14 +25,14 @@ const PCBreadcrumb = ({ title }: Props) => {
           <Button
             type="primary"
             size="large"
-            onClick={() => router.push("/products")}
+            onClick={() => router.push(route as string)}
           >
             View All
           </Button>
         </Title>
 
         <Flex gap="small" wrap="wrap">
-          <Button size="large">Save as Draft</Button>
+          <Button onClick={handleDraftFunc} size="large">Save as Draft</Button>
         </Flex>
       </Flex>
     </Flex>

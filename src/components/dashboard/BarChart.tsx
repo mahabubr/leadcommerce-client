@@ -1,5 +1,6 @@
 'use client';
-import React from 'react';
+import React,{RefObject,useRef,useState,useEffect} from 'react';
+import style from "./static/dashboard.module.css"
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,6 +11,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { calculatePercentage } from '@/Helper/CommonFunction';
 
 ChartJS.register(
   CategoryScale,
@@ -37,9 +39,7 @@ export const data = {
 };
 
 console.log(data);
-
-export function Barchart() {
-    const options = {
+const options = {
         legend:{
             display:false
         },
@@ -58,5 +58,23 @@ export function Barchart() {
         }
       },
     };
-  return <Bar options={options} data={data} />;
+
+
+export function Barchart() {
+  const barChartRef:RefObject<any>=useRef<HTMLDivElement>(null);
+  const [chartWidth,setChartWidth]=useState<number|null>(null);
+
+
+    const handleResize=(e:any)=>{
+      setChartWidth(barChartRef?.current?.offsetWidth*85/100)
+      console.log(barChartRef?.current?.offsetWidth,window.innerWidth);
+    }
+    useEffect(()=>{
+      // setChartWidth(barChartRef.current.offsetWidth*90/100)
+       window.addEventListener('resize', handleResize);
+    },[window.innerWidth])
+    
+  return <div className={style.barchart_cont} ref={barChartRef}>
+      <Bar className={style.anime} redraw={true} width={chartWidth || 350} height={calculatePercentage(chartWidth || 350,68)} options={options} data={data} />
+  </div>;
 }

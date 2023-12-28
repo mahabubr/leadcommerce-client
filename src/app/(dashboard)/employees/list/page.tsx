@@ -1,21 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { Space, Input, Table, Tag, Select, DatePicker, Button } from "antd";
+import { Input, Table,  Button } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import type { DatePickerProps } from "antd";
 import { CiSearch } from "react-icons/ci";
 
 import style from "../../order/order.module.css";
+import useList from "./useList";
+import { DataType, IProps } from "./list.type";
 
-interface DataType {
-  _id: string;
-  image: string;
-  full_name: string;
-  position: string;
-  email: string;
-  phone: string;
-}
+
 
 const columns: ColumnsType<DataType> = [
   {
@@ -49,102 +43,48 @@ const columns: ColumnsType<DataType> = [
   {
     title: "Action",
     key: "action",
-    render: (_, record) => <Button type="primary">Edit</Button>,
+    render: (_, record) => <Button type="primary" danger>Delete</Button>,
   },
 ];
 
-const data: DataType[] = [
-  {
-    _id: "1",
-    image:'',
-    full_name: "John Brown",
-    position: "Worker",
-    email: "example@gmail.com",
-    phone: '0135661445',
-  },
-  {
-    _id: "2",
-    image:'',
-    full_name: "John Brown",
-    position: "Worker",
-    email: "example@gmail.com",
-    phone: '0135661445',
-  },
-  {
-    _id: "3",
-    image:'',
-    full_name: "John Brown",
-    position: "Worker",
-    email: "example@gmail.com",
-    phone: '0135661445',
-  },
-  {
-    _id: "4",
-    image:'',
-    full_name: "John Brown",
-    position: "Worker",
-    email: "example@gmail.com",
-    phone: '0135661445',
-  },
-  {
-    _id: "5",
-    image:'',
-    full_name: "John Brown",
-    position: "Worker",
-    email: "example@gmail.com",
-    phone: '0135661445',
-  },
-  {
-    _id: "6",
-    image:'',
-    full_name: "John Brown",
-    position: "Worker",
-    email: "example@gmail.com",
-    phone: '0135661445',
-  }
-];
+
 
 const EmployeePage = () => {
-  const onChange: DatePickerProps["onChange"] = (date, dateString) => {
-    console.log(date, dateString);
-  };
-
+  const {handleKeyDown,handleOnChange,data,isLoading,paginationConfig,onTableChange} =useList();
+ 
   return (
     <div className={style.container}>
       <div className={style.mainContent}>
         <div className={style.mainFilter}>
           <div className={style.filterOne}>
-            <Input
+            <Input onKeyDown={handleKeyDown} onChange={handleOnChange}
               size="middle"
               placeholder="Search Employees"
               suffix={<CiSearch />}
               allowClear
               style={{ width: "100%" }}
+              name="searchTerm"
             />
           </div>
         </div>
 
-        <Table columns={columns} dataSource={data} />
+        <Table pagination={paginationConfig} onChange={onTableChange} loading={isLoading} columns={columns} dataSource={data} />
       </div>
 
       <div className={style.sideContent}>
         <p style={{ fontSize: 18, fontWeight: "bold" }}>Filter by</p>
         <div className={style.sideItems}>
           <div>
-            <p style={{ fontSize: 12 }}>Name</p>
-            <Input placeholder="Type Here" type="text" size="middle" />
-          </div>
-          <div>
             <p style={{ fontSize: 12 }}>Email</p>
-            <Input placeholder="Type Here" type="email" size="middle" />
+            <Input onKeyDown={handleKeyDown} onChange={handleOnChange} name="email" placeholder="Type Here" type="email" size="middle" />
           </div>
           <div>
             <p style={{ fontSize: 12 }}>Phone</p>
-            <Input placeholder="Type Here" type="text" size="middle" />
+            <Input onKeyDown={handleKeyDown} onChange={handleOnChange} name="phone" placeholder="Type Here" type="text" size="middle" />
           </div>
           <div>
             <p style={{ fontSize: 12 }}>Position</p>
-            <Input placeholder="Type Here" type="text" size="middle" />
+            <Input onKeyDown={handleKeyDown} onChange={handleOnChange} name="position" placeholder="Type Here" type="text" size="middle" />
           </div>
         </div>
       </div>

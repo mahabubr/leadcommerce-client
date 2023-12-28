@@ -26,6 +26,7 @@ import { useAddProductsMutation } from "@/redux/product/productApi";
 import { notification } from "antd";
 import { PoweroffOutlined } from "@ant-design/icons";
 import './styles/cproduct.css'
+import { paths } from "@/paths/paths";
 
 const props: UploadProps = {
   name: "file",
@@ -158,12 +159,12 @@ const AddProductV2 = () => {
   };
 
   useEffect(() => {
-    // console.log(fileList)
     if (fileList && fileList.originFileObj) {
       try {
         const newImage = URL.createObjectURL(fileList.originFileObj);
         console.log(newImage);
         setCurrentImage(newImage);
+        console.log(setCurrentImage);
       } catch (error) {
         console.error("Error creating object URL:", error);
       }
@@ -173,7 +174,7 @@ const AddProductV2 = () => {
   return (
     <>
       {contextHolder}
-      <PCBreadcrumb title="Create Product" />
+      <PCBreadcrumb title="Create Product" route={paths.products}/>
 
       <Card title="Add Product" bordered style={{ marginTop: "20px" }}>
         <Form
