@@ -1,4 +1,8 @@
+"use client";
+
 import { Spin } from "antd";
+import Lottie from "lottie-react";
+import animate from "../../assets/loading.json";
 
 const Loader = () => {
   return (
@@ -11,7 +15,7 @@ const Loader = () => {
         alignItems: "center",
       }}
     >
-      <Spin size="large" />
+      <Lottie animationData={animate} loop={true} />
     </div>
   );
 };
