@@ -1,118 +1,207 @@
 "use client";
 import React from "react";
 import style from "./static/dashboard.module.css";
-import { Table, Tag } from "antd";
+import { Button, Table, Tag } from "antd";
 
-const data = [
-  {
-    orderId: 2535,
-    product: "Dummy Name",
-    unit: 150,
-    date: "Oct 20, 2018",
-    cost: 15,
-    status: <Tag color="blue">Pending</Tag>,
-  },
-  {
-    orderId: 2535,
-    product: "Dummy Name",
-    unit: 150,
-    date: "Oct 20, 2018",
-    cost: 15,
-    status: <Tag color="yellow">Shipment</Tag>,
-  },
-  {
-    orderId: 2535,
-    product: "Dummy Name",
-    unit: 150,
-    date: "Oct 20, 2018",
-    cost: 15,
-    status: <Tag color="green">Delivery</Tag>,
-  },
-  {
-    orderId: 2535,
-    product: "Dummy Name",
-    unit: 150,
-    date: "Oct 20, 2018",
-    cost: 15,
-    status: <Tag color="red">Canceled</Tag>,
-  },
-  {
-    orderId: 2535,
-    product: "Dummy Name",
-    unit: 150,
-    date: "Oct 20, 2018",
-    cost: 15,
-    status: <Tag color="blue">Pending</Tag>,
-  },
-  {
-    orderId: 2535,
-    product: "Dummy Name",
-    unit: 150,
-    date: "Oct 20, 2018",
-    cost: 15,
-    status: <Tag color="yellow">Shipment</Tag>,
-  },
-  {
-    orderId: 2535,
-    product: "Dummy Name",
-    unit: 150,
-    date: "Oct 20, 2018",
-    cost: 15,
-    status: <Tag color="green">Delivery</Tag>,
-  },
-  {
-    orderId: 2535,
-    product: "Dummy Name",
-    unit: 150,
-    date: "Oct 20, 2018",
-    cost: 15,
-    status: <Tag color="red">Canceled</Tag>,
-  },
-];
+// const data = [
+//   {
+//     orderId: 2535,
+//     Product: "Dummy Name",
+//     unit: 150,
+//     date: "Oct 20, 2018",
+//     cost: 15,
+//     status: <Tag color="blue">Pending</Tag>,
+//   },
+//   {
+//     orderId: 2535,
+//     Product: "Dummy Name",
+//     unit: 150,
+//     date: "Oct 20, 2018",
+//     cost: 15,
+//     status: <Tag color="yellow">Shipment</Tag>,
+//   },
+//   {
+//     orderId: 2535,
+//     Product: "Dummy Name",
+//     unit: 150,
+//     date: "Oct 20, 2018",
+//     cost: 15,
+//     status: <Tag color="green">Delivery</Tag>,
+//   },
+//   {
+//     orderId: 2535,
+//     Product: "Dummy Name",
+//     unit: 150,
+//     date: "Oct 20, 2018",
+//     cost: 15,
+//     status: <Tag color="red">Canceled</Tag>,
+//   },
+//   {
+//     orderId: 2535,
+//     Product: "Dummy Name",
+//     unit: 150,
+//     date: "Oct 20, 2018",
+//     cost: 15,
+//     status: <Tag color="blue">Pending</Tag>,
+//   },
+//   {
+//     orderId: 2535,
+//     Product: "Dummy Name",
+//     unit: 150,
+//     date: "Oct 20, 2018",
+//     cost: 15,
+//     status: <Tag color="yellow">Shipment</Tag>,
+//   },
+//   {
+//     orderId: 2535,
+//     Product: "Dummy Name",
+//     unit: 150,
+//     date: "Oct 20, 2018",
+//     cost: 15,
+//     status: <Tag color="green">Delivery</Tag>,
+//   },
+//   {
+//     orderId: 2535,
+//     Product: "Dummy Name",
+//     unit: 150,
+//     date: "Oct 20, 2018",
+//     cost: 15,
+//     status: <Tag color="red">Canceled</Tag>,
+//   },
+// ];
 
-const thead = [
-  "Shop Id",
-  "Product Name",
-  "Price",
-  "Date",
-  "Quantity",
-  "Status",
-];
-
-const columns = [
+// const thead = [
+//   "Shop Id",
+//   "Product Name",
+//   "Price",
+//   "Date",
+//   "Quantity",
+//   "Status",
+// ];
+const Orders = ({ data }: { data: any }) => {
+  console.log(data?.ordersChart?.topOrders, "Order");
+  const dataa = [
     {
-      title: "Store Id",
-      dataIndex: "orderId",
-      key: "orderId",
+      orderId: 2535,
+      Product: "Dummy Name",
+      unit: 150,
+      date: "Oct 20, 2018",
+      cost: 15,
+      status: <Tag color="blue">Pending</Tag>,
     },
     {
-      title: "Product Name",
-      dataIndex: "product",
-      key: "product",
+      orderId: 2535,
+      Product: "Dummy Name",
+      unit: 150,
+      date: "Oct 20, 2018",
+      cost: 15,
+      status: <Tag color="yellow">Shipment</Tag>,
     },
     {
-      title: "Price",
-      dataIndex: "cost",
-      key: "cost",
+      orderId: 2535,
+      Product: "Dummy Name",
+      unit: 150,
+      date: "Oct 20, 2018",
+      cost: 15,
+      status: <Tag color="green">Delivery</Tag>,
     },
     {
-      title: "Date",
-      dataIndex: "date",
-      key: "date",
+      orderId: 2535,
+      Product: "Dummy Name",
+      unit: 150,
+      date: "Oct 20, 2018",
+      cost: 15,
+      status: <Tag color="red">Canceled</Tag>,
     },
-    {
-      title: "Status",
-      dataIndex: "status",
-      key: "status",
-    },
-
-    
   ];
-const Orders = () => {
+  const columns = [
+    {
+      title: "Order Code",
+      dataIndex: "order_code",
+      key: "_id",
+      render: (order_code: any, _id: any) => <p key={_id}>{order_code}</p>,
+    },
+    {
+      title: "Total Item",
+      dataIndex: "total_items",
+      key: "_id",
+      render: (total_items: any, _id: any) => <p key={_id}>{total_items}</p>,
+    },
+    // {
+    //   title: "Total Quantity",
+    //   dataIndex: "total_quantity",
+    //   key: "_id",
+    //   render: (total_quantity: any, _id: any) => (
+    //     <p key={_id}>{total_quantity}</p>
+    //   ),
+    // },
+    {
+      title: "Amount",
+      dataIndex: "amount",
+      key: "_id",
+      render: (amount: any, _id: any) => <p key={_id}>{amount}</p>,
+    },
+    {
+      title: "Shipment Status",
+      dataIndex: "shipment_status",
+      key: "_id",
+      render: (shipment_status: any, _id: any) => {
+        return (
+          <>
+            {shipment_status === "pending" ? (
+              <Tag color="warning">Pending</Tag>
+            ) : shipment_status === "completed" ? (
+              <Tag color="success">Completed</Tag>
+            ) : shipment_status === "canceled" ? (
+              <Tag color="error">Canceled</Tag>
+            ) : null}
+          </>
+        );
+      },
+    },
+
+    {
+      title: "Payment Status",
+      dataIndex: "payment_status",
+      key: "_id",
+      render: (payment_status: any, _id: any) => {
+        return (
+          <>
+            {payment_status === "pending" ? (
+              <Tag color="warning">Pending</Tag>
+            ) : payment_status === "completed" ? (
+              <Tag color="success">Completed</Tag>
+            ) : payment_status === "canceled" ? (
+              <Tag color="error">Canceled</Tag>
+            ) : null}
+          </>
+        );
+      },
+    },
+    //  {
+    //    title: "Details",
+    //    dataIndex: "",
+    //    key: "_id",
+    //    render: (_: any, { _id }: { _id: any }) => {
+    //      return (
+    //        <>
+    //          <Button
+    //            type='text'
+    //            size='small'
+    //            style={{ textDecoration: "underline" }}
+    //            onClick={() => handleRouteUpdate(_id)}>
+    //            Details
+    //          </Button>
+    //        </>
+    //      );
+    //    },
+    //  },
+  ];
+
   return (
     <div className={style.orders}>
       <h3 className={style.sales_head}>Recent Orders</h3>
-      <table className={style.table}>
+      {/* <table className={style.table}>
         <tbody className={style.tbody}>
           <tr className={style.thead}>
             {thead.map((item) => (
@@ -124,7 +213,7 @@ const Orders = () => {
           {data.map((item, i) => (
             <tr key={i} className={style.tr}>
               <td className={style.td}>{item.orderId}</td>
-              <td className={style.td}>{item.product}</td>
+              <td className={style.td}>{item.Product}</td>
               <td className={style.td}>{item.unit}</td>
               <td className={style.td}>{item.date}</td>
               <td className={style.td}>{item.cost}</td>
@@ -132,7 +221,12 @@ const Orders = () => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
+      <Table
+        columns={columns}
+        dataSource={data?.ordersChart?.topOrders}
+        scroll={{ x: 1000 }}
+      />
     </div>
   );
 };
