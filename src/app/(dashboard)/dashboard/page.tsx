@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import {
   CloudUploadOutlined,
@@ -15,36 +16,42 @@ import TopProducts from "@/components/dashboard/TopProducts";
 import TopItems from "@/components/dashboard/TopItems";
 import Orders from "@/components/dashboard/Orders";
 import MapChart from "@/components/dashboard/MapChart";
+import { useGetAllDashboardDataQuery } from "@/redux/dashboard/dashboard";
 
 const DashboardPage = () => {
+  const { data, isLoading, isSuccess }: { data?: any } =
+    useGetAllDashboardDataQuery({});
+  const dashboardData = data && data?.data;
+  // console.log(dashboardData?.userDailySingUp);
+
   return (
     <div className={style.container}>
       <div className={style.summary}>
         <TopSingleCard
-          total="500"
-          text="Daily Signups"
+          total={dashboardData && dashboardData?.userDailySingUp}
+          text='Daily Signups'
           icon={<UserAddOutlined />}
         />
         <TopSingleCard
           link={paths.orders}
-          total="40"
-          text="Daily Orders"
+          total={dashboardData && dashboardData?.dailyOrders}
+          text='Daily Orders'
           icon={<UserAddOutlined />}
         />
         <TopSingleCard
-          total="$1000"
-          text="Daily Revenue"
+          total={dashboardData && dashboardData?.dailyRevenue}
+          text='Daily Revenue'
           icon={<DollarOutlined />}
         />
         <TopSingleCard
           link={paths.products}
-          total="30"
-          text="Daily added product"
+          total={dashboardData && dashboardData?.dailyProducts}
+          text='Daily added product'
           icon={<CloudUploadOutlined />}
         />
       </div>
       <div className={style.sales_report}>
-        <SalesReport />
+        <SalesReport data={dashboardData} />
         <OrdersPieChart />
       </div>
       <div className={style.user_act}>

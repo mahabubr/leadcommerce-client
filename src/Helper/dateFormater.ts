@@ -18,3 +18,21 @@ export const dateFormater = (date: any) => {
 
   return formattedDate;
 };
+
+export const dateFormaterForWeeklyChart = (weekLabel: any) => {
+  const formattedDates =
+    weekLabel &&
+    weekLabel?.map((dateString: any) => {
+      // Convert the string to a Date object
+      const dateObj = new Date(dateString);
+
+      // Format the date as 'Mon Dec 18'
+      const formattedDate = dateObj.toLocaleString("en-us", {
+        month: "short",
+        day: "numeric",
+      });
+
+      return formattedDate;
+    });
+  return formattedDates;
+};
