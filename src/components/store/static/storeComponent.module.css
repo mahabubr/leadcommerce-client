@@ -17,7 +17,7 @@
   width: 100%; /* Set the initial width to 100% */
   max-width: 500px; /* Set a maximum width if needed */
   margin: 0 auto; /* Center the card horizontally */
-}
+}}
 
 /* Adjust width based on different screen sizes if needed */
 @media (max-width: 768px) {
@@ -31,10 +31,8 @@
   .storeCard {
     /* Adjust properties for even smaller screens */
     max-width: 300px;
-  .storeCard {
-    width: 300px;
-  }
-}
+
+}}
 
 @media (max-width: 392px) {
   .storeCard  {
