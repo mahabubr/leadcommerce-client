@@ -30,6 +30,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     if (!decode?.email && !decode?.role) {
       router.push("/login");
     }
+
     //@ts-ignore
   }, [decode?.email, decode?.role, router]);
 
@@ -44,10 +45,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  
+
   //@ts-ignore
   if (!decode?.email && !decode?.role) {
-    return <Loader />;
+    if (typeof window !== "undefined") {
+      return <Loader />;
+    }
   }
 
   return (
@@ -61,11 +64,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           transition: "margin 0.4s",
         }}
       >
-        <div
-          className={style.main_box}
-        >
-          {children}
-        </div>
+        <div className={style.main_box}>{children}</div>
       </div>
     </div>
   );

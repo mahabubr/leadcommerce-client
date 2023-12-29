@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { Input, Table,  Button } from "antd";
+import { Input, Table, Button } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { CiSearch } from "react-icons/ci";
 
@@ -9,16 +9,23 @@ import style from "../../order/order.module.css";
 import useList from "./useList";
 import { DataType, IProps } from "./list.type";
 
-
-
 const columns: ColumnsType<DataType> = [
   {
     title: "Image",
     dataIndex: "image",
     key: "image",
-    render: (text) =>(
-        text?<img width={'60px'} src={text} alt='employe'/>:<img width={"60px"} alt='employe' src={'https://kwikshift.co.nz/wp-content/uploads/2018/02/Kwikshift-Staff-Placeholder.jpg'}/>
-    ),
+    render: (text) =>
+      text ? (
+        <img width={"60px"} src={text} alt="employe" />
+      ) : (
+        <img
+          width={"60px"}
+          alt="employe"
+          src={
+            "https://kwikshift.co.nz/wp-content/uploads/2018/02/Kwikshift-Staff-Placeholder.jpg"
+          }
+        />
+      ),
   },
   {
     title: "Name",
@@ -43,21 +50,32 @@ const columns: ColumnsType<DataType> = [
   {
     title: "Action",
     key: "action",
-    render: (_, record) => <Button type="primary" danger>Delete</Button>,
+    render: (_, record) => (
+      <Button type="primary" danger>
+        Delete
+      </Button>
+    ),
   },
 ];
 
-
-
 const EmployeePage = () => {
-  const {handleKeyDown,handleOnChange,data,isLoading,paginationConfig,onTableChange} =useList();
- 
+  const {
+    handleKeyDown,
+    handleOnChange,
+    data,
+    isLoading,
+    paginationConfig,
+    onTableChange,
+  } = useList();
+
   return (
-    <div className={style.container}>
+    <div className={style.container} style={{ marginTop: 40 }}>
       <div className={style.mainContent}>
         <div className={style.mainFilter}>
           <div className={style.filterOne}>
-            <Input onKeyDown={handleKeyDown} onChange={handleOnChange}
+            <Input
+              onKeyDown={handleKeyDown}
+              onChange={handleOnChange}
               size="middle"
               placeholder="Search Employees"
               suffix={<CiSearch />}
@@ -68,7 +86,13 @@ const EmployeePage = () => {
           </div>
         </div>
 
-        <Table pagination={paginationConfig} onChange={onTableChange} loading={isLoading} columns={columns} dataSource={data} />
+        <Table
+          pagination={paginationConfig}
+          onChange={onTableChange}
+          loading={isLoading}
+          columns={columns}
+          dataSource={data}
+        />
       </div>
 
       <div className={style.sideContent}>
@@ -76,15 +100,36 @@ const EmployeePage = () => {
         <div className={style.sideItems}>
           <div>
             <p style={{ fontSize: 12 }}>Email</p>
-            <Input onKeyDown={handleKeyDown} onChange={handleOnChange} name="email" placeholder="Type Here" type="email" size="middle" />
+            <Input
+              onKeyDown={handleKeyDown}
+              onChange={handleOnChange}
+              name="email"
+              placeholder="Type Here"
+              type="email"
+              size="middle"
+            />
           </div>
           <div>
             <p style={{ fontSize: 12 }}>Phone</p>
-            <Input onKeyDown={handleKeyDown} onChange={handleOnChange} name="phone" placeholder="Type Here" type="text" size="middle" />
+            <Input
+              onKeyDown={handleKeyDown}
+              onChange={handleOnChange}
+              name="phone"
+              placeholder="Type Here"
+              type="text"
+              size="middle"
+            />
           </div>
           <div>
             <p style={{ fontSize: 12 }}>Position</p>
-            <Input onKeyDown={handleKeyDown} onChange={handleOnChange} name="position" placeholder="Type Here" type="text" size="middle" />
+            <Input
+              onKeyDown={handleKeyDown}
+              onChange={handleOnChange}
+              name="position"
+              placeholder="Type Here"
+              type="text"
+              size="middle"
+            />
           </div>
         </div>
       </div>

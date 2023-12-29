@@ -23,7 +23,7 @@ const useList = () => {
 
   useEffect(() => {
     setTotal(data?.meta?.total || 0);
-  }, [data?.data]);
+  }, [data?.meta?.total]);
 
   const handleOnChange = (e: any) => {
     setQueryData({ ...queryData, [e.target.name]: e.target.value });
