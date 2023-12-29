@@ -27,14 +27,15 @@ const SplineChart = () => {
       },
     },
     curveType: "function",
+    colors: ["#2c3e50"],
   };
 
   return (
     <div>
       <Chart
-        chartType="AreaChart"
-        width="100%"
-        height="150px"
+        chartType='AreaChart'
+        width='100%'
+        height='150px'
         data={data}
         options={options}
       />
