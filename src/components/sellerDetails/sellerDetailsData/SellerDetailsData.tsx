@@ -10,12 +10,8 @@ const SellerDetailsData = ({ store }: any) => {
   return (
     <>
       <Card>
-        <div
-          style={{
-            // border: "1px solid red",
-            display: "flex",
-            justifyContent: "space-between",
-          }}>
+        <div className={style.revenueButton}
+          >
           <div>
             <h4 style={{ color: "#2c3e50" }}>Revenue</h4>
           </div>

@@ -25,7 +25,7 @@ const SellerDetails = ({ params }: any) => {
       <section className={style.contentMain}>
         <div className={style.contentHeader}>
           <h2 className={style.contentTitle}>Seller Details</h2>
-          <EmployeeModal />
+          {/* <EmployeeModal /> */}
         </div>
         <div className={style.cardBody}>
           <div className={style.mainDiv}>
