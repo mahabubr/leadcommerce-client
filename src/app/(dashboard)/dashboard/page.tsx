@@ -19,8 +19,7 @@ import MapChart from "@/components/dashboard/MapChart";
 import { useGetAllDashboardDataQuery } from "@/redux/dashboard/dashboard";
 
 const DashboardPage = () => {
-  const { data, isLoading, isSuccess }: { data?: any } =
-    useGetAllDashboardDataQuery({});
+  const { data }: { data?: any } = useGetAllDashboardDataQuery({});
   const dashboardData = data && data?.data;
   // console.log(dashboardData?.userDailySingUp);
 
