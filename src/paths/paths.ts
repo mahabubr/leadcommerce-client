@@ -7,4 +7,7 @@ export const paths = {
   products: "/products",
   employees: "/employees/list",
   addEmploye: "/employees/add-employe",
+
+  events: "/event",
+  add_events: "/event/add-event",
 };

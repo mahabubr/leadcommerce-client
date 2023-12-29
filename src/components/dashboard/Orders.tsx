@@ -225,7 +225,7 @@ const Orders = ({ data }: { data: any }) => {
       <Table
         columns={columns}
         dataSource={data?.ordersChart?.topOrders}
-        scroll={{ x: 1000 }}
+        scroll={{ x: 600 }}
       />
     </div>
   );
