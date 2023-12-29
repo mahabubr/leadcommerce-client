@@ -17,6 +17,50 @@ import OrderDetailsTable from "@/components/orderTable/OrderDetailsTable";
 import { useReactToPrint } from "react-to-print";
 import { useEffect, useRef, useState } from "react";
 
+const dataa = [
+  {
+    orderId: 2535,
+    Product: "Dummy Name",
+    unit: 150,
+    date: "Oct 20, 2018",
+    cost: 15,
+    status: <Tag color="blue">Pending</Tag>,
+  },
+  {
+    orderId: 2535,
+    Product: "Dummy Name",
+    unit: 150,
+    date: "Oct 20, 2018",
+    cost: 15,
+    status: <Tag color="yellow">Shipment</Tag>,
+  },
+  {
+    orderId: 2535,
+    Product: "Dummy Name",
+    unit: 150,
+    date: "Oct 20, 2018",
+    cost: 15,
+    status: <Tag color="green">Delivery</Tag>,
+  },
+  {
+    orderId: 2535,
+    Product: "Dummy Name",
+    unit: 150,
+    date: "Oct 20, 2018",
+    cost: 15,
+    status: <Tag color="red">Canceled</Tag>,
+  },
+];
+
+const thead = [
+  "Shop Id",
+  "Product Name",
+  "Price",
+  "Date",
+  "Quantity",
+  "Status",
+];
+
 const OrderDetail = ({ params }: { params: any }) => {
   const id = params.details;
   const { data }: { data?: any } = useGetSingleOrderQuery(id);

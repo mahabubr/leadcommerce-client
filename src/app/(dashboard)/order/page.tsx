@@ -178,7 +178,7 @@ const Orders = () => {
               style={{ width: "100px", textTransform: "capitalize" }}
               options={productItemSortPage}
               defaultValue={productItemSortPage[0]}
-              // defaultValue={selectedStatus}
+            // defaultValue={selectedStatus}
             />
           </div>
         </div>

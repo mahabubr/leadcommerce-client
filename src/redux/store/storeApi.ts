@@ -29,6 +29,11 @@ const storeApi = api.injectEndpoints({
       query: () => `/store/single-store`,
       providesTags: [tagTypes.store],
     }),
+    
+    getStoreDashboardData: builder.query({
+      query: () => `/store/store-dashboard-data`,
+      providesTags: [tagTypes.store],
+    }),
 
     addCategory: builder.mutation({
       query: (data: any) => ({
@@ -64,4 +69,5 @@ export const {
   useGetAllStoresQuery,
   useGetSingleStoreQuery,
   useGetStoreSingleStoreQuery,
+  useGetStoreDashboardDataQuery,
 } = storeApi;

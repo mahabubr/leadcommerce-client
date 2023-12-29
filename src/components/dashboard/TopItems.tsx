@@ -2,7 +2,7 @@ import React from 'react';
 import style from "./static/dashboard.module.css";
 import { FaArrowUp } from "react-icons/fa";
 
-const data=[
+const dataa=[
     {
         id:1,
         title:"Backpack",
@@ -52,25 +52,25 @@ const data=[
         item_sold:2
     }
 ]
-const TopItems = () => {
-    return (
-        <div className={`${style.sales_report} ${style.bg_white}`}>
-            <h3 className={style.sales_head}>Top Categories</h3>
-            <div>
-                {
-                    data.map((item)=>(
-                        <div key={item.id} className={style.categories}>
-                            <span className={style.cat_name}>{item.title}</span>
-                            <span className={style.cat_sold}>{item.item_sold}</span>
-                            <span className={style.cat_inc}>{item.inc_selling}
-                            <span className={style.icon_arrow}>{<FaArrowUp/>}</span>
-                            </span>
-                        </div>
-                    ))
-                }
-            </div>
-        </div>
-    );
+const TopItems = ({ data }: { data: any }) => {
+      console.log(data?.ordersChart?.topCategory, "category");
+  return (
+    <div className={`${style.sales_report} ${style.bg_white}`}>
+      <h3 className={style.sales_head}>Top Categories</h3>
+      <div>
+        {dataa.map((item) => (
+          <div key={item.id} className={style.categories}>
+            <span className={style.cat_name}>{item.title}</span>
+            <span className={style.cat_sold}>{item.item_sold}</span>
+            <span className={style.cat_inc}>
+              {item.inc_selling}
+              <span className={style.icon_arrow}>{<FaArrowUp />}</span>
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default TopItems;
