@@ -26,8 +26,8 @@ export function PieChart({ OrderData }: { OrderData: any }) {
       {
         label: "total ",
         data: [delivered, pending, cancel, paused],
-        backgroundColor: ["#2c3e50", "#3498db", "#e74c3c", "#fff"],
-        borderColor: ["#2c3e50", "#3498db", "#e74c3c", "#fff"],
+        backgroundColor: ["#475A6F", "rgba(71,90,111,.4)", "#ED9090", "#fff"],
+        borderColor: ["#475A6F", "rgba(71,90,111,.4)", "#ED9090", "#fff"],
         borderWidth: 1,
       },
     ],
@@ -44,7 +44,7 @@ export function PieChart({ OrderData }: { OrderData: any }) {
     },[])
   return (
     <div ref={pieChartRef} className={style.pieChart}>
-      <Doughnut className={style.anime} redraw={true} width={chartWidth || 350} height={calculatePercentage(chartWidth || 350,68)} options={{ responsive: true, cutout: "70%" }} data={data} />;
+      <Doughnut className={style.anime} redraw={true} width={chartWidth || 350} height={chartWidth || 350} options={{ responsive: true, cutout: "75%" }} data={data} />;
     </div>
   );
 }

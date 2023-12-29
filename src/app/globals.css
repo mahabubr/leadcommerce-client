@@ -33,3 +33,7 @@ a {
 .bg-error {
   background-color: #e74c3c;
 }
+
+.ant-picker-has-feedback{
+  width: 100%;
+}

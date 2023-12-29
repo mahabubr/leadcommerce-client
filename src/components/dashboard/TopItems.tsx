@@ -55,7 +55,7 @@ const dataa=[
 const TopItems = ({ data }: { data: any }) => {
       console.log(data?.ordersChart?.topCategory, "category");
   return (
-    <div className={`${style.sales_report} ${style.bg_white}`}>
+    <div className={`${style.orders_pie} ${style.bg_white}`}>
       <h3 className={style.sales_head}>Top Categories</h3>
       <div>
         {dataa.map((item) => (

@@ -8,6 +8,8 @@ import useAddEvent from './useAddEvent'
 import style from './add_event.module.css';
 import PCBreadcrumb from '@/components/products/partials/PCBreadcrumb'
 import AntInput from '@/components/ui/AntInput'
+import DateTimePicker from '@/components/event/dateTimePicker'
+import AntDateTimePicker from '@/components/event/dateTimePicker'
 
 const initialData = {
     title: "",
@@ -137,6 +139,15 @@ const AddEvent = () => {
                                         placeholder={"type Description"}
                                         whiteSpace={true}
                                         textarea={true}
+                                    />
+                                </Col>
+                                <Col className="gutter-row" xs={24} sm={12} lg={8}>
+                                    <AntDateTimePicker
+                                        title={"Description"}
+                                        name={"description"}
+                                        uppercase={true}
+                                        req_message={"Description is required"}
+                                        whiteSpace={true}
                                     />
                                 </Col>
                             </Row>

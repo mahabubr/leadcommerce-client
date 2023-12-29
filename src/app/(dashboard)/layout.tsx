@@ -1,5 +1,5 @@
 "use client";
-
+import style from './layout.module.css';
 import { useState, useEffect } from "react";
 import SideBar from "@/components/ui/SideBar";
 import TopBar from "@/components/ui/TopBar";
@@ -64,12 +64,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         }}
       >
         <div
-          style={{
-            marginTop: 10,
-            backgroundColor: "#f1f1f1",
-            minHeight: "90vh",
-            padding: 40,
-          }}
+          className={style.main_box}
         >
           {children}
         </div>

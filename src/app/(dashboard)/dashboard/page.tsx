@@ -60,8 +60,8 @@ const DashboardPage = () => {
         <OrdersPieChart data={dashboardData} />
       </div>
       <div className={style.user_act}>
-        <DailySignups data={dashboardData} />
         <UserActivity />
+        <DailySignups data={dashboardData} />
       </div>
       <div style={{ marginBottom: 20 }}>
         <MapChart />
