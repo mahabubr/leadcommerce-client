@@ -67,7 +67,7 @@ const sidebarItems = (role: string) => {
     {
       title: "Transactions",
       icon: <IoWalletOutline />,
-      links: [{ label: "Transaction", href: "/transaction" }],
+      links: [{ label: "Transaction", href: "/payments" }],
     },
   ];
 

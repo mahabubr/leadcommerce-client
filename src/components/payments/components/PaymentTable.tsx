@@ -1,41 +1,51 @@
-import { Button, Table } from 'antd'
+import { Table, Flex, Button } from 'antd';
 import { ColumnsType } from 'antd/es/table';
+import Image from 'next/image';
 import React from 'react'
-import { latestTransactionItemData } from '../utils/transactionData';
-import { useRouter } from 'next/navigation';
-import { useGetAllPaymentsQuery } from '@/redux/payment/paymentApi';
 import moment from 'moment';
+import { useRouter } from 'next/navigation';
 
-type Props = {}
+type Props = {
+    datas: any;
+    setCurrentClickData: any;
+}
 
-const LatestTransactionTable = (props: Props) => {
-
-    /*//** RTK calling of payment data getting */
-    const { data: paymentData, isLoading }: { data?: any; isLoading: boolean } =
-        useGetAllPaymentsQuery({
-            limit: 10,
-            page: 1,
-            sortOrder: 'asc',
-        });
+const PaymentTable = ({ datas, setCurrentClickData }: Props) => {
 
     // global
     const router = useRouter();
 
     // data columns
     const columns: ColumnsType<any> = [
-
         {
             title: "Transaction Id",
             dataIndex: "payment_code",
             key: "payment_code",
             render: (_, { payment_code }) => <>{payment_code} </>,
         },
-
         {
-            title: "Paid",
+            title: "Paid Id",
             dataIndex: "total_amount",
             key: "total_amount",
             render: (_, { total_amount }) => <>৳ {total_amount} </>,
+        },
+        {
+            title: "Method",
+            dataIndex: "method",
+            key: "method",
+            render: (_, { }) => (
+                <Flex align='center' style={{ gap: '10px' }}>
+                    <Image
+                        src='/mastercard.png'
+                        alt=''
+                        width={40}
+                        height={40}
+                    />
+
+                    Master Card
+                </Flex>
+
+            ),
         },
         {
             title: "Date",
@@ -50,8 +60,7 @@ const LatestTransactionTable = (props: Props) => {
             key: "action",
             render: (_, { _id }) => (
                 <Button
-                    //   type="primary"
-                    onClick={() => router.push(_id)}
+                    onClick={() => router.push(`/payments/${_id}`)}
                 >
                     Details
                 </Button>
@@ -59,19 +68,20 @@ const LatestTransactionTable = (props: Props) => {
         },
     ];
 
-    if (isLoading) return <>Loading...</>
-
     return (
-        <div>
+        <>
             <Table
                 columns={columns}
-                dataSource={paymentData?.data}
+                dataSource={datas}
                 rowKey="_id"
                 scroll={{ x: true }}
                 pagination={false}
+                onRow={(record, rowIndex) => ({
+                    onClick: () => setCurrentClickData(record),
+                })}
             />
-        </div>
+        </>
     )
 }
 
-export default LatestTransactionTable
+export default PaymentTable

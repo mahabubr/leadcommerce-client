@@ -7,9 +7,11 @@ import TransactionSummary from '../partials/TransactionSummary';
 
 const { Title, Paragraph } = Typography
 
-type Props = {}
+type Props = {
+    items: any;
+}
 
-const ItemTable = (props: Props) => {
+const ItemTable = ({ items }: Props) => {
 
     // data columns
     const columns: ColumnsType<any> = [
@@ -17,16 +19,16 @@ const ItemTable = (props: Props) => {
             title: "Image",
             dataIndex: "image",
             key: "image",
-            render: (_, { image, name }) => (
+            render: (_, { image, productName }) => (
                 <Flex align='center' style={{ gap: '10px' }}>
                     <Image
-                        src={image}
+                        src={image.avatar}
                         alt=''
                         width={40}
                         height={40}
                     />
 
-                    {name}
+                    {productName}
                 </Flex>
 
             ),
@@ -52,7 +54,7 @@ const ItemTable = (props: Props) => {
     ];
 
     // Calculate total cost
-    const subTotal = transactionItemData.reduce((accumulator, item) => {
+    const subTotal = items.reduce((accumulator: any, item: any) => {
         const itemTotal = item.price * item.quantity;
         return accumulator + itemTotal;
     }, 0);
@@ -61,7 +63,7 @@ const ItemTable = (props: Props) => {
         <div>
             <Table
                 columns={columns}
-                dataSource={transactionItemData}
+                dataSource={items}
                 // rowKey="_id"
                 scroll={{ x: true }}
                 pagination={false}
