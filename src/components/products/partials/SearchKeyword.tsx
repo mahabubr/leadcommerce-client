@@ -26,7 +26,7 @@ const SearchKeyword = ({ setSearch }: any) => {
           cursor: "pointer",
           position: "absolute",
           right: "8px",
-          top: "9px",
+          top: "7px",
           fontSize: "20px",
         }}
       >

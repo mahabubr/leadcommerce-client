@@ -43,6 +43,9 @@ const { Text } = Typography;
 const { confirm } = Modal;
 import "./styles/vproduct.css";
 import ButtonGroup from "antd/es/button/button-group";
+import style from "../../app/(dashboard)/order/order.module.css";
+import ChartDetails from "./partials/Chart";
+import { useGetStoreDashboardDataQuery } from "@/redux/store/storeApi";
 
 const ViewProducts = () => {
   //** hanlding pagination
@@ -78,6 +81,10 @@ const ViewProducts = () => {
     setCurrentSortOrder(value);
   };
 
+  //* chart data showing 
+  const { data: dashboardData } = useGetStoreDashboardDataQuery({});
+
+
   // global
   const router = useRouter();
 
@@ -87,6 +94,8 @@ const ViewProducts = () => {
   // const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
 
   // data columns
+
+  console.log(search)
   const columns: ColumnsType<ProductDataType> = [
     {
       title: "Image",
@@ -267,6 +276,23 @@ const ViewProducts = () => {
 
           <Col className="gutter-row" xs={{ span: 24, order: 1 }} md={6}>
             <Space direction="vertical" size={24} style={{ width: "100%" }}>
+              <Collapse
+                collapsible="header"
+                defaultActiveKey={["43"]}
+                expandIconPosition="right"
+                style={{
+                  backgroundColor: "white",
+                  border: "1px solid #f0f0f0",
+                }}
+                bordered={false}
+                items={[
+                  {
+                    key: "43",
+                    label: <div style={{ fontWeight: "500" }}>Product Order Summary</div>,
+                    children: <ChartDetails chartData={dashboardData} />,
+                  },
+                ]}
+              />
               <Collapse
                 collapsible="header"
                 defaultActiveKey={["1"]}
