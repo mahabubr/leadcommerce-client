@@ -76,7 +76,7 @@ const sidebarItems = (role: string) => {
     {
       title: "Orders",
       icon: <LuShoppingBasket />,
-      links: [{ label: "Orders", href: "/order" }],
+      links: [{ label: "Orders", href: "/order" }, { label: "All Product", href: "/all-product" }],
     },
     {
       title: "Setting",
