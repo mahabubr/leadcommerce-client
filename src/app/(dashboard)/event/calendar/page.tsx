@@ -50,6 +50,7 @@ const CalenderPage = () => {
           </Card>
           {/* calender  */}
           <div style={{ marginTop: "20px" }}>
+            <h4 style={{ fontSize: "25px" }}>Sale Calendar </h4>
             <SmallCalender></SmallCalender>
           </div>
           <div
