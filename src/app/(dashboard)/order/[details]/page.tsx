@@ -16,50 +16,8 @@ import style from "../order.module.css";
 import OrderDetailsTable from "@/components/orderTable/OrderDetailsTable";
 import { useReactToPrint } from "react-to-print";
 import { useEffect, useRef, useState } from "react";
+import Loader from "@/components/ui/Loader";
 
-// const dataa = [
-//   {
-//     orderId: 2535,
-//     Product: "Dummy Name",
-//     unit: 150,
-//     date: "Oct 20, 2018",
-//     cost: 15,
-//     status: <Tag color="blue">Pending</Tag>,
-//   },
-//   {
-//     orderId: 2535,
-//     Product: "Dummy Name",
-//     unit: 150,
-//     date: "Oct 20, 2018",
-//     cost: 15,
-//     status: <Tag color="yellow">Shipment</Tag>,
-//   },
-//   {
-//     orderId: 2535,
-//     Product: "Dummy Name",
-//     unit: 150,
-//     date: "Oct 20, 2018",
-//     cost: 15,
-//     status: <Tag color="green">Delivery</Tag>,
-//   },
-//   {
-//     orderId: 2535,
-//     Product: "Dummy Name",
-//     unit: 150,
-//     date: "Oct 20, 2018",
-//     cost: 15,
-//     status: <Tag color="red">Canceled</Tag>,
-//   },
-// ];
-
-// const thead = [
-//   "Shop Id",
-//   "Product Name",
-//   "Price",
-//   "Date",
-//   "Quantity",
-//   "Status",
-// ];
 
 const OrderDetail = ({ params }: { params: any }) => {
   const id = params.details;
@@ -94,6 +52,11 @@ const OrderDetail = ({ params }: { params: any }) => {
     content: () => componentRef.current,
   });
 
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
     <div className={style.spContainer}>
       <Card
@@ -115,7 +78,7 @@ const OrderDetail = ({ params }: { params: any }) => {
               style={{ width: 200 }}
             />
             <ButtonGroup>
-              <Button type="primary">Save</Button>
+              <Button onClick={handlePrint} type="primary">Invoice</Button>
               <Button type="dashed" onClick={handlePrint}>
                 <ImPrinter />
               </Button>
@@ -145,6 +108,7 @@ const OrderDetail = ({ params }: { params: any }) => {
               backgroundColor: "#f1f1f1",
               padding: 20,
               borderRadius: 8,
+              boxShadow: "3px 3px 15px #ddd",
             }}
           >
             <h4>Payment Info</h4>
@@ -160,7 +124,7 @@ const OrderDetail = ({ params }: { params: any }) => {
           <div
             style={{
               display: "flex",
-              gap: 20,
+              gap: 10,
             }}
           >
             <div
@@ -183,9 +147,18 @@ const OrderDetail = ({ params }: { params: any }) => {
               <p>John De</p>
               <p>Johnde@email.com</p>
               <p>+880 14524 57412</p>
+              <p>Status: &nbsp;<span>
+                {orderData?.payment_status === "pending" ? (
+                  <Tag style={{ padding: '0px 4px' }} color="warning">pending</Tag>
+                ) : orderData?.payment_status === "canceled" ? (
+                  <Tag style={{ padding: '2px 4px' }} color="error">Delivered</Tag>
+                ) : orderData?.payment_status === "completed" ? (
+                  <Tag style={{ padding: '2px 4px' }} color="success">Cancel</Tag>
+                ) : null}
+              </span></p>
             </div>
           </div>
-          <div style={{ display: "flex", gap: 20 }}>
+          <div style={{ display: "flex", gap: 10 }}>
             <div
               style={{
                 backgroundColor: "#3498db",
@@ -205,10 +178,22 @@ const OrderDetail = ({ params }: { params: any }) => {
               <h3>Order Info</h3>
               <p>Shipping: Fargo express</p>
               <p>Pay method: card</p>
-              <p>Status: new</p>
+              <p>Status: &nbsp;<span>
+                {orderData?.order_status === "pending" ? (
+                  <Tag style={{ padding: '0px 4px' }} color="warning">pending</Tag>
+                ) : orderData?.order_status === "delivered" ? (
+                  <Tag style={{ padding: '2px 4px' }} color="success">Delivered</Tag>
+                ) : orderData?.order_status === "cancel" ? (
+                  <Tag style={{ padding: '2px 4px' }} color="error">Cancel</Tag>
+                ) : orderData?.order_status === "paused" ? (
+                  <Tag style={{ padding: '2px 4px' }} color="cyan">Paused</Tag>
+                ) : orderData?.order_status === "accept" ? (
+                  <Tag style={{ padding: '2px 4px' }} color="blue">Accept</Tag>
+                ) : null}
+              </span></p>
             </div>
           </div>
-          <div style={{ display: "flex", gap: 20 }}>
+          <div style={{ display: "flex", gap: 10 }}>
             <div
               style={{
                 backgroundColor: "#3498db",
@@ -235,6 +220,15 @@ const OrderDetail = ({ params }: { params: any }) => {
                 {orderData?.shipment_address?.house_no}
               </p>
               <p>Area: {orderData?.shipment_address?.area}</p>
+              <p>Status: &nbsp;<span>
+                {orderData?.shipment_status === "pending" ? (
+                  <Tag style={{ padding: '0px 4px' }} color="warning">pending</Tag>
+                ) : orderData?.shipment_status === "canceled" ? (
+                  <Tag style={{ padding: '2px 4px' }} color="error">Delivered</Tag>
+                ) : orderData?.shipment_status === "completed" ? (
+                  <Tag style={{ padding: '2px 4px' }} color="success">Cancel</Tag>
+                ) : null}
+              </span></p>
             </div>
           </div>
         </div>
@@ -244,7 +238,10 @@ const OrderDetail = ({ params }: { params: any }) => {
           </div>
           <div>
             <TextArea
-              style={{ marginBottom: 20 }}
+              style={{
+                marginBottom: 20,
+                boxShadow: "3px 3px 8px #ddd",
+              }}
               rows={4}
               placeholder="maxLength is 6"
               maxLength={6}
