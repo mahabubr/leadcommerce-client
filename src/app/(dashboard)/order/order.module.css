@@ -1,6 +1,15 @@
 .container {
   display: flex;
   gap: 24px;
+  padding: 20px;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.spContainer {
+  padding: 20px;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .mainContent {
@@ -44,10 +53,11 @@
   width: 100%;
 }
 .orderCardGrid {
+  width: 80%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin-top: 40px;
-  gap: 20px;
+  gap: 10px;
 }
 
 .orderInfo {

@@ -1,14 +1,14 @@
 "use client";
 
-import { Space, Input, Table, Tag, Select, DatePicker, Button } from "antd";
-import type { ColumnsType } from "antd/es/table";
+import { Input, Table, Tag, Select, DatePicker, Button } from "antd";
+// import type { ColumnsType } from "antd/es/table";
 import type { DatePickerProps } from "antd";
 import { CiSearch } from "react-icons/ci";
 import { useRouter } from "next/navigation";
 import style from "./order.module.css";
 import { productItemSortPage } from "@/components/products/utils/productData";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useGetAllOrderQuery } from "@/redux/order/orderApi";
 
 const { Search } = Input;
@@ -111,7 +111,7 @@ const Orders = () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(4); // limit
   const [sortBy, setSortBy] = useState("order_code");
-  const [sortOrder, setSortOrder] = useState("asc");
+  const [sortOrder, setSortOrder] = useState("desc");
   const [searchTerm, setSearchTerm] = useState("");
   const [orderCode, setOrderCode] = useState("");
   const [orderStatus, setOrderStatus] = useState("");
@@ -222,9 +222,11 @@ const Orders = () => {
               onChange={handleChange}
               options={[
                 { value: "all", label: "All" },
-                { value: "pending", label: "Pending" },
-                { value: "completed", label: "Completed" },
-                { value: "canceled", label: "Canceled" },
+                { value: "pending", label: "pending" },
+                { value: "delivered", label: "delivered" },
+                { value: "cancel", label: "cancel" },
+                { value: "paused", label: "paused" },
+                { value: "accept", label: "accept" },
               ]}
               style={{ marginTop: 10 }}
             />

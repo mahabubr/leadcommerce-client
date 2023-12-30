@@ -28,6 +28,7 @@ import { useRouter } from "next/navigation";
 import "./style/vcategory.css";
 import ButtonGroup from "antd/es/button/button-group";
 
+
 const { Text } = Typography;
 const { confirm } = Modal;
 
@@ -89,6 +90,8 @@ const ViewCategory = () => {
     {
       title: "Action",
       key: "action",
+      align: 'right',
+      width: '20%',
       render: (_, { _id }) => (
         <ButtonGroup>
           <Button
@@ -166,3 +169,5 @@ const ViewCategory = () => {
 };
 
 export default ViewCategory;
+
+

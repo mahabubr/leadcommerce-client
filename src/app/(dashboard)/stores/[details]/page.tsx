@@ -4,7 +4,7 @@ import React from "react";
 import style from "./static/sellerdetails.module.css";
 import SellerProfile from "@/components/sellerDetails/sellerProfile/SellerProfile";
 import SellerDetailsData from "@/components/sellerDetails/sellerDetailsData/SellerDetailsData";
-import EmployeeModal from "@/components/ui/EmployeeModal";
+// import EmployeeModal from "@/components/ui/EmployeeModal";
 import { useGetSingleStoreQuery } from "@/redux/store/storeApi";
 import Loader from "@/components/ui/Loader";
 const SellerDetails = ({ params }: any) => {
@@ -20,7 +20,7 @@ const SellerDetails = ({ params }: any) => {
   const store = data?.data;
 
   return (
-    <>
+    <div className={style.container}>
       <section className={style.contentMain}>
         <div className={style.contentHeader}>
           <h2 className={style.contentTitle}>Store Details</h2>
@@ -37,7 +37,7 @@ const SellerDetails = ({ params }: any) => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 
