@@ -3,6 +3,7 @@
 import type { Dayjs } from "dayjs";
 import type { BadgeProps, CalendarProps } from "antd";
 import { Badge, Calendar } from "antd";
+import style from "../../dashboard/static/dashboard.module.css";
 
 const getListData = (value: Dayjs) => {
   let listData;
@@ -74,7 +75,9 @@ const EventCalendar = () => {
     return info.originNode;
   };
 
-  return <Calendar style={{padding: 30, borderRadius: 8}} cellRender={cellRender} />;
+  return <div className={style.container}>
+    <Calendar style={{ padding: 30, borderRadius: 8 }} cellRender={cellRender} />
+  </div>;
 };
 
 export default EventCalendar;

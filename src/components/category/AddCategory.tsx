@@ -153,6 +153,7 @@ const AddCategory = () => {
               type="primary"
               htmlType="submit"
               loading={isLoading}
+              disabled={isLoading}
               size="large"
             >
               Create Category

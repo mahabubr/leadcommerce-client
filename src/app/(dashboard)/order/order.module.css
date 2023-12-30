@@ -1,6 +1,15 @@
 .container {
   display: flex;
   gap: 24px;
+  padding: 20px;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.spContainer {
+  padding: 20px;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .mainContent {
