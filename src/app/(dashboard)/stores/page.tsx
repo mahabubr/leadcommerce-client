@@ -35,7 +35,7 @@ const Stores = () => {
 
   return (
     <>
-      <div>
+      <div className={style.container}>
         <Card>
           <div className={style.searchField}>
             {/* First section */}
@@ -67,8 +67,8 @@ const Stores = () => {
         <div className={style.storeGrid}>
           {stores?.length > 0
             ? stores?.map((store: any) => (
-                <StoreCard key={store._id} store={store} />
-              ))
+              <StoreCard key={store._id} store={store} />
+            ))
             : "Not Store Found"}
         </div>
         <Card

@@ -18,7 +18,8 @@ const CalenderPage = () => {
           padding: "10px",
           display: "flex",
           gap: "10px",
-        }}>
+        }}
+      >
         <div style={{ flex: "1" }}>
           <EventCalendar></EventCalendar>
         </div>
@@ -33,14 +34,16 @@ const CalenderPage = () => {
                 justifyContent: "space-between",
                 alignItems: "center",
                 // border: "1px solid red",
-              }}>
+              }}
+            >
               <h1
                 style={{
                   flex: "1",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                }}>
+                }}
+              >
                 $2,189
               </h1>
               <div style={{ width: "60%" }}>
@@ -60,10 +63,11 @@ const CalenderPage = () => {
               overflow: "hidden",
               marginTop: "20px",
               borderRadius: "8px",
-            }}>
+            }}
+          >
             <Image
               style={{ width: "100%", height: "100%" }}
-              src='https://gw.alipayobjects.com/zos/antfincdn/LlvErxo8H9/photo-1503185912284-5271ff81b9a8.webp'
+              src="https://gw.alipayobjects.com/zos/antfincdn/LlvErxo8H9/photo-1503185912284-5271ff81b9a8.webp"
             />
           </div>
         </div>
