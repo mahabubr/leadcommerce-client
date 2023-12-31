@@ -5,9 +5,9 @@ import { CiSearch } from "react-icons/ci";
 import { useRouter } from "next/navigation";
 import style from "./product.module.css";
 import { productItemSortPage } from "@/components/products/utils/productData";
-
 import { useState } from "react";
-import { useGetAllOrderQuery } from "@/redux/order/orderApi";
+import { useGetAllProductsQuery } from "@/redux/product/productApi";
+import ProductCard from "@/components/products/productCard";
 
 const { Search } = Input;
 
@@ -19,50 +19,30 @@ const Orders = () => {
     const query: any = {};
 
     // * state declaration
-    const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(4); // limit
-    const [sortBy, setSortBy] = useState("order_code");
-    const [sortOrder, setSortOrder] = useState("desc");
-    const [searchTerm, setSearchTerm] = useState("");
-    const [orderCode, setOrderCode] = useState("");
-    const [orderStatus, setOrderStatus] = useState("");
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [currentLimit, setCurrentLimit] = useState<number>(4);
+    const [currentSortOrder, setCurrentSortOrder] = useState<"desc" | "asc">(
+        "asc"
+    );
+    const [search, setSearch] = useState<string>("");
+    const { data }: { data?: any } = useGetAllProductsQuery({
+        limit: currentLimit,
+        page: currentPage,
+        product_status: "active",
+        sortOrder: currentSortOrder,
+        searchTerm: search,
+    });
+    const ProductData = data?.data;
 
-    query["limit"] = limit;
-    query["page"] = page;
-
-    query["sortBy"] = sortBy;
-    query["sortOrder"] = sortOrder;
-    query["searchTerm"] = searchTerm;
-
-    if (orderCode) {
-        query["order_code"] = orderCode;
-    }
-    if (orderStatus) {
-        if (orderStatus === "all") {
-            setOrderStatus("");
-        }
-
-        query["order_status"] = orderStatus;
-    }
-    const { data }: { data?: any } = useGetAllOrderQuery({ ...query });
-    const orderData = data?.data;
+    console.log(ProductData)
 
     // * PageLimit Change
     const handlePagelimitChange = (value: any) => {
-        setLimit(value);
+        setCurrentLimit(value);
     };
 
-    // * Filter 🚀🚀🚀
-    // * SearchBy Order ID
-    const onSearch = (value: any, _e: any, info: any) => {
-        setPage(1);
-        setOrderCode(value);
-    };
-    // * Order Status
-    const handleChange = (value: string) => {
-        setPage(1);
-        setOrderStatus(value);
-    };
+
+
     // * routing action
     const handleRouteUpdate = (_id: string) => router.push(`/product/${_id}`);
     return (
@@ -88,8 +68,18 @@ const Orders = () => {
                         />
                     </div>
                 </div>
+                <div style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: "0.75rem",
+                    justifyContent: "center"
+                }}>
+                    {ProductData &&
+                        ProductData?.map((product: any) => (
+                            <ProductCard key={product._id} product={product}></ProductCard>
+                        ))}
+                </div>
 
-                {/* //TODO: product listing and pagination */}
             </div>
 
 
@@ -115,7 +105,7 @@ const Orders = () => {
                     },
                 ]}
             />
-        </div>
+        </div >
     );
 };
 
