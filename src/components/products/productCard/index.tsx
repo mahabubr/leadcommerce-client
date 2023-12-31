@@ -46,9 +46,10 @@ export default function ProductCard({ product }: { product: any }) {
                 </div>
             </Link>
             <button onClick={() => {
+                console.log('ï am here');
                 dispatch(
                     addToCart({
-                        ...product[0],
+                        ...product,
                         oneQuantityPrice: price,
                     })
                 );

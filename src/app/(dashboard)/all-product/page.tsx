@@ -8,12 +8,13 @@ import { productItemSortPage } from "@/components/products/utils/productData";
 import { useState } from "react";
 import { useGetAllProductsQuery } from "@/redux/product/productApi";
 import ProductCard from "@/components/products/productCard";
+import { useSelector } from "react-redux";
+// import CartItemCard from "@/components/cart/CartItemCard";
 
 const { Search } = Input;
 
 const Orders = () => {
     const router = useRouter();
-
 
     // * Filtering and Searching
     const query: any = {};
@@ -34,13 +35,18 @@ const Orders = () => {
     });
     const ProductData = data?.data;
 
-    console.log(ProductData)
 
     // * PageLimit Change
     const handlePagelimitChange = (value: any) => {
         setCurrentLimit(value);
     };
 
+    const cartItems = useSelector((state: { cart: { cartItems: any[] } }) => state.cart);
+
+    console.log(cartItems)
+    // const subTotal = useMemo(() => {
+    //     return cartItems.reduce((total: any, val: any) => total + parseFloat(val.price), 0);
+    // }, [cartItems]);
 
 
     // * routing action
@@ -98,8 +104,6 @@ const Orders = () => {
                         key: "43",
                         label: <div style={{ fontSize: 18, fontWeight: "bold" }}>Orders Cart</div>,
                         children: <div >
-                            {/* //TODO: product cart */}
-
 
                         </div>,
                     },

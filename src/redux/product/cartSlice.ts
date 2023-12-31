@@ -2,7 +2,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface CartItem {
   _id: string;
-  // Define other properties based on your actual data structure
   quantity: number;
   price: number;
   oneQuantityPrice: number;
@@ -31,6 +30,7 @@ export const cartSlice = createSlice({
   },
   reducers: {
     addToCart: (state, action: PayloadAction<CartItem>) => {
+      // console.log(state, action);
       const item = state.cartItems.find((p) => p._id === action.payload._id);
       if (item) {
         item.quantity++;
