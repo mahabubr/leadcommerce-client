@@ -31,11 +31,12 @@ const PageBody = () => {
         } else if (decode?.role === "employee") {
           router.push("/settings/profilesetting");
         } // @ts-ignore
-      } else if (decode?.role === "delivery") {
-        router.push("/settings/profilesetting");
+        else if (decode?.role === "delivery") {
+          router.push("/settings/profilesetting");
+        }
       }
     } catch (error: any) {
-      message.error(error.data.message);
+      message.error("something went wrong");
     }
   };
 
