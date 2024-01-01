@@ -21,7 +21,7 @@ const AboutEvent = ({ data }: Props) => {
                 fontSize: '16px',
                 textAlign: 'justify'
             }}>
-                {data.fullDesc}
+                {data.description}
             </Paragraph>
 
         </Card>

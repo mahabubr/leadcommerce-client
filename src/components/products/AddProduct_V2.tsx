@@ -184,7 +184,7 @@ const AddProductV2 = () => {
   return (
     <>
       {contextHolder}
-      <PCBreadcrumb title="Create Product" route={paths.products}/>
+      <PCBreadcrumb title="Create Product" route={paths.products} />
 
       <Card title="Add Product" bordered style={{ marginTop: "20px" }}>
         <Form
@@ -328,12 +328,12 @@ const AddProductV2 = () => {
                         {
                           // @ts-ignore
                           data.data &&
-                            // @ts-ignore
-                            data?.data?.map((pt: any, index: number) => (
-                              <Select.Option key={index} value={`${pt._id}`}>
-                                {pt?.name}
-                              </Select.Option>
-                            ))
+                          // @ts-ignore
+                          data?.data?.map((pt: any, index: number) => (
+                            <Select.Option key={index} value={`${pt._id}`}>
+                              {pt?.name}
+                            </Select.Option>
+                          ))
                         }
                       </Select>
                     </Form.Item>

@@ -1,15 +1,24 @@
 'use client'
 import React from 'react'
-import { Flex, Typography } from 'antd';
+import { Flex, Spin, Typography } from 'antd';
 import VEventHeader from './components/VEventHeader';
 import EventsGrid from './components/EventsGrid';
 import Link from 'next/link';
+import { useGetAllEventsQuery } from '@/redux/events/eventApi';
 
 const { Title } = Typography;
 
 type Props = {}
 
 const ViewEvents = (props: Props) => {
+
+    /*//** RTK calling of product data getting */
+    const { data: events, isLoading }: { data?: any; isLoading: boolean } = useGetAllEventsQuery(undefined);
+
+    if (isLoading) <Spin />
+
+    console.log(events);
+
     return (
         <>
             <Flex align='center' justify='space-between'>
@@ -24,7 +33,7 @@ const ViewEvents = (props: Props) => {
 
             <VEventHeader />
 
-            <EventsGrid />
+            {events?.data.length && <EventsGrid datas={events?.data} />}
         </>
     )
 }

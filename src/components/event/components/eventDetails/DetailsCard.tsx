@@ -12,19 +12,21 @@ type Props = {
 }
 
 const DetailsCard = ({ data }: Props) => {
+
+    console.log(data);
     return (
         <Card
-            cover={<ECardImageBox title={data.title} image={data.image} _id={data._id} gHeight='auto' />}
+            cover={<ECardImageBox title={data.title} image={data.image?.avatar} _id={data._id} gHeight='auto' />}
             style={{ padding: '10px', borderRadius: 0 }}
         >
 
             <Flex align='center' justify='space-between' style={{ marginBottom: '20px' }}>
                 <Flex gap='middle' align='center'>
-                    <ECardDateBox date={data.date} />
+                    <ECardDateBox date={data.eventDate} />
 
                     <ECardTitleBox
                         title={data.title}
-                        organizedBy={data.organizedBy}
+                        organizedBy={data.organizer}
                         status={data.status}
                         _id={data._id}
                     />
@@ -66,7 +68,7 @@ const DetailsCard = ({ data }: Props) => {
             </Flex>
 
             <>
-                <Paragraph style={{ marginBottom: '20px', fontSize: '15px', color: '#79788e', lineHeight: 1.7 }}>{data.desc}</Paragraph>
+                <Paragraph style={{ marginBottom: '20px', fontSize: '15px', color: '#79788e', lineHeight: 1.7 }}>{data.description.slice(0, 120)}</Paragraph>
             </>
 
             <div style={{ padding: '30px', backgroundColor: '#f8f8fa' }}>
@@ -75,7 +77,7 @@ const DetailsCard = ({ data }: Props) => {
                         <DetailsInfoCard
                             icon={<ClockCircleOutlined style={{ fontSize: '28px', color: 'white' }} />}
                             title='Time'
-                            specific='11.30 AM - 12.30PM'
+                            specific={`${data.startTime} - ${data.endTime}`}
                         />
                     </Col>
 
@@ -83,7 +85,7 @@ const DetailsCard = ({ data }: Props) => {
                         <DetailsInfoCard
                             icon={<EnvironmentOutlined style={{ fontSize: '28px', color: 'white' }} />}
                             title='Location'
-                            specific='95 Folsom Ave, San Francisco'
+                            specific={data.location}
                             bgClr='#06b48a'
                         />
                     </Col>
@@ -92,7 +94,7 @@ const DetailsCard = ({ data }: Props) => {
                         <DetailsInfoCard
                             icon={<ReconciliationOutlined style={{ fontSize: '28px', color: 'white' }} />}
                             title='Ticket Price:'
-                            specific='$20'
+                            specific={`$${data.ticketPrice}`}
                             bgClr='#f3c44c'
                         />
                     </Col>
@@ -101,7 +103,7 @@ const DetailsCard = ({ data }: Props) => {
                         <DetailsInfoCard
                             icon={<ScheduleOutlined style={{ fontSize: '28px', color: 'white' }} />}
                             title='Seat:'
-                            specific='120'
+                            specific={data.seat}
                             bgClr='#e74c3c'
                         />
                     </Col>

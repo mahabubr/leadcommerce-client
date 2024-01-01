@@ -24,6 +24,17 @@ export const eventDropdownOptions = [
     },
 ];
 
+export const eventStatusOptions = [
+    {
+        value: true,
+        label: 'Open',
+    },
+    {
+        value: false,
+        label: 'Close',
+    },
+];
+
 export const eventDropdownItems: MenuProps['items'] = [
     {
         key: '1',
