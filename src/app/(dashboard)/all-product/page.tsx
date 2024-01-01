@@ -5,11 +5,17 @@ import { CiSearch } from "react-icons/ci";
 import { useRouter } from "next/navigation";
 import style from "./product.module.css";
 import { productItemSortPage } from "@/components/products/utils/productData";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useGetAllProductsQuery } from "@/redux/product/productApi";
 import ProductCard from "@/components/products/productCard";
 import { useSelector } from "react-redux";
+import CartList from "@/components/cart/CartList";
 // import CartItemCard from "@/components/cart/CartItemCard";
+interface RootState {
+    cart: {
+        cartItems: any[];
+    };
+}
 
 const { Search } = Input;
 
@@ -40,13 +46,15 @@ const Orders = () => {
     const handlePagelimitChange = (value: any) => {
         setCurrentLimit(value);
     };
-
-    const cartItems = useSelector((state: { cart: { cartItems: any[] } }) => state.cart);
-
-    console.log(cartItems)
-    // const subTotal = useMemo(() => {
-    //     return cartItems.reduce((total: any, val: any) => total + parseFloat(val.price), 0);
-    // }, [cartItems]);
+    const { cartItems } = useSelector((state: RootState) => state.cart);
+    const subTotal = useMemo(() => {
+        return cartItems.reduce((total: number, val: any) => {
+            if (typeof val === 'object' && val !== null && 'perProductPrice' in val) {
+                return total + parseFloat(val.perProductPrice || 0);
+            }
+            return total;
+        }, 0);
+    }, [cartItems]);
 
 
     // * routing action
@@ -103,9 +111,7 @@ const Orders = () => {
                     {
                         key: "43",
                         label: <div style={{ fontSize: 18, fontWeight: "bold" }}>Orders Cart</div>,
-                        children: <div >
-
-                        </div>,
+                        children: <CartList cartItems={cartItems} total={subTotal} />
                     },
                 ]}
             />

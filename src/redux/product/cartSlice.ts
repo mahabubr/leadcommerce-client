@@ -3,7 +3,9 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface CartItem {
   _id: string;
   quantity: number;
+  orderQuantity: number;
   price: number;
+  perProductPrice: number;
   oneQuantityPrice: number;
   image?: { avatar?: string; avatar_public_url?: string };
   productName: string;
@@ -30,13 +32,16 @@ export const cartSlice = createSlice({
   },
   reducers: {
     addToCart: (state, action: PayloadAction<CartItem>) => {
-      // console.log(state, action);
       const item = state.cartItems.find((p) => p._id === action.payload._id);
       if (item) {
-        item.quantity++;
-        item.price = item.oneQuantityPrice * item.quantity;
+        item.orderQuantity++;
+        item.perProductPrice = item.oneQuantityPrice * item.orderQuantity;
       } else {
-        state.cartItems.push({ ...action.payload, quantity: 1 });
+        state.cartItems.push({
+          ...action.payload,
+          orderQuantity: 1,
+          perProductPrice: action.payload.oneQuantityPrice,
+        });
       }
     },
     updateCart: (
@@ -45,8 +50,8 @@ export const cartSlice = createSlice({
     ) => {
       state.cartItems = state.cartItems.map((p) => {
         if (p._id === action.payload._id) {
-          if (action.payload.key === "quantity") {
-            p.price = p.oneQuantityPrice * action.payload.val;
+          if (action.payload.key === "orderQuantity") {
+            p.perProductPrice = p.oneQuantityPrice * action.payload.val;
           }
           return { ...p, [action.payload.key]: action.payload.val };
         }
@@ -58,9 +63,13 @@ export const cartSlice = createSlice({
         (p) => p._id !== action.payload._id
       );
     },
+    clearFromCart: () => {
+      cartItems: [];
+    },
   },
 });
 
-export const { addToCart, updateCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, updateCart, removeFromCart, clearFromCart } =
+  cartSlice.actions;
 
 export default cartSlice.reducer;
