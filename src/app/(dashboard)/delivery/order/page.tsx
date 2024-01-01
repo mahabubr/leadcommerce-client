@@ -75,11 +75,11 @@ const Orders = () => {
         return (
           <>
             {payment_status === "pending" ? (
-              <Tag color="warning">Pending</Tag>
+              <Tag color="warning">{payment_status}</Tag>
             ) : payment_status === "completed" ? (
-              <Tag color="success">Completed</Tag>
+              <Tag color="success">{payment_status}</Tag>
             ) : payment_status === "canceled" ? (
-              <Tag color="error">Canceled</Tag>
+              <Tag color="error">{payment_status}</Tag>
             ) : null}
           </>
         );

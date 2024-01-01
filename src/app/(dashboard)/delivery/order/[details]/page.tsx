@@ -1,5 +1,5 @@
 "use client";
-import { Button, Card } from "antd";
+import { Button, Card, message } from "antd";
 import ButtonGroup from "antd/es/button/button-group";
 import { CiCalendar } from "react-icons/ci";
 import { FaTruckLoading } from "react-icons/fa";
@@ -13,6 +13,7 @@ import OrderDetailsTable from "@/components/orderTable/OrderDetailsTable";
 import { useReactToPrint } from "react-to-print";
 import { useRef, useState } from "react";
 import Loader from "@/components/ui/Loader";
+import { useAddPaymentMutation } from "@/redux/payment/paymentApi";
 
 const OrderDetail = ({ params }: { params: any }) => {
   const id = params.details;
@@ -25,6 +26,8 @@ const OrderDetail = ({ params }: { params: any }) => {
 
   const componentRef = useRef(null);
   const [paymentDescription, setPaymentDescription] = useState("");
+
+  const [addPayment] = useAddPaymentMutation();
 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
@@ -42,7 +45,11 @@ const OrderDetail = ({ params }: { params: any }) => {
       description: paymentDescription,
     };
 
-    console.log(submitData);
+    addPayment(submitData).then((res: any) => {
+      if (res?.data?.success) {
+        message.success(res?.data?.message);
+      }
+    });
   };
 
   return (
