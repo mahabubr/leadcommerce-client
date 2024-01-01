@@ -28,7 +28,7 @@ const sidebarItems = (role: string) => {
     {
       title: "Users",
       icon: <FaUser />,
-      links: [{ label: "Users", href: "/user" }],
+      links: [{ label: "All Admins", href: "/user" }],
     },
     {
       title: "Events",
