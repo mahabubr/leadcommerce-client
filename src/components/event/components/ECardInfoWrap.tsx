@@ -19,24 +19,24 @@ const ECardInfoWrap = ({ data }: Props) => {
     return (
         <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
 
-            <ECardInfoBox
+            {/* <ECardInfoBox
                 paraOne='Mobile:'
                 paraTwo={<Paragraph style={{ fontSize: '16px', color: '#79788e', lineHeight: 1.7 }}>{data.mobile}</Paragraph>}
-            />
+            /> */}
 
             <ECardInfoBox
                 paraOne='LOCATION:'
                 paraTwo={<Paragraph style={{ fontSize: '16px', color: '#79788e', lineHeight: 1.7 }}>{data.location}</Paragraph>}
             />
 
-            <ECardInfoBox
+            {/* <ECardInfoBox
                 paraOne='SPEAKER:'
                 paraTwo={<Flex>
                     <Image src='/user!.jpg' width={35} height={35} alt='' style={imgStyle} />
                     <Image src='/user2.jpg' width={35} height={35} alt='' style={imgStyle} />
                     <Image src='/user3.jpg' width={35} height={35} alt='' style={imgStyle} />
                 </Flex>}
-            />
+            /> */}
 
         </Row>
     )

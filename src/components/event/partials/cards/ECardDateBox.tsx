@@ -22,7 +22,7 @@ const ECardDateBox = ({ date }: Props) => {
                 display: 'block',
                 width: '100%'
             }}>
-                {date.split(' ')[1]}
+                {date.split('-')[1]}
             </div>
 
             <div
@@ -33,7 +33,7 @@ const ECardDateBox = ({ date }: Props) => {
                     display: 'block',
                 }}
             >
-                {date.split(' ')[0]}
+                {date.split('-')[2]}
             </div>
         </Flex>
     )
