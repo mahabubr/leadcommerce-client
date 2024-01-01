@@ -1,16 +1,32 @@
 "use client";
 import UserCart from "@/components/users/UserCart";
-import React from "react";
+import React, { useState } from "react";
 import style from "./static/userpage.module.css";
 import { useGetAllAdminQuery } from "@/redux/admin/adminApi";
+import Loader from "@/components/ui/Loader";
+import { Card, Empty, Pagination, Spin } from "antd";
 
 const AllUsers = () => {
-  const { data }: { data?: any } = useGetAllAdminQuery({});
+  const query: any = {};
+  const [pagPage, setPagPage] = useState(1);
+  const [pagSize, setPagSize] = useState(10);
+  query["page"] = pagPage;
+  query["limit"] = pagSize;
+  const { data }: { data?: any } = useGetAllAdminQuery({
+    ...query,
+  });
   const adminData = data && data?.data;
-  //   console.log(adminData);
-  //   console.log(data);
+
+  const handlePagination = (page: any, size: any) => {
+    setPagPage(page);
+    setPagSize(size);
+  };
   return (
-    <div style={{ border: "1px solid red", padding: "1vw 2vw" }}>
+    <div
+      style={{
+        // border: "1px solid red",
+        padding: "1vw 2vw",
+      }}>
       <div
         style={{
           backgroundColor: "white",
@@ -23,7 +39,6 @@ const AllUsers = () => {
       </div>
       <div
         style={{
-          //   border: "1px solid green",
           backgroundColor: "white",
           padding: "1vw",
           borderRadius: "8px",
@@ -32,17 +47,42 @@ const AllUsers = () => {
             "rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px",
         }}>
         <div className={style.userGrid}>
-          {adminData?.length > 0
-            ? adminData?.map((admin: any) => (
-                <UserCart key={admin._id} admin={admin} />
-              ))
-            : "Not Store Found"}
-          {/* <UserCart />
-          <UserCart />
-          <UserCart />
-          <UserCart />
-          <UserCart /> */}
+          {adminData?.length > 0 ? (
+            adminData?.map((admin: any) => (
+              <UserCart key={admin._id} admin={admin} />
+            ))
+          ) : (
+            <div
+              style={{
+                height: "80vh",
+                width: "76vw",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}>
+              <Spin size='large' />
+            </div>
+          )}
         </div>
+      </div>
+      <div>
+        <Card
+          style={{
+            marginTop: 20,
+            display: "flex",
+            justifyContent: "center",
+            width: "100%",
+            boxShadow:
+              "rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px",
+          }}>
+          <Pagination
+            defaultCurrent={1}
+            total={adminData?.meta?.total}
+            onChange={handlePagination}
+            pageSizeOptions={["5", "10", "20"]}
+            showSizeChanger
+          />
+        </Card>
       </div>
     </div>
   );
