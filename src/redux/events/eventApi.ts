@@ -2,23 +2,20 @@ import api from "../api";
 
 const EventApi = api.injectEndpoints({
   endpoints: (builder: any) => ({
+
     getAllEvents: builder.query({
-      query: (params: {
-        limit: number;
-        page: number;
-        Event_status: string;
-        sortOrder: "desc" | "asc";
-      }) => ({
+      query: () => ({
         url: `/event`,
         method: "GET",
-        params,
       }),
       providesTags: ["Event"],
     }),
+
     getAEvent: builder.query({
       query: ({ id }: { id: string }) => `/event/${id}`,
       providesTags: ["Event"],
     }),
+
     addEvents: builder.mutation({
       query: (data: any) => ({
         url: `/event`,
@@ -27,6 +24,7 @@ const EventApi = api.injectEndpoints({
       }),
       invalidatesTags: ["Event"],
     }),
+
     updateEvent: builder.mutation({
       query: ({ EventId, formData }: { EventId: string; formData: any }) => ({
         url: `/event/${EventId}`,
@@ -35,6 +33,7 @@ const EventApi = api.injectEndpoints({
       }),
       invalidatesTags: ["Event"],
     }),
+
     deleteEvent: builder.mutation({
       query: (id: string) => ({
         url: `/event/${id}`,

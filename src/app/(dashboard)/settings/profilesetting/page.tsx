@@ -1,9 +1,10 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import style from "./static/profilesetting.module.css";
 import { Tabs } from "antd";
 import type { TabsProps } from "antd";
 import ProfileUpdate from "@/components/Settings/ProfileUpdate";
+import { useGetAEmployeQuery } from "@/redux/employees/employeesApi";
 
 const items: TabsProps["items"] = [
   {
@@ -24,6 +25,9 @@ const items: TabsProps["items"] = [
 ];
 
 const ProfileSetting = () => {
+  const { data } = useGetAEmployeQuery({});
+
+  console.log(data);
   const onChange = (key: string) => {
     console.log(key);
   };

@@ -1,0 +1,50 @@
+.Card {
+  width: 300px;
+  height: 300px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+}
+
+.upperContainer {
+  height: 100px;
+  background: linear-gradient(to left, #ecf0f1, #b4babb);
+}
+
+.imageContainer {
+  background: white;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  padding: 5px;
+  overflow: hidden;
+  transform: translate(95px, 45px);
+}
+
+.img {
+  border: 2px solid #2c3e50;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.lowerContainer {
+  margin-top: 60px;
+  /* height: 300px; */
+  background: white;
+  text-align: center;
+}
+
+/* .lowerContainer  h3,
+h4,
+p {
+  margin: 0;
+  padding: 0;
+} */
+
+/* .lowerContainer h4 {
+  color: #8e00b9;
+  font-weight: 700;
+  font-size: 1.2rem;
+} */

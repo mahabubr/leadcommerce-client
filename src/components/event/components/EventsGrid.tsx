@@ -7,9 +7,13 @@ import '../styles/pagination.css'
 
 const { Paragraph } = Typography;
 
-type Props = {}
+type Props = {
+    datas: any;
+}
 
-const EventsGrid = (props: Props) => {
+const EventsGrid = ({ datas }: Props) => {
+
+    console.log(datas);
 
     const itemsPerPage = 6; // Set the number of items per page
     const [currentPage, setCurrentPage] = useState(0);
@@ -20,12 +24,12 @@ const EventsGrid = (props: Props) => {
 
     const startIndex = currentPage * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    const paginatedEvents = events.slice(startIndex, endIndex);
+    const paginatedEvents = datas.slice(startIndex, endIndex);
 
     return (
         <>
             <Row gutter={{ xs: 8, sm: 16, md: 24 }} style={{ rowGap: '20px' }}>
-                {paginatedEvents.map((item) => (
+                {paginatedEvents.map((item: any) => (
                     <EventCard key={item._id} data={item} />
                 ))}
             </Row>
@@ -34,8 +38,8 @@ const EventsGrid = (props: Props) => {
 
                 <Paragraph style={{ margin: 0, color: '#79788e', fontSize: '14px' }}>
                     Showing
-                    <span style={{ fontWeight: 700 }}>{paginatedEvents.length}</span> out of
-                    <span style={{ fontWeight: 700 }}>{events.length}</span> results
+                    <span style={{ fontWeight: 700 }}>&nbsp;{paginatedEvents.length}</span> out of
+                    <span style={{ fontWeight: 700 }}>&nbsp;{events.length}</span> results
                 </Paragraph>
 
                 <ReactPaginate

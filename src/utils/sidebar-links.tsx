@@ -6,7 +6,7 @@ import { IoWalletOutline } from "react-icons/io5";
 import { IoMdSettings } from "react-icons/io";
 import { paths } from "@/paths/paths";
 import { IoIosMan } from "react-icons/io";
-
+import { FaUser } from "react-icons/fa";
 
 const sidebarItems = (role: string) => {
   const adminItems = [
@@ -29,6 +29,16 @@ const sidebarItems = (role: string) => {
       title: "Orders",
       icon: <FaCartPlus />,
       links: [{ label: "Order list", href: paths.admin_order }],
+    },{
+      title: "Users",
+      icon: <FaUser />,
+      links: [
+        { label: "All Admins", href: "/user/admins" },
+        { label: "All Employees", href: "/user/employees" },
+        { label: "All Delivery", href: "/user/delivery" },
+        { label: "Create Admin", href: "/user/create-admin" },
+        { label: "Create Delivery", href: "/user/create-delivery" },
+      ],
     },
     {
       title: "Events",
@@ -69,7 +79,7 @@ const sidebarItems = (role: string) => {
       icon: <IoIosMan />,
       links: [
         { label: "Employe List", href: paths.employees },
-        { label: "Add Employee", href: paths.addEmploye }
+        { label: "Add Employee", href: paths.addEmploye },
       ],
     },
     {
@@ -80,7 +90,7 @@ const sidebarItems = (role: string) => {
     {
       title: "Transactions",
       icon: <IoWalletOutline />,
-      links: [{ label: "Transaction", href: "/transaction" }],
+      links: [{ label: "Transaction", href: "/payments" }],
     },
   ];
 
@@ -88,7 +98,20 @@ const sidebarItems = (role: string) => {
     {
       title: "Orders",
       icon: <LuShoppingBasket />,
-      links: [{ label: "Orders", href: "/order" }],
+      links: [{ label: "Orders", href: "/order" }, { label: "All Product", href: "/all-product" }],
+    },
+    {
+      title: "Setting",
+      icon: <IoMdSettings />,
+      links: [{ label: "Profile setting", href: "/settings/profilesetting" }],
+    },
+  ];
+
+  const deliveryItems = [
+    {
+      title: "Orders",
+      icon: <LuShoppingBasket />,
+      links: [{ label: "Orders", href: "/delivery/order" }],
     },
     {
       title: "Setting",
@@ -100,6 +123,7 @@ const sidebarItems = (role: string) => {
   if (role === "admin") return adminItems;
   if (role === "store") return storeItems;
   if (role === "employee") return employeeItems;
+  if (role === "delivery") return deliveryItems;
 };
 
 export default sidebarItems;

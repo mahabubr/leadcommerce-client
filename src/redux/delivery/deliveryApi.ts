@@ -43,6 +43,23 @@ const deliveryApi = api.injectEndpoints({
       }),
       invalidatesTags: ["Delivery"],
     }),
+    // * Create delivery
+    createDelivery: builder.mutation({
+      query: (data: any) => ({
+        url: `/delivery/create-delivery`,
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Employe"],
+    }),
+    // * Get All Delivery
+    getAllDelivery: builder.query({
+      query: (arg: any) => ({
+        url: `/delivery`,
+        method: "GET",
+        params: arg,
+      }),
+    }),
   }),
 });
 
@@ -52,4 +69,5 @@ export const {
   useAddDeliverysMutation,
   useUpdateDeliveryMutation,
   useDeleteDeliveryMutation,
+  useCreateDeliveryMutation,
 } = deliveryApi;

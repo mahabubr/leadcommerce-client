@@ -1,61 +1,57 @@
 "use client";
-import { Button, Card, Input, Select, Tag, message } from "antd";
+import { Button, Card, message } from "antd";
 import ButtonGroup from "antd/es/button/button-group";
-import { ImPrinter } from "react-icons/im";
 import { CiCalendar } from "react-icons/ci";
-import { FaCcVisa, FaTruckLoading } from "react-icons/fa";
+import { FaTruckLoading } from "react-icons/fa";
 import { BsFillPersonFill } from "react-icons/bs";
 import { HiLocationMarker } from "react-icons/hi";
 import TextArea from "antd/es/input/TextArea";
-import {
-  useGetSingleOrderQuery,
-  useUpdateStatusMutation,
-} from "@/redux/order/orderApi";
+import { useGetSingleOrderQuery } from "@/redux/order/orderApi";
 import { dateFormater } from "@/Helper/dateFormater";
 import style from "../order.module.css";
 import OrderDetailsTable from "@/components/orderTable/OrderDetailsTable";
 import { useReactToPrint } from "react-to-print";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Loader from "@/components/ui/Loader";
-
+import { useAddPaymentMutation } from "@/redux/payment/paymentApi";
 
 const OrderDetail = ({ params }: { params: any }) => {
   const id = params.details;
-  const { data, isLoading }: { data?: any, isLoading: boolean } = useGetSingleOrderQuery(id);
+  const { data, isLoading }: { data?: any; isLoading: boolean } =
+    useGetSingleOrderQuery(id);
+  console.log(data)
   const orderData = data?.data;
   const formatedDate = dateFormater(orderData?.createdAt);
 
   const products = orderData?.order_product_list;
 
   const componentRef = useRef(null);
+  const [paymentDescription, setPaymentDescription] = useState("");
 
-  const [updateOrderStatus] = useUpdateStatusMutation();
-
-  const [updateStatus, setUpdateStatus] = useState("");
-
-  useEffect(() => {
-    if (updateStatus) {
-      updateOrderStatus({
-        formData: {
-          id,
-          data: updateStatus,
-        },
-      }).then((res: any) => {
-        if (res?.data?.success) {
-          message.success("Status Update Successful");
-        }
-      });
-    }
-  }, [updateOrderStatus, updateStatus, id]);
+  const [addPayment] = useAddPaymentMutation();
 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
 
-
   if (isLoading) {
     return <Loader />;
   }
+
+  const handlePayment = () => {
+    const submitData = {
+      total_amount: data?.data?.amount,
+      order_id: id,
+      payment_status: "completed",
+      description: paymentDescription,
+    };
+
+    addPayment(submitData).then((res: any) => {
+      if (res?.data?.success) {
+        message.success(res?.data?.message);
+      }
+    });
+  };
 
   return (
     <div className={style.spContainer}>
@@ -64,23 +60,9 @@ const OrderDetail = ({ params }: { params: any }) => {
         ref={componentRef}
         extra={
           <div className={style.sercheAndPrint}>
-            <Select
-              placeholder={orderData?.order_status}
-              allowClear
-              options={[
-                { value: "pending", label: "pending" },
-                { value: "delivered", label: "delivered" },
-                { value: "cancel", label: "cancel" },
-                { value: "paused", label: "paused" },
-                { value: "accept", label: "accept" },
-              ]}
-              onChange={setUpdateStatus}
-              style={{ width: 200 }}
-            />
             <ButtonGroup>
-              <Button onClick={handlePrint} type="primary">Invoice</Button>
-              <Button type="dashed" onClick={handlePrint}>
-                <ImPrinter />
+              <Button onClick={handlePrint} type="primary">
+                Invoice
               </Button>
             </ButtonGroup>
           </div>
@@ -101,23 +83,6 @@ const OrderDetail = ({ params }: { params: any }) => {
               <h4>{formatedDate}</h4>
             </div>
             <p>Order Id : {orderData?.order_code}</p>
-          </div>
-          <div
-            style={{
-              textAlign: "left",
-              backgroundColor: "#f1f1f1",
-              padding: 20,
-              borderRadius: 8,
-              boxShadow: "3px 3px 15px #ddd",
-            }}
-          >
-            <h4>Payment Info</h4>
-            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <FaCcVisa />
-              Master Card 21502151051
-            </div>
-            <p>Business Name : LLC To PSA</p>
-            <p>Phone : +880 14 58 1871115</p>
           </div>
         </div>
         <div className={style.orderCardGrid}>
@@ -147,15 +112,6 @@ const OrderDetail = ({ params }: { params: any }) => {
               <p>John De</p>
               <p>Johnde@email.com</p>
               <p>+880 14524 57412</p>
-              <p>Status: &nbsp;<span>
-                {orderData?.payment_status === "pending" ? (
-                  <Tag style={{ padding: '0px 4px' }} color="warning">pending</Tag>
-                ) : orderData?.payment_status === "canceled" ? (
-                  <Tag style={{ padding: '2px 4px' }} color="error">Delivered</Tag>
-                ) : orderData?.payment_status === "completed" ? (
-                  <Tag style={{ padding: '2px 4px' }} color="success">Cancel</Tag>
-                ) : null}
-              </span></p>
             </div>
           </div>
           <div style={{ display: "flex", gap: 10 }}>
@@ -178,19 +134,7 @@ const OrderDetail = ({ params }: { params: any }) => {
               <h3>Order Info</h3>
               <p>Shipping: Fargo express</p>
               <p>Pay method: card</p>
-              <p>Status: &nbsp;<span>
-                {orderData?.order_status === "pending" ? (
-                  <Tag style={{ padding: '0px 4px' }} color="warning">pending</Tag>
-                ) : orderData?.order_status === "delivered" ? (
-                  <Tag style={{ padding: '2px 4px' }} color="success">Delivered</Tag>
-                ) : orderData?.order_status === "cancel" ? (
-                  <Tag style={{ padding: '2px 4px' }} color="error">Cancel</Tag>
-                ) : orderData?.order_status === "paused" ? (
-                  <Tag style={{ padding: '2px 4px' }} color="cyan">Paused</Tag>
-                ) : orderData?.order_status === "accept" ? (
-                  <Tag style={{ padding: '2px 4px' }} color="blue">Accept</Tag>
-                ) : null}
-              </span></p>
+              <p>Pay method: card</p>
             </div>
           </div>
           <div style={{ display: "flex", gap: 10 }}>
@@ -220,33 +164,35 @@ const OrderDetail = ({ params }: { params: any }) => {
                 {orderData?.shipment_address?.house_no}
               </p>
               <p>Area: {orderData?.shipment_address?.area}</p>
-              <p>Status: &nbsp;<span>
-                {orderData?.shipment_status === "pending" ? (
-                  <Tag style={{ padding: '0px 4px' }} color="warning">pending</Tag>
-                ) : orderData?.shipment_status === "canceled" ? (
-                  <Tag style={{ padding: '2px 4px' }} color="error">Delivered</Tag>
-                ) : orderData?.shipment_status === "completed" ? (
-                  <Tag style={{ padding: '2px 4px' }} color="success">Cancel</Tag>
-                ) : null}
-              </span></p>
             </div>
           </div>
         </div>
         <div className={style.tableAndCommentBoxDiv}>
           <div className={style.orderTable}>
-            <OrderDetailsTable products={products} total_price={orderData?.total_amount} isLoading={isLoading} />
+            <OrderDetailsTable
+              products={products}
+              total_price={orderData?.total_amount}
+              isLoading={isLoading}
+            />
           </div>
-          <div>
+          <div style={{ width: "60%" }}>
             <TextArea
               style={{
                 marginBottom: 20,
                 boxShadow: "3px 3px 8px #ddd",
               }}
               rows={4}
-              placeholder="maxLength is 6"
-              maxLength={6}
+              placeholder="Make some lines"
+              maxLength={200}
+              onChange={(e) => setPaymentDescription(e.target.value)}
             />
-            <Button>Save Note</Button>
+            <Button
+              onClick={() => handlePayment()}
+              type="primary"
+              style={{ width: "100%" }}
+            >
+              Make Payment
+            </Button>
           </div>
         </div>
       </Card>
