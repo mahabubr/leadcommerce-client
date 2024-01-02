@@ -32,6 +32,7 @@ const sidebarItems = (role: string) => {
         { label: "All Admins", href: "/user/admins" },
         { label: "All Employees", href: "/user/employees" },
         { label: "Create Admin", href: "/user/create-admin" },
+        { label: "Create Delivery", href: "/user/create-delivery" },
       ],
     },
     {
