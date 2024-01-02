@@ -203,7 +203,7 @@ const AddProductV2 = ({ productId }: { productId: string }) => {
       {contextHolder}
       <PCBreadcrumb title="Create Product" />
 
-      <Card title="Add Product" bordered style={{ marginTop: "20px" }}>
+      <Card title="update Product" bordered style={{ marginTop: "20px" }}>
         <Form
           form={form}
           autoComplete="off"

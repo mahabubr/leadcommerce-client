@@ -19,6 +19,7 @@ const OrderDetail = ({ params }: { params: any }) => {
   const id = params.details;
   const { data, isLoading }: { data?: any; isLoading: boolean } =
     useGetSingleOrderQuery(id);
+  console.log(data)
   const orderData = data?.data;
   const formatedDate = dateFormater(orderData?.createdAt);
 
