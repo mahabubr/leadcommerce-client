@@ -1,8 +1,6 @@
 "use client";
-import UserCart from "@/components/users/AdminCart";
 import React, { useState } from "react";
 import style from "../static/userpage.module.css";
-import { useGetAllAdminQuery } from "@/redux/admin/adminApi";
 import { Card, Pagination, Spin } from "antd";
 import { useGetAllEmployesQuery } from "@/redux/employees/employeesApi";
 import EmployeeCart from "@/components/users/EmployeeCart";

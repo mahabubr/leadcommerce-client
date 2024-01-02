@@ -10,7 +10,7 @@ type adminData = {
   position: string;
 };
 
-function EmployeeCart({ employee }) {
+function EmployeeCart({ employee }: { employee: any }) {
   const { full_name, image, phone, address, email, position }: adminData =
     employee ? employee : {};
   return (
