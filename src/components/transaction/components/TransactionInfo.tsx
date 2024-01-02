@@ -1,13 +1,15 @@
-import { Col, Flex, Row, Typography } from 'antd'
+import { Col, Row, Typography } from 'antd'
 import Image from 'next/image'
 import React from 'react'
 import TransInfroHeader from '../partials/TransInfroHeader';
 
 const { Paragraph } = Typography;
 
-type Props = {}
+type Props = {
+    data: any;
+}
 
-const TransactionInfo = (props: Props) => {
+const TransactionInfo = ({ data }: Props) => {
     return (
         <div style={{
             backgroundColor: '#f8f9fa',
@@ -39,13 +41,13 @@ const TransactionInfo = (props: Props) => {
                     <TransInfroHeader
                         title='Customer'
                         childParaOne={<>
-                            John Alexander
+                            {data?.user?.name}
                         </>}
                         childParaTwo={<>
-                            alex@example.com
+                            {data?.user?.email}
                         </>}
                         childParaThree={<>
-                            +998 99 22123456
+                            {data?.user?.mobile}
                         </>}
                     />
                 </Col>
@@ -54,14 +56,10 @@ const TransactionInfo = (props: Props) => {
                     <TransInfroHeader
                         title='Deliver to'
                         childParaOne={<>
-                            City: Tashkent, Uzbekistan
+                            {data?.user?.address}
                         </>}
-                        childParaTwo={<>
-                            Block A, House 123, Floor 2
-                        </>}
-                        childParaThree={<>
-                            Po Box 10000
-                        </>}
+                        childParaTwo={<></>}
+                        childParaThree={<></>}
                     />
                 </Col>
             </Row>

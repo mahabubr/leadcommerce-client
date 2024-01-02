@@ -1,5 +1,5 @@
 "use client";
-import style from './layout.module.css';
+import style from "./layout.module.css";
 import { useState, useEffect } from "react";
 import SideBar from "@/components/ui/SideBar";
 import TopBar from "@/components/ui/TopBar";
@@ -63,11 +63,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           transition: "margin 0.4s",
         }}
       >
-        <div
-          className={style.main_box}
-        >
-          {children}
-        </div>
+        <div className={style.main_box}>{children}</div>
       </div>
     </div>
   );

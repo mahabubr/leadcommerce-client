@@ -1,83 +1,79 @@
+/* eslint-disable jsx-a11y/alt-text */
 "use client";
+import SplineChart from "@/components/dashboard/SplineChart";
+import EventCalendar from "@/components/event/components/calendercomponent/EventCalendar";
+import SmallCalender from "@/components/event/components/calendercomponent/SmallCalender";
+import { LineChartOutlined } from "@ant-design/icons";
+import { Card, Image } from "antd";
+import React from "react";
 
-import type { Dayjs } from "dayjs";
-import type { BadgeProps, CalendarProps } from "antd";
-import { Badge, Calendar } from "antd";
-import style from "../../dashboard/static/dashboard.module.css";
-
-const getListData = (value: Dayjs) => {
-  let listData;
-  switch (value.date()) {
-    case 8:
-      listData = [
-        { type: "warning", content: "This is warning event." },
-        { type: "success", content: "This is usual event." },
-      ];
-      break;
-    case 10:
-      listData = [
-        { type: "warning", content: "This is warning event." },
-        { type: "success", content: "This is usual event." },
-        { type: "error", content: "This is error event." },
-      ];
-      break;
-    case 15:
-      listData = [
-        { type: "warning", content: "This is warning event" },
-        { type: "success", content: "This is very long usual event......" },
-        { type: "error", content: "This is error event 1." },
-        { type: "error", content: "This is error event 2." },
-        { type: "error", content: "This is error event 3." },
-        { type: "error", content: "This is error event 4." },
-      ];
-      break;
-    default:
-  }
-  return listData || [];
-};
-
-const getMonthData = (value: Dayjs) => {
-  if (value.month() === 8) {
-    return 1394;
-  }
-};
-
-const EventCalendar = () => {
-  const monthCellRender = (value: Dayjs) => {
-    const num = getMonthData(value);
-    return num ? (
-      <div className="notes-month">
-        <section>{num}</section>
-        <span>Backlog number</span>
+const CalenderPage = () => {
+  return (
+    <>
+      <div style={{ padding: "10px" }}>
+        <h4 style={{ fontSize: "30px" }}>Events</h4>
       </div>
-    ) : null;
-  };
-
-  const dateCellRender = (value: Dayjs) => {
-    const listData = getListData(value);
-    return (
-      <ul className="events">
-        {listData.map((item) => (
-          <li key={item.content}>
-            <Badge
-              status={item.type as BadgeProps["status"]}
-              text={item.content}
+      <div
+        style={{
+          padding: "10px",
+          display: "flex",
+          gap: "10px",
+        }}
+      >
+        <div style={{ flex: "1" }}>
+          <EventCalendar></EventCalendar>
+        </div>
+        <div style={{ width: "25%" }}>
+          <Card style={{ width: "100%" }}>
+            <h3>
+              <LineChartOutlined /> TODAYS REVENUE
+            </h3>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                // border: "1px solid red",
+              }}
+            >
+              <h1
+                style={{
+                  flex: "1",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                $2,189
+              </h1>
+              <div style={{ width: "60%" }}>
+                <SplineChart />
+              </div>
+            </div>
+          </Card>
+          {/* calender  */}
+          <div style={{ marginTop: "20px" }}>
+            <h4 style={{ fontSize: "25px" }}>Sale Calendar </h4>
+            <SmallCalender></SmallCalender>
+          </div>
+          <div
+            style={{
+              // border: "1px solid red",
+              height: "400px",
+              overflow: "hidden",
+              marginTop: "20px",
+              borderRadius: "8px",
+            }}
+          >
+            <Image
+              style={{ width: "100%", height: "100%" }}
+              src="https://gw.alipayobjects.com/zos/antfincdn/LlvErxo8H9/photo-1503185912284-5271ff81b9a8.webp"
             />
-          </li>
-        ))}
-      </ul>
-    );
-  };
-
-  const cellRender: CalendarProps<Dayjs>["cellRender"] = (current, info) => {
-    if (info.type === "date") return dateCellRender(current);
-    if (info.type === "month") return monthCellRender(current);
-    return info.originNode;
-  };
-
-  return <div className={style.container}>
-    <Calendar style={{ padding: 30, borderRadius: 8 }} cellRender={cellRender} />
-  </div>;
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
 
-export default EventCalendar;
+export default CalenderPage;

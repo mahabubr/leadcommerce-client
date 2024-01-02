@@ -7,7 +7,6 @@ import { IoMdSettings } from "react-icons/io";
 import { paths } from "@/paths/paths";
 import { IoIosMan } from "react-icons/io";
 
-
 const sidebarItems = (role: string) => {
   const adminItems = [
     {
@@ -57,7 +56,7 @@ const sidebarItems = (role: string) => {
       icon: <IoIosMan />,
       links: [
         { label: "Employe List", href: paths.employees },
-        { label: "Add Employee", href: paths.addEmploye }
+        { label: "Add Employee", href: paths.addEmploye },
       ],
     },
     {
@@ -68,7 +67,7 @@ const sidebarItems = (role: string) => {
     {
       title: "Transactions",
       icon: <IoWalletOutline />,
-      links: [{ label: "Transaction", href: "/transaction" }],
+      links: [{ label: "Transaction", href: "/payments" }],
     },
   ];
 
@@ -85,9 +84,23 @@ const sidebarItems = (role: string) => {
     },
   ];
 
+  const deliveryItems = [
+    {
+      title: "Orders",
+      icon: <LuShoppingBasket />,
+      links: [{ label: "Orders", href: "/delivery/order" }],
+    },
+    {
+      title: "Setting",
+      icon: <IoMdSettings />,
+      links: [{ label: "Profile setting", href: "/settings/profilesetting" }],
+    },
+  ];
+
   if (role === "admin") return adminItems;
   if (role === "store") return storeItems;
   if (role === "employee") return employeeItems;
+  if (role === "delivery") return deliveryItems;
 };
 
 export default sidebarItems;

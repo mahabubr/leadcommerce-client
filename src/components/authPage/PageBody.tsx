@@ -19,7 +19,7 @@ const PageBody = () => {
       if (res.success) {
         message.success(res.message);
         localStorage.setItem("accessToken", res?.data?.accessToken);
-        console.log(res?.data);
+
         const decode = decodedToken(res?.data?.accessToken as string);
         // @ts-ignore
         if (decode?.role === "admin") {
@@ -30,10 +30,13 @@ const PageBody = () => {
           // @ts-ignore
         } else if (decode?.role === "employee") {
           router.push("/settings/profilesetting");
+        } // @ts-ignore
+        else if (decode?.role === "delivery") {
+          router.push("/settings/profilesetting");
         }
       }
     } catch (error: any) {
-      message.error(error.data.message);
+      message.error("something went wrong");
     }
   };
 
