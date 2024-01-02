@@ -1,34 +1,32 @@
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
-import PCBreadcrumb from "./partials/PCBreadcrumb";
+import { paths } from "@/paths/paths";
+import { useGetAllCategoriesQuery } from "@/redux/category/categoryApi";
+import { useAddProductsMutation } from "@/redux/product/productApi";
+import { DeleteOutlined, UploadOutlined } from "@ant-design/icons";
 import {
-  Card,
-  Row,
-  Col,
   Button,
-  Upload,
-  UploadProps,
-  message,
-  UploadFile,
-  Space,
+  Card,
+  Checkbox,
+  Col,
+  ColorPicker,
   Form,
   Input,
-  Select,
-  ColorPicker,
-  Checkbox,
   InputNumber,
+  Row,
+  Select,
+  Space,
+  Upload,
+  UploadFile,
+  UploadProps,
+  message,
+  notification,
 } from "antd";
-import { productItems } from "./utils/productData";
-import Image from "next/image";
-import { UploadOutlined, DeleteOutlined } from "@ant-design/icons";
 import type { Color, ColorPickerProps } from "antd/es/color-picker";
-import { useAddProductsMutation } from "@/redux/product/productApi";
-import { notification } from "antd";
-import { PoweroffOutlined } from "@ant-design/icons";
-import "./styles/cproduct.css";
-import { useGetAllCategoriesQuery } from "@/redux/category/categoryApi";
+import Image from "next/image";
+import { useEffect, useMemo, useState } from "react";
 import Loader from "../ui/Loader";
-import { paths } from "@/paths/paths";
+import PCBreadcrumb from "./partials/PCBreadcrumb";
+import "./styles/cproduct.css";
 
 const props: UploadProps = {
   name: "file",
@@ -120,7 +118,7 @@ const AddProductV2 = () => {
     if (fileList) {
       formData.append("image", fileList.originFileObj);
     }
-
+    // console.log([...formData.entries()]);
     /* //** calling api */
     /* //** handle product create response */
     try {
@@ -184,30 +182,28 @@ const AddProductV2 = () => {
   return (
     <>
       {contextHolder}
-      <PCBreadcrumb title="Create Product" route={paths.products} />
+      <PCBreadcrumb title='Create Product' route={paths.products}  />
 
-      <Card title="Add Product" bordered style={{ marginTop: "20px" }}>
+      <Card title='Add Product' bordered style={{ marginTop: "20px" }}>
         <Form
           form={form}
-          autoComplete="off"
-          layout="vertical"
+          autoComplete='off'
+          layout='vertical'
           onFinish={onFinish}
           onFinishFailed={(error) => {
             console.log({ error });
-          }}
-        >
+          }}>
           <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
-            <Col className="gutter-row" xs={24} lg={9}>
+            <Col className='gutter-row' xs={24} lg={9}>
               <Card
-                title=""
+                title=''
                 bordered
-                style={{ maxHeight: "800px", position: "relative" }}
-              >
+                style={{ maxHeight: "800px", position: "relative" }}>
                 <Image
                   src={currentImage ? currentImage : "/preview.jpg"}
                   height={500}
                   width={630}
-                  alt="preview"
+                  alt='preview'
                   style={{
                     width: "100%",
                     height: "100%",
@@ -216,10 +212,9 @@ const AddProductV2 = () => {
                 />
 
                 <div
-                  style={{ position: "absolute", top: "40px", left: "37px" }}
-                >
+                  style={{ position: "absolute", top: "40px", left: "37px" }}>
                   <Upload
-                    accept=".png, .jpg, .jpeg"
+                    accept='.png, .jpg, .jpeg'
                     maxCount={1}
                     showUploadList={false}
                     beforeUpload={(file) => {
@@ -244,44 +239,39 @@ const AddProductV2 = () => {
                         message.error(`${info.file.name} file upload failed.`);
                       }
                     }}
-                    {...props}
-                  >
-                    <Button icon={<UploadOutlined />} size="large"></Button>
+                    {...props}>
+                    <Button icon={<UploadOutlined />} size='large'></Button>
                   </Upload>
                 </div>
                 <div
-                  style={{ position: "absolute", top: "40px", right: "37px" }}
-                >
+                  style={{ position: "absolute", top: "40px", right: "37px" }}>
                   <Button
                     icon={<DeleteOutlined />}
                     onClick={() => {
                       setFileList(null);
                       setCurrentImage(null);
                     }}
-                    size="large"
-                  ></Button>
+                    size='large'></Button>
                 </div>
               </Card>
             </Col>
 
-            <Col className="gutter-row" xs={24} lg={15}>
+            <Col className='gutter-row' xs={24} lg={15}>
               <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
                 <Col
-                  className="gutter-row mobile-top-margin-20"
+                  className='gutter-row mobile-top-margin-20'
                   xs={24}
-                  lg={12}
-                >
+                  lg={12}>
                   <label
-                    htmlFor="Product title"
+                    htmlFor='Product title'
                     style={{
                       textTransform: "uppercase",
                       fontWeight: 500,
-                    }}
-                  >
+                    }}>
                     Product title
                   </label>
                   <Form.Item
-                    name="title"
+                    name='title'
                     rules={[
                       {
                         required: true,
@@ -289,42 +279,38 @@ const AddProductV2 = () => {
                       },
                       { whitespace: true },
                     ]}
-                    hasFeedback
-                  >
+                    hasFeedback>
                     <Input
-                      size="large"
+                      size='large'
                       style={{ marginTop: "0.5rem" }}
-                      placeholder="Type Product title"
+                      placeholder='Type Product title'
                     />
                   </Form.Item>
                 </Col>
 
-                <Col className="gutter-row" xs={24} lg={12}>
+                <Col className='gutter-row' xs={24} lg={12}>
                   <div>
                     <label
-                      htmlFor="Product Category"
+                      htmlFor='Product Category'
                       style={{
                         textTransform: "uppercase",
                         fontWeight: 500,
-                      }}
-                    >
+                      }}>
                       Product Category
                     </label>
 
                     <Form.Item
-                      name="product_category"
+                      name='product_category'
                       rules={[
                         {
                           required: true,
                         },
                       ]}
-                      hasFeedback
-                    >
+                      hasFeedback>
                       <Select
-                        size="large"
+                        size='large'
                         style={{ width: "100%", marginTop: "0.5rem" }}
-                        placeholder="Select a category"
-                      >
+                        placeholder='Select a category'>
                         {
                           // @ts-ignore
                           data.data &&
@@ -340,19 +326,18 @@ const AddProductV2 = () => {
                   </div>
                 </Col>
 
-                <Col className="gutter-row" span={24}>
+                <Col className='gutter-row' span={24}>
                   <div>
                     <label
-                      htmlFor="slug"
+                      htmlFor='slug'
                       style={{
                         textTransform: "uppercase",
                         fontWeight: 500,
-                      }}
-                    >
+                      }}>
                       slug
                     </label>
                     <Form.Item
-                      name="slug"
+                      name='slug'
                       rules={[
                         {
                           required: true,
@@ -360,29 +345,27 @@ const AddProductV2 = () => {
                         },
                         { whitespace: true },
                       ]}
-                      hasFeedback
-                    >
+                      hasFeedback>
                       <Input
-                        size="large"
+                        size='large'
                         style={{ marginTop: "0.5rem" }}
-                        placeholder="Enter slug"
+                        placeholder='Enter slug'
                       />
                     </Form.Item>
                   </div>
                 </Col>
 
-                <Col className="gutter-row" span={24}>
+                <Col className='gutter-row' span={24}>
                   <label
-                    htmlFor="Short Description"
+                    htmlFor='Short Description'
                     style={{
                       textTransform: "uppercase",
                       fontWeight: 500,
-                    }}
-                  >
+                    }}>
                     Short Description
                   </label>
                   <Form.Item
-                    name="description"
+                    name='description'
                     rules={[
                       {
                         required: false,
@@ -390,24 +373,22 @@ const AddProductV2 = () => {
                       },
                       { whitespace: true },
                     ]}
-                    hasFeedback
-                  >
+                    hasFeedback>
                     <Input.TextArea
                       style={{ marginTop: "0.5rem" }}
-                      placeholder="Product description here"
+                      placeholder='Product description here'
                     />
                   </Form.Item>
                 </Col>
 
-                <Col className="gutter-row margin-bottom-20" xs={24} lg={12}>
+                <Col className='gutter-row margin-bottom-20' xs={24} lg={12}>
                   <div>
                     <label
                       style={{
                         textTransform: "uppercase",
                         fontWeight: 500,
                         display: "block",
-                      }}
-                    >
+                      }}>
                       Colors
                     </label>
 
@@ -422,68 +403,60 @@ const AddProductV2 = () => {
                 </Col>
 
                 <Col
-                  className="gutter-row mobile-top-bottom-margin-20 margin-bottom-20"
+                  className='gutter-row mobile-top-bottom-margin-20 margin-bottom-20'
                   xs={24}
-                  lg={12}
-                >
+                  lg={12}>
                   <div>
                     <label
                       style={{
                         textTransform: "uppercase",
                         fontWeight: 500,
                         display: "block",
-                      }}
-                    >
+                      }}>
                       Size
                     </label>
 
                     <Space style={{ marginTop: "0.5rem" }}>
                       <Checkbox
                         onChange={() => handleCheckboxChange("S")}
-                        checked={checkedValues.includes("S")}
-                      >
+                        checked={checkedValues.includes("S")}>
                         S
                       </Checkbox>
                       <Checkbox
                         onChange={() => handleCheckboxChange("M")}
-                        checked={checkedValues.includes("M")}
-                      >
+                        checked={checkedValues.includes("M")}>
                         M
                       </Checkbox>
                       <Checkbox
                         onChange={() => handleCheckboxChange("L")}
-                        checked={checkedValues.includes("L")}
-                      >
+                        checked={checkedValues.includes("L")}>
                         L
                       </Checkbox>
                       <Checkbox
                         onChange={() => handleCheckboxChange("XL")}
-                        checked={checkedValues.includes("XL")}
-                      >
+                        checked={checkedValues.includes("XL")}>
                         XL
                       </Checkbox>
                       <Checkbox
                         onChange={() => handleCheckboxChange("XLL")}
-                        checked={checkedValues.includes("XLL")}
-                      >
+                        checked={checkedValues.includes("XLL")}>
                         XLL
                       </Checkbox>
                     </Space>
                   </div>
                 </Col>
 
-                <Col className="gutter-row" xs={24} lg={12}>
+                <Col className='gutter-row' xs={24} lg={12}>
                   <label
                     style={{
                       textTransform: "uppercase",
                       fontWeight: 500,
                       display: "block",
-                    }}
-                  >
+                    }}>
                     Price
                   </label>
                   <Form.Item
-                    name="price"
+                    name='price'
                     rules={[
                       {
                         required: true,
@@ -494,31 +467,29 @@ const AddProductV2 = () => {
                         min: 1,
                       },
                     ]}
-                    hasFeedback
-                  >
+                    hasFeedback>
                     <InputNumber
                       formatter={(values) =>
                         `$ ${values}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                       }
                       style={{ marginTop: "0.5rem", width: "100%" }}
-                      size="large"
-                      placeholder="type price"
+                      size='large'
+                      placeholder='type price'
                     />
                   </Form.Item>
                 </Col>
 
-                <Col className="gutter-row" xs={24} lg={12}>
+                <Col className='gutter-row' xs={24} lg={12}>
                   <label
                     style={{
                       textTransform: "uppercase",
                       fontWeight: 500,
                       display: "block",
-                    }}
-                  >
+                    }}>
                     quantity
                   </label>
                   <Form.Item
-                    name="quantity"
+                    name='quantity'
                     rules={[
                       {
                         required: true,
@@ -530,28 +501,26 @@ const AddProductV2 = () => {
                         max: 10000,
                       },
                     ]}
-                    hasFeedback
-                  >
+                    hasFeedback>
                     <InputNumber
                       style={{ marginTop: "0.5rem", width: "100%" }}
-                      size="large"
-                      placeholder="Product Quantity"
+                      size='large'
+                      placeholder='Product Quantity'
                     />
                   </Form.Item>
                 </Col>
 
-                <Col className="gutter-row" xs={24}>
+                <Col className='gutter-row' xs={24}>
                   <label
-                    htmlFor="Full Description"
+                    htmlFor='Full Description'
                     style={{
                       textTransform: "uppercase",
                       fontWeight: 500,
-                    }}
-                  >
+                    }}>
                     Full Description
                   </label>
                   <Form.Item
-                    name="fullDescription"
+                    name='fullDescription'
                     rules={[
                       {
                         required: true,
@@ -559,52 +528,48 @@ const AddProductV2 = () => {
                       },
                       { whitespace: true },
                     ]}
-                    hasFeedback
-                  >
+                    hasFeedback>
                     <Input.TextArea
                       rows={6}
                       style={{ marginTop: "0.5rem" }}
-                      placeholder="Product full description here"
+                      placeholder='Product full description here'
                     />
                   </Form.Item>
                 </Col>
 
-                <Col className="gutter-row" xs={24}>
+                <Col className='gutter-row' xs={24}>
                   <label
-                    htmlFor="Product Tags"
+                    htmlFor='Product Tags'
                     style={{
                       textTransform: "uppercase",
                       fontWeight: 500,
-                    }}
-                  >
+                    }}>
                     Product Tags
                   </label>
                   <Form.Item
-                    name="tags"
+                    name='tags'
                     rules={[
                       {
                         required: true,
                         message: "Please enter Product Tags",
                       },
                     ]}
-                    hasFeedback
-                  >
+                    hasFeedback>
                     <Select
-                      mode="tags"
-                      size="large"
+                      mode='tags'
+                      size='large'
                       style={{ marginTop: "0.5rem" }}
-                      placeholder="Product Tags"
+                      placeholder='Product Tags'
                       tokenSeparators={[","]}
                     />
                   </Form.Item>
                 </Col>
               </Row>
               <Button
-                type="primary"
-                htmlType="submit"
+                type='primary'
+                htmlType='submit'
                 loading={isLoading}
-                size="large"
-              >
+                size='large'>
                 Add Product
               </Button>
             </Col>

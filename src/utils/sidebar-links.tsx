@@ -6,6 +6,7 @@ import { IoWalletOutline } from "react-icons/io5";
 import { IoMdSettings } from "react-icons/io";
 import { paths } from "@/paths/paths";
 import { IoIosMan } from "react-icons/io";
+import { FaUser } from "react-icons/fa";
 
 const sidebarItems = (role: string) => {
   const adminItems = [
@@ -23,6 +24,17 @@ const sidebarItems = (role: string) => {
       title: "Stores",
       icon: <FaStore />,
       links: [{ label: "Stores", href: "/stores" }],
+    },
+    {
+      title: "Users",
+      icon: <FaUser />,
+      links: [
+        { label: "All Admins", href: "/user/admins" },
+        { label: "All Employees", href: "/user/employees" },
+        { label: "All Delivery", href: "/user/delivery" },
+        { label: "Create Admin", href: "/user/create-admin" },
+        { label: "Create Delivery", href: "/user/create-delivery" },
+      ],
     },
     {
       title: "Events",

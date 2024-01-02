@@ -14,7 +14,7 @@ import Image from "next/image";
 import { UploadOutlined, DeleteOutlined } from "@ant-design/icons";
 import PCBreadcrumb from "../products/partials/PCBreadcrumb";
 import { paths } from "@/paths/paths";
-import useAddEmploye from "./AddEmploye.logic";
+import useCreateAdmin from "./CreateAdmin.logic";
 
 const props: UploadProps = {
   name: "file",
@@ -31,7 +31,7 @@ type resType = {
   data: any;
 };
 
-const AddEmploye = () => {
+const CreateAdmin = () => {
   const {
     onFinish,
     fileList,
@@ -44,7 +44,7 @@ const AddEmploye = () => {
     setFileList,
     beforeFileUpload,
     onChangeFileHandle,
-  } = useAddEmploye();
+  } = useCreateAdmin();
 
   return (
     <>
@@ -273,13 +273,42 @@ const AddEmploye = () => {
                     </Form.Item>
                   </div>
                 </Col>
+                <Col className='gutter-row' span={12}>
+                  <div>
+                    <label
+                      htmlFor='address'
+                      style={{
+                        textTransform: "uppercase",
+                        fontWeight: 500,
+                      }}>
+                      Address
+                    </label>
+                    <Form.Item
+                      name='address'
+                      rules={[
+                        {
+                          required: true,
+                          message: "address is required",
+                        },
+                        { whitespace: true },
+                      ]}
+                      hasFeedback>
+                      <Input
+                        size='large'
+                        style={{ marginTop: "0.5rem" }}
+                        type='address'
+                        placeholder='Enter address'
+                      />
+                    </Form.Item>
+                  </div>
+                </Col>
               </Row>
               <Button
                 type='primary'
                 htmlType='submit'
                 loading={isLoading}
                 size='large'>
-                Add Employee
+                Add Admin
               </Button>
             </Col>
           </Row>
@@ -289,4 +318,4 @@ const AddEmploye = () => {
   );
 };
 
-export default AddEmploye;
+export default CreateAdmin;

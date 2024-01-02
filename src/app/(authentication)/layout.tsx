@@ -17,8 +17,22 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     const decode = decodedToken(token as string);
 
     // @ts-ignore
-    if (decode?.email && decode?.role) {
-      router.push("/dashboard");
+    if (decode?.email) {
+      // @ts-ignore
+      if (decode?.role === "admin") {
+        router.push("/dashboard");
+      }
+      // @ts-ignore
+      else if (decode?.role === "store") {
+        router.push("/seller-details");
+      }
+      // @ts-ignore
+      else if (decode?.role === "employee") {
+        router.push("/settings/profilesetting");
+      } // @ts-ignore
+      else if (decode?.role === "delivery") {
+        router.push("/settings/profilesetting");
+      }
     } else {
       setIsLoading(false);
     }
