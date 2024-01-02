@@ -143,10 +143,19 @@ const AddEvent = () => {
                                 </Col>
                                 <Col className="gutter-row" xs={24} sm={12} lg={8}>
                                     <AntDateTimePicker
-                                        title={"Description"}
-                                        name={"description"}
+                                        title={"Event Date"}
+                                        name={"eventDate"}
                                         uppercase={true}
-                                        req_message={"Description is required"}
+                                        req_message={"Event Date is required"}
+                                        whiteSpace={true}
+                                    />
+                                </Col>
+                                <Col className="gutter-row" xs={24} sm={12} lg={12}>
+                                    <AntDateTimePicker
+                                        title={"StartTime"}
+                                        name={"startTime"}
+                                        uppercase={true}
+                                        req_message={"StartTime is required"}
                                         whiteSpace={true}
                                     />
                                 </Col>

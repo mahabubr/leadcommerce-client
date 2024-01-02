@@ -35,6 +35,22 @@ const disabledDate: RangePickerProps['disabledDate'] = (current) => {
   return current && current < dayjs().endOf('day');
 };
 
+const { RangePicker } = DatePicker;
+
+const disabledRangeTime: RangePickerProps['disabledTime'] = (_, type) => {
+  if (type === 'start') {
+    return {
+      disabledHours: () => range(0, 60).splice(4, 20),
+      disabledMinutes: () => range(30, 60),
+      disabledSeconds: () => [55, 56],
+    };
+  }
+  return {
+    disabledHours: () => range(0, 60).splice(20, 4),
+    disabledMinutes: () => range(0, 31),
+    disabledSeconds: () => [55, 56],
+  };
+};
 
 const AntDateTimePicker = (props:IProps) => {
     const {format,name,uppercase,fontWeight,req_message,margin,whiteSpace,title,size}=props;
@@ -65,13 +81,17 @@ const AntDateTimePicker = (props:IProps) => {
                 rules={rules}
                 hasFeedback
             >
-                <DatePicker
-                  size={size || 'large'}
-                  format={format || "YYYY-MM-DD HH:mm:ss"}
+                <RangePicker
+                    size={size || 'large'}
                   disabledDate={disabledDate}
-                  disabledTime={disabledDateTime}
-                  showTime={{ defaultValue: dayjs('00:00:00', 'HH:mm:ss') }}
+                  disabledTime={disabledRangeTime}
+                  showTime={{
+                    hideDisabledOptions: true,
+                    defaultValue: [dayjs('00:00:00', 'HH:mm:ss'), dayjs('11:59:59', 'HH:mm:ss')],
+                  }}
+                  format={format || "YYYY-MM-DD HH:mm:ss"}
                 />
+  
             </Form.Item>
         </div>
     );

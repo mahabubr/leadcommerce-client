@@ -1,4 +1,4 @@
-import { FaHome, FaStore, FaCalendar } from "react-icons/fa";
+import { FaHome, FaStore, FaCalendar, FaCartPlus, FaQuestion } from "react-icons/fa";
 import { BiSolidCategoryAlt } from "react-icons/bi";
 import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 import { LuShoppingBasket } from "react-icons/lu";
@@ -26,12 +26,24 @@ const sidebarItems = (role: string) => {
       links: [{ label: "Stores", href: "/stores" }],
     },
     {
+      title: "Orders",
+      icon: <FaCartPlus />,
+      links: [{ label: "Order list", href: paths.admin_order }],
+    },
+    {
       title: "Events",
       icon: <FaCalendar />,
       links: [
         { label: "Calendar", href: "/event/calendar" },
         { label: "Events", href: "/event" },
         { label: "Add Events", href: paths.add_events },
+      ],
+    },
+    {
+      title: "FAQ",
+      icon: <FaQuestion />,
+      links: [
+        { label: "FAQ list", href: paths.faqs },
       ],
     },
   ];

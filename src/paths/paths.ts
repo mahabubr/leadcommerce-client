@@ -10,4 +10,7 @@ export const paths = {
 
   events: "/event",
   add_events: "/event/add-event",
+
+  admin_order: "/admin/orders",
+  faqs: "/admin/faqs",
 };

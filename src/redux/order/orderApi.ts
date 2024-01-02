@@ -20,11 +20,14 @@ const OrderApi = api.injectEndpoints({
       providesTags: [tagTypes.orders],
     }),
     updateStatus: builder.mutation({
-      query: ({ formData }: { formData: any }) => ({
-        url: `/Orders/update-status`,
-        method: "PATCH",
-        body: formData,
-      }),
+      query: ({ formData }: { formData: any }) => {
+        console.log(formData);
+        return {
+          url: `/Orders/update-status`,
+          method: "PATCH",
+          body: formData,
+        };
+      },
       invalidatesTags: [tagTypes.orders],
     }),
   }),

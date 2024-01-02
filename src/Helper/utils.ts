@@ -48,3 +48,26 @@ export const uploadProps: UploadProps = {
     authorization: "authorization-text",
   },
 };
+
+export const classByOrderStatus = {
+  pending: "warning",
+  delivered: "success",
+  cancel: "error",
+  paused: "cyan",
+  accept: "blue",
+};
+
+export type IOrderStatus =
+  | "pending"
+  | "delivered"
+  | "cancel"
+  | "paused"
+  | "accept";
+
+export const classByPaymentStatus = {
+  pending: "warning",
+  canceled: "error",
+  completed: "success",
+};
+
+export type IPaymentStatus = "pending" | "completed" | "canceled";

@@ -7,9 +7,10 @@ type Props = {
     items: { value: any; label: any }[],
     selected: any;
     handleChange: any;
+    size?:'large'|'small'|'middle'
 }
 
-const PSelect = ({ placeholder, handleChange, items, selected, label }: Props) => {
+const PSelect = ({ placeholder, handleChange, items, selected, label,size }: Props) => {
     return (
         <div>
             <label
@@ -22,7 +23,7 @@ const PSelect = ({ placeholder, handleChange, items, selected, label }: Props) =
             </label>
 
             <Select
-                size="large"
+                size={size || "large"}
                 placeholder={placeholder}
                 onChange={handleChange}
                 style={{ width: '100%', marginTop: '0.5rem' }}
