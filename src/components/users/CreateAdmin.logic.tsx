@@ -4,6 +4,7 @@ import { message, UploadFile, Form, notification } from "antd";
 import { RcFile } from "antd/es/upload";
 import { useAddEmployesMutation } from "@/redux/employees/employeesApi";
 import { jwtDecode } from "jwt-decode";
+import { useAddAdminMutation } from "@/redux/admin/adminApi";
 
 const initialData = {
   image: "",
@@ -21,11 +22,11 @@ type resType = {
   data: any;
 };
 
-const useAddEmploye = () => {
+const useCreateAdmin = () => {
   const [api, contextHolder] = notification.useNotification();
   const [isLoading, setIsLoading] = useState(false);
   const [currentImage, setCurrentImage] = useState<string | null>(null);
-  const [addEmployes, {}] = useAddEmployesMutation();
+  const [addAdmin, {}] = useAddAdminMutation();
 
   /* //** form  */
   const [form] = Form.useForm();
@@ -51,6 +52,9 @@ const useAddEmploye = () => {
     if (values.position) {
       formData.append("position", values.position);
     }
+    if (values.address) {
+      formData.append("address", values.address);
+    }
     if (fileList) {
       formData.append("image", fileList.originFileObj);
     }
@@ -64,7 +68,7 @@ const useAddEmploye = () => {
     /* //** handle product create response */
     try {
       setIsLoading(true);
-      await addEmployes(formData).then((res: any) => {
+      await addAdmin(formData).then((res: any) => {
         if (res?.data?.success) {
           message.success(res?.data?.message);
           form.setFieldsValue(initialData);
@@ -143,4 +147,4 @@ const useAddEmploye = () => {
   };
 };
 
-export default useAddEmploye;
+export default useCreateAdmin;

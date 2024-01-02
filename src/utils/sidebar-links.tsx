@@ -31,6 +31,7 @@ const sidebarItems = (role: string) => {
       links: [
         { label: "All Admins", href: "/user/admins" },
         { label: "All Employees", href: "/user/employees" },
+        { label: "Create Admin", href: "/user/create-admin" },
       ],
     },
     {
