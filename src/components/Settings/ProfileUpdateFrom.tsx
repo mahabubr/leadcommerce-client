@@ -1,16 +1,44 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Checkbox, DatePicker, Form, Input } from "antd";
 import style from "./static/profileUpload.module.css";
+import { useGetAEmployeQuery } from "@/redux/employees/employeesApi";
 type FieldType = {
-  firstName?: string;
-  lastName?: string;
+  fullName?: string;
+  country?: string;
   email?: string;
   phone?: string;
   address?: string;
   birthday?: Date;
 };
 
+type resType = {
+  statusCode: number;
+  success: boolean;
+  message: string;
+  data: any;
+};
+
+const initialData = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  address: "",
+  birthday: "",
+};
+
 const ProfileUpdateFrom = () => {
+  const { data, isLoading }: any = useGetAEmployeQuery({});
+  console.log(data);
+
+  const [form] = Form.useForm();
+
+  // useEffect(()=>{
+  //   if(data?.statusCode === 200)
+  // })
+
+  useEffect(() => {});
+
   const onFinish = (values: any) => {
     console.log("Success:", values);
   };
@@ -21,109 +49,125 @@ const ProfileUpdateFrom = () => {
 
   return (
     <div>
-      <Form
-        name="basic"
-        layout="vertical"
-        style={{ maxWidth: 800 }}
-        initialValues={{ remember: true }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
-      >
-        <div
-          style={{
-            display: "flex",
-            gap: "2rem",
-          }}
+      {/* {isLoading?"loader..." : (<form........ )} */}
+      {isLoading ? (
+        "loader"
+      ) : (
+        <Form
+          name="basic"
+          layout="vertical"
+          style={{ maxWidth: 800 }}
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
         >
-          <Form.Item<FieldType>
-            label='First Name'
-            name='firstName'
+          <div
             style={{
-              width: "50%",
+              display: "flex",
+              gap: "2rem",
             }}
-            rules={[{ message: "Please input your username!" }]}>
-            <Input
+          >
+            <Form.Item<FieldType>
+              label="Full Name"
+              name="fullName"
               style={{
-                height: "40px",
+                width: "50%",
               }}
-            />
-          </Form.Item>
+              rules={[{ message: "Please input your username!" }]}
+            >
+              {/* {console.log(data?.data?.full_name)} */}
 
-          <Form.Item<FieldType>
-            label='Last Name'
-            name='lastName'
-            style={{
-              width: "50%",
-            }}
-            rules={[{ message: "Please input your password!" }]}>
-            <Input
+              <Input
+                defaultValue={data?.data?.full_name}
+                style={{
+                  height: "40px",
+                }}
+              />
+            </Form.Item>
+
+            <Form.Item<FieldType>
+              label="Country"
+              name="country"
               style={{
-                height: "40px",
+                width: "50%",
               }}
-            />
-          </Form.Item>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            gap: "2rem",
-          }}>
+              rules={[{ message: "Please input your password!" }]}
+            >
+              <Input
+                defaultValue={data?.data?.country}
+                style={{
+                  height: "40px",
+                }}
+              />
+            </Form.Item>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              gap: "2rem",
+            }}
+          >
+            <Form.Item<FieldType>
+              label="Email"
+              name="email"
+              style={{
+                width: "100%",
+              }}
+              rules={[{ message: "Please input your username!" }]}
+            >
+              <Input
+                defaultValue={data?.data?.email}
+                style={{
+                  height: "40px",
+                }}
+              />
+            </Form.Item>
+
+            <Form.Item<FieldType>
+              label="Phone"
+              style={{
+                width: "100%",
+              }}
+              name="country"
+              rules={[{ message: "Please input your password!" }]}
+            >
+              <Input
+                defaultValue={data?.data?.phone}
+                style={{
+                  height: "40px",
+                }}
+              />
+            </Form.Item>
+          </div>
           <Form.Item<FieldType>
-            label='Email'
-            name='email'
+            label="Address"
             style={{
               width: "100%",
             }}
-            rules={[{ message: "Please input your username!" }]}>
+            name="address"
+            rules={[{ message: "Please input your password!" }]}
+          >
             <Input
               style={{
                 height: "40px",
               }}
             />
           </Form.Item>
-
-          <Form.Item<FieldType>
-            label='Phone'
-            style={{
-              width: "100%",
-            }}
-            name='lastName'
-            rules={[{ message: "Please input your password!" }]}>
-            <Input
+          <Form.Item label="Birth Day" name="birthday">
+            <DatePicker
               style={{
                 height: "40px",
               }}
             />
           </Form.Item>
-        </div>
-        <Form.Item<FieldType>
-          label="Address"
-          style={{
-            width: "100%",
-          }}
-          name="address"
-          rules={[{ message: "Please input your password!" }]}
-        >
-          <Input
-            style={{
-              height: "40px",
-            }}
-          />
-        </Form.Item>
-        <Form.Item label="Birth Day" name="birthday">
-          <DatePicker
-            style={{
-              height: "40px",
-            }}
-          />
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-        </Form.Item>
-      </Form>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Update
+            </Button>
+          </Form.Item>
+        </Form>
+      )}
     </div>
   );
 };

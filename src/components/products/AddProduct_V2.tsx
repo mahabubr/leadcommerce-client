@@ -184,7 +184,7 @@ const AddProductV2 = () => {
   return (
     <>
       {contextHolder}
-      <PCBreadcrumb title="Create Product" route={paths.products}/>
+      <PCBreadcrumb title="Create Product" route={paths.products} />
 
       <Card title="Add Product" bordered style={{ marginTop: "20px" }}>
         <Form
