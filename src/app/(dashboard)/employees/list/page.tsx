@@ -16,11 +16,11 @@ const columns: ColumnsType<DataType> = [
     key: "image",
     render: (text) =>
       text ? (
-        <img width={"60px"} src={text} alt="employe" />
+        <img width={"60px"} src={text} alt='employe' />
       ) : (
         <img
           width={"60px"}
-          alt="employe"
+          alt='employe'
           src={
             "https://kwikshift.co.nz/wp-content/uploads/2018/02/Kwikshift-Staff-Placeholder.jpg"
           }
@@ -51,7 +51,7 @@ const columns: ColumnsType<DataType> = [
     title: "Action",
     key: "action",
     render: (_, record) => (
-      <Button type="primary" danger>
+      <Button type='primary' danger>
         Delete
       </Button>
     ),
@@ -69,71 +69,83 @@ const EmployeePage = () => {
   } = useList();
 
   return (
-    <div className={style.container} style={{ marginTop: 40 }}>
-      <div className={style.mainContent}>
-        <div className={style.mainFilter}>
-          <div className={style.filterOne}>
-            <Input
-              onKeyDown={handleKeyDown}
-              onChange={handleOnChange}
-              size="middle"
-              placeholder="Search Employees"
-              suffix={<CiSearch />}
-              allowClear
-              style={{ width: "100%" }}
-              name="searchTerm"
-            />
+    <>
+      <div
+        style={{
+          backgroundColor: "white",
+          padding: "1vw",
+          borderRadius: "8px",
+          boxShadow:
+            "rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px",
+        }}>
+        <h3>All Employee</h3>
+      </div>
+      <div className={style.container} style={{ marginTop: 40 }}>
+        <div className={style.mainContent}>
+          <div className={style.mainFilter}>
+            <div className={style.filterOne}>
+              <Input
+                onKeyDown={handleKeyDown}
+                onChange={handleOnChange}
+                size='middle'
+                placeholder='Search Employees'
+                suffix={<CiSearch />}
+                allowClear
+                style={{ width: "100%" }}
+                name='searchTerm'
+              />
+            </div>
           </div>
+
+          <Table
+            pagination={paginationConfig}
+            onChange={onTableChange}
+            loading={isLoading}
+            columns={columns}
+            dataSource={data}
+          />
         </div>
 
-        <Table
-          pagination={paginationConfig}
-          onChange={onTableChange}
-          loading={isLoading}
-          columns={columns}
-          dataSource={data}
-        />
-      </div>
-
-      <div className={style.sideContent}>
-        <p style={{ fontSize: 18, fontWeight: "bold" }}>Filter by</p>
-        <div className={style.sideItems}>
-          <div>
-            <p style={{ fontSize: 12 }}>Email</p>
-            <Input
-              onKeyDown={handleKeyDown}
-              onChange={handleOnChange}
-              name="email"
-              placeholder="Type Here"
-              type="email"
-              size="middle"
-            />
-          </div>
-          <div>
-            <p style={{ fontSize: 12 }}>Phone</p>
-            <Input
-              onKeyDown={handleKeyDown}
-              onChange={handleOnChange}
-              name="phone"
-              placeholder="Type Here"
-              type="text"
-              size="middle"
-            />
-          </div>
-          <div>
-            <p style={{ fontSize: 12 }}>Position</p>
-            <Input
-              onKeyDown={handleKeyDown}
-              onChange={handleOnChange}
-              name="position"
-              placeholder="Type Here"
-              type="text"
-              size="middle"
-            />
+        <div className={style.sideContent}>
+          <p style={{ fontSize: 18, fontWeight: "bold" }}>Filter by</p>
+          <div className={style.sideItems}>
+            <div>
+              <p style={{ fontSize: 12 }}>Email</p>
+              <Input
+                onKeyDown={handleKeyDown}
+                onChange={handleOnChange}
+                name='email'
+                placeholder='Type Here'
+                type='email'
+                size='middle'
+              />
+            </div>
+            <div>
+              <p style={{ fontSize: 12 }}>Phone</p>
+              <Input
+                onKeyDown={handleKeyDown}
+                onChange={handleOnChange}
+                name='phone'
+                placeholder='Type Here'
+                type='text'
+                size='middle'
+              />
+            </div>
+            <div>
+              <p style={{ fontSize: 12 }}>Position</p>
+              <Input
+                onKeyDown={handleKeyDown}
+                onChange={handleOnChange}
+                name='position'
+                placeholder='Type Here'
+                type='text'
+                size='middle'
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
