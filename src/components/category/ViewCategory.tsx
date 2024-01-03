@@ -28,7 +28,6 @@ import { useRouter } from "next/navigation";
 import "./style/vcategory.css";
 import ButtonGroup from "antd/es/button/button-group";
 
-
 const { Text } = Typography;
 const { confirm } = Modal;
 
@@ -75,14 +74,13 @@ const ViewCategory = () => {
             borderRadius: "25px",
             color: "white",
             textTransform: "capitalize",
-          }}
-        >
+          }}>
           {status === ENUM_CATEGORY_STATUS.INACTIVE ? (
-            <Tag color="geekblue">{status}</Tag>
+            <Tag color='geekblue'>{status}</Tag>
           ) : status === ENUM_CATEGORY_STATUS.ACTIVE ? (
-            <Tag color="green">{status}</Tag>
+            <Tag color='green'>{status}</Tag>
           ) : (
-            <Tag color="error">{status}</Tag>
+            <Tag color='error'>{status}</Tag>
           )}
         </Text>
       ),
@@ -90,15 +88,14 @@ const ViewCategory = () => {
     {
       title: "Action",
       key: "action",
-      align: 'right',
-      width: '20%',
+      align: "right",
+      width: "20%",
       render: (_, { _id }) => (
         <ButtonGroup>
           <Button
-            type="primary"
+            type='primary'
             icon={<EditOutlined />}
-            onClick={() => router.push(`/category/update/${_id}`)}
-          >
+            onClick={() => router.push(`/category/update/${_id}`)}>
             Edit
           </Button>
           <Button icon={<DeleteOutlined />} onClick={() => showConfirm(_id)}>
@@ -139,16 +136,30 @@ const ViewCategory = () => {
 
   return (
     <>
-      <CVBreadcrumb link="category/add-category" title="Create Category" />
+      <div
+        style={{
+          backgroundColor: "white",
+          padding: "1vw",
+          borderRadius: "8px",
+          boxShadow:
+            "rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px",
+        }}>
+        <h3>All Categories</h3>
+      </div>
 
       <Row gutter={{ xs: 8, sm: 16, md: 24 }} style={{ marginTop: "20px" }}>
-        <Col className="gutter-row" span={24}>
+        <Col className='gutter-row' span={24}>
           <Card bordered>
+            <CVBreadcrumb
+              link='category/add-category'
+              title='Create Category'
+            />
             {/* //**product table */}
             <Table
+              style={{ marginTop: "1vw" }}
               columns={columns}
               dataSource={categoryData?.data}
-              rowKey="_id"
+              rowKey='_id'
               scroll={{ x: true }}
               pagination={{
                 current: currentPage,
@@ -169,5 +180,3 @@ const ViewCategory = () => {
 };
 
 export default ViewCategory;
-
-

@@ -15,7 +15,6 @@ const AllEmployees = () => {
     ...query,
   });
   const employeeData = data && data?.data;
-  console.log(employeeData);
 
   const handlePagination = (page: any, size: any) => {
     setPagPage(page);

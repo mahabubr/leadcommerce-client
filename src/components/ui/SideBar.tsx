@@ -1,3 +1,4 @@
+
 import decodedToken from "@/utils/decodeToken";
 import { getFromLocalStorage } from "@/utils/local-storage";
 import sidebarItems from "@/utils/sidebar-links";
@@ -21,7 +22,7 @@ const SideBar = ({ closeDrawer, open }: any) => {
       title="Lead Commerce"
       placement="left"
       onClose={closeDrawer}
-      visible={open}
+      open={open}
       width={300}
       maskClosable={false}
       mask={false}

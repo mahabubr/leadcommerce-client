@@ -10,16 +10,23 @@ import React from "react";
 const CalenderPage = () => {
   return (
     <>
-      <div style={{ padding: "10px" }}>
-        <h4 style={{ fontSize: "30px" }}>Events</h4>
+      <div
+        style={{
+          backgroundColor: "white",
+          padding: "1vw",
+          marginBottom: "1vw",
+          borderRadius: "8px",
+          boxShadow:
+            "rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px",
+        }}>
+        <h3>Events</h3>
       </div>
       <div
         style={{
-          padding: "10px",
+          // padding: "9px",
           display: "flex",
           gap: "10px",
-        }}
-      >
+        }}>
         <div style={{ flex: "1" }}>
           <EventCalendar></EventCalendar>
         </div>
@@ -34,16 +41,14 @@ const CalenderPage = () => {
                 justifyContent: "space-between",
                 alignItems: "center",
                 // border: "1px solid red",
-              }}
-            >
+              }}>
               <h1
                 style={{
                   flex: "1",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                }}
-              >
+                }}>
                 $2,189
               </h1>
               <div style={{ width: "60%" }}>
@@ -53,7 +58,17 @@ const CalenderPage = () => {
           </Card>
           {/* calender  */}
           <div style={{ marginTop: "20px" }}>
-            <h4 style={{ fontSize: "25px" }}>Sale Calendar </h4>
+            <div
+              style={{
+                backgroundColor: "white",
+                padding: "1vw",
+                marginBottom: "1vw",
+                borderRadius: "8px",
+                boxShadow:
+                  "rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px",
+              }}>
+              <h3>Sale Calendar</h3>
+            </div>
             <SmallCalender></SmallCalender>
           </div>
           <div
@@ -63,11 +78,10 @@ const CalenderPage = () => {
               overflow: "hidden",
               marginTop: "20px",
               borderRadius: "8px",
-            }}
-          >
+            }}>
             <Image
               style={{ width: "100%", height: "100%" }}
-              src="https://gw.alipayobjects.com/zos/antfincdn/LlvErxo8H9/photo-1503185912284-5271ff81b9a8.webp"
+              src='https://gw.alipayobjects.com/zos/antfincdn/LlvErxo8H9/photo-1503185912284-5271ff81b9a8.webp'
             />
           </div>
         </div>

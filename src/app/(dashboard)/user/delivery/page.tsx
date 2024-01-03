@@ -4,8 +4,9 @@ import React, { useState } from "react";
 import style from "../static/userpage.module.css";
 import { useGetAllAdminQuery } from "@/redux/admin/adminApi";
 import { Card, Pagination, Spin } from "antd";
-import { useGetAllDeliveryQuery } from "@/redux/delivery/deliveryApi";
+
 import DeliveryCart from "@/components/users/DeliveryCart";
+import { useGetAllDeliverysQuery } from "@/redux/delivery/deliveryApi";
 
 const AllDelivery = () => {
   const query: any = {};
@@ -13,7 +14,7 @@ const AllDelivery = () => {
   const [pagSize, setPagSize] = useState(10);
   query["page"] = pagPage;
   query["limit"] = pagSize;
-  const { data }: { data?: any } = useGetAllDeliveryQuery({
+  const { data }: { data?: any } = useGetAllDeliverysQuery({
     ...query,
   });
   const adminData = data && data?.data;
@@ -36,7 +37,7 @@ const AllDelivery = () => {
           boxShadow:
             "rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px",
         }}>
-        <h3>All Admins</h3>
+        <h3>All Delivery</h3>
       </div>
       <div
         style={{

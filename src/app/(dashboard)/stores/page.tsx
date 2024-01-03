@@ -35,23 +35,42 @@ const Stores = () => {
 
   return (
     <>
+      {/* <div
+        style={{
+          display: "flex",
+          backgroundColor: "white",
+          padding: "1vw",
+          borderRadius: "8px",
+          boxShadow:
+            "rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px",
+        }}>
+        <h3>All Orders</h3>
+        <Input
+          size='middle'
+          placeholder='Search Pages'
+          suffix={<CiSearch />}
+          allowClear
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div> */}
       <div className={style.container}>
         <Card>
           <div className={style.searchField}>
             {/* First section */}
             <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-              <Input
-                size="middle"
-                placeholder="Search Pages"
-                suffix={<CiSearch />}
-                allowClear
-                onChange={(e) => setSearch(e.target.value)}
-              />
+              <h2>All Stores</h2>
             </div>
 
             {/* Second section */}
             <div className={style.secondSection}>
-              <Select
+              <Input
+                size='middle'
+                placeholder='Search Pages'
+                suffix={<CiSearch />}
+                allowClear
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              {/* <Select
                 placeholder="Categories"
                 allowClear
                 options={[
@@ -60,15 +79,16 @@ const Stores = () => {
                 ]}
                 style={{ minWidth: 188 }}
               />
-              <Button type="primary">Add Store</Button>
+              <Button type="primary">Add Store</Button>  
+               */}
             </div>
           </div>
         </Card>
         <div className={style.storeGrid}>
           {stores?.length > 0
             ? stores?.map((store: any) => (
-              <StoreCard key={store._id} store={store} />
-            ))
+                <StoreCard key={store._id} store={store} />
+              ))
             : "Not Store Found"}
         </div>
         <Card
@@ -77,8 +97,7 @@ const Stores = () => {
             display: "flex",
             justifyContent: "center",
             width: "100%",
-          }}
-        >
+          }}>
           <Pagination
             defaultCurrent={1}
             total={meta?.total}

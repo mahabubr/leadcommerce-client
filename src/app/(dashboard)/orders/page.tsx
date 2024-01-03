@@ -237,7 +237,7 @@ const Orders = () => {
       </div>
 
       <div className={style.sideContent}>
-        <p style={{ fontSize: 18, fontWeight: "bold" }}>Filter by</p>
+        <p style={{ fontSize: 18, fontWeight: "bold" }}>Filter byss</p>
         <div className={style.sideItems}>
           <div>
             <p style={{ fontSize: 12 }}>Order Id</p>
