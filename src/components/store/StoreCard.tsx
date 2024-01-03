@@ -6,7 +6,7 @@ import style from "./static/storeComponent.module.css";
 
 const StoreCard = ({ store }: any) => {
   return (
-    <div className={style.storeCard}>
+    <div className={`${style.storeCard} box-shadow-common`}>
       <div>
         <img
           src={store.logo}

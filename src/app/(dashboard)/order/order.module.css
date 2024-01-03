@@ -1,7 +1,7 @@
 .container {
   display: flex;
-  gap: 24px;
-  padding: 20px;
+  gap: 12px;
+  padding: 0px;
   max-width: 100%;
   overflow-x: hidden;
 }
@@ -50,7 +50,7 @@
 
 .sideItems div {
   margin-bottom: 15px;
-  width: 100%;
+  width: 98%;
 }
 .orderCardGrid {
   width: 80%;
@@ -85,7 +85,7 @@
 }
 @media (max-width: 1400px) {
   .sideContent {
-    width: 100%;
+    width: 99%;
   }
   .container {
     flex-direction: column-reverse;

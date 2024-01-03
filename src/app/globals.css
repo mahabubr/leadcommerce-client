@@ -4,6 +4,7 @@
 
 html {
   scroll-behavior: smooth;
+  color:#475A6F;
 }
 
 ul {
@@ -41,4 +42,40 @@ a {
 .leaflet {
   height: 300px;
   width: 100%;
+}
+
+.box-shadow-common{
+  box-shadow: 2px 2px 6px #ddd,
+    -1px -1px 3px #ddd;
+  margin:4px !important;
+}
+
+.ant-menu-item-selected {
+  background-color: #475a6f61 !important;
+}
+
+.ant-input-affix-wrapper:focus-within{
+   border-color: #475A6F !important;
+   box-shadow: 0 0 0 2px #475a6f61 !important;
+   outline: 0;
+}
+
+.ant-input-affix-wrapper:hover{
+  border-color:#475A6F !important;
+}
+.ant-drawer-close, .ant-drawer-title{
+  color: #475A6F !important;
+}
+
+.ml_l4{
+  margin-left: 4px;
+}
+
+.w_99{
+  width: 99%;
+}
+.create_admin_cont{
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
 }

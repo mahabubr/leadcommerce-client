@@ -1,5 +1,7 @@
 'use client'
 
+import Loader from "@/components/ui/Loader";
+import Spinner from "@/components/ui/Spinner";
 import { paths } from "@/paths/paths";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -10,7 +12,7 @@ const HomePage = () => {
   useEffect(()=>{
     router.push(paths.login)
   },[])
-  return <div>Dashboard</div>;
+  return <div><Loader/></div>;
 };
 
 export default HomePage;

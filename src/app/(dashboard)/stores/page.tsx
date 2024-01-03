@@ -36,8 +36,8 @@ const Stores = () => {
   return (
     <>
       <div className={style.container}>
-        <Card>
-          <div className={style.searchField}>
+        <Card className="box-shadow-common">
+          <div className={`${style.searchField}`}>
             {/* First section */}
             <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
               <Input
@@ -72,12 +72,7 @@ const Stores = () => {
             : "Not Store Found"}
         </div>
         <Card
-          style={{
-            marginTop: 20,
-            display: "flex",
-            justifyContent: "center",
-            width: "100%",
-          }}
+          className={`${style.pagination_card} box-shadow-common`}
         >
           <Pagination
             defaultCurrent={1}

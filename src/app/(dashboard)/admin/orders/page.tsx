@@ -99,8 +99,8 @@ const Orders = () => {
   
   return (
     <div className={style.container}>
-      <div className={style.mainContent}>
-        <div className={style.mainFilter}>
+      <div className={`${style.mainContent} box-shadow-common w_99`}>
+        <div className={`${style.mainFilter} `}>
           <div className={style.filterOne}>
             <Input
               size="middle"
@@ -139,7 +139,7 @@ const Orders = () => {
         />
       </div>
 
-      <div className={style.sideContent}>
+      <div className={`${style.sideContent} w_99 box-shadow-common`}>
         <p style={{ fontSize: 18, fontWeight: "bold" }}>Filter by</p>
         <div className={style.sideItems}>
           <div>

@@ -139,11 +139,13 @@ const ViewCategory = () => {
 
   return (
     <>
-      <CVBreadcrumb link="category/add-category" title="Create Category" />
+      <div className='ml_l4'>
+        <CVBreadcrumb link="category/add-category" title="Create Category" />
+      </div>
 
       <Row gutter={{ xs: 8, sm: 16, md: 24 }} style={{ marginTop: "20px" }}>
         <Col className="gutter-row" span={24}>
-          <Card bordered>
+          <Card className="box-shadow-common">
             {/* //**product table */}
             <Table
               columns={columns}

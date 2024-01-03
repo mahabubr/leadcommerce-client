@@ -25,27 +25,21 @@ const AllEmployees = () => {
     <div
       style={{
         // border: "1px solid red",
-        padding: "1vw 2vw",
+        padding: "",
       }}>
       <div
+        className="box-shadow-common"
         style={{
           backgroundColor: "white",
           padding: "1vw",
           borderRadius: "8px",
-          boxShadow:
-            "rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px",
+          // boxShadow:
+            // "rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px",
         }}>
         <h3>All Employees</h3>
       </div>
       <div
-        style={{
-          backgroundColor: "white",
-          padding: "1vw",
-          borderRadius: "8px",
-          marginTop: "15px",
-          boxShadow:
-            "rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px",
-        }}>
+        className={`${style.admins_card_container} box-shadow-common`}>
         <div className={style.userGrid}>
           {employeeData?.length > 0 ? (
             employeeData?.map((employee: any) => (
@@ -68,7 +62,7 @@ const AllEmployees = () => {
       <div>
         <Card
           style={{
-            marginTop: 20,
+            marginTop: 15,
             display: "flex",
             justifyContent: "center",
             width: "100%",

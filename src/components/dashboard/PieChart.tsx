@@ -25,7 +25,7 @@ export function PieChart({ OrderData }: { OrderData: any }) {
     datasets: [
       {
         label: "total ",
-        data: [delivered, pending, cancel, paused],
+        data: [delivered || 1, pending || 1, cancel || 1, paused || 0],
         backgroundColor: ["#475A6F", "rgba(71,90,111,.4)", "#ED9090", "#fff"],
         borderColor: ["#475A6F", "rgba(71,90,111,.4)", "#ED9090", "#fff"],
         borderWidth: 1,

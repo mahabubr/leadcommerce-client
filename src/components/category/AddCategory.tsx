@@ -44,7 +44,8 @@ const AddCategory = () => {
     <>
       <CVBreadcrumb link="/category" title="View Categories" />
 
-      <Card title="Add Category" bordered style={{ marginTop: "20px" }}>
+      <div className="box-shadow-common">
+        <Card title="Add Category" bordered style={{ marginTop: "20px" }}>
         <Form
           form={form}
           autoComplete="off"
@@ -161,6 +162,7 @@ const AddCategory = () => {
           </Row>
         </Form>
       </Card>
+      </div>
     </>
   );
 };

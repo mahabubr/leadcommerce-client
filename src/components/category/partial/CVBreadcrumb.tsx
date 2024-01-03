@@ -15,7 +15,7 @@ const CVBreadcrumb = ({ link, title }: Props) => {
   const router = useRouter();
 
   return (
-    <Flex gap="middle" align="start">
+    <Flex className="ml_l4" gap="middle" align="start">
       <Flex style={boxStyle} justify="space-between" align="center">
         <Title style={{ margin: 0 }} level={3}>
           <Button type="primary" size="large" onClick={() => router.push(link)}>

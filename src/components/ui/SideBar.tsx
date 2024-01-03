@@ -3,7 +3,7 @@ import { getFromLocalStorage } from "@/utils/local-storage";
 import sidebarItems from "@/utils/sidebar-links";
 import { Drawer, Menu } from "antd";
 import Link from "next/link";
-import { paths } from "@/paths/paths";
+import style from "./Static/ui.module.css";
 
 const { SubMenu } = Menu;
 
@@ -26,7 +26,7 @@ const SideBar = ({ closeDrawer, open }: any) => {
       maskClosable={false}
       mask={false}
     >
-      <Menu mode="inline" style={{ width: "100%", borderRight: 0 }}>
+      <Menu mode="inline" className={style.side_bar_container} style={{ width: "100%", borderRight: 0 }}>
         {sidebarData?.map((section, index) => (
           <SubMenu
             key={`sub${index}`}

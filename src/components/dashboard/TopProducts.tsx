@@ -2,6 +2,7 @@
 import React from "react";
 import style from "./static/dashboard.module.css";
 import Image from "next/image";
+import { sliceString } from "@/Helper/CommonFunction";
 
 const TopProducts = ({ data }: { data: any }) => {
   return (
@@ -22,7 +23,7 @@ const TopProducts = ({ data }: { data: any }) => {
                 {item?.productName}
                 <span className={style.sales}>{item.quantity} sales</span>
               </h5>
-              <p className={style.product_para}>{item?.fullDescription}</p>
+              <p className={style.product_para}>{sliceString(item?.fullDescription,150)}</p>
               <div className={style.price}>
                 <span className={style.p_price}>${item.price}</span>
                 {/* <span className={style.p_price}>Quantity: {item.quantity}</span> */}

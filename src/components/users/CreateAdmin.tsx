@@ -49,7 +49,7 @@ const CreateAdmin = () => {
   return (
     <>
       {contextHolder}
-      <div>
+      <div className={`create_admin_cont box-shadow-common"`}>
         <Form
           form={form}
           autoComplete='off'

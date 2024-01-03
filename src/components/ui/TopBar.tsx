@@ -60,6 +60,7 @@ const TopBar = ({ open, closeDrawer, showDrawer }: any) => {
         borderBottom: "1px solid #f0f0f0",
         marginLeft: open ? 320 : 0,
         transition: "margin 0.4s ",
+        color:"#475A6F"
       }}
     >
       <div
@@ -73,11 +74,11 @@ const TopBar = ({ open, closeDrawer, showDrawer }: any) => {
         <div>
           {open ? (
             <div onClick={closeDrawer}>
-              <HiBars3 style={{ fontSize: "22px", cursor: "pointer" }} />
+              <HiBars3 style={{ fontSize: "22px",color:'#475A6F', cursor: "pointer" }} />
             </div>
           ) : (
             <div onClick={showDrawer}>
-              <HiBars3 style={{ fontSize: "22px", cursor: "pointer" }} />
+              <HiBars3 style={{ fontSize: "22px",color:'#475A6F', cursor: "pointer" }} />
             </div>
           )}
         </div>
@@ -87,7 +88,7 @@ const TopBar = ({ open, closeDrawer, showDrawer }: any) => {
             placeholder="Search Pages"
             suffix={<CiSearch />}
             allowClear
-            style={{ width: "100%" }}
+            style={{ width: "100%",color:'#475A6F' }}
           />
         </div>
         <div
@@ -95,7 +96,7 @@ const TopBar = ({ open, closeDrawer, showDrawer }: any) => {
             display: "flex",
             alignItems: "center",
             gap: 20,
-            color: "#5A5A5A",
+            color: "#475A6F",
           }}
         >
           <IoIosNotifications style={{ fontSize: "22px", cursor: "pointer" }} />

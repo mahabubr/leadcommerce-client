@@ -1,16 +1,16 @@
 .container {
-  padding: 20px;
+  padding: 0px;
   max-width: 100%;
   overflow-x: hidden;
   color: #475a6f;
 }
 
 .storeGrid {
-  margin-top: 20px;
+  margin-top: 11px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   justify-items: center;
-  gap: 15px;
+  gap: 11px;
 }
 
 .searchField {
@@ -27,29 +27,39 @@
 
 @media (max-width: 1670px) {
   .storeGrid {
-    margin-top: 20px;
+    margin-top: 10px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
-    gap: 20px;
+    gap: 10px;
   }
+}
+.pagination_card{
+  margin-top: 11px !important;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
 }
 @media (max-width: 1356px) {
   .storeGrid {
-    margin-top: 20px;
+    margin-top: 10px;
+    /* margin-top: 20px; */
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
     gap: 20px;
   }
 }
-@media (max-width: 1035px) {
+@media (max-width: 900px) {
   .storeGrid {
-    margin-top: 20px;
+    /* margin-top: 20px; */
+    margin-top: 10px;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     justify-items: center;
-    gap: 20px;
+    gap: 10px;
+    /* gap: 20px; */
     /* border: 1px solid red; */
   }
 }

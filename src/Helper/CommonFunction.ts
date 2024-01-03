@@ -31,3 +31,9 @@ export const removeNullishValue = (obj: IParamState) => {
 export const calculatePercentage = (num: number, percent: number): number => {
   return parseInt(((num * percent) / 100).toString());
 };
+
+export const sliceString = (str: string, length: number) => {
+  if (!str) return "";
+  else if (str.length < length) return str;
+  else return str.slice(0, length) + "...";
+};

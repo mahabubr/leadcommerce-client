@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Chart } from "react-google-charts";
+import style from "../dashboard/static/dashboard.module.css";
 
 export const data = [
   ["Country", "Popularity"],
@@ -28,7 +29,7 @@ const MapChart = () => {
   };
 
   return (
-    <div style={{ borderRadius: 10, overflow: "hidden" }}>
+    <div className={style.google_chart}>
       <Chart
         chartEvents={[
           {

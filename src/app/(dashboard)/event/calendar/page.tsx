@@ -10,21 +10,24 @@ import React from "react";
 const CalenderPage = () => {
   return (
     <>
-      <div style={{ padding: "10px" }}>
+      <div style={{ padding: "0 10px 10px" }}>
         <h4 style={{ fontSize: "30px" }}>Events</h4>
       </div>
       <div
+        // className="box-shadow-common"
         style={{
           padding: "10px",
           display: "flex",
           gap: "10px",
         }}
       >
-        <div style={{ flex: "1" }}>
-          <EventCalendar></EventCalendar>
+        <div  style={{ flex: "1" }}>
+          <div className="box-shadow-common">
+            <EventCalendar ></EventCalendar>
+          </div>
         </div>
         <div style={{ width: "25%" }}>
-          <Card style={{ width: "100%" }}>
+          <Card className="box-shadow-common" style={{ width: "100%" }}>
             <h3>
               <LineChartOutlined /> TODAYS REVENUE
             </h3>
@@ -57,6 +60,7 @@ const CalenderPage = () => {
             <SmallCalender></SmallCalender>
           </div>
           <div
+            className="box-shadow-common"
             style={{
               // border: "1px solid red",
               height: "400px",

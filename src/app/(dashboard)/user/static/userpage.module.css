@@ -13,3 +13,10 @@
   justify-items: start;
   gap: 20px;
 }
+
+.admins_card_container{
+  background-color: white;
+  padding: 1vw;
+  border-radius: 8px;
+  margin-top: 15px !important;
+}
