@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  Space,
   Input,
   Table,
   Tag,
@@ -10,7 +9,6 @@ import {
   Button,
   message,
 } from "antd";
-import type { ColumnsType } from "antd/es/table";
 import type { DatePickerProps } from "antd";
 import { CiSearch } from "react-icons/ci";
 import { useRouter } from "next/navigation";
@@ -19,7 +17,7 @@ import { productItemSortPage } from "@/components/products/utils/productData";
 
 import { useEffect, useState } from "react";
 import {
-  useGetAllOrderQuery,
+  useGetAllOrderForStoreQuery,
   useUpdateStatusMutation,
 } from "@/redux/order/orderApi";
 import ButtonGroup from "antd/es/button/button-group";
@@ -170,7 +168,7 @@ const Orders = () => {
 
     query["order_status"] = orderStatus;
   }
-  const { data }: { data?: any } = useGetAllOrderQuery({ ...query });
+  const { data }: { data?: any } = useGetAllOrderForStoreQuery({ ...query });
   const orderData = data?.data;
 
   // * PageLimit Change

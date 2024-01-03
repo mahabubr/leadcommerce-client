@@ -37,7 +37,7 @@ import CategoryFilterBox from "./partials/CategoryFilterBox";
 import PriceRangeFilterBox from "./partials/PriceRangeFilterBox";
 import {
   useDeleteProductMutation,
-  useGetAllProductsQuery,
+  useGetAllProductsForStoreQuery,
 } from "@/redux/product/productApi";
 const { Text } = Typography;
 const { confirm } = Modal;
@@ -58,7 +58,7 @@ const ViewProducts = () => {
 
   /*//** RTK calling of product data getting */
   const { data: productData, isLoading }: { data?: any; isLoading: boolean } =
-    useGetAllProductsQuery({
+    useGetAllProductsForStoreQuery({
       limit: currentLimit,
       page: currentPage,
       product_status: "active",
