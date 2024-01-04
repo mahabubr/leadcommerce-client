@@ -129,7 +129,7 @@ const ProfileUpdateFrom = () => {
               style={{
                 width: "100%",
               }}
-              name="country"
+              name="phone"
               rules={[{ message: "Please input your password!" }]}
             >
               <Input

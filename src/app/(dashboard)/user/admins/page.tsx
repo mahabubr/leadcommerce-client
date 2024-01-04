@@ -46,7 +46,8 @@ const AllUsers = () => {
             "rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px",
         }}>
         <div className={style.userGrid}>
-          {adminData?.length > 0 ? (
+          <UserCart />
+          {/* {adminData?.length > 0 ? (
             adminData?.map((admin: any) => (
               <UserCart key={admin._id} admin={admin} />
             ))
@@ -61,7 +62,7 @@ const AllUsers = () => {
               }}>
               <Spin size='large' />
             </div>
-          )}
+          )} */}
         </div>
       </div>
       <div>

@@ -1,7 +1,7 @@
 .container {
   display: flex;
   gap: 24px;
-  padding: 20px;
+  /* padding: 20px; */
   max-width: 100%;
   /* margin-top: 1vw; */
   overflow-x: hidden;
