@@ -1,4 +1,10 @@
-import { FaHome, FaStore, FaCalendar, FaCartPlus, FaQuestion } from "react-icons/fa";
+import {
+  FaHome,
+  FaStore,
+  FaCalendar,
+  FaCartPlus,
+  FaQuestion,
+} from "react-icons/fa";
 import { BiSolidCategoryAlt } from "react-icons/bi";
 import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 import { LuShoppingBasket } from "react-icons/lu";
@@ -7,54 +13,71 @@ import { IoMdSettings } from "react-icons/io";
 import { paths } from "@/paths/paths";
 import { IoIosMan } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
+import { FaUsersViewfinder } from "react-icons/fa6";
+
+import { MdAdminPanelSettings, MdDeliveryDining } from "react-icons/md";
 
 const sidebarItems = (role: string) => {
   const adminItems = [
     {
       title: "Dashboard",
       icon: <FaHome />,
-      links: [{ label: "Dashboard", href: "/dashboard" }],
+      links: [{ label: "Dashboard", href: "/admin/dashboard" }],
     },
     {
       title: "Categories",
       icon: <BiSolidCategoryAlt />,
-      links: [{ label: "All Category", href: "/category" }],
+      links: [
+        { label: "Create Category", href: "/admin/category/add-category" },
+        { label: "All Category", href: "/admin/category" },
+      ],
     },
     {
       title: "Stores",
       icon: <FaStore />,
-      links: [{ label: "Stores", href: "/stores" }],
+      links: [{ label: "All Stores", href: "/admin/stores" }],
     },
     {
       title: "Orders",
       icon: <FaCartPlus />,
-      links: [{ label: "Order list", href: paths.admin_order }],
-    },{
-      title: "Users",
-      icon: <FaUser />,
+      links: [{ label: "Order list", href: "/admin/orders" }],
+    },
+    {
+      title: "Admins",
+      icon: <MdAdminPanelSettings />,
       links: [
-        { label: "All Admins", href: "/user/admins" },
-        { label: "All Employees", href: "/user/employees" },
-        { label: "All Delivery", href: "/user/delivery" },
-        { label: "Create Admin", href: "/user/create-admin" },
-        { label: "Create Delivery", href: "/user/create-delivery" },
+        { label: "All Admin", href: "/admin/admins" },
+        { label: "Create Admin", href: "/admin/admins/create-admin" },
+      ],
+    },
+    {
+      title: "Employees",
+      icon: <FaUsersViewfinder />,
+      links: [
+        { label: "All Employee", href: "/admin/employees" },
+        { label: "Create Employee", href: "/admin/employees/add-employee" },
+      ],
+    },
+    {
+      title: "Delivery",
+      icon: <MdDeliveryDining />,
+      links: [
+        { label: "All Delivery", href: "/admin/delivery" },
+        { label: "Create Employee", href: "/admin/delivery/create-delivery" },
       ],
     },
     {
       title: "Events",
       icon: <FaCalendar />,
       links: [
-        { label: "Calendar", href: "/event/calendar" },
-        { label: "Events", href: "/event" },
-        { label: "Add Events", href: paths.add_events },
+        { label: "Add Events", href: "/admin/event/add-event" },
+        { label: "Events Calendar", href: "/admin/event/calendar" },
       ],
     },
     {
       title: "FAQ",
       icon: <FaQuestion />,
-      links: [
-        { label: "FAQ list", href: paths.faqs },
-      ],
+      links: [{ label: "FAQ list", href: "/admin/faqs" }],
     },
   ];
 
@@ -92,13 +115,21 @@ const sidebarItems = (role: string) => {
       icon: <IoWalletOutline />,
       links: [{ label: "Transaction", href: "/payments" }],
     },
+    {
+      title: "Events",
+      icon: <IoWalletOutline />,
+      links: [{ label: "Events", href: "/event" }],
+    },
   ];
 
   const employeeItems = [
     {
       title: "Orders",
       icon: <LuShoppingBasket />,
-      links: [{ label: "Orders", href: "/order" }, { label: "All Product", href: "/all-product" }],
+      links: [
+        { label: "Orders", href: "/order" },
+        { label: "All Product", href: "/all-product" },
+      ],
     },
     {
       title: "Setting",

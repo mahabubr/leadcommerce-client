@@ -12,10 +12,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const token = getFromLocalStorage("accessToken");
-    const decode = decodedToken(token as string);
+  const token = getFromLocalStorage("accessToken");
+  const decode = decodedToken(token as string);
 
+  useEffect(() => {
     // @ts-ignore
     if (decode?.email) {
       // @ts-ignore
@@ -36,7 +36,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     } else {
       setIsLoading(false);
     }
-  }, [router]);
+    // @ts-ignore
+  }, [router, decode?.email, decode?.role]);
 
   if (isLoading) {
     return <Loader />;

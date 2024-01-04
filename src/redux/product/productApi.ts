@@ -36,6 +36,10 @@ const productApi = api.injectEndpoints({
         `/products/store?status=${product_status}&page=${page}&limit=${limit}&sortOrder=${sortOrder}&searchTerm=${searchTerm}`,
       providesTags: ["product"],
     }),
+    getSingleProductsForStore: builder.query({
+      query: ({ id }: { id: string }) => `/products/single-store/${id}`,
+      providesTags: ["product"],
+    }),
     getAProducts: builder.query({
       query: ({ id }: { id: string }) => `/products/${id}`,
       providesTags: ["product"],
@@ -80,4 +84,5 @@ export const {
   useUpdateProductMutation,
   useDeleteProductMutation,
   useGetAProductsQuery,
+  useGetSingleProductsForStoreQuery
 } = productApi;

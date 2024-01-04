@@ -162,16 +162,17 @@ const UpdateForm = ({ data, categoryId }: Props) => {
             />
           </Form.Item>
         </Col>
-
+      </Row>
+      <div style={{ display: "flex", justifyContent: "end" }}>
         <Button
           type="primary"
           htmlType="submit"
           loading={isLoading}
-          size="large"
+          size="middle"
         >
           Update Category
         </Button>
-      </Row>
+      </div>
     </Form>
   );
 };

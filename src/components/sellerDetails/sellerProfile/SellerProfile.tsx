@@ -14,7 +14,10 @@ const { TextArea } = Input;
 const SellerProfile = ({ store }: any) => {
   return (
     <>
-      <Card>
+      <Card
+        title="Profile Information"
+        style={{ boxShadow: "3px 3px 15px #ddd" }}
+      >
         <SellerInformation store={store}></SellerInformation>
         <Divider dashed />
         <CustomerReviews></CustomerReviews>

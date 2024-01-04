@@ -1,21 +1,28 @@
 "use client";
-import {
-  Input,
-  Table,
-  Select,
-  DatePicker,
-  Button,
-} from "antd";
+import { Input, Table, Select, DatePicker, Button, Card } from "antd";
 import { CiSearch } from "react-icons/ci";
-import style from "../../order/order.module.css";
+import style from "./order.module.css";
 import { productItemSortPage } from "@/components/products/utils/productData";
 import useFaqsLogic from "./useFaqsLogic";
-import { current } from "@reduxjs/toolkit";
-
-const { Search } = Input;
 
 const Faqs = () => {
-  const  {saveAnsLoader,editableDocument,saveAns,handleChangeAns,isLoading,setUpdateStatus,handlePagelimitChange,page,limit,data,setLimit,setPage,onSearch,handleChange,onChange}=useFaqsLogic();
+  const {
+    saveAnsLoader,
+    editableDocument,
+    saveAns,
+    handleChangeAns,
+    isLoading,
+    setUpdateStatus,
+    handlePagelimitChange,
+    page,
+    limit,
+    data,
+    setLimit,
+    setPage,
+    onSearch,
+    handleChange,
+    onChange,
+  } = useFaqsLogic();
 
   // * Table Columns
   const columns = [
@@ -33,14 +40,16 @@ const Faqs = () => {
       title: "Ans",
       dataIndex: "ans",
       key: "ans",
-      render:(ans:string,data:any)=>(
+      render: (ans: string, data: any) => (
         <Input
           name="ans"
           defaultValue={ans}
           placeholder="Add a ans"
-          onChange={(e)=>{handleChangeAns(e,data['_id'])}}
+          onChange={(e) => {
+            handleChangeAns(e, data["_id"]);
+          }}
         />
-      )
+      ),
     },
     {
       title: "User Id",
@@ -51,23 +60,28 @@ const Faqs = () => {
       title: "Save",
       dataIndex: "_id",
       key: "_id",
-      render:(id:string,data:any)=>(
+      render: (id: string, data: any) => (
         <Button
-          onClick={()=>saveAns(id)}
-          loading={(editableDocument?.['current']===id && saveAnsLoader) || false}
-        >Save</Button>
-      )
-    }
-    
+          onClick={() => saveAns(id)}
+          loading={
+            (editableDocument?.["current"] === id && saveAnsLoader) || false
+          }
+        >
+          Save
+        </Button>
+      ),
+    },
   ];
 
   // * Filtering and Searching
-  
+
   return (
-    <div className={style.container}>
-      <div className={style.mainContent}>
-        <div className={style.mainFilter}>
-          <div className={style.filterOne}>
+    <div>
+      <Card
+        title="Frequently Ask Question"
+        style={{ boxShadow: "3px 3px 15px #ddd" }}
+        extra={
+          <div>
             <Input
               size="middle"
               placeholder="Search Faqs"
@@ -76,17 +90,8 @@ const Faqs = () => {
               style={{ width: "100%" }}
             />
           </div>
-          <div className={style.filterTwo}>
-            <Select
-              onChange={handlePagelimitChange}
-              style={{ width: "100px", textTransform: "capitalize" }}
-              options={productItemSortPage}
-              defaultValue={productItemSortPage[0]}
-              // defaultValue={selectedStatus}
-            />
-          </div>
-        </div>
-
+        }
+      >
         <Table
           columns={columns}
           dataSource={data?.data || []}
@@ -102,7 +107,7 @@ const Faqs = () => {
             },
           }}
         />
-      </div>
+      </Card>
     </div>
   );
 };

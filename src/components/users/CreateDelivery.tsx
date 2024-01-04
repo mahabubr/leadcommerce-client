@@ -46,38 +46,29 @@ const CreateDelivery = () => {
 
   return (
     <>
-      <div
-        style={{
-          backgroundColor: "white",
-          padding: "1vw",
-          marginBottom: "1vw",
-          borderRadius: "8px",
-          boxShadow:
-            "rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px",
-        }}>
-        <h3>Create Delivery</h3>
-      </div>
       {contextHolder}
-      <div>
+      <Card title="Create Delivery" style={{ boxShadow: "3px 3px 15px #ddd" }}>
         <Form
           form={form}
-          autoComplete='off'
-          layout='vertical'
+          autoComplete="off"
+          layout="vertical"
           onFinish={onFinish}
           onFinishFailed={(error) => {
             console.log({ error });
-          }}>
+          }}
+        >
           <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
-            <Col className='gutter-row' span={9}>
+            <Col className="gutter-row" span={9}>
               <Card
-                title=''
+                title=""
                 bordered
-                style={{ maxHeight: "800px", position: "relative" }}>
+                style={{ maxHeight: "800px", position: "relative" }}
+              >
                 <Image
                   src={currentImage ? currentImage : "/preview.jpg"}
                   height={500}
                   width={630}
-                  alt='preview'
+                  alt="preview"
                   style={{
                     width: "100%",
                     height: "50%",
@@ -86,7 +77,8 @@ const CreateDelivery = () => {
                 />
 
                 <div
-                  style={{ position: "absolute", top: "40px", left: "37px" }}>
+                  style={{ position: "absolute", top: "40px", left: "37px" }}
+                >
                   {/* <Upload
                     accept=".png, .jpg, .jpeg"
                     maxCount={1}
@@ -98,7 +90,7 @@ const CreateDelivery = () => {
                     <Button icon={<UploadOutlined />} size="large"></Button>
                   </Upload> */}
                   <Upload
-                    accept='.png, .jpg, .jpeg'
+                    accept=".png, .jpg, .jpeg"
                     maxCount={1}
                     showUploadList={false}
                     beforeUpload={(file) => {
@@ -123,36 +115,40 @@ const CreateDelivery = () => {
                         message.error(`${info.file.name} file upload failed.`);
                       }
                     }}
-                    {...props}>
-                    <Button icon={<UploadOutlined />} size='large'></Button>
+                    {...props}
+                  >
+                    <Button icon={<UploadOutlined />} size="large"></Button>
                   </Upload>
                 </div>
                 <div
-                  style={{ position: "absolute", top: "40px", right: "37px" }}>
+                  style={{ position: "absolute", top: "40px", right: "37px" }}
+                >
                   <Button
                     icon={<DeleteOutlined />}
                     onClick={() => {
                       setFileList(null);
                       setCurrentImage(null);
                     }}
-                    size='large'></Button>
+                    size="large"
+                  ></Button>
                 </div>
               </Card>
             </Col>
 
-            <Col className='gutter-row' span={15}>
+            <Col className="gutter-row" span={15}>
               <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
-                <Col className='gutter-row' span={12}>
+                <Col className="gutter-row" span={12}>
                   <label
-                    htmlFor='full_name'
+                    htmlFor="full_name"
                     style={{
                       textTransform: "uppercase",
                       fontWeight: 500,
-                    }}>
+                    }}
+                  >
                     Full Name
                   </label>
                   <Form.Item
-                    name='full_name'
+                    name="full_name"
                     rules={[
                       {
                         required: true,
@@ -160,27 +156,29 @@ const CreateDelivery = () => {
                       },
                       { whitespace: true },
                     ]}
-                    hasFeedback>
+                    hasFeedback
+                  >
                     <Input
-                      size='large'
+                      size="large"
                       style={{ marginTop: "0.5rem" }}
-                      placeholder='Type Full Name'
+                      placeholder="Type Full Name"
                     />
                   </Form.Item>
                 </Col>
 
-                <Col className='gutter-row' span={12}>
+                <Col className="gutter-row" span={12}>
                   <div>
                     <label
-                      htmlFor='position'
+                      htmlFor="position"
                       style={{
                         textTransform: "uppercase",
                         fontWeight: 500,
-                      }}>
+                      }}
+                    >
                       Position
                     </label>
                     <Form.Item
-                      name='position'
+                      name="position"
                       rules={[
                         {
                           required: true,
@@ -188,27 +186,29 @@ const CreateDelivery = () => {
                         },
                         { whitespace: true },
                       ]}
-                      hasFeedback>
+                      hasFeedback
+                    >
                       <Input
-                        size='large'
+                        size="large"
                         style={{ marginTop: "0.5rem" }}
-                        placeholder='Enter position'
+                        placeholder="Enter position"
                       />
                     </Form.Item>
                   </div>
                 </Col>
-                <Col className='gutter-row' span={12}>
+                <Col className="gutter-row" span={12}>
                   <div>
                     <label
-                      htmlFor='email'
+                      htmlFor="email"
                       style={{
                         textTransform: "uppercase",
                         fontWeight: 500,
-                      }}>
+                      }}
+                    >
                       Email
                     </label>
                     <Form.Item
-                      name='email'
+                      name="email"
                       rules={[
                         {
                           required: true,
@@ -216,27 +216,29 @@ const CreateDelivery = () => {
                         },
                         { whitespace: true },
                       ]}
-                      hasFeedback>
+                      hasFeedback
+                    >
                       <Input
-                        size='large'
+                        size="large"
                         style={{ marginTop: "0.5rem" }}
-                        placeholder='Enter email'
+                        placeholder="Enter email"
                       />
                     </Form.Item>
                   </div>
                 </Col>
-                <Col className='gutter-row' span={12}>
+                <Col className="gutter-row" span={12}>
                   <div>
                     <label
-                      htmlFor='phone'
+                      htmlFor="phone"
                       style={{
                         textTransform: "uppercase",
                         fontWeight: 500,
-                      }}>
+                      }}
+                    >
                       Phone
                     </label>
                     <Form.Item
-                      name='phone'
+                      name="phone"
                       rules={[
                         {
                           required: true,
@@ -244,27 +246,29 @@ const CreateDelivery = () => {
                         },
                         { whitespace: true },
                       ]}
-                      hasFeedback>
+                      hasFeedback
+                    >
                       <Input
-                        size='large'
+                        size="large"
                         style={{ marginTop: "0.5rem" }}
-                        placeholder='Enter phone'
+                        placeholder="Enter phone"
                       />
                     </Form.Item>
                   </div>
                 </Col>
-                <Col className='gutter-row' span={12}>
+                <Col className="gutter-row" span={12}>
                   <div>
                     <label
-                      htmlFor='password'
+                      htmlFor="password"
                       style={{
                         textTransform: "uppercase",
                         fontWeight: 500,
-                      }}>
+                      }}
+                    >
                       Password
                     </label>
                     <Form.Item
-                      name='password'
+                      name="password"
                       rules={[
                         {
                           required: true,
@@ -272,28 +276,30 @@ const CreateDelivery = () => {
                         },
                         { whitespace: true },
                       ]}
-                      hasFeedback>
+                      hasFeedback
+                    >
                       <Input
-                        size='large'
+                        size="large"
                         style={{ marginTop: "0.5rem" }}
-                        type='password'
-                        placeholder='Enter password'
+                        type="password"
+                        placeholder="Enter password"
                       />
                     </Form.Item>
                   </div>
                 </Col>
-                <Col className='gutter-row' span={12}>
+                <Col className="gutter-row" span={12}>
                   <div>
                     <label
-                      htmlFor='address'
+                      htmlFor="address"
                       style={{
                         textTransform: "uppercase",
                         fontWeight: 500,
-                      }}>
+                      }}
+                    >
                       Address
                     </label>
                     <Form.Item
-                      name='address'
+                      name="address"
                       rules={[
                         {
                           required: true,
@@ -301,28 +307,32 @@ const CreateDelivery = () => {
                         },
                         { whitespace: true },
                       ]}
-                      hasFeedback>
+                      hasFeedback
+                    >
                       <Input
-                        size='large'
+                        size="large"
                         style={{ marginTop: "0.5rem" }}
-                        type='address'
-                        placeholder='Enter address'
+                        type="address"
+                        placeholder="Enter address"
                       />
                     </Form.Item>
                   </div>
                 </Col>
               </Row>
-              <Button
-                type='primary'
-                htmlType='submit'
-                loading={isLoading}
-                size='large'>
-                Add Delivery
-              </Button>
+              <div style={{ display: "flex", justifyContent: "end" }}>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  loading={isLoading}
+                  size="middle"
+                >
+                  Add Delivery
+                </Button>
+              </div>
             </Col>
           </Row>
         </Form>
-      </div>
+      </Card>
     </>
   );
 };

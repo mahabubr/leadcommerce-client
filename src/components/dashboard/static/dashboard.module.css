@@ -1,17 +1,16 @@
 .light {
-  --primary: #475A6F18;
+  --primary: #393f4718;
   --secondary: #3498db1e;
   --accent: #e74d3c23;
   --light: #f1f1f169;
 }
 /* top summary cards only */
 .card {
-  /* border: 1px solid #475A6F; */
+  /* border: 1px solid #393f47; */
   border-radius: 8px;
   /* background-color: #f1f1f1; */
-  color: #475A6F;
-  box-shadow: 2px 2px 8px #eee,
-              -2px -2px 8px #eee;
+  color: #393f47;
+  box-shadow: 2px 2px 8px #eee, -2px -2px 8px #eee;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -33,7 +32,7 @@
   height: 40px;
   font-size: 30px;
   color: white;
-  background-color: #475A6F;
+  background-color: #393f47;
   border-radius: 4px;
   display: flex;
   align-items: center;
@@ -41,7 +40,7 @@
 }
 
 .tab_buttons {
-  color: #475A6F;
+  color: #393f47;
   /* font-weight: bold; */
   margin-right: 20px;
   /* display: flex; */
@@ -51,7 +50,7 @@
   transition: border-color 0.5s ease-in-out;
 }
 .tab_buttons:hover {
-  border-bottom: 3px solid #475A6F;
+  border-bottom: 3px solid #393f47;
 }
 
 .labels {
@@ -59,40 +58,37 @@
 }
 
 .active {
-  border-bottom: 3px solid #475A6F;
+  border-bottom: 3px solid #393f47;
 }
 
 .sales_report {
   padding: 25px;
-  box-shadow: 2px 2px 8px #eee,
-              -2px -2px 8px #eee;
+  box-shadow: 2px 2px 8px #eee, -2px -2px 8px #eee;
   border-radius: 8px;
   width: 60%;
 }
 .sales_head {
-  color: #475A6F;
+  color: #393f47;
   padding-bottom: 10px;
   border-bottom: 1px solid #eee;
 }
 
 .orders_pie {
   /* width: 350px; */
-  box-shadow: 2px 2px 8px #eee,
-              -2px -2px 8px #eee;
+  box-shadow: 2px 2px 8px #eee, -2px -2px 8px #eee;
   border-radius: 8px;
   width: 38%;
   padding: 20px;
 }
 
 .user_act {
-  box-shadow: 2px 2px 8px #eee,
-              -2px -2px 8px #eee;
+  box-shadow: 2px 2px 8px #eee, -2px -2px 8px #eee;
   padding: 15px;
   border-radius: 8px;
   max-width: 100%;
 }
-.user_act_cont{
-  width:60%
+.user_act_cont {
+  width: 60%;
 }
 .daily_signups {
   width: 38%;
@@ -113,20 +109,20 @@
   display: flex;
   margin-bottom: 15px;
 }
-.product_cards_figure{
-  width:110px;
+.product_cards_figure {
+  width: 110px;
   height: 110px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #F1F1F1;
+  background-color: #f1f1f1;
   border-radius: 5px;
 }
 
 .product_data {
   margin-left: 20px;
   width: calc(100% - 140px);
-  color: #475A6F;
+  color: #393f47;
 }
 
 .product_h5 {
@@ -167,13 +163,13 @@
 }
 
 .icon_arrow {
-  color: #475A6F;
+  color: #393f47;
   font-size: 10px;
   font-weight: bold;
 }
 
 .table {
-  color: #475A6F;
+  color: #393f47;
   width: 100%;
   font-size: 15px;
   margin-top: 15px;
@@ -206,21 +202,25 @@
   background-color: white;
 }
 
-.revenue_chart{
+.revenue_chart {
   max-width: 90%;
 }
-.anime{
-  animation: opacity .3s ease-in-out;
+.anime {
+  animation: opacity 0.3s ease-in-out;
 }
-.barchart_cont{
+.barchart_cont {
   max-width: 100%;
-};
-
-@keyframes opacity{
-  from { opacity: .5;}
-  to { opacity: 0;}
 }
-@media only screen and (max-width:900px) {
+
+@keyframes opacity {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@media only screen and (max-width: 900px) {
   /* .revenue_chart {
       max-width: 80vw;
       max-height: 100%;
@@ -229,17 +229,16 @@
     /* max-width: 350px !important; */
   }
 }
-@media only screen and (max-width:1150px) {
+@media only screen and (max-width: 1150px) {
   .barChart {
     max-width: 100%;
   }
-  .daily_signups{
+  .daily_signups {
     width: 100%;
   }
   .user_act_cont,
   .orders_pie,
-  .sales_report{
+  .sales_report {
     width: 100%;
   }
-
 }

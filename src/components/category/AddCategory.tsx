@@ -42,9 +42,7 @@ const AddCategory = () => {
 
   return (
     <>
-      <CVBreadcrumb link="/category" title="View Categories" />
-
-      <Card title="Add Category" bordered style={{ marginTop: "20px" }}>
+      <Card title="Add Category" style={{ boxShadow: "3px 3px 15px #ddd" }}>
         <Form
           form={form}
           autoComplete="off"
@@ -145,20 +143,28 @@ const AddCategory = () => {
                 <Input.TextArea
                   style={{ marginTop: "0.5rem" }}
                   placeholder="Category description here"
+                  size="middle"
                 />
               </Form.Item>
             </Col>
-
+          </Row>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "end",
+              alignItems: "center",
+            }}
+          >
             <Button
               type="primary"
               htmlType="submit"
               loading={isLoading}
               disabled={isLoading}
-              size="large"
+              size="middle"
             >
               Create Category
             </Button>
-          </Row>
+          </div>
         </Form>
       </Card>
     </>
