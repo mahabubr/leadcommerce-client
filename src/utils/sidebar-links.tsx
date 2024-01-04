@@ -85,40 +85,35 @@ const sidebarItems = (role: string) => {
     {
       title: "Dashboard",
       icon: <FaHome />,
-      links: [{ label: "Seller Details", href: "/seller-details" }],
+      links: [{ label: "Seller Details", href: "/store/seller-details" }],
     },
     {
       title: "Products",
       icon: <MdOutlineProductionQuantityLimits />,
-      links: [{ label: "All Products", href: "/products" }],
+      links: [
+        { label: "All Products", href: "/store/products" },
+        { label: "Create Products", href: "/store/products/add-product" },
+      ],
     },
     {
       title: "Orders",
       icon: <LuShoppingBasket />,
-      links: [{ label: "Orders", href: "/orders" }],
+      links: [{ label: "Orders", href: "/store/orders" }],
     },
-    {
-      title: "Employe",
-      icon: <IoIosMan />,
-      links: [
-        { label: "Employe List", href: paths.employees },
-        { label: "Add Employee", href: paths.addEmploye },
-      ],
-    },
-    {
-      title: "Wallet",
-      icon: <IoWalletOutline />,
-      links: [{ label: "Wallet", href: "/wallet" }],
-    },
+    // {
+    //   title: "Wallet",
+    //   icon: <IoWalletOutline />,
+    //   links: [{ label: "Wallet", href: "/wallet" }],
+    // },
     {
       title: "Transactions",
       icon: <IoWalletOutline />,
-      links: [{ label: "Transaction", href: "/payments" }],
+      links: [{ label: "Transaction", href: "/store/payments" }],
     },
     {
       title: "Events",
-      icon: <IoWalletOutline />,
-      links: [{ label: "Events", href: "/event" }],
+      icon: <FaCalendar />,
+      links: [{ label: "Events", href: "/store/event" }],
     },
   ];
 

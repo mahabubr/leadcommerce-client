@@ -23,18 +23,18 @@ const PageBody = () => {
         const decode = decodedToken(res?.data?.accessToken as string);
         // @ts-ignore
         if (decode?.role === "admin") {
-          router.push("/dashboard");
+          router.push("/admin/dashboard");
         }
         // @ts-ignore
         else if (decode?.role === "store") {
-          router.push("/seller-details");
+          router.push("/store/seller-details");
         }
         // @ts-ignore
         else if (decode?.role === "employee") {
-          router.push("/settings/profilesetting");
+          router.push("/employee/settings/profilesetting");
         } // @ts-ignore
         else if (decode?.role === "delivery") {
-          router.push("/settings/profilesetting");
+          router.push("/delivery/settings/profilesetting");
         }
       }
     } catch (error: any) {

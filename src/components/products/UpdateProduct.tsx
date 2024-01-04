@@ -201,9 +201,8 @@ const AddProductV2 = ({ productId }: { productId: string }) => {
   return (
     <>
       {contextHolder}
-      <PCBreadcrumb title="Create Product" />
 
-      <Card title="update Product" bordered style={{ marginTop: "20px" }}>
+      <Card title="update Product" style={{ boxShadow: "3px 3px 15px #ddd" }}>
         <Form
           form={form}
           autoComplete="off"
@@ -610,14 +609,16 @@ const AddProductV2 = ({ productId }: { productId: string }) => {
                   </Form.Item>
                 </Col>
               </Row>
-              <Button
-                type="primary"
-                htmlType="submit"
-                loading={isLoading}
-                size="large"
-              >
-                Update Product
-              </Button>
+              <div style={{ display: "flex", justifyContent: "end" }}>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  loading={isLoading}
+                  size="middle"
+                >
+                  Update Product
+                </Button>
+              </div>
             </Col>
           </Row>
         </Form>

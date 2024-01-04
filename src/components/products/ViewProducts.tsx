@@ -43,9 +43,9 @@ const { Text } = Typography;
 const { confirm } = Modal;
 import "./styles/vproduct.css";
 import ButtonGroup from "antd/es/button/button-group";
-import style from "../../app/(dashboard)/order/order.module.css";
 import ChartDetails from "./partials/Chart";
 import { useGetStoreDashboardDataQuery } from "@/redux/store/storeApi";
+import Loader from "../ui/Loader";
 
 const ViewProducts = () => {
   //** hanlding pagination
@@ -81,9 +81,8 @@ const ViewProducts = () => {
     setCurrentSortOrder(value);
   };
 
-  //* chart data showing 
+  //* chart data showing
   const { data: dashboardData } = useGetStoreDashboardDataQuery({});
-
 
   // global
   const router = useRouter();
@@ -95,7 +94,6 @@ const ViewProducts = () => {
 
   // data columns
 
-  console.log(search)
   const columns: ColumnsType<ProductDataType> = [
     {
       title: "Image",
@@ -183,7 +181,7 @@ const ViewProducts = () => {
 
   // routing action
   const handleRouteUpdate = (_id: string) =>
-    router.push(`/products/update/${_id}`);
+    router.push(`/store/products/update/${_id}`);
 
   // **delete action
   const handleDeleteProduct = (_id: string | undefined) => {
@@ -215,23 +213,16 @@ const ViewProducts = () => {
 
   return (
     <>
-      <PVBreadcrumb />
-
-      <div style={{ marginTop: "20px" }}>
+      <div>
         <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
           <Col
             className="gutter-row"
             xs={{ span: 24, order: 2 }}
             md={{ span: 18, order: 1 }}
           >
-            <Card bordered className="pTable">
-              <Flex
-                align="center"
-                style={{ marginBottom: "25px", gap: "20px" }}
-              >
-                <p>All Products</p>
-
-                {/* //**Product page list sorting */}
+            <Card
+              className="pTable"
+              extra={
                 <Select
                   size="large"
                   placeholder="Sort"
@@ -240,16 +231,10 @@ const ViewProducts = () => {
                   options={productItemSort}
                   defaultValue={productItemSort[0]}
                 />
-                {/* //**product page list size */}
-                <Select
-                  size="large"
-                  onChange={handleProductPage}
-                  style={{ width: "100px", textTransform: "capitalize" }}
-                  options={productItemSortPage}
-                  defaultValue={productItemSortPage[0]}
-                />
-              </Flex>
-
+              }
+              style={{ boxShadow: "3px 3px 15px #ddd" }}
+              title="All Products"
+            >
               {/* //**product table */}
               <Table
                 columns={columns}
@@ -259,40 +244,26 @@ const ViewProducts = () => {
                 pagination={{
                   current: currentPage,
                   pageSize: currentLimit,
+                  defaultCurrent: 1,
+                  pageSizeOptions: ["5", "10", "20"],
                   total: productData?.meta?.total,
                   onChange: (page, pageSize) => {
                     setCurrentPage(page);
                     setCurrentLimit(pageSize);
                   },
+                  onShowSizeChange: (current, size) => {
+                    setCurrentPage(current);
+                    setCurrentLimit(size);
+                  },
+                  showSizeChanger: true,
                 }}
-                rowSelection={{
-                  selectedRowKeys,
-                  onChange: onSelectChange,
-                }}
-                loading={isLoading && { indicator: <Spin /> }}
+                loading={isLoading && { indicator: <Loader /> }}
               />
             </Card>
           </Col>
 
           <Col className="gutter-row" xs={{ span: 24, order: 1 }} md={6}>
             <Space direction="vertical" size={24} style={{ width: "100%" }}>
-              <Collapse
-                collapsible="header"
-                defaultActiveKey={["43"]}
-                expandIconPosition="right"
-                style={{
-                  backgroundColor: "white",
-                  border: "1px solid #f0f0f0",
-                }}
-                bordered={false}
-                items={[
-                  {
-                    key: "43",
-                    label: <div style={{ fontWeight: "500" }}>Product Order Summary</div>,
-                    children: <ChartDetails chartData={dashboardData} />,
-                  },
-                ]}
-              />
               <Collapse
                 collapsible="header"
                 defaultActiveKey={["1"]}

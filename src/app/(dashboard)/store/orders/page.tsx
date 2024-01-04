@@ -8,11 +8,12 @@ import {
   DatePicker,
   Button,
   message,
+  Card,
 } from "antd";
 import type { DatePickerProps } from "antd";
 import { CiSearch } from "react-icons/ci";
 import { useRouter } from "next/navigation";
-import style from "../order/order.module.css";
+import style from "./order.module.css";
 import { productItemSortPage } from "@/components/products/utils/productData";
 
 import { useEffect, useState } from "react";
@@ -21,6 +22,7 @@ import {
   useUpdateStatusMutation,
 } from "@/redux/order/orderApi";
 import ButtonGroup from "antd/es/button/button-group";
+import Loader from "@/components/ui/Loader";
 
 const { Search } = Input;
 
@@ -34,7 +36,7 @@ const Orders = () => {
 
   useEffect(() => {
     updateOrderStatus({ formData: updateStatus }).then((res: any) => {
-      if (res?.success) {
+      if (res?.data?.success) {
         message.success("Status Update Successful");
       }
     });
@@ -168,7 +170,8 @@ const Orders = () => {
 
     query["order_status"] = orderStatus;
   }
-  const { data }: { data?: any } = useGetAllOrderForStoreQuery({ ...query });
+  const { data, isLoading }: { data?: any; isLoading: boolean } =
+    useGetAllOrderForStoreQuery({ ...query });
   const orderData = data?.data;
 
   // * PageLimit Change
@@ -195,29 +198,20 @@ const Orders = () => {
   const handleRouteUpdate = (_id: string) => router.push(`/order/${_id}`);
   return (
     <div className={style.container}>
-      <div className={style.mainContent}>
-        <div className={style.mainFilter}>
-          <div className={style.filterOne}>
-            <Input
-              size="middle"
-              placeholder="Search Orders"
-              suffix={<CiSearch />}
-              allowClear
-              style={{ width: "100%" }}
-            />
-          </div>
-          <div className={style.filterTwo}>
-            <Select placeholder="Status" allowClear />
-            <Select
-              onChange={handlePagelimitChange}
-              style={{ width: "100px", textTransform: "capitalize" }}
-              options={productItemSortPage}
-              defaultValue={productItemSortPage[0]}
-              // defaultValue={selectedStatus}
-            />
-          </div>
-        </div>
-
+      <Card
+        style={{ boxShadow: "3px 3px 15px #ddd" }}
+        title="All Orders"
+        extra={
+          <Input
+            size="middle"
+            placeholder="Search Orders"
+            suffix={<CiSearch />}
+            allowClear
+            style={{ width: "100%" }}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        }
+      >
         <Table
           columns={columns}
           dataSource={orderData}
@@ -225,14 +219,22 @@ const Orders = () => {
           pagination={{
             current: page,
             pageSize: limit,
+            defaultCurrent: 1,
+            pageSizeOptions: ["5", "10", "20"],
             total: data?.meta?.total,
             onChange: (page, pageSize) => {
-              setLimit(pageSize);
               setPage(page);
+              setLimit(pageSize);
             },
+            onShowSizeChange: (current, size) => {
+              setPage(current);
+              setLimit(size);
+            },
+            showSizeChanger: true,
           }}
+          loading={isLoading && { indicator: <Loader /> }}
         />
-      </div>
+      </Card>
 
       <div className={style.sideContent}>
         <p style={{ fontSize: 18, fontWeight: "bold" }}>Filter byss</p>

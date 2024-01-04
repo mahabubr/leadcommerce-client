@@ -16,10 +16,8 @@ const SellerDetails = () => {
   const { data, isLoading } = useGetStoreSingleStoreQuery({});
   const { data: dashboardData } = useGetStoreDashboardDataQuery({});
 
-  
   //@ts-ignore
   const store = data?.data;
-
 
   if (isLoading) {
     return <Loader />;
@@ -28,10 +26,6 @@ const SellerDetails = () => {
   return (
     <>
       <section className={style.contentMain}>
-        <div className={style.contentHeader}>
-          <h2 className={style.contentTitle}>Seller Details</h2>
-          <EmployeeModal />
-        </div>
         <div className={style.cardBody}>
           <div
             style={{
@@ -57,7 +51,10 @@ const SellerDetails = () => {
                 borderRadius: "5px",
               }}
             >
-              <SellerDetailsData store={dashboardData}> </SellerDetailsData>
+              <SellerDetailsData
+                store={dashboardData}
+                id={store?._id}
+              ></SellerDetailsData>
             </div>
           </div>
         </div>

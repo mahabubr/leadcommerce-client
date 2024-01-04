@@ -1,12 +1,11 @@
-import ViewEvents from '@/components/event/ViewEvents';
-import style from "../dashboard/static/dashboard.module.css";
+import ViewEvents from "@/components/event/ViewEvents";
 
 const page = () => {
-    return (
-        <div className={style.container}>
-            <ViewEvents />
-        </div>
-    );
+  return (
+    <div>
+      <ViewEvents />
+    </div>
+  );
 };
 
 export default page;
