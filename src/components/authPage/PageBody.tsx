@@ -15,12 +15,15 @@ const PageBody = () => {
   const [password, setPassword] = useState("");
   const [credentialsSet, setCredentialsSet] = useState(false);
   const [login] = useLoginMutation();
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const [form] = Form.useForm();
   const onFinish = async (values: any) => {
     try {
+      setIsLoading(true);
       const res: any = await login(values).unwrap();
-      if (res.success) {
+      if (res?.success) {
+        setIsLoading(false);
         message.success(res.message);
         localStorage.setItem("accessToken", res?.data?.accessToken);
 
@@ -45,6 +48,7 @@ const PageBody = () => {
       }
     } catch (error: any) {
       message.error("something went wrong");
+      setIsLoading(false);
     }
   };
 
@@ -89,18 +93,19 @@ const PageBody = () => {
         </div>
         <Form
           form={form}
-          className=''
-          name='basic'
+          className=""
+          name="basic"
           initialValues={{
             remember: true,
           }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
-          autoComplete='off'>
+          autoComplete="off"
+        >
           <div>
             <label style={{ fontSize: "15px" }}>Email Address</label>
             <Form.Item
-              name='email'
+              name="email"
               style={{ marginBottom: "16px" }}
               rules={[
                 {
@@ -111,7 +116,8 @@ const PageBody = () => {
                   required: true,
                   message: "The input is not valid E-mail!",
                 },
-              ]}>
+              ]}
+            >
               <Input
                 value={email}
                 style={{
@@ -128,13 +134,14 @@ const PageBody = () => {
             <label style={{ fontSize: "15px" }}>Password</label>
             <Form.Item
               style={{ marginBottom: "4px" }}
-              name='password'
+              name="password"
               rules={[
                 {
                   required: true,
                   message: "Please input your password!",
                 },
-              ]}>
+              ]}
+            >
               <Input.Password
                 style={{
                   marginTop: "1px",
@@ -147,13 +154,14 @@ const PageBody = () => {
           </div>
 
           <div
-            style={{ width: "100%", margin: "10px 0px", textAlign: "right" }}>
-            <Link href='/forget-password' className=''>
+            style={{ width: "100%", margin: "10px 0px", textAlign: "right" }}
+          >
+            <Link href="/forget-password" className="">
               Forget your password?
             </Link>
             <div>
               create a new account?&nbsp;
-              <Link href='/register' className=''>
+              <Link href="/register" className="">
                 register
               </Link>
             </div>
@@ -172,9 +180,10 @@ const PageBody = () => {
                   height: "40px",
                   boxShadow: "2px 2px 8px 3px rgba(0, 0, 0, 0.2)",
                 }}
-                type='primary'
-                htmlType='submit'>
-                Log in
+                type="primary"
+                htmlType="submit"
+              >
+                {isLoading ? "loading..." : "Log in"}
               </Button>
             </Form.Item>
           </div>
@@ -186,29 +195,34 @@ const PageBody = () => {
             flexWrap: "wrap",
             justifyContent: "center",
             alignItems: "center",
-          }}>
+          }}
+        >
           <Button
             onClick={() => handleLoginCredentials("Admin")}
-            type='primary'
-            size='small'>
+            type="primary"
+            size="small"
+          >
             Admin Login
           </Button>
           <Button
             onClick={() => handleLoginCredentials("Store")}
-            type='primary'
-            size='small'>
+            type="primary"
+            size="small"
+          >
             Store Login
           </Button>
           <Button
             onClick={() => handleLoginCredentials("Employee")}
-            type='primary'
-            size='small'>
+            type="primary"
+            size="small"
+          >
             Employee Login
           </Button>
           <Button
             onClick={() => handleLoginCredentials("Delivery")}
-            type='primary'
-            size='small'>
+            type="primary"
+            size="small"
+          >
             Delivery Login
           </Button>
         </div>

@@ -1,15 +1,8 @@
-import { Table, Flex, Button } from "antd";
+import { Table, Flex, Button, Tag } from "antd";
 import { ColumnsType } from "antd/es/table";
-import Image from "next/image";
 import React from "react";
-import moment from "moment";
 import { useRouter } from "next/navigation";
 import Loader from "@/components/ui/Loader";
-
-type Props = {
-  datas: any;
-  setCurrentClickData: any;
-};
 
 const PaymentTable = ({
   datas,
@@ -43,17 +36,22 @@ const PaymentTable = ({
       render: (_, { createdAt }) => <>{new Date(createdAt).toDateString()}</>,
     },
     {
-      title: "Action",
-      key: "action",
-      render: (_, { _id }) => (
-        <Button
-          type="primary"
-          size="middle"
-          onClick={() => router.push(`/payments/${_id}`)}
-        >
-          Details
-        </Button>
-      ),
+      title: "Payment Status",
+      dataIndex: "payment_status",
+      key: "_id",
+      render: (payment_status: any, _id: any) => {
+        return (
+          <>
+            {payment_status === "pending" ? (
+              <Tag color="warning">Pending</Tag>
+            ) : payment_status === "completed" ? (
+              <Tag color="success">Completed</Tag>
+            ) : payment_status === "canceled" ? (
+              <Tag color="error">Canceled</Tag>
+            ) : null}
+          </>
+        );
+      },
     },
   ];
 
@@ -81,9 +79,6 @@ const PaymentTable = ({
           showSizeChanger: true,
         }}
         loading={isLoading && { indicator: <Loader /> }}
-        onRow={(record, rowIndex) => ({
-          onClick: () => setCurrentClickData(record),
-        })}
       />
     </>
   );

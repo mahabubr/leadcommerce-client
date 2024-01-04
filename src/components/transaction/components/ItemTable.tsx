@@ -47,10 +47,7 @@ const ItemTable = ({ items }: Props) => {
   ];
 
   // Calculate total cost
-  const subTotal = items.reduce((accumulator: any, item: any) => {
-    const itemTotal = item.price * item.quantity;
-    return accumulator + itemTotal;
-  }, 0);
+  const subTotal = items?.total_amount;
 
   return (
     <div>
@@ -68,7 +65,7 @@ const ItemTable = ({ items }: Props) => {
         style={{ margin: "30px 0" }}
       >
         <Col className="gutter-row" span={8}>
-          <TransactionSummary childOne="Subtotal:" childTwo={`৳ ${subTotal}`} />
+          <TransactionSummary childOne="Subtotal:" childTwo={`$ ${subTotal}`} />
 
           <TransactionSummary
             childOne="Shipping cost:"
@@ -78,7 +75,7 @@ const ItemTable = ({ items }: Props) => {
 
           <TransactionSummary
             childOne="Grand Total"
-            childTwo={`৳ ${subTotal + 10}`}
+            childTwo={`$ ${subTotal + 10}`}
             childTwoStyle={{
               fontSize: "1.25rem",
               fontWeight: 600,
