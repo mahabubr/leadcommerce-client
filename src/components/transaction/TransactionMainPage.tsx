@@ -48,7 +48,7 @@ const TransactionMainPage = ({ transactionId }: { transactionId: string }) => {
             {/* item table */}
             <div style={{ marginTop: "30px" }}>
               <div>
-                <ItemTable items={data?.data?.products} />
+                <ItemTable items={data?.data} />
               </div>
             </div>
           </Col>

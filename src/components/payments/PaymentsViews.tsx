@@ -29,6 +29,8 @@ const PaymentsViews = () => {
 
   if (isLoading) return <Loader />;
 
+  console.log(paymentData?.data);
+
   return (
     <>
       <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
