@@ -1,24 +1,49 @@
 .summayData {
   display: flex;
   width: 100%;
-  background-color: #ecf0f1;
+  background-color: #fff;
 }
 .canvasContainer {
   /* height: 100vh; */
-  width: 100%;
-  position: relative;
+  /* width: 100%; */
+  /* position: relative; */
   /* border: 1px solid red; */
+  display: grid;
+  gap: 1em;
+  grid-template-rows: min-content minmax(0, 1fr) min-content;
+  grid-template-columns: 1fr minmax(0, 3fr);
+  /* grid-template-areas:
+    "h"
+    "c"
+    "f"; */
+  /* height: calc(100vh - 20em); */
+  /* width: calc(100vw - 2em);  */
+  margin: 1em;
+}
+
+.revenueButton {
+  display: flex;
+  justify-content: space-between;
 }
 @media (max-width: 720px) {
   .summayData {
     display: block;
   }
 }
+@media (max-width: 400px) {
+  .revenueButton {
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    flex-direction: column;
+  }
+}
 @media (max-width: 1200px) {
   .canvasContainer {
-  /* height: 90vh; */
-  width: 100%;
-  position: relative;
-  /* border: 1px solid red; */
-}
+    /* height: 90vh; */
+    width: 100%;
+    position: relative;
+    /* border: 1px solid red; */
+  }
 }

@@ -1,4 +1,4 @@
-import { IParamState } from "@/app/(dashboard)/employees/list/list.type";
+import { IParamState } from "@/app/(dashboard)/admin/employees/list.type";
 import { OrderStatusType, orderStatusColor } from "./utils";
 
 export const find_text_color = (status: OrderStatusType): string => {

@@ -1,32 +1,29 @@
-'use client'
-import React from 'react'
-import { Flex, Typography } from 'antd';
-import VEventHeader from './components/VEventHeader';
-import EventsGrid from './components/EventsGrid';
-import Link from 'next/link';
+"use client";
+import React from "react";
+import { Empty, Flex, Spin, Typography } from "antd";
+import VEventHeader from "./components/VEventHeader";
+import EventsGrid from "./components/EventsGrid";
+import Link from "next/link";
+import { useGetAllEventsQuery } from "@/redux/events/eventApi";
+import Loader from "../ui/Loader";
 
 const { Title } = Typography;
 
-type Props = {}
+type Props = {};
 
 const ViewEvents = (props: Props) => {
-    return (
-        <>
-            <Flex align='center' justify='space-between'>
-                <Title level={3}>Events</Title>
+  /*//** RTK calling of product data getting */
+  const { data: events, isLoading }: { data?: any; isLoading: boolean } =
+    useGetAllEventsQuery(undefined);
 
-                <Flex>
-                    <Link href='/dashboard' style={{ color: '#2b2a3f' }}>Dashboard</Link>
-                    <p style={{ margin: '0 5px', color: '#807f9c' }}>/</p>
-                    <p style={{ color: '#807f9c' }}>Events</p>
-                </Flex>
-            </Flex>
+  if (isLoading) return <Loader />;
 
-            <VEventHeader />
+  return (
+    <>
+      {/* <VEventHeader /> */}
+      {events?.data?.length ? <EventsGrid datas={events?.data} /> : <Empty />}
+    </>
+  );
+};
 
-            <EventsGrid />
-        </>
-    )
-}
-
-export default ViewEvents
+export default ViewEvents;

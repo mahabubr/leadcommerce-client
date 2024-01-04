@@ -48,3 +48,54 @@ export const uploadProps: UploadProps = {
     authorization: "authorization-text",
   },
 };
+
+export const classByOrderStatus = {
+  pending: "warning",
+  delivered: "success",
+  cancel: "error",
+  paused: "cyan",
+  accept: "blue",
+};
+
+export type IOrderStatus =
+  | "pending"
+  | "delivered"
+  | "cancel"
+  | "paused"
+  | "accept";
+
+export const classByPaymentStatus = {
+  pending: "warning",
+  canceled: "error",
+  completed: "success",
+};
+
+export type IPaymentStatus = "pending" | "completed" | "canceled";
+export const getDiscountedPricePercentage = (
+  originalPrice: number,
+  discountedPrice: number
+) => {
+  const discount = originalPrice - discountedPrice;
+
+  const discountPercentage = (discount / originalPrice) * 100;
+
+  return discountPercentage.toFixed(2);
+};
+
+export const getRandomItemsFromArray = (arr: any[], numberOfItems: any) => {
+  const shuffled = arr.sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, numberOfItems);
+};
+
+/* TO REMOVE UNNECESSARY VALUE AFTER AT 2 POINT  */
+export const fixedFloatValue = (value: string) => {
+  return parseFloat(value).toFixed(2);
+};
+
+export const getDiscountDependOnPercentage = (
+  originalPrice: number,
+  percentage: number
+) => {
+  const discountPrice = (originalPrice * percentage) / 100;
+  return discountPrice.toFixed(2);
+};

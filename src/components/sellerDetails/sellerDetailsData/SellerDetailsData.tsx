@@ -6,114 +6,84 @@ import { PlusOutlined, SearchOutlined } from "@ant-design/icons";
 import SellerDetailsPageTable from "./SellerDetailsPageTable";
 import style from "../static/sellerdetailscomponent.module.css";
 
-const SellerDetailsData = ({ store }: any) => {
+const SellerDetailsData = ({ store, id }: any) => {
   return (
     <>
-      <Card>
-        <div
-          style={{
-            // border: "1px solid red",
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          <div>
-            <h4 style={{ color: "#2c3e50" }}>Revenue</h4>
-          </div>
-          <div style={{ display: "flex", gap: "1em" }}>
-            <Button size="small" type="primary">
-              ALL
-            </Button>
-            <Button size="small" type="primary">
-              1M
-            </Button>
-            <Button size="small" type="primary">
-              6M
-            </Button>
-            <Button size="small" type="primary">
-              1Y
-            </Button>
-          </div>
-        </div>
-      </Card>
       <Card
-        style={
-          {
-            // border: "1px solid blue",
-            // display: "flex",
-            // justifyContent: "space-between",
-          }
-        }
+        title="Store Information"
+        style={{ boxShadow: "3px 3px 15px #ddd" }}
       >
-        <div
-          className={style.summayData}
-          // style={{
-          //   display: "flex",
-          //   width: "100%",
-          //   backgroundColor: " #ecf0f1",
-          // }}
-        >
+        <div className={style.summayData}>
           <div
             style={{
-              border: "1px dashed  #999b9c",
+              border: "1px dashed  #ddd",
               padding: "1em",
               flex: "1",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
+              borderRadius: 8,
             }}
           >
             <h5>
-              <span>{store?.data?.data?.total_orders?.total}</span>
+              <span>{store?.data?.data?.total_orders?.total || "N/A"}</span>
             </h5>
             <p>Orders</p>
           </div>
           <div
             style={{
-              border: "1px dashed  #999b9c",
+              border: "1px dashed  #ddd",
               padding: "1em",
               flex: "1",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
+              borderRadius: 8,
             }}
           >
             <h5>
-              <span>${store?.data?.data?.earning?.totalAmount}</span>
+              <span>$ {store?.data?.data?.earning?.totalAmount || " N/A"}</span>
             </h5>
             <p>Earning</p>
           </div>
           <div
             style={{
-              border: "1px dashed  #999b9c",
+              border: "1px dashed  #ddd",
               padding: "1em",
               flex: "1",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
+              borderRadius: 8,
             }}
           >
             <h5>
-              <span>{store?.data?.data?.refund?.total}</span>
+              <span>{store?.data?.data?.refund?.total || "N/A"}</span>
             </h5>
             <p>Refunds</p>
           </div>
           <div
             style={{
-              border: "1px dashed  #999b9c",
+              border: "1px dashed  #ddd",
               padding: "1em",
               flex: "1",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
+              borderRadius: 8,
             }}
           >
             <h5>
-              <span>{100 - (store?.data?.data?.refund?.total * 100) / store?.data?.data?.total_orders?.total}%</span>
+              <span>
+                {100 -
+                  (Number(store?.data?.data?.refund?.total) * 100) /
+                    Number(store?.data?.data?.total_orders?.total)}
+                %
+              </span>
             </h5>
             <p>Conversation Ratio</p>
           </div>
@@ -124,24 +94,8 @@ const SellerDetailsData = ({ store }: any) => {
         </div>
       </Card>
 
-      {/* Add new and Search  */}
-      <div
-        style={{
-          // border: "1px solid red",
-          padding: "1em",
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        <Button type="primary" icon={<PlusOutlined />}>
-          Add New
-        </Button>
-        <div>
-          <Input addonAfter={<SearchOutlined />} placeholder="large size" />
-        </div>
-      </div>
       {/* table  */}
-      <SellerDetailsPageTable></SellerDetailsPageTable>
+      <SellerDetailsPageTable id={id}></SellerDetailsPageTable>
     </>
   );
 };

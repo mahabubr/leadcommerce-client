@@ -10,7 +10,7 @@ const datasets3={
     //   fill: true,
       label: 'Active User',
       data: [100,120,130,120,130,140,130,140,150,140],
-      borderColor: 'rgb(53, 162, 235)',
+      borderColor: '#2c3e50',
     //   backgroundColor: 'rgba(53, 162, 235, 0.5)',
     },
     {
@@ -26,7 +26,7 @@ const datasets3={
 
 const UserActivity = () => {
     return (
-        <div className={`${style.user_act} ${style.bg_white}`}>
+        <div className={`${style.user_act} ${style.user_act_cont} ${style.bg_white}`}>
             <h3 className={style.sales_head}>User Activity</h3>
             <div className={style.user_act_chart}>
               <RevenueChart data={datasets3}/>

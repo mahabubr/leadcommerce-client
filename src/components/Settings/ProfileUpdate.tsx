@@ -4,7 +4,10 @@ import ProfileImageUpload from "./ProfileImageUpload";
 import { Divider } from "antd";
 import { Button, Flex } from "antd";
 import style from "./static/profileUpload.module.css";
+import { useGetAEmployeQuery } from "@/redux/employees/employeesApi";
+
 const ProfileUpdate = () => {
+  const { data } = useGetAEmployeQuery({});
   return (
     <>
       <div className={style.mainDiv}>

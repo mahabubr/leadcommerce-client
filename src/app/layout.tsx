@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "@/lib/Provider";
+import "leaflet/dist/leaflet.css";
+// import icon from 'leaflet/dist/images/marker-icon.png';
 
 const inter = Inter({ subsets: ["latin"] });
 

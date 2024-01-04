@@ -12,17 +12,32 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const token = getFromLocalStorage("accessToken");
-    const decode = decodedToken(token as string);
+  const token = getFromLocalStorage("accessToken");
+  const decode = decodedToken(token as string);
 
+  useEffect(() => {
     // @ts-ignore
-    if (decode?.email && decode?.role) {
-      router.push("/dashboard");
+    if (decode?.email) {
+      // @ts-ignore
+       if (decode?.role === "admin") {
+         router.push("/admin/dashboard");
+       }
+       // @ts-ignore
+       else if (decode?.role === "store") {
+         router.push("/store/seller-details");
+       }
+       // @ts-ignore
+       else if (decode?.role === "employee") {
+         router.push("/employee/settings/profilesetting");
+       } // @ts-ignore
+       else if (decode?.role === "delivery") {
+         router.push("/delivery/order");
+       }
     } else {
       setIsLoading(false);
     }
-  }, [router]);
+    // @ts-ignore
+  }, [router, decode?.email, decode?.role]);
 
   if (isLoading) {
     return <Loader />;

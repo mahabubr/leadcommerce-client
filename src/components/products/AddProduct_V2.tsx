@@ -1,34 +1,32 @@
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
-import PCBreadcrumb from "./partials/PCBreadcrumb";
+import { paths } from "@/paths/paths";
+import { useGetAllCategoriesQuery } from "@/redux/category/categoryApi";
+import { useAddProductsMutation } from "@/redux/product/productApi";
+import { DeleteOutlined, UploadOutlined } from "@ant-design/icons";
 import {
-  Card,
-  Row,
-  Col,
   Button,
-  Upload,
-  UploadProps,
-  message,
-  UploadFile,
-  Space,
+  Card,
+  Checkbox,
+  Col,
+  ColorPicker,
   Form,
   Input,
-  Select,
-  ColorPicker,
-  Checkbox,
   InputNumber,
+  Row,
+  Select,
+  Space,
+  Upload,
+  UploadFile,
+  UploadProps,
+  message,
+  notification,
 } from "antd";
-import { productItems } from "./utils/productData";
-import Image from "next/image";
-import { UploadOutlined, DeleteOutlined } from "@ant-design/icons";
 import type { Color, ColorPickerProps } from "antd/es/color-picker";
-import { useAddProductsMutation } from "@/redux/product/productApi";
-import { notification } from "antd";
-import { PoweroffOutlined } from "@ant-design/icons";
-import "./styles/cproduct.css";
-import { useGetAllCategoriesQuery } from "@/redux/category/categoryApi";
+import Image from "next/image";
+import { useEffect, useMemo, useState } from "react";
 import Loader from "../ui/Loader";
-import { paths } from "@/paths/paths";
+import PCBreadcrumb from "./partials/PCBreadcrumb";
+import "./styles/cproduct.css";
 
 const props: UploadProps = {
   name: "file",
@@ -120,7 +118,7 @@ const AddProductV2 = () => {
     if (fileList) {
       formData.append("image", fileList.originFileObj);
     }
-
+    // console.log([...formData.entries()]);
     /* //** calling api */
     /* //** handle product create response */
     try {
@@ -184,9 +182,8 @@ const AddProductV2 = () => {
   return (
     <>
       {contextHolder}
-      <PCBreadcrumb title="Create Product" route={paths.products}/>
 
-      <Card title="Add Product" bordered style={{ marginTop: "20px" }}>
+      <Card title="Add Product" style={{ boxShadow: "3px 3px 15px #ddd" }}>
         <Form
           form={form}
           autoComplete="off"
@@ -599,14 +596,16 @@ const AddProductV2 = () => {
                   </Form.Item>
                 </Col>
               </Row>
-              <Button
-                type="primary"
-                htmlType="submit"
-                loading={isLoading}
-                size="large"
-              >
-                Add Product
-              </Button>
+              <div style={{ display: "flex", justifyContent: "end" }}>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  loading={isLoading}
+                  size="middle"
+                >
+                  Add Product
+                </Button>
+              </div>
             </Col>
           </Row>
         </Form>

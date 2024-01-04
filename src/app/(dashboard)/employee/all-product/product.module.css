@@ -1,0 +1,91 @@
+.container {
+  display: flex;
+  gap: 24px;
+  padding: 20px;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.mainContent {
+  background-color: white;
+  padding: 24px;
+  border-radius: 6px;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
+  flex: 1;
+}
+
+.mainFilter {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.filterOne {
+  flex: 1;
+}
+
+.filterTwo {
+  display: flex;
+  gap: 10px;
+}
+
+.sideContent {
+  background-color: white;
+  position: static !important;
+  width: 23%;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 425px) {
+  .container {
+    padding: 10px;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mainContent {
+    padding: 15px;
+  }
+
+  .mainFilter {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filterOne {
+    width: 100%;
+  }
+
+  .filterTwo {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .sideContent {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+  }
+}
+
+@media (min-width: 426px) and (max-width: 560px) {
+  /* Adjustments for 426px to 560px if needed */
+}
+
+@media (min-width: 561px) and (max-width: 910px) {
+  /* Adjustments for 561px to 910px if needed */
+}
+
+@media (min-width: 911px) and (max-width: 1150px) {
+  /* Adjustments for 911px to 1150px if needed */
+}
+
+@media (min-width: 1151px) and (max-width: 1440px) {
+  /* Adjustments for 1151px to 1440px if needed */
+}
+
+/* Additional media queries for larger screens if required */
+

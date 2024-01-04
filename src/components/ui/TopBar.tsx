@@ -81,15 +81,7 @@ const TopBar = ({ open, closeDrawer, showDrawer }: any) => {
             </div>
           )}
         </div>
-        <div style={{ flex: 1, margin: "0 20px" }}>
-          <Input
-            size="middle"
-            placeholder="Search Pages"
-            suffix={<CiSearch />}
-            allowClear
-            style={{ width: "100%" }}
-          />
-        </div>
+
         <div
           style={{
             display: "flex",
@@ -98,7 +90,6 @@ const TopBar = ({ open, closeDrawer, showDrawer }: any) => {
             color: "#5A5A5A",
           }}
         >
-          <IoIosNotifications style={{ fontSize: "22px", cursor: "pointer" }} />
           <MdCenterFocusStrong
             onClick={toggleFullscreen}
             style={{ fontSize: "22px", cursor: "pointer" }}
@@ -106,14 +97,6 @@ const TopBar = ({ open, closeDrawer, showDrawer }: any) => {
           <Dropdown
             overlay={
               <Menu>
-                <Menu.Item key="1">Edit Profile</Menu.Item>
-                <Menu.Item key="2">Account Setting</Menu.Item>
-                <Menu.Item key="3">Wallet</Menu.Item>
-                <Menu.Item key="4">Billing</Menu.Item>
-                <Menu.Item key="5">Help Center</Menu.Item>
-                <Menu.Item key="6" disabled>
-                  --------------------
-                </Menu.Item>
                 <Menu.Item onClick={handleSignOut} key="7">
                   Log Out
                 </Menu.Item>

@@ -19,6 +19,27 @@ const productApi = api.injectEndpoints({
         `/products?status=${product_status}&page=${page}&limit=${limit}&sortOrder=${sortOrder}&searchTerm=${searchTerm}`,
       providesTags: ["product"],
     }),
+    getAllProductsForStore: builder.query({
+      query: ({
+        limit,
+        page,
+        product_status,
+        sortOrder,
+        searchTerm,
+      }: {
+        limit: number;
+        page: number;
+        product_status: string;
+        sortOrder: "desc" | "asc";
+        searchTerm: string;
+      }) =>
+        `/products/store?status=${product_status}&page=${page}&limit=${limit}&sortOrder=${sortOrder}&searchTerm=${searchTerm}`,
+      providesTags: ["product"],
+    }),
+    getSingleProductsForStore: builder.query({
+      query: ({ id }: { id: string }) => `/products/single-store/${id}`,
+      providesTags: ["product"],
+    }),
     getAProducts: builder.query({
       query: ({ id }: { id: string }) => `/products/${id}`,
       providesTags: ["product"],
@@ -57,9 +78,11 @@ const productApi = api.injectEndpoints({
 
 export const {
   useGetAllProductsQuery,
+  useGetAllProductsForStoreQuery,
   useGetAllProductsMutation,
   useAddProductsMutation,
   useUpdateProductMutation,
   useDeleteProductMutation,
   useGetAProductsQuery,
+  useGetSingleProductsForStoreQuery
 } = productApi;

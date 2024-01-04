@@ -1,11 +1,28 @@
 "use client";
-import { Card, Row, Col, Button, Upload, Form, Input } from "antd";
+import {
+  Card,
+  Row,
+  Col,
+  Button,
+  Upload,
+  Form,
+  Input,
+  message,
+  UploadProps,
+} from "antd";
 import Image from "next/image";
 import { UploadOutlined, DeleteOutlined } from "@ant-design/icons";
 import PCBreadcrumb from "../products/partials/PCBreadcrumb";
 import { paths } from "@/paths/paths";
 import useAddEmploye from "./AddEmploye.logic";
-import { uploadProps } from "@/Helper/utils";
+
+const props: UploadProps = {
+  name: "file",
+  action: "https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188",
+  headers: {
+    authorization: "authorization-text",
+  },
+};
 
 type resType = {
   statusCode: number;
@@ -14,27 +31,14 @@ type resType = {
   data: any;
 };
 
-const initialData = {
-  title: "",
-  product_category: "",
-  slug: "",
-  description: "",
-  fullDescription: "",
-  quantity: "",
-  price: "",
-  tags: "",
-};
-
 const AddEmploye = () => {
   const {
-    handleCheckboxChange,
     onFinish,
     fileList,
     form,
     isLoading,
     api,
     currentImage,
-    checkedValues,
     contextHolder,
     setCurrentImage,
     setFileList,
@@ -45,7 +49,7 @@ const AddEmploye = () => {
   return (
     <>
       {contextHolder}
-      <div>
+      <Card title="Create Employee" style={{ boxShadow: "3px 3px 15px #ddd" }}>
         <Form
           form={form}
           autoComplete="off"
@@ -81,9 +85,29 @@ const AddEmploye = () => {
                     accept=".png, .jpg, .jpeg"
                     maxCount={1}
                     showUploadList={false}
-                    beforeUpload={beforeFileUpload}
-                    onChange={onChangeFileHandle}
-                    {...uploadProps}
+                    beforeUpload={(file) => {
+                      return new Promise((resolve, reject) => {
+                        if (file.size > 2000000) {
+                          reject("File size must be under 2MB");
+                        } else {
+                          resolve("success");
+                        }
+                      });
+                    }}
+                    onChange={(info) => {
+                      if (info.file.status !== "uploading") {
+                        console.log(info.file, info.fileList);
+                      }
+                      if (info.file.status === "done") {
+                        message.success(
+                          `${info.file.name} file uploaded successfully`
+                        );
+                        setFileList(info.file);
+                      } else if (info.file.status === "error") {
+                        message.error(`${info.file.name} file upload failed.`);
+                      }
+                    }}
+                    {...props}
                   >
                     <Button icon={<UploadOutlined />} size="large"></Button>
                   </Upload>
@@ -256,18 +280,20 @@ const AddEmploye = () => {
                   </div>
                 </Col>
               </Row>
-              <Button
-                type="primary"
-                htmlType="submit"
-                loading={isLoading}
-                size="large"
-              >
-                Add Employee
-              </Button>
+              <div style={{ display: "flex", justifyContent: "end" }}>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  loading={isLoading}
+                  size="middle"
+                >
+                  Add Employee
+                </Button>
+              </div>
             </Col>
           </Row>
         </Form>
-      </div>
+      </Card>
     </>
   );
 };

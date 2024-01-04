@@ -27,6 +27,7 @@ import {
 import { useRouter } from "next/navigation";
 import "./style/vcategory.css";
 import ButtonGroup from "antd/es/button/button-group";
+import Loader from "../ui/Loader";
 
 const { Text } = Typography;
 const { confirm } = Modal;
@@ -89,16 +90,23 @@ const ViewCategory = () => {
     {
       title: "Action",
       key: "action",
+      align: "right",
+      width: "20%",
       render: (_, { _id }) => (
         <ButtonGroup>
           <Button
+            size="middle"
             type="primary"
             icon={<EditOutlined />}
-            onClick={() => router.push(`/category/update/${_id}`)}
+            onClick={() => router.push(`/admin/category/update/${_id}`)}
           >
             Edit
           </Button>
-          <Button icon={<DeleteOutlined />} onClick={() => showConfirm(_id)}>
+          <Button
+            size="middle"
+            icon={<DeleteOutlined />}
+            onClick={() => showConfirm(_id)}
+          >
             Delete
           </Button>
         </ButtonGroup>
@@ -136,13 +144,15 @@ const ViewCategory = () => {
 
   return (
     <>
-      <CVBreadcrumb link="category/add-category" title="Create Category" />
-
-      <Row gutter={{ xs: 8, sm: 16, md: 24 }} style={{ marginTop: "20px" }}>
+      <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
         <Col className="gutter-row" span={24}>
-          <Card bordered>
+          <Card
+            title="Create Category"
+            style={{ boxShadow: "3px 3px 15px #ddd" }}
+          >
             {/* //**product table */}
             <Table
+              style={{ marginTop: "1vw" }}
               columns={columns}
               dataSource={categoryData?.data}
               rowKey="_id"
@@ -150,13 +160,20 @@ const ViewCategory = () => {
               pagination={{
                 current: currentPage,
                 pageSize: currentLimit,
+                defaultCurrent: 1,
+                pageSizeOptions: ["5", "10", "20"],
                 total: categoryData?.meta?.total,
                 onChange: (page, pageSize) => {
                   setCurrentPage(page);
                   setCurrentLimit(pageSize);
                 },
+                onShowSizeChange: (current, size) => {
+                  setCurrentPage(current);
+                  setCurrentLimit(size);
+                },
+                showSizeChanger: true,
               }}
-              loading={isLoading && { indicator: <Spin /> }}
+              loading={isLoading && { indicator: <Loader /> }}
             />
           </Card>
         </Col>

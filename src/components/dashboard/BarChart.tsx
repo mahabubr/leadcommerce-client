@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { RefObject, useEffect, useRef, useState } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,6 +10,8 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import style from "./static/dashboard.module.css";
+import { calculatePercentage } from "@/Helper/CommonFunction";
 
 ChartJS.register(
   CategoryScale,
@@ -20,7 +22,7 @@ ChartJS.register(
   Legend
 );
 
-export function Barchart({ signUpData }: { signUpData: any }) {
+const getSignUpData = (signUpData: any) => {
   const dayLabel =
     signUpData &&
     signUpData?.ordersChart?.weeklySignUp?.map((item: any) => item.dayName);
@@ -33,29 +35,63 @@ export function Barchart({ signUpData }: { signUpData: any }) {
       {
         label: "Dataset 1",
         data: signUpCount,
-        backgroundColor: "#3498db",
+        backgroundColor: "#393f47",
         barThickness: 10,
       },
     ],
   };
-  const options = {
+
+  return data;
+};
+const options = {
+  legend: {
+    display: false,
+  },
+  // maintainAspectRatio: false,
+  // // scales: {
+  // //   x: {
+  // //     stacked: true,
+  // //   },
+  // //   y: {
+  // //     stacked: true,
+  // //   },
+  // // },
+  // // responsive: true,
+  plugins: {
     legend: {
       display: false,
     },
-    scales: {
-      x: {
-        stacked: true,
-      },
-      y: {
-        stacked: true,
-      },
-    },
-    responsive: true,
-    plugins: {
-      legend: {
-        display: false,
-      },
-    },
+  },
+};
+
+export function Barchart({ signUpData }: { signUpData: any }) {
+  const chartRef: RefObject<any> = useRef<HTMLDivElement>(null);
+  const [chartWidth, setChartWidth] = useState<number | null>(null);
+
+  const handleResize = (e: any) => {
+    setChartWidth(((window.innerWidth - 300) * 30) / 100);
+    console.log(
+      "barchart",
+      window.innerWidth,
+      (chartRef?.current?.offsetWidth * 85) / 100
+    );
   };
-  return <Bar options={options} data={data} />;
+  useEffect(() => {
+    // setChartWidth(chartRef.current.offsetWidth*90/100)
+    window.addEventListener("resize", handleResize);
+  }, []);
+
+  return (
+    <div ref={chartRef}>
+      <Bar
+        className={style.anime + " " + style.barChart}
+        redraw={true}
+        width={chartWidth || 350}
+        height={calculatePercentage(chartWidth || 350, 70)}
+        options={options}
+        data={getSignUpData(signUpData)}
+      />
+      ;
+    </div>
+  );
 }

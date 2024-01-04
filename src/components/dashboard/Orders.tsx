@@ -3,81 +3,6 @@ import React from "react";
 import style from "./static/dashboard.module.css";
 import { Button, Table, Tag } from "antd";
 
-// const data = [
-//   {
-//     orderId: 2535,
-//     Product: "Dummy Name",
-//     unit: 150,
-//     date: "Oct 20, 2018",
-//     cost: 15,
-//     status: <Tag color="blue">Pending</Tag>,
-//   },
-//   {
-//     orderId: 2535,
-//     Product: "Dummy Name",
-//     unit: 150,
-//     date: "Oct 20, 2018",
-//     cost: 15,
-//     status: <Tag color="yellow">Shipment</Tag>,
-//   },
-//   {
-//     orderId: 2535,
-//     Product: "Dummy Name",
-//     unit: 150,
-//     date: "Oct 20, 2018",
-//     cost: 15,
-//     status: <Tag color="green">Delivery</Tag>,
-//   },
-//   {
-//     orderId: 2535,
-//     Product: "Dummy Name",
-//     unit: 150,
-//     date: "Oct 20, 2018",
-//     cost: 15,
-//     status: <Tag color="red">Canceled</Tag>,
-//   },
-//   {
-//     orderId: 2535,
-//     Product: "Dummy Name",
-//     unit: 150,
-//     date: "Oct 20, 2018",
-//     cost: 15,
-//     status: <Tag color="blue">Pending</Tag>,
-//   },
-//   {
-//     orderId: 2535,
-//     Product: "Dummy Name",
-//     unit: 150,
-//     date: "Oct 20, 2018",
-//     cost: 15,
-//     status: <Tag color="yellow">Shipment</Tag>,
-//   },
-//   {
-//     orderId: 2535,
-//     Product: "Dummy Name",
-//     unit: 150,
-//     date: "Oct 20, 2018",
-//     cost: 15,
-//     status: <Tag color="green">Delivery</Tag>,
-//   },
-//   {
-//     orderId: 2535,
-//     Product: "Dummy Name",
-//     unit: 150,
-//     date: "Oct 20, 2018",
-//     cost: 15,
-//     status: <Tag color="red">Canceled</Tag>,
-//   },
-// ];
-
-// const thead = [
-//   "Shop Id",
-//   "Product Name",
-//   "Price",
-//   "Date",
-//   "Quantity",
-//   "Status",
-// ];
 const Orders = ({ data }: { data: any }) => {
   console.log(data?.ordersChart?.topOrders, "Order");
   const dataa = [
@@ -127,14 +52,6 @@ const Orders = ({ data }: { data: any }) => {
       key: "_id",
       render: (total_items: any, _id: any) => <p key={_id}>{total_items}</p>,
     },
-    // {
-    //   title: "Total Quantity",
-    //   dataIndex: "total_quantity",
-    //   key: "_id",
-    //   render: (total_quantity: any, _id: any) => (
-    //     <p key={_id}>{total_quantity}</p>
-    //   ),
-    // },
     {
       title: "Amount",
       dataIndex: "amount",
@@ -178,54 +95,16 @@ const Orders = ({ data }: { data: any }) => {
         );
       },
     },
-    //  {
-    //    title: "Details",
-    //    dataIndex: "",
-    //    key: "_id",
-    //    render: (_: any, { _id }: { _id: any }) => {
-    //      return (
-    //        <>
-    //          <Button
-    //            type='text'
-    //            size='small'
-    //            style={{ textDecoration: "underline" }}
-    //            onClick={() => handleRouteUpdate(_id)}>
-    //            Details
-    //          </Button>
-    //        </>
-    //      );
-    //    },
-    //  },
   ];
 
   return (
     <div className={style.orders}>
       <h3 className={style.sales_head}>Recent Orders</h3>
-      {/* <table className={style.table}>
-        <tbody className={style.tbody}>
-          <tr className={style.thead}>
-            {thead.map((item) => (
-              <th className={style.th} key={item}>
-                {item}
-              </th>
-            ))}
-          </tr>
-          {data.map((item, i) => (
-            <tr key={i} className={style.tr}>
-              <td className={style.td}>{item.orderId}</td>
-              <td className={style.td}>{item.Product}</td>
-              <td className={style.td}>{item.unit}</td>
-              <td className={style.td}>{item.date}</td>
-              <td className={style.td}>{item.cost}</td>
-              <td className={style.td}>{item.status}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table> */}
+      
       <Table
         columns={columns}
         dataSource={data?.ordersChart?.topOrders}
-        scroll={{ x: 1000 }}
+        scroll={{ x: 600 }}
       />
     </div>
   );
