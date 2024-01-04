@@ -103,8 +103,10 @@
 
 .cartContainer {
   display: flex;
-  padding: 0.3rem 0rem;
-  border-bottom: 1px solid #e5e7eb;
+  padding: 1rem 0rem;
+  /* border-bottom: 1px solid #e5e7eb; */
+  /* border: 1px solid red; */
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
 }
 
 .cartContainerImage {
@@ -156,16 +158,16 @@
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   background-color: #fff;
-  color: #d84747;
+  color: #2c3e50;
   transition: transform 0.3s, opacity 0.3s;
-  border: 2px solid #d84747;
+  border: 2px solid #2c3e50;
   border-radius: 8px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .checkoutButton:hover {
-  background-color: #d63c3c;
-  color: #fff;
+  /* background-color: #27ae60; */
+  color: #2c3e50;
   transform: scale(1.05);
   opacity: 0.75;
   cursor: pointer;
