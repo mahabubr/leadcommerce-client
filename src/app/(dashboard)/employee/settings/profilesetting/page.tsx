@@ -12,22 +12,21 @@ const items: TabsProps["items"] = [
     label: "General",
     children: <ProfileUpdate />,
   },
-  {
-    key: "2",
-    label: "Modaretor",
-    children: "Content of Tab Pane 2",
-  },
-  {
-    key: "3",
-    label: "Admin Account",
-    children: "Admin Account",
-  },
+  // {
+  //   key: "2",
+  //   label: "Modaretor",
+  //   children: "Content of Tab Pane 2",
+  // },
+  // {
+  //   key: "3",
+  //   label: "Admin Account",
+  //   children: "Admin Account",
+  // },
 ];
 
 const ProfileSetting = () => {
   const { data } = useGetAEmployeQuery({});
 
-  console.log(data);
   const onChange = (key: string) => {
     console.log(key);
   };

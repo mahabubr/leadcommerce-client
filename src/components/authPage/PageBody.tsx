@@ -20,6 +20,8 @@ const PageBody = () => {
         message.success(res.message);
         localStorage.setItem("accessToken", res?.data?.accessToken);
 
+        window.location.reload();
+
         const decode = decodedToken(res?.data?.accessToken as string);
         // @ts-ignore
         if (decode?.role === "admin") {
@@ -34,7 +36,7 @@ const PageBody = () => {
           router.push("/employee/settings/profilesetting");
         } // @ts-ignore
         else if (decode?.role === "delivery") {
-          router.push("/delivery/settings/profilesetting");
+          router.push("/delivery/order");
         }
       }
     } catch (error: any) {

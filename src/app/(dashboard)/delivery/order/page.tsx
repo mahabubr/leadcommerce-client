@@ -135,7 +135,9 @@ const Orders = () => {
 
     query["order_status"] = orderStatus;
   }
-  const { data }: { data?: any } = useGetAllOrderForDeliverymanQuery({ ...query });
+  const { data }: { data?: any } = useGetAllOrderForDeliverymanQuery({
+    ...query,
+  });
   const orderData = data?.data;
 
   // * PageLimit Change
@@ -182,7 +184,7 @@ const Orders = () => {
               style={{ width: "100px", textTransform: "capitalize" }}
               options={productItemSortPage}
               defaultValue={productItemSortPage[0]}
-            // defaultValue={selectedStatus}
+              // defaultValue={selectedStatus}
             />
           </div>
         </div>

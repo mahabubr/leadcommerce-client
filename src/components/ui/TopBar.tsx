@@ -60,14 +60,16 @@ const TopBar = ({ open, closeDrawer, showDrawer }: any) => {
         borderBottom: "1px solid #f0f0f0",
         marginLeft: open ? 320 : 0,
         transition: "margin 0.4s ",
-      }}>
+      }}
+    >
       <div
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
           padding: "12px 20px",
-        }}>
+        }}
+      >
         <div>
           {open ? (
             <div onClick={closeDrawer}>
@@ -79,23 +81,15 @@ const TopBar = ({ open, closeDrawer, showDrawer }: any) => {
             </div>
           )}
         </div>
-        <div style={{ flex: 1, margin: "0 20px" }}>
-          <Input
-            size='middle'
-            placeholder='Search Pages'
-            suffix={<CiSearch />}
-            allowClear
-            style={{ width: "100%" }}
-          />
-        </div>
+
         <div
           style={{
             display: "flex",
             alignItems: "center",
             gap: 20,
             color: "#5A5A5A",
-          }}>
-          <IoIosNotifications style={{ fontSize: "22px", cursor: "pointer" }} />
+          }}
+        >
           <MdCenterFocusStrong
             onClick={toggleFullscreen}
             style={{ fontSize: "22px", cursor: "pointer" }}
@@ -103,28 +97,22 @@ const TopBar = ({ open, closeDrawer, showDrawer }: any) => {
           <Dropdown
             overlay={
               <Menu>
-                <Menu.Item key='1'>Edit Profile</Menu.Item>
-                <Menu.Item key='2'>Account Setting</Menu.Item>
-                <Menu.Item key='3'>Wallet</Menu.Item>
-                <Menu.Item key='4'>Billing</Menu.Item>
-                <Menu.Item key='5'>Help Center</Menu.Item>
-                <Menu.Item key='6' disabled>
-                  --------------------
-                </Menu.Item>
-                <Menu.Item onClick={handleSignOut} key='7'>
+                <Menu.Item onClick={handleSignOut} key="7">
                   Log Out
                 </Menu.Item>
               </Menu>
-            }>
+            }
+          >
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
                 cursor: "pointer",
-              }}>
+              }}
+            >
               <Avatar
-                size='default'
-                src='https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                size="default"
+                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               />
               <FaCaretDown style={{ fontSize: "22px" }} />
             </div>

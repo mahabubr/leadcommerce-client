@@ -23,7 +23,11 @@ const EventCard = ({ data }: Props) => {
             _id={data._id}
           />
         }
-        style={{ padding: "10px", borderRadius: 8 }}
+        style={{
+          padding: "10px",
+          borderRadius: 8,
+          boxShadow: "3px 3px 15px #ddd",
+        }}
       >
         <Flex
           align="center"

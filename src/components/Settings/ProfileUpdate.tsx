@@ -8,7 +8,6 @@ import { useGetAEmployeQuery } from "@/redux/employees/employeesApi";
 
 const ProfileUpdate = () => {
   const { data } = useGetAEmployeQuery({});
-  console.log(data);
   return (
     <>
       <div className={style.mainDiv}>

@@ -29,7 +29,6 @@ const initialData = {
 
 const ProfileUpdateFrom = () => {
   const { data, isLoading }: any = useGetAEmployeQuery({});
-  console.log(data);
 
   const [form] = Form.useForm();
 
@@ -83,6 +82,7 @@ const ProfileUpdateFrom = () => {
                 style={{
                   height: "40px",
                 }}
+                disabled
               />
             </Form.Item>
 
@@ -99,6 +99,7 @@ const ProfileUpdateFrom = () => {
                 style={{
                   height: "40px",
                 }}
+                disabled
               />
             </Form.Item>
           </div>
@@ -121,6 +122,7 @@ const ProfileUpdateFrom = () => {
                 style={{
                   height: "40px",
                 }}
+                disabled
               />
             </Form.Item>
 
@@ -137,6 +139,7 @@ const ProfileUpdateFrom = () => {
                 style={{
                   height: "40px",
                 }}
+                disabled
               />
             </Form.Item>
           </div>
@@ -152,13 +155,7 @@ const ProfileUpdateFrom = () => {
               style={{
                 height: "40px",
               }}
-            />
-          </Form.Item>
-          <Form.Item label="Birth Day" name="birthday">
-            <DatePicker
-              style={{
-                height: "40px",
-              }}
+              disabled
             />
           </Form.Item>
           <Form.Item>

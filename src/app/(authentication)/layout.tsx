@@ -19,20 +19,20 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     // @ts-ignore
     if (decode?.email) {
       // @ts-ignore
-      if (decode?.role === "admin") {
-        router.push("/dashboard");
-      }
-      // @ts-ignore
-      else if (decode?.role === "store") {
-        router.push("/seller-details");
-      }
-      // @ts-ignore
-      else if (decode?.role === "employee") {
-        router.push("/settings/profilesetting");
-      } // @ts-ignore
-      else if (decode?.role === "delivery") {
-        router.push("/settings/profilesetting");
-      }
+       if (decode?.role === "admin") {
+         router.push("/admin/dashboard");
+       }
+       // @ts-ignore
+       else if (decode?.role === "store") {
+         router.push("/store/seller-details");
+       }
+       // @ts-ignore
+       else if (decode?.role === "employee") {
+         router.push("/employee/settings/profilesetting");
+       } // @ts-ignore
+       else if (decode?.role === "delivery") {
+         router.push("/delivery/order");
+       }
     } else {
       setIsLoading(false);
     }

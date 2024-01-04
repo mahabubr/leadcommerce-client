@@ -14,6 +14,7 @@ import { paths } from "@/paths/paths";
 import { IoIosMan } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 import { FaUsersViewfinder } from "react-icons/fa6";
+import { AiFillDatabase } from "react-icons/ai";
 
 import { MdAdminPanelSettings, MdDeliveryDining } from "react-icons/md";
 
@@ -121,15 +122,19 @@ const sidebarItems = (role: string) => {
     {
       title: "Orders",
       icon: <LuShoppingBasket />,
-      links: [
-        { label: "Orders", href: "/order" },
-        { label: "All Product", href: "/all-product" },
-      ],
+      links: [{ label: "Orders", href: "/employee/order" }],
+    },
+    {
+      title: "Products",
+      icon: <AiFillDatabase />,
+      links: [{ label: "All Product", href: "/employee/all-product" }],
     },
     {
       title: "Setting",
       icon: <IoMdSettings />,
-      links: [{ label: "Profile setting", href: "/settings/profilesetting" }],
+      links: [
+        { label: "Profile setting", href: "/employee/settings/profilesetting" },
+      ],
     },
   ];
 
@@ -138,11 +143,6 @@ const sidebarItems = (role: string) => {
       title: "Orders",
       icon: <LuShoppingBasket />,
       links: [{ label: "Orders", href: "/delivery/order" }],
-    },
-    {
-      title: "Setting",
-      icon: <IoMdSettings />,
-      links: [{ label: "Profile setting", href: "/settings/profilesetting" }],
     },
   ];
 

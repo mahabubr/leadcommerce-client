@@ -31,7 +31,11 @@ const DetailsCard = ({ data }: Props) => {
           gHeight="auto"
         />
       }
-      style={{ padding: "10px", borderRadius: 0 }}
+      style={{
+        padding: "10px",
+        borderRadius: 0,
+        boxShadow: "3px 3px 15px #ddd",
+      }}
     >
       <Flex
         align="center"
@@ -49,7 +53,7 @@ const DetailsCard = ({ data }: Props) => {
           />
         </Flex>
       </Flex>
-      <Flex gap="middle" align="center">
+      {/* <Flex gap="middle" align="center">
         <Button
           type="primary"
           size="large"
@@ -78,7 +82,7 @@ const DetailsCard = ({ data }: Props) => {
         <Button size="large" style={{ height: "43px" }}>
           <ShareAltOutlined />
         </Button>
-      </Flex>
+      </Flex> */}
       <>
         <Paragraph
           style={{

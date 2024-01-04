@@ -45,7 +45,6 @@ const OrderApi = api.injectEndpoints({
     }),
     updateStatus: builder.mutation({
       query: ({ formData }: { formData: any }) => {
-        console.log(formData);
         return {
           url: `/Orders/update-status`,
           method: "PATCH",
