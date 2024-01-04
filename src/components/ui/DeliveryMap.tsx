@@ -2,7 +2,7 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 
 const DeliveryMap = () => {
   return (
-    <div>
+    <div style={{ overflow: "hidden" }}>
       <MapContainer
         className="leaflet"
         center={[51.505, -0.09]}

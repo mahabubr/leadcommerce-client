@@ -12,6 +12,22 @@ const OrderApi = api.injectEndpoints({
       }),
       providesTags: [tagTypes.orders],
     }),
+    getAllOrderForStore: builder.query({
+      query: (arg: any) => ({
+        url: `/Orders/orders-for-store`,
+        method: "GET",
+        params: arg,
+      }),
+      providesTags: [tagTypes.orders],
+    }),
+    getAllOrderForDeliveryman: builder.query({
+      query: (arg: any) => ({
+        url: `/Orders/orders-for-deliveryman`,
+        method: "GET",
+        params: arg,
+      }),
+      providesTags: [tagTypes.orders],
+    }),
     createOrder: builder.mutation({
       query: ({ data }: { data: any }) => ({
         url: `/Orders`,
@@ -46,4 +62,6 @@ export const {
   useGetSingleOrderQuery,
   useUpdateStatusMutation,
   useCreateOrderMutation,
+  useGetAllOrderForStoreQuery,
+  useGetAllOrderForDeliverymanQuery,
 } = OrderApi;

@@ -9,7 +9,7 @@ import style from "./order.module.css";
 import { productItemSortPage } from "@/components/products/utils/productData";
 
 import { useState } from "react";
-import { useGetAllOrderQuery } from "@/redux/order/orderApi";
+import { useGetAllOrderForDeliverymanQuery } from "@/redux/order/orderApi";
 import DeliveryMap from "@/components/ui/DeliveryMap";
 import ButtonGroup from "antd/es/button/button-group";
 
@@ -135,7 +135,7 @@ const Orders = () => {
 
     query["order_status"] = orderStatus;
   }
-  const { data }: { data?: any } = useGetAllOrderQuery({ ...query });
+  const { data }: { data?: any } = useGetAllOrderForDeliverymanQuery({ ...query });
   const orderData = data?.data;
 
   // * PageLimit Change
@@ -182,7 +182,7 @@ const Orders = () => {
               style={{ width: "100px", textTransform: "capitalize" }}
               options={productItemSortPage}
               defaultValue={productItemSortPage[0]}
-              // defaultValue={selectedStatus}
+            // defaultValue={selectedStatus}
             />
           </div>
         </div>

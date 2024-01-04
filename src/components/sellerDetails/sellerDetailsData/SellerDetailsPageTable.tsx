@@ -1,133 +1,93 @@
 import React from "react";
-import { Card, Table } from "antd";
-import type { ColumnsType, TableProps } from "antd/es/table";
+import { Card, Table, Tag } from "antd";
 import Image from "next/image";
-interface DataType {
-  key: React.Key;
-  name: string;
-  category: string;
-  stock: number;
-  price: number;
-  orders: number;
-  rating: number;
-  createdAt: string;
-  image: string;
-}
+import { useGetSingleProductsForStoreQuery } from "@/redux/product/productApi";
+import Loader from "@/components/ui/Loader";
+import { ENUM_PRODUCT_STATUS } from "@/config/constants/product";
 
-const columns: ColumnsType<DataType> = [
+const columns: any = [
   {
-    title: "Product",
+    title: "Image",
     dataIndex: "image",
     key: "image",
-    render: (_, { image, name }) => (
-      <Image src={image} alt={name} width={40} height={40} />
+    render: (_: any, { image, productName }: any) => (
+      <Image
+        src={image?.avatar ? image?.avatar : "/preview.jpg"}
+        alt={productName}
+        width={60}
+        height={60}
+      />
     ),
   },
   {
-    title: "",
-    dataIndex: "name",
+    title: "Name",
+    dataIndex: "productName",
+    key: "productName",
   },
   {
-    title: "Stock",
-    dataIndex: "stock",
-    // sorter: {
-    //   compare: (a, b) => a.chinese - b.chinese,
-    //   multiple: 3,
-    // },
+    title: "Price",
+    dataIndex: "price",
+    key: "price",
+    render: (_: any, { price }: any) => (
+      <div className="priceField">৳ {price} </div>
+    ),
   },
   {
-    title: "Orders",
-    dataIndex: "orders",
-    // sorter: {
-    //   compare: (a, b) => a.math - b.math,
-    //   multiple: 2,
-    // },
+    title: "Quantity",
+    dataIndex: "quantity",
+    key: "quantity",
+    render: (_: any, { quantity }: any) => <>{quantity} pice </>,
   },
   {
-    title: "Rating",
-    dataIndex: "rating",
-    // sorter: {
-    //   compare: (a, b) => a.english - b.english,
-    //   multiple: 1,
-    // },
+    title: "In Stock",
+    key: "quantity",
+    dataIndex: "quantity",
+    render: (_: any, { quantity }: any) => (
+      <>
+        {quantity! > 0 ? (
+          <Tag color="green">In Stock</Tag>
+        ) : (
+          <Tag color="red">Out of Stock</Tag>
+        )}
+      </>
+    ),
   },
   {
-    title: "Action",
-    dataIndex: "Action",
-    // sorter: {
-    //   compare: (a, b) => a.english - b.english,
-    //   multiple: 1,
-    // },
+    title: "Status",
+    key: "status",
+    dataIndex: "status",
+    render: (_: any, { status }: any) => (
+      <>
+        {status === ENUM_PRODUCT_STATUS.PENDING ? (
+          <Tag color="gold"> {status}</Tag>
+        ) : status === ENUM_PRODUCT_STATUS.ACTIVE ? (
+          <Tag color="error"> {status}</Tag>
+        ) : (
+          <Tag color="lime"> {status}</Tag>
+        )}
+      </>
+    ),
   },
 ];
 
-const data: DataType[] = [
-  {
-    key: "1",
-    name: "Half Sleeve Round Neck T-Shirt",
-    category: "Clothes",
-    stock: 12,
-    price: 115.0,
-    orders: 48,
-    rating: 4.2,
-    createdAt: "2023-12-21",
-    image:
-      "https://www.cloudlift.app/cdn/shop/products/product.jpg?v=1615224393&width=533",
-  },
-  {
-    key: "2",
-    name: "Half Sleeve Round Neck T-Shirt",
-    category: "Clothes",
-    stock: 12,
-    price: 115.0,
-    orders: 48,
-    rating: 4.2,
-    createdAt: "2023-12-21",
-    image:
-      "https://www.cloudlift.app/cdn/shop/products/product.jpg?v=1615224393&width=533",
-  },
-  {
-    key: "3",
-    name: "Half Sleeve Round Neck T-Shirt",
-    category: "Clothes",
-    stock: 12,
-    price: 115.0,
-    orders: 48,
-    rating: 4.2,
-    createdAt: "2023-12-21",
-    image:
-      "https://www.cloudlift.app/cdn/shop/products/product.jpg?v=1615224393&width=533",
-  },
-  {
-    key: "4",
-    name: "Half Sleeve Round Neck T-Shirt",
-    category: "Clothes",
-    stock: 12,
-    price: 115.0,
-    orders: 48,
-    rating: 4.2,
-    createdAt: "2023-12-21",
-    image:
-      "https://www.cloudlift.app/cdn/shop/products/product.jpg?v=1615224393&width=533",
-  },
-];
+const SellerDetailsPageTable = ({ id }: any) => {
+  const { data: productData, isLoading }: { data?: any; isLoading: boolean } =
+    useGetSingleProductsForStoreQuery({ id });
 
-const SellerDetailsPageTable = () => {
-  const onChange: TableProps<DataType>["onChange"] = (
-    pagination,
-    filters,
-    sorter,
-    extra
-  ) => {
-    console.log("params", pagination, filters, sorter, extra);
-  };
+  const products = productData?.data;
+
+  if (isLoading) return <Loader />;
+
   return (
-    <Card>
+    <Card
+      title="Latest Products"
+      style={{ boxShadow: "3px 3px 15px #ddd", marginTop: 20 }}
+    >
       <Table
         columns={columns}
-        dataSource={data}
-        onChange={onChange}
-        scroll={{ x: 700}}
+        dataSource={products}
+        scroll={{ x: 700 }}
+        pagination={false}
       />
     </Card>
   );

@@ -42,6 +42,11 @@ const PaymentsViews = () => {
             <PaymentTable
               datas={paymentData?.data}
               setCurrentClickData={setCurrentClickData}
+              setCurrentPage={setCurrentPage}
+              setCurrentLimit={setCurrentLimit}
+              isLoading={isLoading}
+              currentPage={currentPage}
+              currentLimit={currentLimit}
             />
           </Card>
         </Col>

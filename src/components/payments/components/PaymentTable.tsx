@@ -4,13 +4,22 @@ import Image from "next/image";
 import React from "react";
 import moment from "moment";
 import { useRouter } from "next/navigation";
+import Loader from "@/components/ui/Loader";
 
 type Props = {
   datas: any;
   setCurrentClickData: any;
 };
 
-const PaymentTable = ({ datas, setCurrentClickData }: Props) => {
+const PaymentTable = ({
+  datas,
+  setCurrentClickData,
+  setCurrentPage,
+  setCurrentLimit,
+  isLoading,
+  currentPage,
+  currentLimit,
+}: any) => {
   // global
   const router = useRouter();
 
@@ -55,7 +64,23 @@ const PaymentTable = ({ datas, setCurrentClickData }: Props) => {
         dataSource={datas}
         rowKey="_id"
         scroll={{ x: true }}
-        pagination={false}
+        pagination={{
+          current: currentPage,
+          pageSize: currentLimit,
+          defaultCurrent: 1,
+          pageSizeOptions: ["5", "10", "20"],
+          total: datas?.meta?.total,
+          onChange: (page, pageSize) => {
+            setCurrentPage(page);
+            setCurrentLimit(pageSize);
+          },
+          onShowSizeChange: (current, size) => {
+            setCurrentPage(current);
+            setCurrentLimit(size);
+          },
+          showSizeChanger: true,
+        }}
+        loading={isLoading && { indicator: <Loader /> }}
         onRow={(record, rowIndex) => ({
           onClick: () => setCurrentClickData(record),
         })}

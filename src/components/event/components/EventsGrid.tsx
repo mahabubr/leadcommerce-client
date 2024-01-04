@@ -32,9 +32,10 @@ const EventsGrid = ({ datas }: Props) => {
       </Row>
 
       <Flex
-        justify='space-between'
-        align='center'
-        style={{ marginTop: "25px" }}>
+        justify="space-between"
+        align="center"
+        style={{ marginTop: "25px" }}
+      >
         <Paragraph style={{ margin: 0, color: "#79788e", fontSize: "14px" }}>
           Showing
           <span style={{ fontWeight: 700 }}>
@@ -49,15 +50,15 @@ const EventsGrid = ({ datas }: Props) => {
           pageRangeDisplayed={3}
           marginPagesDisplayed={1}
           onPageChange={handlePageClick}
-          containerClassName='pagination'
-          pageClassName='pagination-li'
-          previousClassName='pagination-a'
-          nextClassName='pagination-a'
-          pageLinkClassName='pagination-a'
-          activeClassName='pagination-active'
-          breakLabel='...'
-          nextLabel='>'
-          previousLabel='<'
+          containerClassName="pagination"
+          pageClassName="pagination-li"
+          previousClassName="pagination-a"
+          nextClassName="pagination-a"
+          pageLinkClassName="pagination-a"
+          activeClassName="pagination-active"
+          breakLabel="..."
+          nextLabel=">"
+          previousLabel="<"
           renderOnZeroPageCount={null}
         />
       </Flex>

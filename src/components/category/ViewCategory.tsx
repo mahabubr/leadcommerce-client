@@ -27,6 +27,7 @@ import {
 import { useRouter } from "next/navigation";
 import "./style/vcategory.css";
 import ButtonGroup from "antd/es/button/button-group";
+import Loader from "../ui/Loader";
 
 const { Text } = Typography;
 const { confirm } = Modal;
@@ -74,13 +75,14 @@ const ViewCategory = () => {
             borderRadius: "25px",
             color: "white",
             textTransform: "capitalize",
-          }}>
+          }}
+        >
           {status === ENUM_CATEGORY_STATUS.INACTIVE ? (
-            <Tag color='geekblue'>{status}</Tag>
+            <Tag color="geekblue">{status}</Tag>
           ) : status === ENUM_CATEGORY_STATUS.ACTIVE ? (
-            <Tag color='green'>{status}</Tag>
+            <Tag color="green">{status}</Tag>
           ) : (
-            <Tag color='error'>{status}</Tag>
+            <Tag color="error">{status}</Tag>
           )}
         </Text>
       ),
@@ -93,12 +95,18 @@ const ViewCategory = () => {
       render: (_, { _id }) => (
         <ButtonGroup>
           <Button
-            type='primary'
+            size="middle"
+            type="primary"
             icon={<EditOutlined />}
-            onClick={() => router.push(`/category/update/${_id}`)}>
+            onClick={() => router.push(`/admin/category/update/${_id}`)}
+          >
             Edit
           </Button>
-          <Button icon={<DeleteOutlined />} onClick={() => showConfirm(_id)}>
+          <Button
+            size="middle"
+            icon={<DeleteOutlined />}
+            onClick={() => showConfirm(_id)}
+          >
             Delete
           </Button>
         </ButtonGroup>
@@ -136,41 +144,36 @@ const ViewCategory = () => {
 
   return (
     <>
-      <div
-        style={{
-          backgroundColor: "white",
-          padding: "1vw",
-          borderRadius: "8px",
-          boxShadow:
-            "rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px",
-        }}>
-        <h3>All Categories</h3>
-      </div>
-
-      <Row gutter={{ xs: 8, sm: 16, md: 24 }} style={{ marginTop: "20px" }}>
-        <Col className='gutter-row' span={24}>
-          <Card bordered>
-            <CVBreadcrumb
-              link='category/add-category'
-              title='Create Category'
-            />
+      <Row gutter={{ xs: 8, sm: 16, md: 24 }}>
+        <Col className="gutter-row" span={24}>
+          <Card
+            title="Create Category"
+            style={{ boxShadow: "3px 3px 15px #ddd" }}
+          >
             {/* //**product table */}
             <Table
               style={{ marginTop: "1vw" }}
               columns={columns}
               dataSource={categoryData?.data}
-              rowKey='_id'
+              rowKey="_id"
               scroll={{ x: true }}
               pagination={{
                 current: currentPage,
                 pageSize: currentLimit,
+                defaultCurrent: 1,
+                pageSizeOptions: ["5", "10", "20"],
                 total: categoryData?.meta?.total,
                 onChange: (page, pageSize) => {
                   setCurrentPage(page);
                   setCurrentLimit(pageSize);
                 },
+                onShowSizeChange: (current, size) => {
+                  setCurrentPage(current);
+                  setCurrentLimit(size);
+                },
+                showSizeChanger: true,
               }}
-              loading={isLoading && { indicator: <Spin /> }}
+              loading={isLoading && { indicator: <Loader /> }}
             />
           </Card>
         </Col>

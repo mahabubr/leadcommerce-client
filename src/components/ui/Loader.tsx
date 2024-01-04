@@ -15,7 +15,11 @@ const Loader = () => {
         alignItems: "center",
       }}
     >
-      <Lottie animationData={animate} loop={true} />
+      <div style={{ width: "400px", height: "400px" }}>
+        {" "}
+        {/* Adjust the size here */}
+        <Lottie animationData={animate} loop={true} />
+      </div>
     </div>
   );
 };

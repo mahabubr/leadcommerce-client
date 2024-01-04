@@ -5,6 +5,7 @@ import VEventHeader from "./components/VEventHeader";
 import EventsGrid from "./components/EventsGrid";
 import Link from "next/link";
 import { useGetAllEventsQuery } from "@/redux/events/eventApi";
+import Loader from "../ui/Loader";
 
 const { Title } = Typography;
 
@@ -15,26 +16,11 @@ const ViewEvents = (props: Props) => {
   const { data: events, isLoading }: { data?: any; isLoading: boolean } =
     useGetAllEventsQuery(undefined);
 
-  if (isLoading) <Spin />;
-
-  console.log(events);
+  if (isLoading) return <Loader />;
 
   return (
     <>
-      <Flex align='center' justify='space-between'>
-        <Title level={3}>Events</Title>
-
-        <Flex>
-          <Link href='/dashboard' style={{ color: "#2b2a3f" }}>
-            Dashboard
-          </Link>
-          <p style={{ margin: "0 5px", color: "#807f9c" }}>/</p>
-          <p style={{ color: "#807f9c" }}>Events</p>
-        </Flex>
-      </Flex>
-
-      <VEventHeader />
-
+      {/* <VEventHeader /> */}
       {events?.data?.length ? <EventsGrid datas={events?.data} /> : <Empty />}
     </>
   );

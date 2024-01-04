@@ -115,8 +115,7 @@ const useOrderLogic = () => {
       id,
       formData: { delivery_email: newOrderDeliveryEmails[id], id },
     });
-
-    if (response?.data?.delivery_email) {
+    if (response?.data?.data?.modifiedCount > 0) {
       message.success("delivery_email to database");
     }
   };
@@ -143,6 +142,7 @@ const useOrderLogic = () => {
     handleSaveDelivery,
     deliveryStatusLoader,
     newOrderDeliveryEmails,
+    setSearchTerm,
   };
 };
 

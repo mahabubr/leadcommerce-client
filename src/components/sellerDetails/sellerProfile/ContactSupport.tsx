@@ -16,11 +16,9 @@ const ContactSupport = () => {
           display: "flex",
           alignItems: "end",
           justifyContent: "end",
-        }}>
-        <Button
-          type='primary'
-          style={{ backgroundColor: "#2c3e50" }}
-          icon={<MailOutlined />}>
+        }}
+      >
+        <Button type="primary" size="middle" icon={<MailOutlined />}>
           Send Message
         </Button>
       </div>

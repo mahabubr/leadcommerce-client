@@ -1,42 +1,35 @@
 .storeCard {
-  background-color: white;
   padding: 15px;
   border-radius: 8px;
   text-align: center;
-  height: 400px;
+  height: 420px;
   width: 320px;
-  box-shadow: 40px 27px 56px -34px rgba(202, 204, 206, 0.75);
-  -webkit-box-shadow: 40px 27px 56px -34px rgba(202, 204, 206, 0.75);
-  -moz-box-shadow: 40px 27px 56px -34px rgba(202, 204, 206, 0.75);
+  border: 1px solid #ddd;
+  margin: 0 auto; /* Center the card horizontally by default */
+  box-sizing: border-box; /* Ensure padding is included in the width */
 }
-/* #2c3e50 */
 
 @media (max-width: 1036px) {
   .storeCard {
-    width: 500px;
-  width: 100%; /* Set the initial width to 100% */
-  max-width: 500px; /* Set a maximum width if needed */
-  margin: 0 auto; /* Center the card horizontally */
-}}
+    width: 90%; /* Adjusted width for medium-sized screens */
+    max-width: 500px; /* Set a maximum width if needed */
+  }
+}
 
-/* Adjust width based on different screen sizes if needed */
 @media (max-width: 768px) {
   .storeCard {
-    /* Adjust properties for smaller screens */
-    max-width: 400px;
+    max-width: 400px; /* Adjusted width for smaller screens */
   }
 }
 
 @media (max-width: 585px) {
   .storeCard {
-    /* Adjust properties for even smaller screens */
-    max-width: 300px;
-
-}}
+    max-width: 300px; /* Adjusted width for even smaller screens */
+  }
+}
 
 @media (max-width: 392px) {
-  .storeCard  {
-    /* Adjust properties for very small screens */
-    max-width: 250px;
+  .storeCard {
+    max-width: 250px; /* Adjusted width for very small screens */
   }
 }
