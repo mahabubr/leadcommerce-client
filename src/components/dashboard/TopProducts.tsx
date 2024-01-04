@@ -8,7 +8,7 @@ const TopProducts = ({ data }: { data: any }) => {
     <div className={`${style.sales_report} ${style.bg_white}`}>
       <h3 className={style.sales_head}>Top Products</h3>
       <div className={style.top_products}>
-        {data?.ordersChart?.topProduct?.map((item: any) => (
+        {data?.ordersChart?.topProduct?.slice(0, 3)?.map((item: any) => (
           <div className={style.product_cards} key={item.id}>
             <figure className={style.product_cards_figure}>
               <img
@@ -22,7 +22,9 @@ const TopProducts = ({ data }: { data: any }) => {
                 {item?.productName}
                 <span className={style.sales}>{item.quantity} sales</span>
               </h5>
-              <p className={style.product_para}>{item?.fullDescription}</p>
+              <p className={style.product_para}>
+                {item?.fullDescription?.slice(0, 50)}
+              </p>
               <div className={style.price}>
                 <span className={style.p_price}>${item.price}</span>
                 {/* <span className={style.p_price}>Quantity: {item.quantity}</span> */}

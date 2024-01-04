@@ -2,7 +2,7 @@
 
 import { Input, Table, Tag, Select, DatePicker, Button } from "antd";
 // import type { ColumnsType } from "antd/es/table";
-import type { DatePickerProps } from "antd";
+// import type { DatePickerProps } from "antd";
 import { CiSearch } from "react-icons/ci";
 import { useRouter } from "next/navigation";
 import style from "./order.module.css";
@@ -10,8 +10,13 @@ import { productItemSortPage } from "@/components/products/utils/productData";
 
 import { useState } from "react";
 import { useGetAllOrderForDeliverymanQuery } from "@/redux/order/orderApi";
-import DeliveryMap from "@/components/ui/DeliveryMap";
+
+const DeliveryMap = dynamic(() => import("@/components/ui/DeliveryMap"), {
+  ssr: false,
+});
+
 import ButtonGroup from "antd/es/button/button-group";
+import dynamic from "next/dynamic";
 
 const { Search } = Input;
 
@@ -146,7 +151,7 @@ const Orders = () => {
   };
 
   // * Date Picker
-  const onChange: DatePickerProps["onChange"] = (date, dateString) => {
+  const onChange: any = (date: any, dateString: any) => {
     console.log(date, dateString);
   };
   // * Filter 🚀🚀🚀

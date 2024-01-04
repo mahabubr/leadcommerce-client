@@ -1,9 +1,5 @@
 "use client";
 
-import TopCard from "@/components/wallet/TopCard";
-import PaymentChart from "../../../components/wallet/PaymentChart";
-import ActivitiesTable from "../../../components/wallet/ActivitiesTable";
-
 const Wallet = () => {
   return (
     <div>
@@ -18,9 +14,9 @@ const Wallet = () => {
         }}>
         <h3>All Employee</h3>
       </div> */}
-      <TopCard />
+      {/* <TopCard />
       <PaymentChart />
-      <ActivitiesTable />
+      <ActivitiesTable /> */}
     </div>
   );
 };

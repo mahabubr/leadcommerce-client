@@ -103,8 +103,9 @@
 
 .cartContainer {
   display: flex;
-  padding: 0.3rem 0rem;
-  border-bottom: 1px solid #e5e7eb;
+  padding: 1rem 0rem;
+  /* border-bottom: 1px solid #e5e7eb; */
+  /* border: 1px solid red; */
 }
 
 .cartContainerImage {

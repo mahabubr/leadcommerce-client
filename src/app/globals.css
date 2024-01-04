@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@200;300;400;500;600;700;800;900&display=swap');
+
+
 :root {
   scroll-behavior: smooth;
 }
@@ -20,6 +23,8 @@ a {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Source Sans 3', sans-serif;
+
 }
 
 .bg-success {
@@ -43,10 +48,9 @@ a {
   width: 100%;
 }
 
-
 html {
-  --scrollbarBG: #CFD8DC;
-  --thumbBG: #90A4AE;
+  --scrollbarBG: #cfd8dc;
+  --thumbBG: #90a4ae;
 }
 body::-webkit-scrollbar {
   width: 11px;
@@ -59,7 +63,7 @@ body::-webkit-scrollbar-track {
   background: var(--scrollbarBG);
 }
 body::-webkit-scrollbar-thumb {
-  background-color: var(--thumbBG) ;
+  background-color: var(--thumbBG);
   border-radius: 6px;
   border: 3px solid var(--scrollbarBG);
 }

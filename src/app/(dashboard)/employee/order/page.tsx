@@ -157,7 +157,8 @@ const Orders = () => {
     setOrderStatus(value);
   };
   // * routing action
-  const handleRouteUpdate = (_id: string) => router.push(`/order/${_id}`);
+  const handleRouteUpdate = (_id: string) =>
+    router.push(`/employee/order/${_id}`);
   return (
     <div className={style.container}>
       <div className={style.mainContent}>
@@ -178,7 +179,7 @@ const Orders = () => {
               style={{ width: "100px", textTransform: "capitalize" }}
               options={productItemSortPage}
               defaultValue={productItemSortPage[0]}
-            // defaultValue={selectedStatus}
+              // defaultValue={selectedStatus}
             />
           </div>
         </div>

@@ -8,8 +8,12 @@ import { useRouter } from "next/navigation";
 import { getFromLocalStorage } from "@/utils/local-storage";
 import decodedToken from "@/utils/decodeToken";
 import Loader from "../ui/Loader";
+import { useEffect, useState } from "react";
 
 const PageBody = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [credentialsSet, setCredentialsSet] = useState(false);
   const [login] = useLoginMutation();
   const router = useRouter();
   const [form] = Form.useForm();
@@ -47,7 +51,35 @@ const PageBody = () => {
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
-
+  useEffect(() => {
+    if (credentialsSet) {
+      form.setFieldsValue({ email, password });
+      setCredentialsSet(false);
+    }
+  }, [credentialsSet, form, email, password]);
+  // * credentials
+  const handleLoginCredentials = (credentials: string) => {
+    if (credentials === "Admin") {
+      setEmail("admin@leadcommerce.com");
+      setPassword("hashed_password");
+      setCredentialsSet(true);
+    }
+    if (credentials === "Store") {
+      setEmail("store@leadcommerce.com");
+      setPassword("hashed_password");
+      setCredentialsSet(true);
+    }
+    if (credentials === "Employee") {
+      setEmail("employee@leadcommerce.com");
+      setPassword("hashed_password");
+      setCredentialsSet(true);
+    }
+    if (credentials === "Delivery") {
+      setEmail("delivery@leadcommerce.com");
+      setPassword("hashed_password");
+      setCredentialsSet(true);
+    }
+  };
   return (
     <div className={style.main_container}>
       <div className={style.form_container}>
@@ -57,19 +89,18 @@ const PageBody = () => {
         </div>
         <Form
           form={form}
-          className=""
-          name="basic"
+          className=''
+          name='basic'
           initialValues={{
             remember: true,
           }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
-          autoComplete="off"
-        >
+          autoComplete='off'>
           <div>
             <label style={{ fontSize: "15px" }}>Email Address</label>
             <Form.Item
-              name="email"
+              name='email'
               style={{ marginBottom: "16px" }}
               rules={[
                 {
@@ -80,12 +111,12 @@ const PageBody = () => {
                   required: true,
                   message: "The input is not valid E-mail!",
                 },
-              ]}
-            >
+              ]}>
               <Input
+                value={email}
                 style={{
                   marginTop: "1px",
-                  width: "300px",
+                  width: "100%",
                   height: "40px",
                   borderRadius: "2px",
                 }}
@@ -97,18 +128,17 @@ const PageBody = () => {
             <label style={{ fontSize: "15px" }}>Password</label>
             <Form.Item
               style={{ marginBottom: "4px" }}
-              name="password"
+              name='password'
               rules={[
                 {
                   required: true,
                   message: "Please input your password!",
                 },
-              ]}
-            >
+              ]}>
               <Input.Password
                 style={{
                   marginTop: "1px",
-                  width: "300px",
+                  width: "100%",
                   height: "40px",
                   borderRadius: "2px",
                 }}
@@ -117,14 +147,13 @@ const PageBody = () => {
           </div>
 
           <div
-            style={{ width: "100%", margin: "10px 0px", textAlign: "right" }}
-          >
-            <Link href="/forget-password" className="">
+            style={{ width: "100%", margin: "10px 0px", textAlign: "right" }}>
+            <Link href='/forget-password' className=''>
               Forget your password?
             </Link>
             <div>
               create a new account?&nbsp;
-              <Link href="/register" className="">
+              <Link href='/register' className=''>
                 register
               </Link>
             </div>
@@ -143,14 +172,46 @@ const PageBody = () => {
                   height: "40px",
                   boxShadow: "2px 2px 8px 3px rgba(0, 0, 0, 0.2)",
                 }}
-                type="primary"
-                htmlType="submit"
-              >
+                type='primary'
+                htmlType='submit'>
                 Log in
               </Button>
             </Form.Item>
           </div>
         </Form>
+        <div
+          style={{
+            display: "flex",
+            gap: "2px",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            alignItems: "center",
+          }}>
+          <Button
+            onClick={() => handleLoginCredentials("Admin")}
+            type='primary'
+            size='small'>
+            Admin Login
+          </Button>
+          <Button
+            onClick={() => handleLoginCredentials("Store")}
+            type='primary'
+            size='small'>
+            Store Login
+          </Button>
+          <Button
+            onClick={() => handleLoginCredentials("Employee")}
+            type='primary'
+            size='small'>
+            Employee Login
+          </Button>
+          <Button
+            onClick={() => handleLoginCredentials("Delivery")}
+            type='primary'
+            size='small'>
+            Delivery Login
+          </Button>
+        </div>
       </div>
     </div>
   );

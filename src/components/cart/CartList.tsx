@@ -90,9 +90,15 @@ const CartList = ({ cartItems, total }: { cartItems: any; total: number }) => {
             <p>Total Price:${total}</p>
           </div>
         )}
-        <Button type="primary" onClick={showModal} className={style.checkoutButton}>
-          Checkout
-        </Button>
+        {cartItems.length > 0 && (
+          <Button
+            type="primary"
+            onClick={showModal}
+            className={style.checkoutButton}
+          >
+            Checkout
+          </Button>
+        )}
       </div>
       <Modal
         title="Order Confirmation"
