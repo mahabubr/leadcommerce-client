@@ -1,16 +1,16 @@
-# [Leadcommerce](https://leadcommerce-gray.vercel.app/dashboard/)
+# [Leadcommerce](https://leadcommerce-client.vercel.app/)
 
 _ e-commerce management system web app. The primary goal is to manage and maintain the product. Deals with e-commerce websites for online product sales. It provides for users to purchase and maintain their products through a dashboard._
 
 ### System Overview
 
-- Admin:.
+- Admin -> email: admin@leadcommerce.com, password: hashed_password
+   
+- Store -> email: store@leadcommerce.com, password: hashed_password
 
-- Store:.
+- Employee -> email: employee@leadcommerce.com, password: hashed_password
 
-- Employee:.
-
-- Deliveryman:
+- Deliveryman -> email: delivery@leadcommerce.com, password: hashed_password
 
 ### Languages/Technologies (Frontend)
 
@@ -34,25 +34,48 @@ _ e-commerce management system web app. The primary goal is to manage and mainta
 - react-to-print
 - sass
 
-### feature
+### Feature
 
 #### Authentication:
+- The user can sign in as admin, store, or employee delivery.
+- The user can sign up as the store owner.
+- admin will create an employee, delivery
 
 ##### Admin:
 
-- Administrators should be able to log in securely using their credentials, including email and a secure password.
+- a great admin dashboard where admins can see user activity, order activity, revenue activity, order status, products, top categories, and recent orders.
+- have a category section where admins can create, view, edit, or delete the category.
+- have a store page where admins can see all stores or vendors and see their activity.
+- have an order section where admins can see all orders and assign a specific delivery man to deliver the products.
+- have an admin section to create and view admins.
+- have an employee section to create and view employee.
+- have an delivery man section to create and view delivery man.
+- have an event section where admins can create their events and see the events as calendars.
+- have a FAQ section where admins can see the FAQ and replay it.
+- The whole dashboard was responsive and full screen option.
 
 ##### Store
 
--
+- store their information as dashboard.
+- There is a product section where store owners can add, view, delete, and update their products.
+- There is an orders section where stores can view their orders and accept or delete them.
+- There is a transaction section where the store can see their orders and transactions.
+- have an events section where you can see all the events that admin created.
+- The whole dashboard was responsive and full screen option.
 
 #### Employee
 
--
+- employees profile section as dashboard.
+- see products that the store created
+- add their product and place orders.
+- The whole dashboard was responsive and full screen option.
 
 #### Deliveryman
 
--
+- delivery man their order section as dashboard.
+- He can send it to the user to give delivery and make payment on that.
+- have a map, the delivery man can see all the locations on their map.
+- The whole dashboard was responsive, with a full-screen option.
 
 ## 🔧 Non-Functional Requirements/Feature:
 
@@ -81,6 +104,129 @@ _ e-commerce management system web app. The primary goal is to manage and mainta
 
 - The REST API Application should be implemented using a specific programming language or framework.
 - The API may depend on external services or libraries for certain functionalities (e.g., email verification, file upload).
+
+## Folder Structure
+
+Here is an overview of your project's folder structure:
+
+```
+.
+├── .next/                     
+├── .vscode/             
+│   ├── setting.json/     
+│   └── settings.json/ 
+├── public/     
+│   ├── event.jpg/              
+│   ├── mastercard.jpg/              
+│   ├── next.svg/  
+│   └── vercel.svg/ 
+├── src/                        # Source code directory
+│   ├── app/                    # Main application code
+│   │   ├── (authentication)/  
+│   │   │   ├── forget-password/  
+│   │   │   ├── login/  
+│   │   │   ├── register/  
+│   │   │   ├── reset-password/  
+│   │   │   ├── style/  
+│   │   │   └── layout.txt/ 
+│   │   ├── (dashboard)/  
+│   │   │   │── admin/ 
+│   │   │   │   ├── admins/  
+│   │   │   │   ├── category/  
+│   │   │   │   ├── dashboard/  
+│   │   │   │   ├── delivery/  
+│   │   │   │   ├── employees/  
+│   │   │   │   ├── event/  
+│   │   │   │   ├── faqs/  
+│   │   │   │   ├── orders/  
+│   │   │   │   └── stores/ 
+│   │   │   ├── delivery/ 
+│   │   │   │   └── order/ 
+│   │   │   ├── employee/ 
+│   │   │   │   ├── all-product/  
+│   │   │   │   ├── order/  
+│   │   │   │   └── settings/ 
+│   │   │   ├── store/ 
+│   │   │   │   ├── event/  
+│   │   │   │   ├── orders/  
+│   │   │   │   ├── payments/  
+│   │   │   │   ├── products/  
+│   │   │   │   ├── seller-details/  
+│   │   │   │   └── wallet/ 
+│   │   │   ├── layout.module.css/ 
+│   │   │   └── layout.txt/ 
+│   │   ├── favicon.ico/ 
+│   │   ├── global.css/ 
+│   │   ├── layout.tsx/ 
+│   │   ├── page.module.css/ 
+│   │   ├── page.tsx/ 
+│   │   └── variable.css/ 
+│   ├── assets/         
+│   │   └── loading.json/ 
+│   ├── components/         
+│   │   ├── authPage/
+│   │   ├── cart/
+│   │   ├── category/
+│   │   ├── dashboard/
+│   │   ├── employee/
+│   │   ├── event/
+│   │   ├── orderTable/
+│   │   ├── payments/
+│   │   ├── products/
+│   │   ├── sellerDetails/
+│   │   ├── settings/
+│   │   ├── store/
+│   │   ├── transaction/
+│   │   ├── ui/
+│   │   ├── users/
+│   │   └── wallet/
+│   ├── config/         /
+│   │   └── constants/
+│   ├── constants/         
+│   │   ├── image/
+│   │   └── base-url.ts/
+│   ├── helper/         
+│   │   ├── CommonFunction.ts/
+│   │   ├── dateFormater.ts/
+│   │   └── utils.ts/
+│   ├── lib/         
+│   │   ├── AntdRegistry.tsx/
+│   │   └── Provider.tsx/
+│   ├── paths/         
+│   │   └── paths.tsx/
+│   ├── redux/         
+│   │   ├── admin/
+│   │   ├── auth/
+│   │   ├── category/
+│   │   ├── dashboard/
+│   │   ├── delivery/
+│   │   ├── employees/
+│   │   ├── events/
+│   │   ├── faqapi/
+│   │   ├── order/
+│   │   ├── payment/
+│   │   ├── product/
+│   │   ├── store/
+│   │   ├── types/
+│   │   ├── api.ts/
+│   │   └── store.ts/
+│   ├── theme/         
+│   │   └── theme.tsx/
+│   ├── utils/         
+│   │   ├── decodeToken.ts/
+│   │   ├── local-storage.ts/
+│   │   └── sidebar-links.tsx/
+├── .eslintrc
+├── .gitignore
+├── next-env.d.ts
+├── next.config.js
+├── package.lock.json        
+├── package.json        
+├── tsconfig           
+├── tsconfig.json          
+└── README.md                    # Project documentation (you are here)
+
+```
 
 ## 🔧 Installation
 
