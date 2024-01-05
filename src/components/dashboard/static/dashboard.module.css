@@ -93,9 +93,6 @@
 .daily_signups {
   width: 38%;
 }
-.barChart {
-  /* max-width: 338px; */
-}
 
 .product_img {
   max-width: 100px;
@@ -225,9 +222,6 @@
       max-width: 80vw;
       max-height: 100%;
     } */
-  .orders_pie {
-    /* max-width: 350px !important; */
-  }
 }
 @media only screen and (max-width: 1150px) {
   .barChart {
@@ -242,3 +236,15 @@
     width: 100%;
   }
 }
+
+/* dashboard.module.css */
+.orders {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.sales_head {
+  font-size: 1.5em;
+  color: #333;
+}
+

@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@200;300;400;500;600;700;800;900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@200;300;400;500;600;700;800;900&display=swap");
 
 :root {
   scroll-behavior: smooth;
@@ -23,8 +22,13 @@ a {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: "Source Sans 3", sans-serif;
+}
 
+.ant-menu-item-selected {
+  background-color: #dadada !important;
+  border: 1px dashed #393f47 !important;
+  border-radius: 2 !important;
 }
 
 .bg-success {
@@ -66,4 +70,13 @@ body::-webkit-scrollbar-thumb {
   background-color: var(--thumbBG);
   border-radius: 6px;
   border: 3px solid var(--scrollbarBG);
+}
+
+.ant-table-thead .ant-table-cell {
+  background-color: #f4f5f7 !important;
+}
+
+.ant-table-thead > tr > th {
+  border-radius: 0px 50px 0px 50px;
+  text-align: center !important;
 }

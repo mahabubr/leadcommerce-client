@@ -1,44 +1,8 @@
 "use client";
 import React from "react";
-import style from "./static/dashboard.module.css";
-import { Button, Table, Tag } from "antd";
+import { Card, Table, Tag } from "antd";
 
 const Orders = ({ data }: { data: any }) => {
-  console.log(data?.ordersChart?.topOrders, "Order");
-  const dataa = [
-    {
-      orderId: 2535,
-      Product: "Dummy Name",
-      unit: 150,
-      date: "Oct 20, 2018",
-      cost: 15,
-      status: <Tag color="blue">Pending</Tag>,
-    },
-    {
-      orderId: 2535,
-      Product: "Dummy Name",
-      unit: 150,
-      date: "Oct 20, 2018",
-      cost: 15,
-      status: <Tag color="yellow">Shipment</Tag>,
-    },
-    {
-      orderId: 2535,
-      Product: "Dummy Name",
-      unit: 150,
-      date: "Oct 20, 2018",
-      cost: 15,
-      status: <Tag color="green">Delivery</Tag>,
-    },
-    {
-      orderId: 2535,
-      Product: "Dummy Name",
-      unit: 150,
-      date: "Oct 20, 2018",
-      cost: 15,
-      status: <Tag color="red">Canceled</Tag>,
-    },
-  ];
   const columns = [
     {
       title: "Order Code",
@@ -98,15 +62,13 @@ const Orders = ({ data }: { data: any }) => {
   ];
 
   return (
-    <div className={style.orders}>
-      <h3 className={style.sales_head}>Recent Orders</h3>
-      
+    <Card title="Recent Orders">
       <Table
         columns={columns}
         dataSource={data?.ordersChart?.topOrders}
         scroll={{ x: 600 }}
       />
-    </div>
+    </Card>
   );
 };
 

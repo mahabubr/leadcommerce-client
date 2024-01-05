@@ -1,4 +1,3 @@
-
 import decodedToken from "@/utils/decodeToken";
 import { getFromLocalStorage } from "@/utils/local-storage";
 import sidebarItems from "@/utils/sidebar-links";
@@ -22,26 +21,66 @@ const SideBar = ({ closeDrawer, open }: any) => {
       title="Lead Commerce"
       placement="left"
       onClose={closeDrawer}
-      open={open}
+      visible={open}
       width={300}
       maskClosable={false}
       mask={false}
     >
-      <Menu mode="inline" style={{ width: "100%", borderRight: 0 }}>
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          backgroundImage: `url('https://img.freepik.com/free-vector/e-commerce-illustration_1168-341.jpg?w=740&t=st=1704477702~exp=1704478302~hmac=517c3fa72feeb626047eca95a17b7fbf7515f86b0258d8852c122ac6224953d2')`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          opacity: 0.1,
+        }}
+      />
+      <Menu
+        mode="inline"
+        style={{
+          width: "100%",
+          borderRight: 0,
+          backgroundColor: "rgba(0, 0, 0, 0.0)",
+        }}
+      >
         {sidebarData?.map((section, index) => (
           <SubMenu
             key={`sub${index}`}
             title={
               <span>
                 {section.icon}
-                <span style={{ marginLeft: 8 }}>{section.title}</span>
+                <span
+                  style={{
+                    marginLeft: 9,
+                    fontSize: 16,
+                    fontWeight: 500,
+                    color: "#393f47",
+                  }}
+                >
+                  {section.title}
+                </span>
               </span>
             }
           >
-            {section.links.map((link, subIndex) => (
+            {section.links.map((link: any, subIndex) => (
               <Menu.Item key={`sub${index}-item${subIndex}`}>
                 <Link href={link.href} passHref>
-                  <span>{link.label}</span>
+                  <span style={{ display: "flex", alignItems: "center" }}>
+                    {link.icon}
+                    <span
+                      style={{
+                        marginLeft: 6,
+                        fontSize: 15,
+                        fontWeight: 500,
+                      }}
+                    >
+                      {link.label}
+                    </span>
+                  </span>
                 </Link>
               </Menu.Item>
             ))}

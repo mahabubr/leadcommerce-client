@@ -70,7 +70,7 @@ const DashboardPage = () => {
         <TopProducts data={dashboardData} />
         <TopItems data={dashboardData} />
       </div>
-      <div className={`${style.orders} ${style.bg_white}`}>
+      <div style={{ marginTop: 20 }}>
         <Orders data={dashboardData} />
       </div>
     </div>
