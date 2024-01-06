@@ -209,6 +209,17 @@ const sidebarItems = (role: string) => {
         { label: "Events", href: "/store/event", icon: <PiCircleDashedBold /> },
       ],
     },
+    {
+      title: "FAQ",
+      icon: <FaQuestion />,
+      links: [
+        {
+          label: "Ask a Question",
+          href: "/store/faqs",
+          icon: <PiCircleDashedBold />,
+        },
+      ],
+    },
   ];
 
   const employeeItems = [

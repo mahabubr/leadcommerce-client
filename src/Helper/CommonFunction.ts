@@ -1,5 +1,8 @@
 import { IParamState } from "@/app/(dashboard)/admin/employees/list.type";
 import { OrderStatusType, orderStatusColor } from "./utils";
+import sidebarItems from "@/utils/sidebar-links";
+import { getFromLocalStorage } from "@/utils/local-storage";
+import decodedToken from "@/utils/decodeToken";
 
 export const find_text_color = (status: OrderStatusType): string => {
   return orderStatusColor[status] as string;
@@ -62,4 +65,40 @@ export const MonthNameToNumber = (str: ImonthShort) => {
   };
 
   return monthOBJ[str] ? monthOBJ[str] : 0;
+};
+
+export const extractUserData = () => {
+  const token = getFromLocalStorage("accessToken");
+  return decodedToken(token as string);
+};
+
+export const extractPathNames = (): string[] => {
+  //@ts-ignore
+  const role = extractUserData().role;
+
+  let paths: string[] = [];
+  sidebarItems(role)?.forEach((item) => {
+    // paths.push(item.title);
+    item.links?.forEach((sub_item) => {
+      paths.push(sub_item.href);
+    });
+  });
+
+  return paths;
+};
+
+export const getFaqDataFromArray = (arr: any) => {
+  let result_arr: any = [];
+  arr.forEach((item: any, i: number) => {
+    if (item.ans) {
+      result_arr.push({
+        key: i,
+        label: item.title,
+        children: item.ans,
+      });
+    }
+  });
+  console.log(result_arr);
+
+  return result_arr;
 };
