@@ -11,7 +11,7 @@ const deliveryApi = api.injectEndpoints({
       providesTags: ["Delivery"],
     }),
     getADelivery: builder.query({
-      query: ({ id }: { id: string }) => `/delivery/${id}`,
+      query: () => `/delivery/single`,
       providesTags: ["Delivery"],
     }),
     addDeliverys: builder.mutation({
@@ -23,16 +23,10 @@ const deliveryApi = api.injectEndpoints({
       invalidatesTags: ["Delivery"],
     }),
     updateDelivery: builder.mutation({
-      query: ({
-        DeliveryId,
-        formData,
-      }: {
-        DeliveryId: string;
-        formData: any;
-      }) => ({
-        url: `/delivery/${DeliveryId}`,
+      query: (data: any) => ({
+        url: `/delivery/update`,
         method: "PUT",
-        body: formData,
+        body: data,
       }),
       invalidatesTags: ["Delivery"],
     }),

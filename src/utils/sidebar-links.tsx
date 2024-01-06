@@ -151,6 +151,13 @@ const sidebarItems = (role: string) => {
       icon: <LuShoppingBasket />,
       links: [{ label: "Orders", href: "/delivery/order" }],
     },
+    {
+      title: "Setting",
+      icon: <IoMdSettings />,
+      links: [
+        { label: "Profile setting", href: "/delivery/settings/profilesetting" },
+      ],
+    },
   ];
 
   if (role === "admin") return adminItems;
