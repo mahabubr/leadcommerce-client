@@ -27,17 +27,16 @@ const getBase64 = (file: RcFile): Promise<string> =>
 const ProfileImageUpload = ({
   fileList,
   setFileList,
+  userData,
 }: {
   fileList: any;
   setFileList: any;
+  userData: any;
 }) => {
   const [currentImage, setCurrentImage] = useState<string | null>(null);
   // const [previewOpen, setPreviewOpen] = useState(false);
   // const [previewImage, setPreviewImage] = useState("");
   // const [previewTitle, setPreviewTitle] = useState("");
-
-
- 
 
   // const handlePreview = async (file: UploadFile) => {
   //   if (!file.url && !file.preview) {
@@ -62,7 +61,6 @@ const ProfileImageUpload = ({
   // );
 
   useEffect(() => {
-  
     if (fileList && fileList.originFileObj) {
       try {
         const newImage = URL.createObjectURL(fileList.originFileObj);
@@ -103,7 +101,12 @@ const ProfileImageUpload = ({
         </Modal> */}
         <Card title='' bordered>
           <Image
-            src={currentImage ? currentImage : "/preview.jpg"}
+            // src={currentImage ? currentImage : "/preview.jpg"}
+            src={
+              userData.image.avatar
+                ? userData.image.avatar
+                : currentImage || "/preview.jpg"
+            }
             height={300}
             width={300}
             alt='preview'

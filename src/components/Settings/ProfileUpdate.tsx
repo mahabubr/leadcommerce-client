@@ -18,8 +18,9 @@ const initialData = {
 const ProfileUpdate = () => {
   const { data, isLoading }: { data?: any; isLoading: boolean } =
     useGetAEmployeQuery({});
-  const userData = data && data?.data;
 
+  const userData = data && data?.data;
+  console.log(userData.image.avatar);
   const [updateEmploye] = useUpdateEmployeMutation();
   // states
   const [fileList, setFileList] = useState<UploadFile | any>();
@@ -53,7 +54,7 @@ const ProfileUpdate = () => {
     if (fileList) {
       formData.append("image", fileList.originFileObj);
     }
-    console.log([...formData.entries()]);
+    // console.log([...formData.entries()]);
 
     /* //** calling api */
     /* //** handle product create response */
@@ -104,7 +105,11 @@ const ProfileUpdate = () => {
           />
         </div>
         <div className={style.imageUpDiv}>
-          <ProfileImageUpload fileList={fileList} setFileList={setFileList} />
+          <ProfileImageUpload
+            userData={userData}
+            fileList={fileList}
+            setFileList={setFileList}
+          />
         </div>
       </div>
       <Divider />
