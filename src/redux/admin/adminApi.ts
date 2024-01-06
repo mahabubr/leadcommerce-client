@@ -1,4 +1,5 @@
 import api from "../api";
+import { tagTypes } from "../types/tagTypes";
 
 const admindApi = api.injectEndpoints({
   endpoints: (builder: any) => ({
@@ -9,7 +10,7 @@ const admindApi = api.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["Employe"],
+      invalidatesTags: [tagTypes.admin],
     }),
     // * Get All Order
     getAllAdmin: builder.query({
@@ -18,8 +19,26 @@ const admindApi = api.injectEndpoints({
         method: "GET",
         params: arg,
       }),
+      providesTags: [tagTypes.admin],
+    }),
+    getAdmin: builder.query({
+      query: () => `/admin/single`,
+      providesTags: [tagTypes.admin],
+    }),
+    updateAdmin: builder.mutation({
+      query: (data: any) => ({
+        url: `/admin/update`,
+        method: "PUT",
+        body: data,
+      }),
+      invalidatesTags: [tagTypes.admin],
     }),
   }),
 });
 
-export const { useGetAllAdminQuery, useAddAdminMutation } = admindApi;
+export const {
+  useGetAllAdminQuery,
+  useAddAdminMutation,
+  useGetAdminQuery,
+  useUpdateAdminMutation,
+} = admindApi;

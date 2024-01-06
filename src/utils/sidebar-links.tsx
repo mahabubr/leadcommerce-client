@@ -80,13 +80,13 @@ const sidebarItems = (role: string) => {
       icon: <FaQuestion />,
       links: [{ label: "FAQ list", href: "/admin/faqs" }],
     },
-    // {
-    //   title: "Setting",
-    //   icon: <IoMdSettings />,
-    //   links: [
-    //     { label: "Profile setting", href: "/employee/settings/profilesetting" },
-    //   ],
-    // },
+    {
+      title: "Setting",
+      icon: <IoMdSettings />,
+      links: [
+        { label: "Profile setting", href: "/admin/settings/profilesetting" },
+      ],
+    },
   ];
 
   const storeItems = [

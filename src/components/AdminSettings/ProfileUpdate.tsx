@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import ProfileUpdateFrom from "./ProfileUpdateFrom";
+import ProfileImageUpload from "./ProfileImageUpload";
 import { Divider, UploadFile, Form, notification, message } from "antd";
 import { Button, Flex } from "antd";
 import style from "./static/profileUpload.module.css";
@@ -7,8 +8,7 @@ import {
   useGetAEmployeQuery,
   useUpdateEmployeMutation,
 } from "@/redux/employees/employeesApi";
-import ProfileUpdateFrom from "../AdminSettings/ProfileUpdateFrom";
-import ProfileImageUpload from "../AdminSettings/ProfileImageUpload";
+import { useGetAdminQuery, useUpdateAdminMutation } from "@/redux/admin/adminApi";
 const initialData = {
   full_name: "",
   email: "",
@@ -18,11 +18,11 @@ const initialData = {
 
 const ProfileUpdate = () => {
   const { data, isLoading }: { data?: any; isLoading: boolean } =
-    useGetAEmployeQuery({});
+    useGetAdminQuery({});
 
   const userData = data && data?.data;
   // console.log(userData.image.avatar);
-  const [updateEmploye] = useUpdateEmployeMutation();
+  const [updateAdmin] = useUpdateAdminMutation();
   // states
   const [fileList, setFileList] = useState<UploadFile | any>();
   const [api, contextHolder] = notification.useNotification();
@@ -61,7 +61,7 @@ const ProfileUpdate = () => {
     /* //** handle product create response */
     try {
       setUpdateIsLoading(true);
-      await updateEmploye(formData).then((res: any) => {
+      await updateAdmin(formData).then((res: any) => {
         if (res?.data?.success) {
           message.success(res?.data?.message);
           form.setFieldsValue(initialData);
