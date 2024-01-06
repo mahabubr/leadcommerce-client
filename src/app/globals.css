@@ -74,10 +74,11 @@ body::-webkit-scrollbar-thumb {
 
 .ant-table-thead .ant-table-cell {
   background-color: #f4f5f7 !important;
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
 }
 
 .ant-table-thead > tr > th {
-  border-radius: 0px 50px 0px 50px;
   text-align: center !important;
 }
 
@@ -89,4 +90,31 @@ body::-webkit-scrollbar-thumb {
   background:#FAAD14;
   border-radius: 4px;
   position: absolute;
+}
+/* CSS */
+.ant-btn-primary {
+  background-color: #393f47; /* Updated color */
+  border-radius: 100px;
+  box-shadow: rgba(57, 63, 71, 0.2) 0 -25px 18px -14px inset,
+    rgba(57, 63, 71, 0.15) 0 1px 2px, rgba(57, 63, 71, 0.15) 0 2px 4px,
+    rgba(57, 63, 71, 0.15) 0 4px 8px, rgba(57, 63, 71, 0.15) 0 8px 16px,
+    rgba(57, 63, 71, 0.15) 0 16px 32px;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.ant-btn-primary:hover {
+  box-shadow: rgba(57, 63, 71, 0.35) 0 -25px 18px -14px inset,
+    rgba(57, 63, 71, 0.25) 0 1px 2px, rgba(57, 63, 71, 0.25) 0 2px 4px,
+    rgba(57, 63, 71, 0.25) 0 4px 8px, rgba(57, 63, 71, 0.25) 0 8px 16px,
+    rgba(57, 63, 71, 0.25) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
 }
