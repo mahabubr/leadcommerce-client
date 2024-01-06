@@ -10,7 +10,7 @@ import style from "./static/calenderpage.module.css";
 
 const CalenderPage = () => {
   return (
-    <>
+    <div className={style.container_event}>
       <div
         className={style.event_cont}>
         <h3>Events</h3>
@@ -78,7 +78,7 @@ const CalenderPage = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

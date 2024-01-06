@@ -1,3 +1,6 @@
+.container_event{
+    overflow-x: hidden;
+}
 .event_cont{
     background-color: white;
     padding: 5px;
@@ -8,7 +11,7 @@
 }
 .calender_box{
     min-width:700px;
-    overflow-x: auto;
+    overflow-x: scroll;
 }
 
 .gridCont{
