@@ -128,10 +128,9 @@ const Orders = () => {
     },
   ];
 
-  if(isLoading) return <Loader />
+  if (isLoading) return <Loader />;
 
   // * Filtering and Searching
-
   return (
     <>
       <div>

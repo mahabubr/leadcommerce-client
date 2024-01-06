@@ -46,6 +46,10 @@ import ButtonGroup from "antd/es/button/button-group";
 import ChartDetails from "./partials/Chart";
 import { useGetStoreDashboardDataQuery } from "@/redux/store/storeApi";
 import Loader from "../ui/Loader";
+import ProductChart from "./partials/ProductChart";
+import RevenueChart from "./partials/TotalRevenueChart";
+import ProductsAddedChart from "./partials/ProductAddedChart";
+import MonthlyQuantityChart from "./partials/QuantityChart";
 
 const ViewProducts = () => {
   //** hanlding pagination
@@ -293,13 +297,12 @@ const ViewProducts = () => {
                 bordered={false}
                 items={[
                   {
-                    key: "2",
-                    label: <div style={{ fontWeight: "500" }}>Categories</div>,
-                    children: <CategoryFilterBox />,
+                    key: "3",
+                    label: <div style={{ fontWeight: "500" }}>Sales</div>,
+                    children: <ProductChart />,
                   },
                 ]}
               />
-
               <Collapse
                 collapsible="header"
                 defaultActiveKey={["3"]}
@@ -312,8 +315,44 @@ const ViewProducts = () => {
                 items={[
                   {
                     key: "3",
-                    label: <div style={{ fontWeight: "500" }}>Price</div>,
-                    children: <PriceRangeFilterBox />,
+                    label: <div style={{ fontWeight: "500" }}>Revenue</div>,
+                    children: <RevenueChart />,
+                  },
+                ]}
+              />
+              <Collapse
+                collapsible="header"
+                defaultActiveKey={["4"]}
+                expandIconPosition="right"
+                style={{
+                  backgroundColor: "white",
+                  border: "1px solid #f0f0f0",
+                }}
+                bordered={false}
+                items={[
+                  {
+                    key: "3",
+                    label: (
+                      <div style={{ fontWeight: "500" }}>Product Added</div>
+                    ),
+                    children: <ProductsAddedChart />,
+                  },
+                ]}
+              />
+              <Collapse
+                collapsible="header"
+                defaultActiveKey={["5"]}
+                expandIconPosition="right"
+                style={{
+                  backgroundColor: "white",
+                  border: "1px solid #f0f0f0",
+                }}
+                bordered={false}
+                items={[
+                  {
+                    key: "3",
+                    label: <div style={{ fontWeight: "500" }}>Quantity</div>,
+                    children: <MonthlyQuantityChart />,
                   },
                 ]}
               />

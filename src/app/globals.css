@@ -73,9 +73,17 @@ body::-webkit-scrollbar-thumb {
 }
 
 .ant-table-thead .ant-table-cell {
-  background-color: #f4f5f7 !important;
-  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
-    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+  color: #f4f5f7 !important;
+  background-color: #393f47 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  border-radius: 0 !important;
+}
+
+.ant-table-tbody > tr > td {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+.ant-table {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 }
 
 .ant-table-thead > tr > th {

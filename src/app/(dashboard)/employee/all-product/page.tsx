@@ -1,6 +1,6 @@
 "use client";
 
-import { Collapse, Input, Select } from "antd";
+import { Card, Collapse, Input, Select } from "antd";
 import { CiSearch } from "react-icons/ci";
 import { useRouter } from "next/navigation";
 import style from "./product.module.css";
@@ -66,34 +66,36 @@ const Orders = () => {
 
   return (
     <div className={style.container}>
-      <div
-        className={style.mainContent}
-        style={{ boxShadow: "3px 3px 15px #ddd" }}
-      >
-        <div className={style.mainFilter}>
-          <div className={style.filterOne}>
+      <div style={{ minWidth: "77%" }}>
+        <Card
+          title="All Products"
+          style={{ boxShadow: "3px 3px 15px #ddd" }}
+          extra={
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <div>
+                <Select
+                  onChange={handlePagelimitChange}
+                  options={productItemSortPage}
+                  defaultValue={productItemSortPage[0]}
+                />
+              </div>
+            </div>
+          }
+        >
+          <div>
             <Input
               size="middle"
               placeholder="Search products..."
               suffix={<CiSearch />}
               allowClear
-              style={{ width: "100%" }}
+              onChange={(e) => setSearch(e.target.value)}
             />
           </div>
-          <div className={style.filterTwo}>
-            <Select
-              onChange={handlePagelimitChange}
-              style={{ width: "100px", textTransform: "capitalize" }}
-              options={productItemSortPage}
-              defaultValue={productItemSortPage[0]}
-              // defaultValue={selectedStatus}
-            />
-          </div>
-        </div>
+        </Card>
         <div
           style={{
-            display: "flex",
-            flexWrap: "wrap",
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr 1fr",
             gap: "0.75rem",
             justifyContent: "center",
           }}
