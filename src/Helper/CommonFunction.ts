@@ -31,3 +31,35 @@ export const removeNullishValue = (obj: IParamState) => {
 export const calculatePercentage = (num: number, percent: number): number => {
   return parseInt(((num * percent) / 100).toString());
 };
+
+type ImonthShort =
+  | "JAN"
+  | "FEB"
+  | "MAR"
+  | "APR"
+  | "MAY"
+  | "JUNE"
+  | "JULAY"
+  | "AUG"
+  | "SEPT"
+  | "OCT"
+  | "NOV"
+  | "DEC";
+export const MonthNameToNumber = (str: ImonthShort) => {
+  const monthOBJ = {
+    JAN: 1,
+    FEB: 2,
+    MAR: 3,
+    APR: 4,
+    MAY: 5,
+    JUNE: 6,
+    JULAY: 7,
+    AUG: 8,
+    SEPT: 9,
+    OCT: 10,
+    NOV: 11,
+    DEC: 12,
+  };
+
+  return monthOBJ[str] ? monthOBJ[str] : 0;
+};
