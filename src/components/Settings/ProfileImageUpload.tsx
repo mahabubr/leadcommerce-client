@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   DeleteOutlined,
   PlusOutlined,
@@ -7,8 +7,6 @@ import {
 } from "@ant-design/icons";
 import { Button, Card, Image, Modal, Upload, message } from "antd";
 import type { RcFile, UploadProps } from "antd/es/upload";
-import type { UploadFile } from "antd/es/upload/interface";
-import { useGetAEmployeQuery } from "@/redux/employees/employeesApi";
 
 const props: UploadProps = {
   name: "file",
@@ -26,43 +24,56 @@ const getBase64 = (file: RcFile): Promise<string> =>
     reader.onerror = (error) => reject(error);
   });
 
-const ProfileImageUpload = () => {
-  const { data, isLoading }: any = useGetAEmployeQuery({});
-  console.log(data);
-
+const ProfileImageUpload = ({
+  fileList,
+  setFileList,
+}: {
+  fileList: any;
+  setFileList: any;
+}) => {
   const [currentImage, setCurrentImage] = useState<string | null>(null);
-  // const [fileList, setFileList] = useState<UploadFile | any>();
+  // const [previewOpen, setPreviewOpen] = useState(false);
+  // const [previewImage, setPreviewImage] = useState("");
+  // const [previewTitle, setPreviewTitle] = useState("");
 
-  const [previewOpen, setPreviewOpen] = useState(false);
-  const [previewImage, setPreviewImage] = useState("");
-  const [previewTitle, setPreviewTitle] = useState("");
-  const [fileList, setFileList] = useState<UploadFile[] | null>([]);
 
-  const handleCancel = () => setPreviewOpen(false);
+ 
 
-  const handlePreview = async (file: UploadFile) => {
-    if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj as RcFile);
+  // const handlePreview = async (file: UploadFile) => {
+  //   if (!file.url && !file.preview) {
+  //     file.preview = await getBase64(file.originFileObj as RcFile);
+  //   }
+
+  //   setPreviewImage(file.url || (file.preview as string));
+  //   setPreviewOpen(true);
+  //   setPreviewTitle(
+  //     file.name || file.url!.substring(file.url!.lastIndexOf("/") + 1)
+  //   );
+  // };
+
+  // const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) =>
+  //   setFileList(newFileList);
+
+  // const uploadButton = (
+  //   <div>
+  //     <PlusOutlined />
+  //     <div style={{ marginTop: 8 }}>Upload</div>
+  //   </div>
+  // );
+
+  useEffect(() => {
+  
+    if (fileList && fileList.originFileObj) {
+      try {
+        const newImage = URL.createObjectURL(fileList.originFileObj);
+        console.log(newImage);
+        setCurrentImage(newImage);
+      } catch (error) {
+        console.error("Error creating object URL:", error);
+      }
     }
+  }, [fileList]);
 
-    setPreviewImage(file.url || (file.preview as string));
-    setPreviewOpen(true);
-    setPreviewTitle(
-      file.name || file.url!.substring(file.url!.lastIndexOf("/") + 1)
-    );
-  };
-
-  const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) =>
-    setFileList(newFileList);
-
-  const uploadButton = (
-    <div>
-      <PlusOutlined />
-      <div style={{ marginTop: 8 }}>Upload</div>
-    </div>
-  );
-
-  // console.log(fileList[0].thumbUrl);
   return (
     <>
       <div>
@@ -90,16 +101,12 @@ const ProfileImageUpload = () => {
           src={data?.image}
         />
         </Modal> */}
-        <Card
-          title=""
-          bordered
-          style={{ maxHeight: "800px", position: "relative" }}
-        >
+        <Card title='' bordered>
           <Image
-            src={data?.data?.image}
-            height={200}
+            src={currentImage ? currentImage : "/preview.jpg"}
+            height={300}
             width={300}
-            alt="preview"
+            alt='preview'
             style={{
               width: "100%",
               height: "100%",
@@ -109,7 +116,7 @@ const ProfileImageUpload = () => {
 
           <div style={{ position: "absolute", top: "40px", left: "37px" }}>
             <Upload
-              accept=".png, .jpg, .jpeg"
+              accept='.png, .jpg, .jpeg'
               maxCount={1}
               showUploadList={false}
               beforeUpload={(file) => {
@@ -121,7 +128,7 @@ const ProfileImageUpload = () => {
                   }
                 });
               }}
-              onChange={(info: any) => {
+              onChange={(info) => {
                 if (info.file.status !== "uploading") {
                   console.log(info.file, info.fileList);
                 }
@@ -134,9 +141,8 @@ const ProfileImageUpload = () => {
                   message.error(`${info.file.name} file upload failed.`);
                 }
               }}
-              {...props}
-            >
-              <Button icon={<UploadOutlined />} size="large"></Button>
+              {...props}>
+              <Button icon={<UploadOutlined />} size='large'></Button>
             </Upload>
           </div>
           <div style={{ position: "absolute", top: "40px", right: "37px" }}>
@@ -146,8 +152,7 @@ const ProfileImageUpload = () => {
                 setFileList(null);
                 setCurrentImage(null);
               }}
-              size="large"
-            ></Button>
+              size='large'></Button>
           </div>
         </Card>
       </div>

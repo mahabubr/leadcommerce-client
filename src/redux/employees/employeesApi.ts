@@ -1,4 +1,5 @@
 import api from "../api";
+import { tagTypes } from "../types/tagTypes";
 
 const EmployeApi = api.injectEndpoints({
   endpoints: (builder: any) => ({
@@ -13,11 +14,11 @@ const EmployeApi = api.injectEndpoints({
         method: "GET",
         params,
       }),
-      providesTags: ["Employe"],
+      providesTags: [tagTypes.employe],
     }),
     getAEmploye: builder.query({
       query: () => `/employee/single`,
-      providesTags: ["Employe"],
+      providesTags: [tagTypes.employe],
     }),
     addEmployes: builder.mutation({
       query: (data: any) => ({
@@ -25,28 +26,22 @@ const EmployeApi = api.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["Employe"],
+      invalidatesTags: [tagTypes.employe],
     }),
     updateEmploye: builder.mutation({
-      query: ({
-        EmployeId,
-        formData,
-      }: {
-        EmployeId: string;
-        formData: any;
-      }) => ({
-        url: `/employee/${EmployeId}`,
+      query: (data: any) => ({
+        url: `/employee/update`,
         method: "PUT",
-        body: formData,
+        body: data,
       }),
-      invalidatesTags: ["Employe"],
+      invalidatesTags: [tagTypes.employe],
     }),
     deleteEmploye: builder.mutation({
       query: (id: string) => ({
         url: `/employee/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["Employe"],
+      invalidatesTags: [tagTypes.employe],
     }),
   }),
 });
@@ -55,4 +50,5 @@ export const {
   useGetAllEmployesQuery,
   useGetAEmployeQuery,
   useAddEmployesMutation,
+  useUpdateEmployeMutation,
 } = EmployeApi;

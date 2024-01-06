@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
 import { Button, Checkbox, DatePicker, Form, Input } from "antd";
 import style from "./static/profileUpload.module.css";
-import { useGetAEmployeQuery } from "@/redux/employees/employeesApi";
+import {
+  useGetAEmployeQuery,
+  useUpdateEmployeMutation,
+} from "@/redux/employees/employeesApi";
 type FieldType = {
-  fullName?: string;
+  full_name?: string;
   country?: string;
   email?: string;
   phone?: string;
@@ -19,62 +22,50 @@ type resType = {
 };
 
 const initialData = {
-  firstName: "",
+  full_name: "",
   lastName: "",
   email: "",
   phone: "",
-  address: "",
+  country: "",
   birthday: "",
 };
 
-const ProfileUpdateFrom = () => {
-  const { data, isLoading }: any = useGetAEmployeQuery({});
-
-  const [form] = Form.useForm();
-
-  // useEffect(()=>{
-  //   if(data?.statusCode === 200)
-  // })
-
-  useEffect(() => {});
-
-  const onFinish = (values: any) => {
-    console.log("Success:", values);
-  };
-
-  const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
-  };
-
+const ProfileUpdateFrom = ({
+  onFinish,
+  onFinishFailed,
+  data,
+  isLoading,
+}: {
+  onFinish: any;
+  onFinishFailed: any;
+  data: any;
+  isLoading: boolean;
+}) => {
   return (
     <div>
-      {/* {isLoading?"loader..." : (<form........ )} */}
       {isLoading ? (
         "loader"
       ) : (
         <Form
-          name="basic"
-          layout="vertical"
+          name='basic'
+          layout='vertical'
           style={{ maxWidth: 800 }}
           initialValues={{ remember: true }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
-          autoComplete="off"
-        >
+          autoComplete='off'>
           <div
             style={{
               display: "flex",
               gap: "2rem",
-            }}
-          >
+            }}>
             <Form.Item<FieldType>
-              label="Full Name"
-              name="fullName"
+              label='Full Name'
+              name='full_name'
               style={{
                 width: "50%",
               }}
-              rules={[{ message: "Please input your username!" }]}
-            >
+              rules={[{ message: "Please input your username!" }]}>
               {/* {console.log(data?.data?.full_name)} */}
 
               <Input
@@ -82,24 +73,21 @@ const ProfileUpdateFrom = () => {
                 style={{
                   height: "40px",
                 }}
-                disabled
               />
             </Form.Item>
 
             <Form.Item<FieldType>
-              label="Country"
-              name="country"
+              label='Country'
+              name='country'
               style={{
                 width: "50%",
               }}
-              rules={[{ message: "Please input your password!" }]}
-            >
+              rules={[{ message: "Please input your password!" }]}>
               <Input
                 defaultValue={data?.data?.country}
                 style={{
                   height: "40px",
                 }}
-                disabled
               />
             </Form.Item>
           </div>
@@ -107,59 +95,52 @@ const ProfileUpdateFrom = () => {
             style={{
               display: "flex",
               gap: "2rem",
-            }}
-          >
+            }}>
             <Form.Item<FieldType>
-              label="Email"
-              name="email"
+              label='Email'
+              name='email'
               style={{
                 width: "100%",
               }}
-              rules={[{ message: "Please input your username!" }]}
-            >
+              rules={[{ message: "Please input your username!" }]}>
               <Input
                 defaultValue={data?.data?.email}
                 style={{
                   height: "40px",
                 }}
-                disabled
               />
             </Form.Item>
 
             <Form.Item<FieldType>
-              label="Phone"
+              label='Phone'
               style={{
                 width: "100%",
               }}
-              name="phone"
-              rules={[{ message: "Please input your password!" }]}
-            >
+              name='phone'
+              rules={[{ message: "Please input your password!" }]}>
               <Input
-                defaultValue={data?.data?.phone}
+                placeholder={data?.data?.phone}
                 style={{
                   height: "40px",
                 }}
-                disabled
               />
             </Form.Item>
           </div>
-          <Form.Item<FieldType>
-            label="Address"
+          {/* <Form.Item<FieldType>
+            label='Address'
             style={{
               width: "100%",
             }}
-            name="address"
-            rules={[{ message: "Please input your password!" }]}
-          >
+            name='address'
+            rules={[{ message: "Please input your password!" }]}>
             <Input
               style={{
                 height: "40px",
               }}
-              disabled
             />
-          </Form.Item>
+          </Form.Item> */}
           <Form.Item>
-            <Button type="primary" htmlType="submit">
+            <Button type='primary' htmlType='submit'>
               Update
             </Button>
           </Form.Item>
