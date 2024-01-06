@@ -10,6 +10,7 @@ import {
   classByPaymentStatus,
 } from "@/Helper/utils";
 import PSelect from "@/components/products/partials/PSelect";
+import Loader from "@/components/ui/Loader";
 
 const Orders = () => {
   const {
@@ -126,6 +127,8 @@ const Orders = () => {
       },
     },
   ];
+
+  if(isLoading) return <Loader />
 
   // * Filtering and Searching
 
