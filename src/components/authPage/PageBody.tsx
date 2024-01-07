@@ -43,7 +43,7 @@ const PageBody = () => {
           router.push("/employee/settings/profilesetting");
         } // @ts-ignore
         else if (decode?.role === "delivery") {
-          router.push("/delivery/order");
+          router.push("/delivery/settings/profilesetting");
         }
       }
     } catch (error: any) {

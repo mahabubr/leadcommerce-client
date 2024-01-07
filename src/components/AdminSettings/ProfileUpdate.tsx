@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import ProfileUpdateFrom from "./ProfileUpdateFrom";
 import ProfileImageUpload from "./ProfileImageUpload";
-import { Divider, UploadFile, Form, notification, message } from "antd";
+import { Divider, UploadFile, Form, notification, message, Card } from "antd";
 import { Button, Flex } from "antd";
 import style from "./static/profileUpload.module.css";
 import {
   useGetAEmployeQuery,
   useUpdateEmployeMutation,
 } from "@/redux/employees/employeesApi";
-import { useGetAdminQuery, useUpdateAdminMutation } from "@/redux/admin/adminApi";
+import {
+  useGetAdminQuery,
+  useUpdateAdminMutation,
+} from "@/redux/admin/adminApi";
+import Loader from "../ui/Loader";
 const initialData = {
   full_name: "",
   email: "",
@@ -17,9 +21,8 @@ const initialData = {
 };
 
 const ProfileUpdate = () => {
-  const { data, isLoading }: { data?: any; isLoading: boolean } =
-    useGetAdminQuery({});
-
+  const { data, isLoading } = useGetAdminQuery({});
+  //@ts-ignore
   const userData = data && data?.data;
   // console.log(userData.image.avatar);
   const [updateAdmin] = useUpdateAdminMutation();
@@ -94,6 +97,9 @@ const ProfileUpdate = () => {
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
+
+  if (isLoading) return <Loader />;
+
   return (
     <>
       <div className={style.mainDiv}>
@@ -122,14 +128,16 @@ const ProfileUpdate = () => {
               padding: "1rem",
               fontSize: "16px",
               backgroundColor: "#f1f1f1",
-            }}>
+            }}
+          >
             <Button
-              size='small'
+              size="small"
               style={{
                 float: "inline-end",
                 backgroundColor: "#2c3e50",
                 color: "#f1f1f1",
-              }}>
+              }}
+            >
               Change
             </Button>
             <h6 style={{ fontSize: "1rem" }}>Password</h6>
@@ -145,14 +153,16 @@ const ProfileUpdate = () => {
               padding: "1rem",
               fontSize: "16px",
               backgroundColor: "#f1f1f1",
-            }}>
+            }}
+          >
             <Button
-              size='small'
+              size="small"
               style={{
                 float: "inline-end",
                 backgroundColor: "#2c3e50",
                 color: "#f1f1f1",
-              }}>
+              }}
+            >
               Deactivate
             </Button>
             <h6 style={{ fontSize: "1rem" }}>Remove</h6>

@@ -69,6 +69,7 @@
   justify-content: center;
   gap: 7px;
 }
+
 @media (max-width: 450px) {
   .ModalStyle {
     flex-direction: column;

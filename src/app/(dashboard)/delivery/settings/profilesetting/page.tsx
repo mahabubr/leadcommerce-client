@@ -1,12 +1,11 @@
 "use client";
 import React, { useEffect } from "react";
 import style from "./static/profilesetting.module.css";
-import { Tabs } from "antd";
+import { Card, Tabs } from "antd";
 import type { TabsProps } from "antd";
 
 import { useGetAEmployeQuery } from "@/redux/employees/employeesApi";
 import ProfileUpdate from "@/components/DeliverySettings/ProfileUpdate";
-
 
 const items: TabsProps["items"] = [
   {
@@ -33,11 +32,8 @@ const ProfileSetting = () => {
     console.log(key);
   };
   return (
-    <>
-      <section className={style.contentMain}>
-        <div className={style.contentHeader}>
-          <h2 className={style.contentTitle}>Profile Setting</h2>
-        </div>
+    <Card title="Delivery Profile" style={{ boxShadow: "3px 3px 15px #ddd" }}>
+      <section>
         <div className={style.card}>
           <div className={style.cardBody}>
             <div>
@@ -75,7 +71,7 @@ const ProfileSetting = () => {
           </div>
         </div>
       </section>
-    </>
+    </Card>
   );
 };
 

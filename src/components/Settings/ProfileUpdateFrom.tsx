@@ -5,6 +5,7 @@ import {
   useGetAEmployeQuery,
   useUpdateEmployeMutation,
 } from "@/redux/employees/employeesApi";
+import Loader from "../ui/Loader";
 type FieldType = {
   full_name?: string;
   country?: string;
@@ -44,28 +45,31 @@ const ProfileUpdateFrom = ({
   return (
     <div>
       {isLoading ? (
-        "loader"
+        <Loader />
       ) : (
         <Form
-          name='basic'
-          layout='vertical'
+          name="basic"
+          layout="vertical"
           style={{ maxWidth: 800 }}
           initialValues={{ remember: true }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
-          autoComplete='off'>
+          autoComplete="off"
+        >
           <div
             style={{
               display: "flex",
               gap: "2rem",
-            }}>
+            }}
+          >
             <Form.Item<FieldType>
-              label='Full Name'
-              name='full_name'
+              label="Full Name"
+              name="full_name"
               style={{
                 width: "50%",
               }}
-              rules={[{ message: "Please input your username!" }]}>
+              rules={[{ message: "Please input your username!" }]}
+            >
               {/* {console.log(data?.data?.full_name)} */}
 
               <Input
@@ -77,12 +81,13 @@ const ProfileUpdateFrom = ({
             </Form.Item>
 
             <Form.Item<FieldType>
-              label='Country'
-              name='country'
+              label="Country"
+              name="country"
               style={{
                 width: "50%",
               }}
-              rules={[{ message: "Please input your password!" }]}>
+              rules={[{ message: "Please input your password!" }]}
+            >
               <Input
                 defaultValue={data?.data?.country}
                 style={{
@@ -95,14 +100,16 @@ const ProfileUpdateFrom = ({
             style={{
               display: "flex",
               gap: "2rem",
-            }}>
+            }}
+          >
             <Form.Item<FieldType>
-              label='Email'
-              name='email'
+              label="Email"
+              name="email"
               style={{
                 width: "100%",
               }}
-              rules={[{ message: "Please input your username!" }]}>
+              rules={[{ message: "Please input your username!" }]}
+            >
               <Input
                 defaultValue={data?.data?.email}
                 style={{
@@ -112,12 +119,13 @@ const ProfileUpdateFrom = ({
             </Form.Item>
 
             <Form.Item<FieldType>
-              label='Phone'
+              label="Phone"
               style={{
                 width: "100%",
               }}
-              name='phone'
-              rules={[{ message: "Please input your password!" }]}>
+              name="phone"
+              rules={[{ message: "Please input your password!" }]}
+            >
               <Input
                 defaultValue={data?.data?.phone}
                 style={{
@@ -140,7 +148,7 @@ const ProfileUpdateFrom = ({
             />
           </Form.Item> */}
           <Form.Item>
-            <Button type='primary' htmlType='submit'>
+            <Button type="primary" htmlType="submit">
               Update
             </Button>
           </Form.Item>

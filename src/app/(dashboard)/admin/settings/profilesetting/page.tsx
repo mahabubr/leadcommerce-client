@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import style from "./static/profilesetting.module.css";
-import { Tabs } from "antd";
+import { Card, Tabs } from "antd";
 import type { TabsProps } from "antd";
 
 import { useGetAEmployeQuery } from "@/redux/employees/employeesApi";
@@ -10,19 +10,9 @@ import ProfileUpdate from "@/components/AdminSettings/ProfileUpdate";
 const items: TabsProps["items"] = [
   {
     key: "1",
-    label: "Profile Update",
+    label: "Profile",
     children: <ProfileUpdate />,
   },
-  // {
-  //   key: "2",
-  //   label: "Modaretor",
-  //   children: "Content of Tab Pane 2",
-  // },
-  // {
-  //   key: "3",
-  //   label: "Admin Account",
-  //   children: "Admin Account",
-  // },
 ];
 
 const ProfileSetting = () => {
@@ -32,11 +22,8 @@ const ProfileSetting = () => {
     console.log(key);
   };
   return (
-    <>
-      <section className={style.contentMain}>
-        <div className={style.contentHeader}>
-          <h2 className={style.contentTitle}>Profile Setting</h2>
-        </div>
+    <Card title="Admin Profile" style={{ boxShadow: "3px 3px 15px #ddd" }}>
+      <section>
         <div className={style.card}>
           <div className={style.cardBody}>
             <div>
@@ -74,7 +61,7 @@ const ProfileSetting = () => {
           </div>
         </div>
       </section>
-    </>
+    </Card>
   );
 };
 

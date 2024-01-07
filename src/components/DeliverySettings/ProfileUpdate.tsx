@@ -13,6 +13,7 @@ import {
   useGetADeliveryQuery,
   useUpdateDeliveryMutation,
 } from "@/redux/delivery/deliveryApi";
+import Loader from "../ui/Loader";
 const initialData = {
   full_name: "",
   email: "",
@@ -99,6 +100,9 @@ const ProfileUpdate = () => {
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
+
+  if (isLoading) return <Loader />;
+
   return (
     <>
       <div className={style.mainDiv}>
@@ -127,14 +131,16 @@ const ProfileUpdate = () => {
               padding: "1rem",
               fontSize: "16px",
               backgroundColor: "#f1f1f1",
-            }}>
+            }}
+          >
             <Button
-              size='small'
+              size="small"
               style={{
                 float: "inline-end",
                 backgroundColor: "#2c3e50",
                 color: "#f1f1f1",
-              }}>
+              }}
+            >
               Change
             </Button>
             <h6 style={{ fontSize: "1rem" }}>Password</h6>
@@ -150,14 +156,16 @@ const ProfileUpdate = () => {
               padding: "1rem",
               fontSize: "16px",
               backgroundColor: "#f1f1f1",
-            }}>
+            }}
+          >
             <Button
-              size='small'
+              size="small"
               style={{
                 float: "inline-end",
                 backgroundColor: "#2c3e50",
                 color: "#f1f1f1",
-              }}>
+              }}
+            >
               Deactivate
             </Button>
             <h6 style={{ fontSize: "1rem" }}>Remove</h6>
