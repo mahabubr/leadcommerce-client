@@ -7,6 +7,7 @@ import { Card, Pagination, Spin } from "antd";
 
 import DeliveryCart from "@/components/users/DeliveryCart";
 import { useGetAllDeliverysQuery } from "@/redux/delivery/deliveryApi";
+import UserCard from "@/components/users/UserCard";
 
 const AllDelivery = () => {
   const query: any = {};
@@ -17,18 +18,25 @@ const AllDelivery = () => {
   const { data }: { data?: any } = useGetAllDeliverysQuery({
     ...query,
   });
-  const deliveryData = data && data?.data;
+  const userData = data && data?.data;
 
   const handlePagination = (page: any, size: any) => {
     setPagPage(page);
     setPagSize(size);
   };
   return (
-    <Card title="All Delivery" style={{ boxShadow: "3px 3px 15px #ddd" }}>
+    <Card title='All Delivery' style={{ boxShadow: "3px 3px 15px #ddd" }}>
       <div>
-        <div className={style.userGrid}>
-          {deliveryData?.map((deliveryData: any) => (
-            <DeliveryCart key={deliveryData._id} delivery={deliveryData} />
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "10px",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+          }}>
+          {userData?.map((user: any) => (
+            <UserCard key={user._id} user={user} />
           ))}
         </div>
       </div>
