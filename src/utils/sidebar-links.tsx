@@ -145,6 +145,13 @@ const sidebarItems = (role: string) => {
         },
       ],
     },
+    {
+      title: "Setting",
+      icon: <IoMdSettings />,
+      links: [
+        { label: "Profile setting", href: "/admin/settings/profilesetting" },
+      ],
+    },
   ];
 
   const storeItems = [
@@ -257,6 +264,13 @@ const sidebarItems = (role: string) => {
           href: "/delivery/order",
           icon: <PiCircleDashedBold />,
         },
+      ],
+    },
+    {
+      title: "Setting",
+      icon: <IoMdSettings />,
+      links: [
+        { label: "Profile setting", href: "/delivery/settings/profilesetting" },
       ],
     },
   ];

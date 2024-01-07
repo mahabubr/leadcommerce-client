@@ -5,6 +5,7 @@ import style from "./static/userpage.module.css";
 import { Card, Pagination, Spin } from "antd";
 import { useGetAllEmployesQuery } from "@/redux/employees/employeesApi";
 import EmployeeCart from "@/components/users/EmployeeCart";
+import UserCard from "@/components/users/UserCard";
 
 const AllUsers = () => {
   const query: any = {};
@@ -15,7 +16,7 @@ const AllUsers = () => {
   const { data }: { data?: any } = useGetAllEmployesQuery({
     ...query,
   });
-  const employeeData = data && data?.data;
+  const userData = data && data?.data;
 
   const handlePagination = (page: any, size: any) => {
     setPagPage(page);
@@ -23,14 +24,26 @@ const AllUsers = () => {
   };
 
   return (
-    <Card title="All employees" style={{ boxShadow: "3px 3px 15px #ddd" }}>
-      <div>
+    <Card title='All employees' style={{ boxShadow: "3px 3px 15px #ddd" }}>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "10px",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+        }}>
+        {userData?.map((user: any) => (
+          <UserCard key={user._id} user={user} />
+        ))}
+      </div>
+      {/* <div>
         <div className={style.userGrid}>
           {employeeData?.map((employee: any) => (
             <EmployeeCart key={employee._id} employee={employee} />
           ))}
         </div>
-      </div>
+      </div> */}
       <div style={{ marginTop: 50, display: "flex", justifyContent: "end" }}>
         <Pagination
           defaultCurrent={1}

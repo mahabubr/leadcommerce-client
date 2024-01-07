@@ -36,20 +36,27 @@ const Stores = () => {
   return (
     <>
       <Card
-        title="All Stores"
+        title='All Stores'
         extra={
           <Input
-            size="middle"
-            placeholder="Search Pages"
+            size='middle'
+            placeholder='Search Pages'
             suffix={<CiSearch />}
             allowClear
             onChange={(e) => setSearch(e.target.value)}
           />
         }
-        style={{ boxShadow: "3px 3px 15px #ddd" }}
-      >
+        style={{ boxShadow: "3px 3px 15px #ddd" }}>
         <div className={style.container}>
-          <div className={style.storeGrid}>
+          {/* className={style.storeGrid} */}
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "10px",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}>
             {stores?.length > 0
               ? stores?.map((store: any) => (
                   <StoreCard key={store._id} store={store} />
@@ -57,8 +64,7 @@ const Stores = () => {
               : "Not Store Found"}
           </div>
           <div
-            style={{ marginTop: 50, display: "flex", justifyContent: "end" }}
-          >
+            style={{ marginTop: 50, display: "flex", justifyContent: "end" }}>
             <Pagination
               defaultCurrent={1}
               total={meta?.total}
