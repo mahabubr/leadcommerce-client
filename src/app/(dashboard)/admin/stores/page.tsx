@@ -53,7 +53,7 @@ const Stores = () => {
             style={{
               display: "flex",
               flexWrap: "wrap",
-              // gap: "10px",
+              gap: "10px",
               justifyContent: "space-between",
               alignItems: "center",
             }}>
