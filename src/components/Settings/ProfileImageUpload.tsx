@@ -104,13 +104,11 @@ const ProfileImageUpload = ({
             src={
               currentImage
                 ? currentImage
-                : "/preview.jpg" && userData?.image?.avatar
+                : userData?.image?.avatar
+                ? userData.image.avatar
+                : "/preview.jpg"
             }
-            // src={
-            //   userData.image.avatar
-            //     ? userData.image.avatar
-            //     : currentImage || "/preview.jpg"
-            // }
+           
             height={300}
             width={300}
             alt='preview'
