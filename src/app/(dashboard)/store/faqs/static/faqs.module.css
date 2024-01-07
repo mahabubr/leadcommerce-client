@@ -1,0 +1,24 @@
+.create_faq{
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+}
+.h2{
+    color: #393f47;
+    text-align: center;
+    margin: 15px 0;
+}
+.faqs_data{
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+}
+.faqs_list{
+    width: 44%;
+}
+.faqs_image{
+    width: 44%;
+}
+.faqs_image img{
+    max-width: 100%;
+}

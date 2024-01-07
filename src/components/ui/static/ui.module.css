@@ -1,0 +1,23 @@
+.ul_list {
+    position: absolute;
+    background: #F4F5F7;
+    width: 100%;
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 10000;
+}
+
+.list_item{
+    padding: 5px;
+    border-bottom: 1px solid #efefef;
+    cursor:pointer;
+}
+
+.list_item:hover{
+    background:#efefef
+    /* color:# */
+}
+
+.list_item a{
+    color: #393f47;
+}

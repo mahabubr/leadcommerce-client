@@ -70,11 +70,6 @@ export function Barchart({ signUpData }: { signUpData: any }) {
 
   const handleResize = (e: any) => {
     setChartWidth(((window.innerWidth - 300) * 30) / 100);
-    console.log(
-      "barchart",
-      window.innerWidth,
-      (chartRef?.current?.offsetWidth * 85) / 100
-    );
   };
   useEffect(() => {
     // setChartWidth(chartRef.current.offsetWidth*90/100)
