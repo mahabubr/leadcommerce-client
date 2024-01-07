@@ -31,10 +31,10 @@
 }
 
 .gridCard {
-  display: "grid";
-  grid-template-columns: "1fr 1fr 1fr";
-  gap: "0.75rem";
-  justify-content: "center";
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.75rem;
+  justify-content: center;
 }
 
 .sideContent {
@@ -76,22 +76,99 @@
     padding: 15px;
     margin-top: 20px;
   }
+  .gridCard {
+    grid-template-columns: "1fr";
+  }
 }
 
 @media (min-width: 426px) and (max-width: 560px) {
   /* Adjustments for 426px to 560px if needed */
+  .gridCard {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+   .container {
+    padding: 10px;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mainContent {
+    padding: 15px;
+  }
+
+  .mainFilter {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filterOne {
+    width: 100%;
+  }
+
+  .filterTwo {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .sideContent {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+  }
 }
 
 @media (min-width: 561px) and (max-width: 910px) {
   /* Adjustments for 561px to 910px if needed */
+  .gridCard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+   .container {
+    padding: 10px;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mainContent {
+    padding: 15px;
+  }
+
+  .mainFilter {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filterOne {
+    width: 100%;
+  }
+
+  .filterTwo {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .sideContent {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+  }
 }
 
 @media (min-width: 911px) and (max-width: 1150px) {
   /* Adjustments for 911px to 1150px if needed */
+  .gridCard {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 @media (min-width: 1151px) and (max-width: 1440px) {
   /* Adjustments for 1151px to 1440px if needed */
+  .gridCard {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 /* Additional media queries for larger screens if required */

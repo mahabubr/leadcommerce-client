@@ -92,14 +92,7 @@ const Orders = () => {
             />
           </div>
         </Card>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr 1fr",
-            gap: "0.75rem",
-            justifyContent: "center",
-          }}
-        >
+        <div className={style.gridCard}>
           {ProductData &&
             ProductData?.map((product: any) => (
               <ProductCard key={product._id} product={product}></ProductCard>

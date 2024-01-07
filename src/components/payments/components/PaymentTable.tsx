@@ -79,6 +79,9 @@ const PaymentTable = ({
           showSizeChanger: true,
         }}
         loading={isLoading && { indicator: <Loader /> }}
+        onRow={(record, rowIndex) => ({
+          onClick: () => setCurrentClickData(record),
+        })}
       />
     </>
   );

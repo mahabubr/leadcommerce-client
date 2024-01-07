@@ -49,6 +49,7 @@ export default function ProductCard({ product }: { product: any }) {
             <AiFillHeart
               onClick={() => setLove(!love)}
               className={style.icon}
+              style={{ color: "red" }}
             />
           )}
           <AiOutlineShareAlt className={style.icon} />
