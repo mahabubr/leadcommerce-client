@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@200;300;400;500;600;700;800;900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@200;300;400;500;600;700;800;900&display=swap");
 
 :root {
   scroll-behavior: smooth;
@@ -23,8 +22,13 @@ a {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Source Sans 3', sans-serif;
+  font-family: "Source Sans 3", sans-serif;
+}
 
+.ant-menu-item-selected {
+  background-color: #dadada !important;
+  border: 1px dashed #393f47 !important;
+  border-radius: 2 !important;
 }
 
 .bg-success {
@@ -66,4 +70,59 @@ body::-webkit-scrollbar-thumb {
   background-color: var(--thumbBG);
   border-radius: 6px;
   border: 3px solid var(--scrollbarBG);
+}
+
+.ant-table-thead .ant-table-cell {
+  color: #f4f5f7 !important;
+  background-color: #393f47 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  border-radius: 0 !important;
+}
+
+.ant-table-tbody > tr > td {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+.ant-table {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+
+.ant-table-thead > tr > th {
+  text-align: center !important;
+}
+
+.ant-badge-not-a-wrapper{
+  width:80px;
+  /* height:50px; */
+  padding:3px;
+  z-index: 100 !important;
+  background:#FAAD14;
+  border-radius: 4px;
+  position: absolute;
+}
+/* CSS */
+.ant-btn-primary {
+  background-color: #393f47; /* Updated color */
+  border-radius: 100px;
+  box-shadow: rgba(57, 63, 71, 0.2) 0 -25px 18px -14px inset,
+    rgba(57, 63, 71, 0.15) 0 1px 2px, rgba(57, 63, 71, 0.15) 0 2px 4px,
+    rgba(57, 63, 71, 0.15) 0 4px 8px, rgba(57, 63, 71, 0.15) 0 8px 16px,
+    rgba(57, 63, 71, 0.15) 0 16px 32px;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.ant-btn-primary:hover {
+  box-shadow: rgba(57, 63, 71, 0.35) 0 -25px 18px -14px inset,
+    rgba(57, 63, 71, 0.25) 0 1px 2px, rgba(57, 63, 71, 0.25) 0 2px 4px,
+    rgba(57, 63, 71, 0.25) 0 4px 8px, rgba(57, 63, 71, 0.25) 0 8px 16px,
+    rgba(57, 63, 71, 0.25) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
 }

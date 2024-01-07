@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
 import { Button, Checkbox, DatePicker, Form, Input } from "antd";
 import style from "./static/profileUpload.module.css";
-import { useGetAEmployeQuery } from "@/redux/employees/employeesApi";
+import {
+  useGetAEmployeQuery,
+  useUpdateEmployeMutation,
+} from "@/redux/employees/employeesApi";
+import Loader from "../ui/Loader";
 type FieldType = {
-  fullName?: string;
+  full_name?: string;
   country?: string;
   email?: string;
   phone?: string;
@@ -19,38 +23,29 @@ type resType = {
 };
 
 const initialData = {
-  firstName: "",
+  full_name: "",
   lastName: "",
   email: "",
   phone: "",
-  address: "",
+  country: "",
   birthday: "",
 };
 
-const ProfileUpdateFrom = () => {
-  const { data, isLoading }: any = useGetAEmployeQuery({});
-
-  const [form] = Form.useForm();
-
-  // useEffect(()=>{
-  //   if(data?.statusCode === 200)
-  // })
-
-  useEffect(() => {});
-
-  const onFinish = (values: any) => {
-    console.log("Success:", values);
-  };
-
-  const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
-  };
-
+const ProfileUpdateFrom = ({
+  onFinish,
+  onFinishFailed,
+  data,
+  isLoading,
+}: {
+  onFinish: any;
+  onFinishFailed: any;
+  data: any;
+  isLoading: boolean;
+}) => {
   return (
     <div>
-      {/* {isLoading?"loader..." : (<form........ )} */}
       {isLoading ? (
-        "loader"
+        <Loader />
       ) : (
         <Form
           name="basic"
@@ -69,7 +64,7 @@ const ProfileUpdateFrom = () => {
           >
             <Form.Item<FieldType>
               label="Full Name"
-              name="fullName"
+              name="full_name"
               style={{
                 width: "50%",
               }}
@@ -82,7 +77,6 @@ const ProfileUpdateFrom = () => {
                 style={{
                   height: "40px",
                 }}
-                disabled
               />
             </Form.Item>
 
@@ -99,7 +93,6 @@ const ProfileUpdateFrom = () => {
                 style={{
                   height: "40px",
                 }}
-                disabled
               />
             </Form.Item>
           </div>
@@ -122,7 +115,6 @@ const ProfileUpdateFrom = () => {
                 style={{
                   height: "40px",
                 }}
-                disabled
               />
             </Form.Item>
 
@@ -139,25 +131,22 @@ const ProfileUpdateFrom = () => {
                 style={{
                   height: "40px",
                 }}
-                disabled
               />
             </Form.Item>
           </div>
-          <Form.Item<FieldType>
-            label="Address"
+          {/* <Form.Item<FieldType>
+            label='Address'
             style={{
               width: "100%",
             }}
-            name="address"
-            rules={[{ message: "Please input your password!" }]}
-          >
+            name='address'
+            rules={[{ message: "Please input your password!" }]}>
             <Input
               style={{
                 height: "40px",
               }}
-              disabled
             />
-          </Form.Item>
+          </Form.Item> */}
           <Form.Item>
             <Button type="primary" htmlType="submit">
               Update

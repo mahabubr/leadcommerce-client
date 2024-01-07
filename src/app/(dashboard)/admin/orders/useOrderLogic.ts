@@ -60,8 +60,8 @@ const useOrderLogic = () => {
 
     query["order_status"] = orderStatus;
   }
-  const { data, isLoading }: { data?: any; isLoading: boolean } =
-    useGetAllOrderQuery({ ...query });
+  const { data, isLoading } = useGetAllOrderQuery({ ...query });
+  //@ts-ignore
   const orderData = data?.data;
 
   // * PageLimit Change
@@ -88,14 +88,15 @@ const useOrderLogic = () => {
   const handleRouteUpdate = (_id: string) => router.push(`/order/${_id}`);
 
   const findSelectOptions = () => {
-    return (
-      deliveryOption?.data?.map((item: any) => {
-        return {
-          value: item.email,
-          label: item.email,
-        };
-      }) || {}
-    );
+    const deliveryData = deliveryOption?.data;
+    if (!Array.isArray(deliveryData)) {
+      return [];
+    }
+
+    return deliveryData.map((item) => ({
+      value: item.email,
+      label: item.email,
+    }));
   };
 
   const handleChangeSelect = (email: any, id: string) => {

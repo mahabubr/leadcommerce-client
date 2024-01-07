@@ -29,7 +29,7 @@ const PaymentsViews = () => {
 
   if (isLoading) return <Loader />;
 
-  console.log(paymentData?.data);
+  console.log(currentClickData);
 
   return (
     <>

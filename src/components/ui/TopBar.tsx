@@ -1,5 +1,5 @@
 import { Avatar, Dropdown, Input, Menu } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HiBars3 } from "react-icons/hi2";
 import { IoIosNotifications } from "react-icons/io";
 import { MdCenterFocusStrong } from "react-icons/md";
@@ -8,10 +8,15 @@ import { CiSearch } from "react-icons/ci";
 import Loader from "./Loader";
 import { Router } from "next/router";
 import { useRouter } from "next/navigation";
+import { extractPathNames } from "@/Helper/CommonFunction";
+import style from './static/ui.module.css';
+import Link from "next/link";
 
 const TopBar = ({ open, closeDrawer, showDrawer }: any) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [show_paths,setShowPaths]=useState(false);
   const router = useRouter();
+  const [new_paths,setNewPaths]=useState<string[]>([]);
 
   const toggleFullscreen = () => {
     const element = document.documentElement as HTMLElement;
@@ -53,6 +58,22 @@ const TopBar = ({ open, closeDrawer, showDrawer }: any) => {
     return <Loader />;
   };
 
+  useEffect(()=>{
+    setNewPaths(extractPathNames());
+  },[])
+
+  const changeHandler=(e:any)=>{
+    const paths=[...extractPathNames()];
+    const newPaths:string[]=[];
+    paths.forEach((p_item)=>{
+      const new_p_item=p_item;
+      const new_path_item=new_p_item.split('/').join('');
+      const res= new_path_item.toLocaleLowerCase().search(e.target.value.toLocaleLowerCase());
+      if(res>=0)newPaths.push(p_item);
+    })
+    setNewPaths([...newPaths])
+  }
+
   return (
     <div
       style={{
@@ -81,7 +102,30 @@ const TopBar = ({ open, closeDrawer, showDrawer }: any) => {
             </div>
           )}
         </div>
-
+          <div style={{position:'relative', flex: 1, margin: "0 20px" }}>
+            <Input
+              size="middle"
+              placeholder="Search Pages"
+              suffix={<CiSearch />}
+              allowClear
+              style={{ width: "100%" }}
+              onFocus={()=>setShowPaths(true)}
+              onBlur={()=>setTimeout(()=>setShowPaths(false),300)}
+              onChange={(e)=>changeHandler(e)}
+            />
+            {
+              show_paths?(
+                <ul className={style.ul_list}>
+                  {new_paths?.map((path_items:string)=>(
+                      <li onClick={()=>router.push(path_items)} className={style.list_item} key={path_items}>
+                        <Link href={path_items} >{path_items}</Link>
+                        {/* {path_items} */}
+                      </li>
+                  ))}
+                </ul>
+              ):''
+            }
+          </div>
         <div
           style={{
             display: "flex",

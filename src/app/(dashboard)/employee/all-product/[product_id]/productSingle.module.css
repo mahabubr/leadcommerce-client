@@ -1,0 +1,88 @@
+/* productSingle.module.css */
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.mainContent {
+  width: 100%;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.mainFilter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.filterOne {
+  max-width: 320px;
+}
+
+.filterTwo {
+  flex-grow: 1;
+}
+
+.productContent {
+  display: flex;
+}
+
+.leftContent {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.productImg {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.rightContent {
+  flex: 2;
+}
+
+.inStock {
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+  width: fit-content;
+}
+
+.productDescription {
+  margin-top: 10px;
+  line-height: 1.6;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.inputSearch {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.tabsContainer {
+  margin-top: 20px;
+}
+
+/* Media Queries for Responsiveness */
+
+@media only screen and (max-width: 768px) {
+  .mainContent {
+    width: 90%;
+  }
+
+  .productContent {
+    flex-direction: column;
+  }
+
+  .leftContent {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}

@@ -13,6 +13,8 @@ const SplineChart = () => {
   ];
 
   const options = {
+    responsive:true,
+    maintainAspectRatio:false,
     vAxis: {
       textPosition: "none",
       gridlines: {

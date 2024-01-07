@@ -6,40 +6,31 @@ import SmallCalender from "@/components/event/components/calendercomponent/Small
 import { LineChartOutlined } from "@ant-design/icons";
 import { Card, Image } from "antd";
 import React from "react";
+import style from "./static/calenderpage.module.css";
 
 const CalenderPage = () => {
   return (
-    <>
+    <div className={style.container_event}>
       <div
-        style={{
-          backgroundColor: "white",
-          padding: "1vw",
-          marginBottom: "1vw",
-          borderRadius: "8px",
-          boxShadow:
-            "rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px",
-        }}>
+        className={style.event_cont}>
         <h3>Events</h3>
       </div>
       <div
-        style={{
-          // padding: "9px",
-          display: "flex",
-          gap: "10px",
-        }}>
-        <div style={{ flex: "1" }}>
+        className={style.gridCont}>
+        <div className={style.calender_box} style={{ flex: "1" }}>
           <EventCalendar></EventCalendar>
         </div>
-        <div style={{ width: "25%" }}>
+        <div className={style.out_cont} style={{ width: "100%" }}>
           <Card style={{ width: "100%" }}>
             <h3>
-              <LineChartOutlined /> TODAYS REVENUE
+              <LineChartOutlined/> TODAYS REVENUE
             </h3>
             <div
               style={{
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
+               flexDirection:'column',
                 // border: "1px solid red",
               }}>
               <h1
@@ -51,14 +42,15 @@ const CalenderPage = () => {
                 }}>
                 $2,189
               </h1>
-              <div style={{ width: "60%" }}>
-                <SplineChart />
+              <div style={{ width: "100%" }}>
+                <SplineChart/>
               </div>
             </div>
           </Card>
           {/* calender  */}
-          <div style={{ marginTop: "20px" }}>
+          <div className={style.sales_head} style={{ marginTop: "20px" }}>
             <div
+              
               style={{
                 backgroundColor: "white",
                 padding: "1vw",
@@ -86,7 +78,7 @@ const CalenderPage = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

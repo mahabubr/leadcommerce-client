@@ -15,6 +15,7 @@ import { IoIosMan } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 import { FaUsersViewfinder } from "react-icons/fa6";
 import { AiFillDatabase } from "react-icons/ai";
+import { PiCircleDashedBold } from "react-icons/pi";
 
 import { MdAdminPanelSettings, MdDeliveryDining } from "react-icons/md";
 
@@ -23,62 +24,133 @@ const sidebarItems = (role: string) => {
     {
       title: "Dashboard",
       icon: <FaHome />,
-      links: [{ label: "Dashboard", href: "/admin/dashboard" }],
+      links: [
+        {
+          label: "Dashboard",
+          href: "/admin/dashboard",
+          icon: <PiCircleDashedBold />,
+        },
+      ],
     },
     {
       title: "Categories",
       icon: <BiSolidCategoryAlt />,
       links: [
-        { label: "Create Category", href: "/admin/category/add-category" },
-        { label: "All Category", href: "/admin/category" },
+        {
+          label: "Create Category",
+          href: "/admin/category/add-category",
+          icon: <PiCircleDashedBold />,
+        },
+        {
+          label: "All Category",
+          href: "/admin/category",
+          icon: <PiCircleDashedBold />,
+        },
       ],
     },
     {
       title: "Stores",
       icon: <FaStore />,
-      links: [{ label: "All Stores", href: "/admin/stores" }],
+      links: [
+        {
+          label: "All Stores",
+          href: "/admin/stores",
+          icon: <PiCircleDashedBold />,
+        },
+      ],
     },
     {
       title: "Orders",
       icon: <FaCartPlus />,
-      links: [{ label: "Order list", href: "/admin/orders" }],
+      links: [
+        {
+          label: "Order list",
+          href: "/admin/orders",
+          icon: <PiCircleDashedBold />,
+        },
+      ],
     },
     {
       title: "Admins",
       icon: <MdAdminPanelSettings />,
       links: [
-        { label: "All Admin", href: "/admin/admins" },
-        { label: "Create Admin", href: "/admin/admins/create-admin" },
+        {
+          label: "All Admin",
+          href: "/admin/admins",
+          icon: <PiCircleDashedBold />,
+        },
+        {
+          label: "Create Admin",
+          href: "/admin/admins/create-admin",
+          icon: <PiCircleDashedBold />,
+        },
       ],
     },
     {
       title: "Employees",
       icon: <FaUsersViewfinder />,
       links: [
-        { label: "All Employee", href: "/admin/employees" },
-        { label: "Create Employee", href: "/admin/employees/add-employee" },
+        {
+          label: "All Employee",
+          href: "/admin/employees",
+          icon: <PiCircleDashedBold />,
+        },
+        {
+          label: "Create Employee",
+          href: "/admin/employees/add-employee",
+          icon: <PiCircleDashedBold />,
+        },
       ],
     },
     {
       title: "Delivery",
       icon: <MdDeliveryDining />,
       links: [
-        { label: "All Delivery", href: "/admin/delivery" },
-        { label: "Create Employee", href: "/admin/delivery/create-delivery" },
+        {
+          label: "All Delivery",
+          href: "/admin/delivery",
+          icon: <PiCircleDashedBold />,
+        },
+        {
+          label: "Create Delivery",
+          href: "/admin/delivery/create-delivery",
+          icon: <PiCircleDashedBold />,
+        },
       ],
     },
     {
       title: "Events",
       icon: <FaCalendar />,
       links: [
-        { label: "Add Events", href: "/admin/event/add-event" },
-        { label: "Events Calendar", href: "/admin/event/calendar" },
+        {
+          label: "Add Events",
+          href: "/admin/event/add-event",
+          icon: <PiCircleDashedBold />,
+        },
+        {
+          label: "Events Calendar",
+          href: "/admin/event/calendar",
+          icon: <PiCircleDashedBold />,
+        },
       ],
     },
     {
       title: "FAQ",
       icon: <FaQuestion />,
-      links: [{ label: "FAQ list", href: "/admin/faqs" }],
+      links: [
+        {
+          label: "FAQ list",
+          href: "/admin/faqs",
+          icon: <PiCircleDashedBold />,
+        },
+      ],
+    },
+    {
+      title: "Setting",
+      icon: <IoMdSettings />,
+      links: [
+        { label: "Profile setting", href: "/admin/settings/profilesetting" },
+      ],
     },
   ];
 
@@ -86,20 +158,40 @@ const sidebarItems = (role: string) => {
     {
       title: "Dashboard",
       icon: <FaHome />,
-      links: [{ label: "Seller Details", href: "/store/seller-details" }],
+      links: [
+        {
+          label: "Seller Details",
+          href: "/store/seller-details",
+          icon: <PiCircleDashedBold />,
+        },
+      ],
     },
     {
       title: "Products",
       icon: <MdOutlineProductionQuantityLimits />,
       links: [
-        { label: "All Products", href: "/store/products" },
-        { label: "Create Products", href: "/store/products/add-product" },
+        {
+          label: "All Products",
+          href: "/store/products",
+          icon: <PiCircleDashedBold />,
+        },
+        {
+          label: "Create Products",
+          href: "/store/products/add-product",
+          icon: <PiCircleDashedBold />,
+        },
       ],
     },
     {
       title: "Orders",
       icon: <LuShoppingBasket />,
-      links: [{ label: "Orders", href: "/store/orders" }],
+      links: [
+        {
+          label: "Orders",
+          href: "/store/orders",
+          icon: <PiCircleDashedBold />,
+        },
+      ],
     },
     // {
     //   title: "Wallet",
@@ -109,12 +201,31 @@ const sidebarItems = (role: string) => {
     {
       title: "Transactions",
       icon: <IoWalletOutline />,
-      links: [{ label: "Transaction", href: "/store/payments" }],
+      links: [
+        {
+          label: "Transaction",
+          href: "/store/payments",
+          icon: <PiCircleDashedBold />,
+        },
+      ],
     },
     {
       title: "Events",
       icon: <FaCalendar />,
-      links: [{ label: "Events", href: "/store/event" }],
+      links: [
+        { label: "Events", href: "/store/event", icon: <PiCircleDashedBold /> },
+      ],
+    },
+    {
+      title: "FAQ",
+      icon: <FaQuestion />,
+      links: [
+        {
+          label: "Ask a Question",
+          href: "/store/faqs",
+          icon: <PiCircleDashedBold />,
+        },
+      ],
     },
   ];
 
@@ -122,18 +233,34 @@ const sidebarItems = (role: string) => {
     {
       title: "Orders",
       icon: <LuShoppingBasket />,
-      links: [{ label: "Orders", href: "/employee/order" }],
+      links: [
+        {
+          label: "Orders",
+          href: "/employee/order",
+          icon: <PiCircleDashedBold />,
+        },
+      ],
     },
     {
       title: "Products",
       icon: <AiFillDatabase />,
-      links: [{ label: "All Product", href: "/employee/all-product" }],
+      links: [
+        {
+          label: "All Product",
+          href: "/employee/all-product",
+          icon: <PiCircleDashedBold />,
+        },
+      ],
     },
     {
       title: "Setting",
       icon: <IoMdSettings />,
       links: [
-        { label: "Profile setting", href: "/employee/settings/profilesetting" },
+        {
+          label: "Profile setting",
+          href: "/employee/settings/profilesetting",
+          icon: <PiCircleDashedBold />,
+        },
       ],
     },
   ];
@@ -142,7 +269,20 @@ const sidebarItems = (role: string) => {
     {
       title: "Orders",
       icon: <LuShoppingBasket />,
-      links: [{ label: "Orders", href: "/delivery/order" }],
+      links: [
+        {
+          label: "Orders",
+          href: "/delivery/order",
+          icon: <PiCircleDashedBold />,
+        },
+      ],
+    },
+    {
+      title: "Setting",
+      icon: <IoMdSettings />,
+      links: [
+        { label: "Profile setting", href: "/delivery/settings/profilesetting" },
+      ],
     },
   ];
 

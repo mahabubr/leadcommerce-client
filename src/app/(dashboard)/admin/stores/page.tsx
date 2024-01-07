@@ -35,40 +35,42 @@ const Stores = () => {
 
   return (
     <>
-      <Card
-        title="All Stores"
-        extra={
-          <Input
-            size="middle"
-            placeholder="Search Pages"
-            suffix={<CiSearch />}
-            allowClear
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        }
-        style={{ boxShadow: "3px 3px 15px #ddd" }}
-      >
-        <div className={style.container}>
-          <div className={style.storeGrid}>
-            {stores?.length > 0
-              ? stores?.map((store: any) => (
-                  <StoreCard key={store._id} store={store} />
-                ))
-              : "Not Store Found"}
-          </div>
-          <div
-            style={{ marginTop: 50, display: "flex", justifyContent: "end" }}
-          >
-            <Pagination
-              defaultCurrent={1}
-              total={meta?.total}
-              onChange={handlePagination}
-              pageSizeOptions={["5", "10", "20"]}
-              showSizeChanger
-            />
-          </div>
-        </div>
+      <Card title="All Stores" style={{ boxShadow: "3px 3px 15px #ddd" }}>
+        <Input
+          size="middle"
+          placeholder="Search Pages"
+          suffix={<CiSearch />}
+          allowClear
+          onChange={(e) => setSearch(e.target.value)}
+        />
       </Card>
+
+      <div className={style.container}>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "10px",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          {stores?.length > 0
+            ? stores?.map((store: any) => (
+                <StoreCard key={store._id} store={store} />
+              ))
+            : "Not Store Found"}
+        </div>
+        <div style={{ marginTop: 50, display: "flex", justifyContent: "end" }}>
+          <Pagination
+            defaultCurrent={1}
+            total={meta?.total}
+            onChange={handlePagination}
+            pageSizeOptions={["5", "10", "20"]}
+            showSizeChanger
+          />
+        </div>
+      </div>
     </>
   );
 };

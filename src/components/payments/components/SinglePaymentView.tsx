@@ -1,4 +1,4 @@
-import { Flex, Typography } from "antd";
+import { Flex, Tag, Typography } from "antd";
 import React from "react";
 
 const { Title } = Typography;
@@ -15,7 +15,9 @@ const paraStyle = {
   color: "#4f5d77",
 };
 
-const SinglePaymentView = ({ currentClickData }: Props) => {
+const SinglePaymentView = ({ currentClickData }: any) => {
+  console.log(currentClickData);
+
   return (
     <div
       style={{
@@ -35,35 +37,37 @@ const SinglePaymentView = ({ currentClickData }: Props) => {
               <Title level={5} style={titleStyle}>
                 Order Id:{" "}
               </Title>
-              <p style={paraStyle}>{currentClickData.order_id}</p>
+              <p style={paraStyle}>{currentClickData?.order_id?._id}</p>
             </div>
 
             <div>
               <Title level={5} style={titleStyle}>
-                Shop Id:{" "}
+                Delivery Email:{" "}
               </Title>
-              <p style={paraStyle}>{currentClickData.shop_id}</p>
+              <p style={paraStyle}>
+                {currentClickData?.order_id?.delivery_email}
+              </p>
             </div>
 
             <div>
               <Title level={5} style={titleStyle}>
                 Payment Code:{" "}
               </Title>
-              <p style={paraStyle}>{currentClickData.payment_code}</p>
+              <p style={paraStyle}>{currentClickData?.order_id?.order_code}</p>
             </div>
 
             <div>
               <Title level={5} style={titleStyle}>
                 Status:{" "}
               </Title>
-              <p style={paraStyle}>{currentClickData.payment_status}</p>
+              <Tag color="green">{currentClickData?.payment_status}</Tag>
             </div>
 
             <div>
               <Title level={5} style={titleStyle}>
                 Total:{" "}
               </Title>
-              <p style={paraStyle}>৳ {currentClickData.total_amount}</p>
+              <p style={paraStyle}>$ {currentClickData?.total_amount}</p>
             </div>
           </Flex>
         </>

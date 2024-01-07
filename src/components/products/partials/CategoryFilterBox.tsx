@@ -1,10 +1,19 @@
 import React from "react";
 import PCheckbox from "./PCheckbox";
 import { Space } from "antd";
+import { useGetAllCategoriesQuery } from "@/redux/category/categoryApi";
 
 type Props = {};
 
 const CategoryFilterBox = (props: Props) => {
+  const { data, isLoading } = useGetAllCategoriesQuery({
+    limit: 5,
+    page: 1,
+    // product_status,
+    sortOrder: "asc",
+  });
+  console.log(data);
+
   return (
     <Space
       direction="vertical"

@@ -62,6 +62,7 @@ const Faqs = () => {
       key: "_id",
       render: (id: string, data: any) => (
         <Button
+          type="primary"
           onClick={() => saveAns(id)}
           loading={
             (editableDocument?.["current"] === id && saveAnsLoader) || false
