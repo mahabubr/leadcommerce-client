@@ -48,7 +48,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <div className={style.layout}>
         <div className={style.layout_image}>
           <img
-            src="https://i.ibb.co/dQykjqq/marvin-meyer-SYTO3xs06f-U-unsplash.jpg"
+            src="https://img.freepik.com/free-photo/shopping-trolleys-packets-tags_23-2147961897.jpg?t=st=1704634173~exp=1704634773~hmac=eead96601c2da9991815ee1519e40538a19bb768ec774dd20499446944c27596"
             alt=""
           />
         </div>
