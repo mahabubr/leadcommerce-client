@@ -48,7 +48,7 @@ const AllUsers = () => {
         style={{
           display: "flex",
           flexWrap: "wrap",
-          gap: "10px",
+          gap: "20px",
           justifyContent: "space-evenly",
           alignItems: "center",
         }}>

@@ -6,6 +6,7 @@ import {
 } from "@ant-design/icons";
 import { Avatar, Modal } from "antd";
 import React, { useState } from "react";
+import style from "./static/userComponent.module.css";
 
 const UserCard = ({ user }: { user: any }) => {
   console.log(user);
@@ -28,7 +29,8 @@ const UserCard = ({ user }: { user: any }) => {
       <div
         style={{
           height: "120px",
-          minWidth: "400px",
+          width: "400px",
+          minWidth: "290px",
           // border: "1px solid red",
           display: "flex",
           padding: "1vw",
@@ -99,32 +101,10 @@ const UserCard = ({ user }: { user: any }) => {
           </div>
         </div>
       </div>
-      {/* <div className={style.userGrid}>
-          {adminData?.map((admin: any) => (
-            <UserCart key={admin._id} admin={admin} />
-          ))}
-        </div> */}
-      <Modal
-        // title='Basic Modal'
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}>
-        <div
-          style={{
-            display: "flex",
-            gap: "1vw",
-            width: "100%",
-            height: "250px",
-          }}>
-          <div
-            className='photo'
-            style={{
-              width: "40%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "column",
-            }}>
+
+      <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <div className={style.ModalStyle}>
+          <div className={style.ModalAvater}>
             {image ? (
               <Avatar size={60} src={image?.avatar} />
             ) : (
@@ -133,16 +113,7 @@ const UserCard = ({ user }: { user: any }) => {
             <h2>{full_name}</h2>
             <h3>{email}</h3>
           </div>
-          <div
-            className='content'
-            style={{
-              flex: "1",
-              padding: "1vw",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              gap: "7px",
-            }}>
+          <div className={style.ModalContactDetails}>
             <h1>Contact Details</h1>
             <h3>Email</h3>
             <h4>{email}</h4>

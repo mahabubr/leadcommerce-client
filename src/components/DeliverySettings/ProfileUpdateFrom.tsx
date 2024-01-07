@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, Checkbox, DatePicker, Form, Input } from "antd";
+import { Button, Checkbox, DatePicker, Form, Input, Spin } from "antd";
 import style from "./static/profileUpload.module.css";
 import {
   useGetAEmployeQuery,
@@ -44,7 +44,15 @@ const ProfileUpdateFrom = ({
   return (
     <div>
       {isLoading ? (
-        "loader"
+        <div
+          style={{
+            minHeight: "400px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}>
+          <Spin size='large' />
+        </div>
       ) : (
         <Form
           name='basic'
